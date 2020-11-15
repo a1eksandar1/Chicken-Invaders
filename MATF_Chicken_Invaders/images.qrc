@@ -1,5 +1,14 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>slika.jpeg</file>
+    <qresource prefix="/images"/>
+    <qresource prefix="/">
+        <file>backgrounds/level1.png</file>
+        <file>backgrounds/level2.png</file>
+        <file>backgrounds/level3.png</file>
+        <file>backgrounds/level4.png</file>
+        <file>backgrounds/level5.png</file>
+        <file>backgrounds/level6.png</file>
+        <file>backgrounds/level7.png</file>
+        <file>backgrounds/level8.png</file>
+        <file>backgrounds/level9.png</file>
     </qresource>
 </RCC>
