@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
 
 protected:
     void resizeEvent(QResizeEvent* evt) override;
-    void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
 
 public:
     MainWindow(QWidget *parent = nullptr);
