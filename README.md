@@ -1,6 +1,6 @@
 # Project 15-MATF-Chicken-Invaders
 
-Pokusacemo da implementiramo uproscenu verziju popularne igre Chicken Invaders.
+Implementacija uproscene verzije popularne igre Chicken Invaders.
 
 ## Developers
 
