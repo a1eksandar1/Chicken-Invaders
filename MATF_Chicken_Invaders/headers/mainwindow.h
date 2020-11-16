@@ -12,8 +12,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 protected:
-    void resizeEvent(QResizeEvent* evt) override;
+    void resizeEvent(QResizeEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+
+public slots:
+    void onQuit();
 
 public:
     MainWindow(QWidget *parent = nullptr);

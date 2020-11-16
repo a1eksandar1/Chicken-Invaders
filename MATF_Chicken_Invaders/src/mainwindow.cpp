@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDesktopWidget>
 #include <QPalette>
@@ -8,15 +8,21 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QKeyEvent>
-void MainWindow::resizeEvent(QResizeEvent *evt)
+#include <QMessageBox>
+#include <QtGui>
+#include <QPushButton>
+#include <QDebug>
+#include <QHBoxLayout>
+
+void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    QPixmap bkgnd(":/backgrounds/level1.png");
+    QPixmap bkgnd(":images/backgrounds/level1.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QMainWindow::resizeEvent(evt);
+    QMainWindow::resizeEvent(event);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -31,11 +37,18 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+void MainWindow::onQuit()
+{
+    close();
+}
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
 }
 
 MainWindow::~MainWindow()

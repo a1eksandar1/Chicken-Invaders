@@ -1,6 +1,5 @@
 <RCC>
-    <qresource prefix="/images"/>
-    <qresource prefix="/">
+    <qresource prefix="/images">
         <file>backgrounds/level1.png</file>
         <file>backgrounds/level2.png</file>
         <file>backgrounds/level3.png</file>
@@ -10,5 +9,13 @@
         <file>backgrounds/level7.png</file>
         <file>backgrounds/level8.png</file>
         <file>backgrounds/level9.png</file>
+        <file>buttons/play_button.png</file>
+        <file>buttons/play_button_pressed.png</file>
+        <file>buttons/hall_of_fame_button.png</file>
+        <file>buttons/hall_of_fame_button_pressed.png</file>
+        <file>buttons/options_button.png</file>
+        <file>buttons/options_button_pressed.png</file>
+        <file>buttons/quit_button.png</file>
+        <file>buttons/quit_button_pressed.png</file>
     </qresource>
 </RCC>
