@@ -13,6 +13,9 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QHBoxLayout>
+#include "headers/usernamewindow.h"
+#include "ui_usernamewindow.h"
+#include <headers/mainwindow.h>
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -42,13 +45,22 @@ void MainWindow::onQuit()
     close();
 }
 
+void MainWindow::onPlay()
+{
+    UsernameWindow uw;
+    uw.exec();
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    ui1(new Ui::UsernameWindow)
 {
     ui->setupUi(this);
 
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
+    connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
+
 }
 
 MainWindow::~MainWindow()

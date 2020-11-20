@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "headers/usernamewindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,6 +18,7 @@ protected:
 
 public slots:
     void onQuit();
+    void onPlay();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -24,5 +26,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Ui::UsernameWindow *ui1;
 };
 #endif // MAINWINDOW_H
