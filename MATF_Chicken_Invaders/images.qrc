@@ -17,5 +17,10 @@
         <file>buttons/options_button_pressed.png</file>
         <file>buttons/quit_button.png</file>
         <file>buttons/quit_button_pressed.png</file>
+        <file>backgrounds/usernameWindow.png</file>
+        <file>backgrounds/usernameText.png</file>
+        <file>buttons/cancel_button.png</file>
+        <file>buttons/ok_button.png</file>
+        <file>buttons/skip_button.png</file>
     </qresource>
 </RCC>

@@ -665,18 +665,23 @@ qrc_images.cpp: ../MATF_Chicken_Invaders/images.qrc \
 		../MATF_Chicken_Invaders/backgrounds/level7.png \
 		../MATF_Chicken_Invaders/backgrounds/level2.png \
 		../MATF_Chicken_Invaders/backgrounds/level6.png \
+		../MATF_Chicken_Invaders/backgrounds/usernameWindow.png \
 		../MATF_Chicken_Invaders/backgrounds/level1.png \
 		../MATF_Chicken_Invaders/backgrounds/level5.png \
 		../MATF_Chicken_Invaders/backgrounds/level9.png \
 		../MATF_Chicken_Invaders/backgrounds/level4.png \
+		../MATF_Chicken_Invaders/backgrounds/usernameText.png \
 		../MATF_Chicken_Invaders/backgrounds/level8.png \
 		../MATF_Chicken_Invaders/buttons/play_button_pressed.png \
 		../MATF_Chicken_Invaders/buttons/hall_of_fame_button.png \
 		../MATF_Chicken_Invaders/buttons/hall_of_fame_button_pressed.png \
 		../MATF_Chicken_Invaders/buttons/quit_button_pressed.png \
 		../MATF_Chicken_Invaders/buttons/options_button_pressed.png \
+		../MATF_Chicken_Invaders/buttons/ok_button.png \
 		../MATF_Chicken_Invaders/buttons/options_button.png \
 		../MATF_Chicken_Invaders/buttons/quit_button.png \
+		../MATF_Chicken_Invaders/buttons/cancel_button.png \
+		../MATF_Chicken_Invaders/buttons/skip_button.png \
 		../MATF_Chicken_Invaders/buttons/play_button.png
 	/home/maja/Qt/5.15.1/gcc_64/bin/rcc -name images ../MATF_Chicken_Invaders/images.qrc -o qrc_images.cpp
 
@@ -796,6 +801,9 @@ moc_mainwindow.cpp: ../MATF_Chicken_Invaders/headers/mainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../MATF_Chicken_Invaders/headers/usernamewindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdialog.h \
 		moc_predefs.h \
 		../../../Qt/5.15.1/gcc_64/bin/moc
 	/home/maja/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/maja/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/maja/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/maja/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/maja/Qt/5.15.1/gcc_64/include -I/home/maja/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/maja/Qt/5.15.1/gcc_64/include/QtGui -I/home/maja/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/mainwindow.h -o moc_mainwindow.cpp
@@ -1041,6 +1049,9 @@ main.o: ../MATF_Chicken_Invaders/src/main.cpp ../MATF_Chicken_Invaders/headers/m
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../MATF_Chicken_Invaders/headers/usernamewindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDesktopWidget \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
@@ -1158,6 +1169,9 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../MATF_Chicken_Invaders/headers/usernamewindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdialog.h \
 		ui_mainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
@@ -1191,8 +1205,6 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextoption.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qpen.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QList \
-		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
-		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/QKeyEvent \
@@ -1420,7 +1432,13 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiversion.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QHBoxLayout \
-		../MATF_Chicken_Invaders/headers/usernamewindow.h
+		ui_usernamewindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QFrame \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QLineEdit \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlineedit.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../MATF_Chicken_Invaders/src/mainwindow.cpp
 
 usernamewindow.o: ../MATF_Chicken_Invaders/src/usernamewindow.cpp ../MATF_Chicken_Invaders/headers/usernamewindow.h \
@@ -1537,6 +1555,8 @@ usernamewindow.o: ../MATF_Chicken_Invaders/src/usernamewindow.cpp ../MATF_Chicke
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QFrame \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QGridLayout \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayout.h \
@@ -1545,7 +1565,6 @@ usernamewindow.o: ../MATF_Chicken_Invaders/src/usernamewindow.cpp ../MATF_Chicke
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QHBoxLayout \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QLabel \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlabel.h \
-		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QLineEdit \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlineedit.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextcursor.h \

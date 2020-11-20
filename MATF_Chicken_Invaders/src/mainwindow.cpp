@@ -48,6 +48,8 @@ void MainWindow::onQuit()
 void MainWindow::onPlay()
 {
     UsernameWindow uw;
+    uw.setWindowFlags(Qt::CustomizeWindowHint);
+    uw.setAttribute(Qt::WA_TranslucentBackground);
     uw.exec();
 }
 
