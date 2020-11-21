@@ -14,8 +14,8 @@
 #include <QDebug>
 #include <QHBoxLayout>
 #include "headers/usernamewindow.h"
-#include "ui_usernamewindow.h"
-#include <headers/mainwindow.h>
+#include <iostream>
+#include "headers/gamewindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -47,26 +47,29 @@ void MainWindow::onQuit()
 
 void MainWindow::onPlay()
 {
-    UsernameWindow uw;
-    uw.setWindowFlags(Qt::CustomizeWindowHint);
-    uw.setAttribute(Qt::WA_TranslucentBackground);
-    uw.exec();
+    UsernameWindow* uw = new UsernameWindow(this);
+    uw->setWindowFlags(Qt::CustomizeWindowHint);
+    uw->setAttribute(Qt::WA_TranslucentBackground);
+    uw->exec();
+
+    if(uw->ready()){
+        GameWindow* gw = new GameWindow(this);
+        gw->start();
+        //gw->setWindowState(Qt::WindowFullScreen);
+        gw->show();
+    }
 }
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    ui1(new Ui::UsernameWindow)
-{
+    ui(new Ui::MainWindow){
     ui->setupUi(this);
 
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-

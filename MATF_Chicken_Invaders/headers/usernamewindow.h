@@ -23,8 +23,11 @@ public:
     UsernameWindow(QWidget *parent = nullptr);
     ~UsernameWindow();
 
+    bool ready();
+
 private:
     Ui::UsernameWindow *ui;
+    bool m_ready;
 };
 
 #endif // USERNAMEWINDOW_H

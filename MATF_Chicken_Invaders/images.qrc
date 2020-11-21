@@ -22,5 +22,6 @@
         <file>buttons/cancel_button.png</file>
         <file>buttons/ok_button.png</file>
         <file>buttons/skip_button.png</file>
+        <file>backgrounds/gameBackground.png</file>
     </qresource>
 </RCC>
