@@ -55,8 +55,13 @@ void MainWindow::onPlay()
     if(uw->ready()){
         GameWindow* gw = new GameWindow(this);
         gw->start();
-        //gw->setWindowState(Qt::WindowFullScreen);
-        gw->show();
+
+//        Ovo ne radi:
+//        gw->setWindowState(Qt::WindowFullScreen);
+//        gw->show();
+
+        gw->setWindowFlags(Qt::Window);
+        gw->showFullScreen();
     }
 }
 

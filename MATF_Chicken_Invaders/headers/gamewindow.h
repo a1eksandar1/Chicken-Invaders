@@ -12,6 +12,10 @@ class GameWindow : public QWidget
 {
     Q_OBJECT
 
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
+
 public:
     explicit GameWindow(QWidget *parent = nullptr);
     ~GameWindow();
