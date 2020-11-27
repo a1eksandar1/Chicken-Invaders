@@ -16,6 +16,7 @@
 #include "headers/usernamewindow.h"
 #include <iostream>
 #include "headers/gamewindow.h"
+#include "headers/optionswindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -65,16 +66,36 @@ void MainWindow::onPlay()
     }
 }
 
+void MainWindow::onOptions()
+{
+    OptionsWindow* ow = new OptionsWindow(this);
+    ow->setWindowState(Qt::WindowFullScreen);
+    ow->exec();
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow){
+    ui(new Ui::MainWindow),
+    hard(false)
+{
     ui->setupUi(this);
 
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
+    connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+bool MainWindow::isHard()
+{
+    return hard;
+}
+
+void MainWindow::setHard(bool h)
+{
+    hard = h;
 }

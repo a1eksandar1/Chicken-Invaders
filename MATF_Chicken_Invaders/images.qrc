@@ -23,5 +23,7 @@
         <file>buttons/ok_button.png</file>
         <file>buttons/skip_button.png</file>
         <file>backgrounds/gameBackground.png</file>
+        <file>backgrounds/optionsWindowBackground.png</file>
+        <file>buttons/backButton.png</file>
     </qresource>
 </RCC>

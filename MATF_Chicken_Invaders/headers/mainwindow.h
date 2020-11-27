@@ -18,12 +18,17 @@ protected:
 public slots:
     void onQuit();
     void onPlay();
+    void onOptions();
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    bool isHard();
+    void setHard(bool h);
+
 private:
     Ui::MainWindow *ui;
+    bool hard;
 };
 #endif // MAINWINDOW_H
