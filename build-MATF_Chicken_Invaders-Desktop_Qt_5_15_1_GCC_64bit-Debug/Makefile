@@ -704,6 +704,7 @@ qrc_images.cpp: ../MATF_Chicken_Invaders/images.qrc \
 		../MATF_Chicken_Invaders/backgrounds/level5.png \
 		../MATF_Chicken_Invaders/backgrounds/optionsWindowBackground.png \
 		../MATF_Chicken_Invaders/backgrounds/level9.png \
+		../MATF_Chicken_Invaders/backgrounds/difficulty_label.png \
 		../MATF_Chicken_Invaders/backgrounds/level4.png \
 		../MATF_Chicken_Invaders/backgrounds/usernameText.png \
 		../MATF_Chicken_Invaders/backgrounds/level8.png \
@@ -711,13 +712,18 @@ qrc_images.cpp: ../MATF_Chicken_Invaders/images.qrc \
 		../MATF_Chicken_Invaders/buttons/hall_of_fame_button.png \
 		../MATF_Chicken_Invaders/buttons/hall_of_fame_button_pressed.png \
 		../MATF_Chicken_Invaders/buttons/quit_button_pressed.png \
+		../MATF_Chicken_Invaders/buttons/easyButton_pressed.png \
 		../MATF_Chicken_Invaders/buttons/options_button_pressed.png \
 		../MATF_Chicken_Invaders/buttons/backButton.png \
 		../MATF_Chicken_Invaders/buttons/ok_button.png \
+		../MATF_Chicken_Invaders/buttons/backButton_pressed.png \
+		../MATF_Chicken_Invaders/buttons/hardButton_pressed.png \
 		../MATF_Chicken_Invaders/buttons/options_button.png \
 		../MATF_Chicken_Invaders/buttons/quit_button.png \
 		../MATF_Chicken_Invaders/buttons/cancel_button.png \
 		../MATF_Chicken_Invaders/buttons/skip_button.png \
+		../MATF_Chicken_Invaders/buttons/hardButton.png \
+		../MATF_Chicken_Invaders/buttons/easyButton.png \
 		../MATF_Chicken_Invaders/buttons/play_button.png
 	/home/marko/Qt/5.15.1/gcc_64/bin/rcc -name images ../MATF_Chicken_Invaders/images.qrc -o qrc_images.cpp
 
@@ -1166,6 +1172,11 @@ moc_optionswindow.cpp: ../MATF_Chicken_Invaders/headers/optionswindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		../../../Qt/5.15.1/gcc_64/bin/moc
 	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/optionswindow.h -o moc_optionswindow.cpp
@@ -1308,6 +1319,11 @@ optionswindow.o: ../MATF_Chicken_Invaders/src/optionswindow.cpp ../MATF_Chicken_
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
 		ui_optionswindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
@@ -1322,11 +1338,16 @@ optionswindow.o: ../MATF_Chicken_Invaders/src/optionswindow.cpp ../MATF_Chicken_
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QSpacerItem
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QRadioButton \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qradiobutton.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o optionswindow.o ../MATF_Chicken_Invaders/src/optionswindow.cpp
 
 gamewindow.o: ../MATF_Chicken_Invaders/src/gamewindow.cpp ../MATF_Chicken_Invaders/headers/gamewindow.h \

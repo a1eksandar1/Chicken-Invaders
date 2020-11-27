@@ -25,5 +25,11 @@
         <file>backgrounds/gameBackground.png</file>
         <file>backgrounds/optionsWindowBackground.png</file>
         <file>buttons/backButton.png</file>
+        <file>buttons/hardButton.png</file>
+        <file>buttons/easyButton.png</file>
+        <file>backgrounds/difficulty_label.png</file>
+        <file>buttons/hardButton_pressed.png</file>
+        <file>buttons/easyButton_pressed.png</file>
+        <file>buttons/backButton_pressed.png</file>
     </qresource>
 </RCC>

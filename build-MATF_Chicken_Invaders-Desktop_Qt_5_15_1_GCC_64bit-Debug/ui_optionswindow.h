@@ -30,7 +30,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout;
-    QLabel *label;
+    QLabel *difficulty_label;
     QRadioButton *easyButton;
     QRadioButton *hardButton;
     QSpacerItem *horizontalSpacer;
@@ -57,13 +57,13 @@ public:
         backButton->setMaximumSize(QSize(200, 65));
         backButton->setStyleSheet(QString::fromUtf8("#backButton {\n"
 "background-color: transparent;\n"
-"border-image: url(:images/buttons/quit_button.png);\n"
+"border-image: url(:images/buttons/backButton.png);\n"
 "background: none;\n"
 "border: none;\n"
 "background-repeat: none;\n"
 "}\n"
 "#backButton:pressed {\n"
-"border-image: url(:images/buttons/quit_button_pressed.png);\n"
+"border-image: url(:images/buttons/backButton_pressed.png);\n"
 "}"));
 
         gridLayout->addWidget(backButton, 5, 1, 1, 1);
@@ -82,13 +82,13 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        label = new QLabel(OptionsWindow);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"border-image: url(:images/buttons/backButton.png);\n"
+        difficulty_label = new QLabel(OptionsWindow);
+        difficulty_label->setObjectName(QString::fromUtf8("difficulty_label"));
+        difficulty_label->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
+"border-image: url(:images/backgrounds/difficulty_label.png);\n"
 "background: none;"));
 
-        verticalLayout->addWidget(label);
+        verticalLayout->addWidget(difficulty_label);
 
         easyButton = new QRadioButton(OptionsWindow);
         easyButton->setObjectName(QString::fromUtf8("easyButton"));
@@ -97,9 +97,16 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(easyButton->sizePolicy().hasHeightForWidth());
         easyButton->setSizePolicy(sizePolicy1);
-        easyButton->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"border-image: url(:images/buttons/backButton.png);\n"
-"background: none;"));
+        easyButton->setStyleSheet(QString::fromUtf8("#easyButton {\n"
+"background-color: transparent;\n"
+"border-image: url(:images/buttons/easyButton.png);\n"
+"background: none;\n"
+"border: none;\n"
+"background-repeat: none;\n"
+"}\n"
+"#easyButton:pressed {\n"
+"border-image: url(:images/buttons/easyButton_pressed.png);\n"
+"}"));
 
         verticalLayout->addWidget(easyButton);
 
@@ -107,9 +114,16 @@ public:
         hardButton->setObjectName(QString::fromUtf8("hardButton"));
         sizePolicy.setHeightForWidth(hardButton->sizePolicy().hasHeightForWidth());
         hardButton->setSizePolicy(sizePolicy);
-        hardButton->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"border-image: url(:images/buttons/backButton.png);\n"
-"background: none;"));
+        hardButton->setStyleSheet(QString::fromUtf8("#hardButton {\n"
+"background-color: transparent;\n"
+"border-image: url(:images/buttons/hardButton.png);\n"
+"background: none;\n"
+"border: none;\n"
+"background-repeat: none;\n"
+"}\n"
+"#hardButton:pressed {\n"
+"border-image: url(:images/buttons/hardButton_pressed.png);\n"
+"}"));
         hardButton->setChecked(false);
 
         verticalLayout->addWidget(hardButton);
@@ -155,10 +169,10 @@ public:
     void retranslateUi(QDialog *OptionsWindow)
     {
         OptionsWindow->setWindowTitle(QCoreApplication::translate("OptionsWindow", "Dialog", nullptr));
-        backButton->setText(QCoreApplication::translate("OptionsWindow", "<BACK", nullptr));
-        label->setText(QCoreApplication::translate("OptionsWindow", "Difficult:", nullptr));
-        easyButton->setText(QCoreApplication::translate("OptionsWindow", "Easy", nullptr));
-        hardButton->setText(QCoreApplication::translate("OptionsWindow", "Hard", nullptr));
+        backButton->setText(QString());
+        difficulty_label->setText(QString());
+        easyButton->setText(QString());
+        hardButton->setText(QString());
     } // retranslateUi
 
 };

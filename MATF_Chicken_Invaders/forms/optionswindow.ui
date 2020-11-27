@@ -37,17 +37,17 @@
      <property name="styleSheet">
       <string notr="true">#backButton {
 background-color: transparent;
-border-image: url(:images/buttons/quit_button.png);
+border-image: url(:images/buttons/backButton.png);
 background: none;
 border: none;
 background-repeat: none;
 }
 #backButton:pressed {
-border-image: url(:images/buttons/quit_button_pressed.png);
+border-image: url(:images/buttons/backButton_pressed.png);
 }</string>
      </property>
      <property name="text">
-      <string>&lt;BACK</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -93,14 +93,14 @@ border-image: url(:images/buttons/quit_button_pressed.png);
    <item row="1" column="3">
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="difficulty_label">
        <property name="styleSheet">
         <string notr="true">background-color: transparent;
-border-image: url(:images/buttons/backButton.png);
+border-image: url(:images/backgrounds/difficulty_label.png);
 background: none;</string>
        </property>
        <property name="text">
-        <string>Difficult:</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -113,12 +113,19 @@ background: none;</string>
         </sizepolicy>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: transparent;
-border-image: url(:images/buttons/backButton.png);
-background: none;</string>
+        <string notr="true">#easyButton {
+background-color: transparent;
+border-image: url(:images/buttons/easyButton.png);
+background: none;
+border: none;
+background-repeat: none;
+}
+#easyButton:pressed {
+border-image: url(:images/buttons/easyButton_pressed.png);
+}</string>
        </property>
        <property name="text">
-        <string>Easy</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -131,12 +138,19 @@ background: none;</string>
         </sizepolicy>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: transparent;
-border-image: url(:images/buttons/backButton.png);
-background: none;</string>
+        <string notr="true">#hardButton {
+background-color: transparent;
+border-image: url(:images/buttons/hardButton.png);
+background: none;
+border: none;
+background-repeat: none;
+}
+#hardButton:pressed {
+border-image: url(:images/buttons/hardButton_pressed.png);
+}</string>
        </property>
        <property name="text">
-        <string>Hard</string>
+        <string/>
        </property>
        <property name="checked">
         <bool>false</bool>
