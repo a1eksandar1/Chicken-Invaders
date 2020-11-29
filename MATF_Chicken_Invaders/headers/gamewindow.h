@@ -29,8 +29,6 @@ public:
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
-
-//    QGraphicsEllipseItem *ellipse;
 };
 
 #endif // GAMEWINDOW_H
