@@ -3,6 +3,10 @@
 
 #include <QWidget>
 #include <QGraphicsScene>
+#include "spaceship.h"
+#include <QDialog>
+#include <QtCore>
+#include <QtGui>
 
 namespace Ui {
 class GameWindow;
@@ -25,6 +29,8 @@ public:
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
+
+//    QGraphicsEllipseItem *ellipse;
 };
 
 #endif // GAMEWINDOW_H

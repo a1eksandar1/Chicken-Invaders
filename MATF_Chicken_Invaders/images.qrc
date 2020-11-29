@@ -23,5 +23,12 @@
         <file>buttons/ok_button.png</file>
         <file>buttons/skip_button.png</file>
         <file>backgrounds/gameBackground.png</file>
+        <file>spaceships/2.png</file>
+        <file>spaceships/3.png</file>
+        <file>spaceships/4.png</file>
+        <file>spaceships/5.png</file>
+        <file>spaceships/6.png</file>
+        <file>spaceships/1.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>
