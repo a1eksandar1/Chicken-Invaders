@@ -2,6 +2,7 @@
 #include "ui_gamewindow.h"
 #include <QDialog>
 #include <QKeyEvent>
+#include <QGraphicsPixmapItem>
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -17,9 +18,11 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 
 GameWindow::GameWindow(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::GameWindow)
+    ui(new Ui::GameWindow),
+    scene(new QGraphicsScene(this))
 {
     ui->setupUi(this);
+    ui->graphicsView->setScene(scene);
 }
 
 GameWindow::~GameWindow()
@@ -29,5 +32,6 @@ GameWindow::~GameWindow()
 
 void GameWindow::start()
 {
-
+    auto spaceship = new Spaceship();
+    scene->addItem(spaceship);
 }

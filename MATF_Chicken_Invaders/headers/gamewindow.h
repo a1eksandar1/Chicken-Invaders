@@ -3,6 +3,10 @@
 
 #include <QWidget>
 #include <QGraphicsScene>
+#include "spaceship.h"
+#include <QDialog>
+#include <QtCore>
+#include <QtGui>
 
 namespace Ui {
 class GameWindow;

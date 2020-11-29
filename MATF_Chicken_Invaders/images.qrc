@@ -31,5 +31,12 @@
         <file>buttons/hardButton_pressed.png</file>
         <file>buttons/easyButton_pressed.png</file>
         <file>buttons/backButton_pressed.png</file>
+        <file>spaceships/2.png</file>
+        <file>spaceships/3.png</file>
+        <file>spaceships/4.png</file>
+        <file>spaceships/5.png</file>
+        <file>spaceships/6.png</file>
+        <file>spaceships/1.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

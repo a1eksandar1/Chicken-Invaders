@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     src/optionswindow.cpp \
+    src/spaceship.cpp \
     src/gamewindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
@@ -20,6 +21,7 @@ HEADERS += \
     headers/mainwindow.h \
     headers/usernamewindow.h \
     headers/optionswindow.h
+    headers/spaceship.h
 
 FORMS += \
     forms/mainwindow.ui \
