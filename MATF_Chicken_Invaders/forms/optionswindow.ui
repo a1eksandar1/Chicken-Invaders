@@ -16,69 +16,12 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <layout class="QGridLayout" name="gridLayout" rowstretch="3,2,1,1,4,1" columnstretch="0,1,2,2,3">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="3,3,1,1,1,3,3,1" columnstretch="0,1,2,2,3">
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
    </property>
-   <item row="5" column="1">
-    <widget class="QPushButton" name="backButton">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>200</width>
-       <height>65</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#backButton {
-background-color: transparent;
-border-image: url(:images/buttons/backButton.png);
-background: none;
-border: none;
-background-repeat: none;
-}
-#backButton:pressed {
-border-image: url(:images/buttons/backButton_pressed.png);
-}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <spacer name="horizontalSpacer_3">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="0" column="3">
     <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1">
-    <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -159,8 +102,21 @@ border-image: url(:images/buttons/hardButton_pressed.png);
      </item>
     </layout>
    </item>
-   <item row="3" column="3">
-    <spacer name="horizontalSpacer">
+   <item row="1" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -172,6 +128,31 @@ border-image: url(:images/buttons/hardButton_pressed.png);
      </property>
     </spacer>
    </item>
+   <item row="4" column="3">
+    <widget class="QSlider" name="volumeSlider">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">background-color: transparent;
+border-image: url(:images/backgrounds/difficulty_label.png);
+background: none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="3">
     <spacer name="verticalSpacer_3">
      <property name="orientation">
@@ -181,6 +162,32 @@ border-image: url(:images/buttons/hardButton_pressed.png);
       <size>
        <width>20</width>
        <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="6" column="1">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="5" column="3">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>
@@ -198,18 +205,36 @@ border-image: url(:images/buttons/hardButton_pressed.png);
      </property>
     </spacer>
    </item>
-   <item row="4" column="1">
-    <spacer name="verticalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item row="7" column="1">
+    <widget class="QPushButton" name="backButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="sizeHint" stdset="0">
+     <property name="maximumSize">
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>200</width>
+       <height>65</height>
       </size>
      </property>
-    </spacer>
+     <property name="styleSheet">
+      <string notr="true">#backButton {
+background-color: transparent;
+border-image: url(:images/buttons/backButton.png);
+background: none;
+border: none;
+background-repeat: none;
+}
+#backButton:pressed {
+border-image: url(:images/buttons/backButton_pressed.png);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

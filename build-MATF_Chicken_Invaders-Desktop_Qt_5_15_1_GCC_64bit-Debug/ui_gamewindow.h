@@ -27,11 +27,12 @@ public:
     {
         if (GameWindow->objectName().isEmpty())
             GameWindow->setObjectName(QString::fromUtf8("GameWindow"));
-        GameWindow->resize(1600, 900);
+        GameWindow->resize(590, 417);
         gridLayout = new QGridLayout(GameWindow);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         graphicsView = new QGraphicsView(GameWindow);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setEnabled(true);
         graphicsView->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
 "border-image: url(:images/backgrounds/gameBackground.png);\n"
 "background: none;"));

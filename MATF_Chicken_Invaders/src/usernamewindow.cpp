@@ -1,10 +1,12 @@
 #include "headers/usernamewindow.h"
 #include "ui_usernamewindow.h"
 
-
 void UsernameWindow::onOk()
 {
-    m_ready = true;
+    if(mw->getUserCurrentLevel() == 1)
+        m_ready = true;
+    else
+        m_levelChooseReady = true;
     close();
 }
 
@@ -31,10 +33,11 @@ void UsernameWindow::resizeEvent(QResizeEvent *event)
     QDialog::resizeEvent(event);
 }
 
-UsernameWindow::UsernameWindow(QWidget *parent) :
+UsernameWindow::UsernameWindow(MainWindow *parent) :
     QDialog(parent),
     ui(new Ui::UsernameWindow),
-    m_ready(false)
+    m_ready(false),
+    mw(parent)
 {
     ui->setupUi(this);
 
@@ -51,4 +54,9 @@ UsernameWindow::~UsernameWindow()
 bool UsernameWindow::ready()
 {
     return m_ready;
+}
+
+bool UsernameWindow::levelChooseReady()
+{
+    return m_levelChooseReady;
 }

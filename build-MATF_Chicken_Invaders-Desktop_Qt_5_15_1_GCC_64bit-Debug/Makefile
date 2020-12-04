@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1z -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../MATF_Chicken_Invaders -I. -I../../../Qt/5.15.1/gcc_64/include -I../../../Qt/5.15.1/gcc_64/include/QtWidgets -I../../../Qt/5.15.1/gcc_64/include/QtGui -I../../../Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I. -I../../../Qt/5.15.1/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../MATF_Chicken_Invaders -I. -I../../../Qt/5.15.1/gcc_64/include -I../../../Qt/5.15.1/gcc_64/include/QtMultimedia -I../../../Qt/5.15.1/gcc_64/include/QtWidgets -I../../../Qt/5.15.1/gcc_64/include/QtGui -I../../../Qt/5.15.1/gcc_64/include/QtNetwork -I../../../Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I. -I../../../Qt/5.15.1/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/marko/Qt/5.15.1/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = MATF_Chicken_Invaders1.0.0
 DISTDIR = /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/.tmp/MATF_Chicken_Invaders1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/marko/Qt/5.15.1/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Widgets.so /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Gui.so /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Multimedia.so /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Widgets.so /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Gui.so /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Network.so /home/marko/Qt/5.15.1/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,23 +52,29 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../MATF_Chicken_Invaders/src/optionswindow.cpp \
+SOURCES       = ../MATF_Chicken_Invaders/src/chooselevelwindow.cpp \
+		../MATF_Chicken_Invaders/src/optionswindow.cpp \
 		../MATF_Chicken_Invaders/src/spaceship.cpp \
 		../MATF_Chicken_Invaders/src/gamewindow.cpp \
 		../MATF_Chicken_Invaders/src/main.cpp \
 		../MATF_Chicken_Invaders/src/mainwindow.cpp \
 		../MATF_Chicken_Invaders/src/usernamewindow.cpp qrc_images.cpp \
+		qrc_sounds.cpp \
+		moc_chooselevelwindow.cpp \
 		moc_gamewindow.cpp \
 		moc_mainwindow.cpp \
 		moc_usernamewindow.cpp \
 		moc_optionswindow.cpp
-OBJECTS       = optionswindow.o \
+OBJECTS       = chooselevelwindow.o \
+		optionswindow.o \
 		spaceship.o \
 		gamewindow.o \
 		main.o \
 		mainwindow.o \
 		usernamewindow.o \
 		qrc_images.o \
+		qrc_sounds.o \
+		moc_chooselevelwindow.o \
 		moc_gamewindow.o \
 		moc_mainwindow.o \
 		moc_usernamewindow.o \
@@ -257,10 +263,12 @@ DIST          = ../../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.15.1/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt/5.15.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.15.1/gcc_64/mkspecs/features/lex.prf \
-		../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro ../MATF_Chicken_Invaders/headers/gamewindow.h \
+		../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro ../MATF_Chicken_Invaders/headers/chooselevelwindow.h \
+		../MATF_Chicken_Invaders/headers/gamewindow.h \
 		../MATF_Chicken_Invaders/headers/mainwindow.h \
 		../MATF_Chicken_Invaders/headers/usernamewindow.h \
-		../MATF_Chicken_Invaders/headers/optionswindow.h ../MATF_Chicken_Invaders/src/optionswindow.cpp \
+		../MATF_Chicken_Invaders/headers/optionswindow.h ../MATF_Chicken_Invaders/src/chooselevelwindow.cpp \
+		../MATF_Chicken_Invaders/src/optionswindow.cpp \
 		../MATF_Chicken_Invaders/src/spaceship.cpp \
 		../MATF_Chicken_Invaders/src/gamewindow.cpp \
 		../MATF_Chicken_Invaders/src/main.cpp \
@@ -274,7 +282,7 @@ TARGET        = MATF_Chicken_Invaders
 first: all
 ####### Build rules
 
-MATF_Chicken_Invaders: ui_mainwindow.h ui_usernamewindow.h ui_gamewindow.h ui_optionswindow.h $(OBJECTS)  
+MATF_Chicken_Invaders: ui_chooselevelwindow.h ui_mainwindow.h ui_usernamewindow.h ui_gamewindow.h ui_optionswindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro ../../../Qt/5.15.1/gcc_64/mkspecs/linux-g++/qmake.conf ../../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -462,7 +470,8 @@ Makefile: ../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro ../../../Qt/5.15.1/
 		../../../Qt/5.15.1/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.15.1/gcc_64/mkspecs/features/lex.prf \
 		../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro \
-		../MATF_Chicken_Invaders/images.qrc
+		../MATF_Chicken_Invaders/images.qrc \
+		../MATF_Chicken_Invaders/sounds.qrc
 	$(QMAKE) -o Makefile ../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 ../../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf:
 ../../../Qt/5.15.1/gcc_64/mkspecs/common/unix.conf:
@@ -650,6 +659,7 @@ Makefile: ../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro ../../../Qt/5.15.1/
 ../../../Qt/5.15.1/gcc_64/mkspecs/features/lex.prf:
 ../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro:
 ../MATF_Chicken_Invaders/images.qrc:
+../MATF_Chicken_Invaders/sounds.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
@@ -664,11 +674,11 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/images.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/images.qrc ../MATF_Chicken_Invaders/sounds.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.15.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/headers/gamewindow.h ../MATF_Chicken_Invaders/headers/mainwindow.h ../MATF_Chicken_Invaders/headers/usernamewindow.h ../MATF_Chicken_Invaders/headers/optionswindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/src/optionswindow.cpp ../MATF_Chicken_Invaders/src/spaceship.cpp ../MATF_Chicken_Invaders/src/gamewindow.cpp ../MATF_Chicken_Invaders/src/main.cpp ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invaders/src/usernamewindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/forms/mainwindow.ui ../MATF_Chicken_Invaders/forms/usernamewindow.ui ../MATF_Chicken_Invaders/forms/gamewindow.ui ../MATF_Chicken_Invaders/forms/optionswindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/headers/chooselevelwindow.h ../MATF_Chicken_Invaders/headers/gamewindow.h ../MATF_Chicken_Invaders/headers/mainwindow.h ../MATF_Chicken_Invaders/headers/usernamewindow.h ../MATF_Chicken_Invaders/headers/optionswindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/src/chooselevelwindow.cpp ../MATF_Chicken_Invaders/src/optionswindow.cpp ../MATF_Chicken_Invaders/src/spaceship.cpp ../MATF_Chicken_Invaders/src/gamewindow.cpp ../MATF_Chicken_Invaders/src/main.cpp ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invaders/src/usernamewindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MATF_Chicken_Invaders/forms/chooselevelwindow.ui ../MATF_Chicken_Invaders/forms/mainwindow.ui ../MATF_Chicken_Invaders/forms/usernamewindow.ui ../MATF_Chicken_Invaders/forms/gamewindow.ui ../MATF_Chicken_Invaders/forms/optionswindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -692,15 +702,16 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_images.cpp
+compiler_rcc_make_all: qrc_images.cpp qrc_sounds.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_images.cpp
+	-$(DEL_FILE) qrc_images.cpp qrc_sounds.cpp
 qrc_images.cpp: ../MATF_Chicken_Invaders/images.qrc \
 		../../../Qt/5.15.1/gcc_64/bin/rcc \
 		../MATF_Chicken_Invaders/spaceships/2.png \
 		../MATF_Chicken_Invaders/spaceships/6.png \
 		../MATF_Chicken_Invaders/spaceships/1.png \
 		../MATF_Chicken_Invaders/spaceships/5.png \
+		../MATF_Chicken_Invaders/spaceships/spaceship_on_the_side.png \
 		../MATF_Chicken_Invaders/spaceships/4.png \
 		../MATF_Chicken_Invaders/spaceships/3.png \
 		../MATF_Chicken_Invaders/backgrounds/gameBackground.png \
@@ -736,15 +747,386 @@ qrc_images.cpp: ../MATF_Chicken_Invaders/images.qrc \
 		../MATF_Chicken_Invaders/buttons/play_button.png
 	/home/marko/Qt/5.15.1/gcc_64/bin/rcc -name images ../MATF_Chicken_Invaders/images.qrc -o qrc_images.cpp
 
+qrc_sounds.cpp: ../MATF_Chicken_Invaders/sounds.qrc \
+		../../../Qt/5.15.1/gcc_64/bin/rcc \
+		../MATF_Chicken_Invaders/sounds/MainTheme2.mp3 \
+		../MATF_Chicken_Invaders/sounds/GameOver.mp3 \
+		../MATF_Chicken_Invaders/sounds/MainTheme1.mp3 \
+		../MATF_Chicken_Invaders/sounds/BossFight.mp3 \
+		../MATF_Chicken_Invaders/sounds/Victory.mp3
+	/home/marko/Qt/5.15.1/gcc_64/bin/rcc -name sounds ../MATF_Chicken_Invaders/sounds.qrc -o qrc_sounds.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: ../../../Qt/5.15.1/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h ../../../Qt/5.15.1/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_gamewindow.cpp moc_mainwindow.cpp moc_usernamewindow.cpp moc_optionswindow.cpp
+compiler_moc_header_make_all: moc_chooselevelwindow.cpp moc_gamewindow.cpp moc_mainwindow.cpp moc_usernamewindow.cpp moc_optionswindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_gamewindow.cpp moc_mainwindow.cpp moc_usernamewindow.cpp moc_optionswindow.cpp
+	-$(DEL_FILE) moc_chooselevelwindow.cpp moc_gamewindow.cpp moc_mainwindow.cpp moc_usernamewindow.cpp moc_optionswindow.cpp
+moc_chooselevelwindow.cpp: ../MATF_Chicken_Invaders/headers/chooselevelwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcontainertools_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QGraphicsScene \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QtCore \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QtCoreDepends \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractstate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstracttransition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qanimationgroup.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qarraydataops.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbasictimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbitarray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbuffer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcache.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcalendar.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborarray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborvalue.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborcommon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/quuid.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcbormap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborstream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborstreamreader.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfloat16.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborstreamwriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcollator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcryptographichash.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdir.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdiriterator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qeasingcurve.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qendian.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qeventtransition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qexception.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfileselector.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QObject \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QStringList \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfinalstate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfuture.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrunnable.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qresultstore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qhistorystate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsonarray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsondocument.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsonobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlibrary.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qversionnumber.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlinkedlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlockfile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qloggingcategory.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmath.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimedata.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimedatabase.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimetype.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpauseanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpluginloader.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qprocess.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvariantanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qqueue.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrandom.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qreadwritelock.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsavefile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qscopeguard.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsemaphore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsettings.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsharedmemory.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsignaltransition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstack.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstandardpaths.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstatemachine.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtemporarydir.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtextcodec.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qthread.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qthreadpool.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qthreadstorage.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtimeline.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtimezone.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtranslator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtransposeproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qwaitcondition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QDeadlineTimer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qxmlstream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtcoreversion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QtGui \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QtGuiDepends \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qglyphrun.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrawfont.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfontdatabase.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessible.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessiblebridge.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessibleobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessibleplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qbackingstore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QEvent \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QMargins \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QRect \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsurface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qbitmap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qclipboard.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcolorspace.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcolortransform.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qdesktopservices.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qdrag.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qgenericplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qgenericpluginfactory.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qiconengine.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qiconengineplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimageiohandler.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimagereader.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimagewriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qmatrix4x4.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector4d.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qquaternion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qmovie.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qoffscreensurface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qt_windows.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglbuffer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglcontext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QScopedPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QSurfaceFormat \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglversionfunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengldebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglextrafunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglfunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglframebufferobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglpaintdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglpixeltransferoptions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglshaderprogram.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltexture.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltextureblitter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QMatrix3x3 \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QMatrix4x4 \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltimerquery.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglvertexarrayobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QPaintDeviceWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpaintdevicewindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QPaintDevice \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QOpenGLContext \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QImage \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpagedpaintdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpagelayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpagesize.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpaintengine.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpdfwriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpicture.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpictureformatplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpixmapcache.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrasterwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qscreen.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QList \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSize \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSizeF \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QTransform \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsessionmanager.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qstandarditemmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qstatictext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qstylehints.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsyntaxhighlighter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextdocumentfragment.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextdocumentwriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtexttable.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiversion.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		moc_predefs.h \
+		../../../Qt/5.15.1/gcc_64/bin/moc
+	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/chooselevelwindow.h -o moc_chooselevelwindow.cpp
+
 moc_gamewindow.cpp: ../MATF_Chicken_Invaders/headers/gamewindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qwidget.h \
@@ -1089,9 +1471,30 @@ moc_gamewindow.cpp: ../MATF_Chicken_Invaders/headers/gamewindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtexttable.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiversion.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		moc_predefs.h \
 		../../../Qt/5.15.1/gcc_64/bin/moc
-	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/gamewindow.h -o moc_gamewindow.cpp
+	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/gamewindow.h -o moc_gamewindow.cpp
 
 moc_mainwindow.cpp: ../MATF_Chicken_Invaders/headers/mainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
@@ -1200,9 +1603,28 @@ moc_mainwindow.cpp: ../MATF_Chicken_Invaders/headers/mainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		moc_predefs.h \
 		../../../Qt/5.15.1/gcc_64/bin/moc
-	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/mainwindow.h -o moc_mainwindow.cpp
+	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/mainwindow.h -o moc_mainwindow.cpp
 
 moc_usernamewindow.cpp: ../MATF_Chicken_Invaders/headers/usernamewindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
@@ -1309,9 +1731,33 @@ moc_usernamewindow.cpp: ../MATF_Chicken_Invaders/headers/usernamewindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		moc_predefs.h \
 		../../../Qt/5.15.1/gcc_64/bin/moc
-	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/usernamewindow.h -o moc_usernamewindow.cpp
+	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/usernamewindow.h -o moc_usernamewindow.cpp
 
 moc_optionswindow.cpp: ../MATF_Chicken_Invaders/headers/optionswindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
@@ -1423,17 +1869,43 @@ moc_optionswindow.cpp: ../MATF_Chicken_Invaders/headers/optionswindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractslider.h \
 		moc_predefs.h \
 		../../../Qt/5.15.1/gcc_64/bin/moc
-	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/optionswindow.h -o moc_optionswindow.cpp
+	/home/marko/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/marko/Desktop/15-matf-chicken-invaders/build-MATF_Chicken_Invaders-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/marko/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders -I/home/marko/Qt/5.15.1/gcc_64/include -I/home/marko/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/marko/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/marko/Qt/5.15.1/gcc_64/include/QtGui -I/home/marko/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/marko/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../MATF_Chicken_Invaders/headers/optionswindow.h -o moc_optionswindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_usernamewindow.h ui_gamewindow.h ui_optionswindow.h
+compiler_uic_make_all: ui_chooselevelwindow.h ui_mainwindow.h ui_usernamewindow.h ui_gamewindow.h ui_optionswindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_usernamewindow.h ui_gamewindow.h ui_optionswindow.h
+	-$(DEL_FILE) ui_chooselevelwindow.h ui_mainwindow.h ui_usernamewindow.h ui_gamewindow.h ui_optionswindow.h
+ui_chooselevelwindow.h: ../MATF_Chicken_Invaders/forms/chooselevelwindow.ui \
+		../../../Qt/5.15.1/gcc_64/bin/uic
+	/home/marko/Qt/5.15.1/gcc_64/bin/uic ../MATF_Chicken_Invaders/forms/chooselevelwindow.ui -o ui_chooselevelwindow.h
+
 ui_mainwindow.h: ../MATF_Chicken_Invaders/forms/mainwindow.ui \
 		../../../Qt/5.15.1/gcc_64/bin/uic
 	/home/marko/Qt/5.15.1/gcc_64/bin/uic ../MATF_Chicken_Invaders/forms/mainwindow.ui -o ui_mainwindow.h
@@ -1459,6 +1931,381 @@ compiler_lex_clean:
 compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+chooselevelwindow.o: ../MATF_Chicken_Invaders/src/chooselevelwindow.cpp ../MATF_Chicken_Invaders/headers/chooselevelwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtcore-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qversiontagging.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtgui-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringliteral.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringview.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcontainertools_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrgba64.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qline.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qset.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QGraphicsScene \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpen.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QtCore \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QtCoreDepends \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstractstate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qabstracttransition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qanimationgroup.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qarraydataops.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbasictimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbitarray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbuffer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcache.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcalendar.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborarray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborvalue.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdatetime.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborcommon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/quuid.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcbormap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborstream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborstreamreader.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfloat16.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcborstreamwriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcollator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qcryptographichash.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdir.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qdiriterator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qeasingcurve.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qendian.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qeventtransition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qexception.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfileselector.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QObject \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QStringList \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfinalstate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfuture.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrunnable.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qresultstore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qhistorystate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsonarray.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsondocument.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qjsonobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlibrary.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qversionnumber.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlinkedlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qlockfile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qloggingcategory.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmath.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimedata.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimedatabase.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimetype.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpauseanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpointer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpluginloader.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qprocess.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qvariantanimation.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qqueue.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qrandom.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qreadwritelock.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsavefile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qscopeguard.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsemaphore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsettings.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsharedmemory.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsignaltransition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstack.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstandardpaths.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstate.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstatemachine.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtemporarydir.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtextcodec.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qthread.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qthreadpool.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qthreadstorage.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtimeline.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtimer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtimezone.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtranslator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtransposeproxymodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qwaitcondition.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QDeadlineTimer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qxmlstream.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qtcoreversion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QtGui \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QtGuiDepends \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qglyphrun.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrawfont.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qfontdatabase.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessible.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessiblebridge.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessibleobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qaccessibleplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qbackingstore.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QEvent \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QMargins \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QRect \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsurface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qbitmap.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qclipboard.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcolorspace.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qcolortransform.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qdesktopservices.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qdrag.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qgenericplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qgenericpluginfactory.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qiconengine.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qiconengineplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimageiohandler.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimagereader.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qimagewriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qmatrix4x4.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector3d.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector4d.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qquaternion.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qmovie.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qoffscreensurface.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengl.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qt_windows.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglbuffer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglcontext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QScopedPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QSurfaceFormat \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglversionfunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengldebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglextrafunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglfunctions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglframebufferobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglpaintdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglpixeltransferoptions.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglshaderprogram.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltexture.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltextureblitter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QMatrix3x3 \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QMatrix4x4 \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltimerquery.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglvertexarrayobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QPaintDeviceWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpaintdevicewindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QPaintDevice \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QOpenGLContext \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QImage \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpagedpaintdevice.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpagelayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpagesize.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpaintengine.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpdfwriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpicture.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpictureformatplugin.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qpixmapcache.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qrasterwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qscreen.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QList \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSize \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSizeF \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/QTransform \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsessionmanager.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qstandarditemmodel.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qstatictext.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qstylehints.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qsyntaxhighlighter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextdocumentfragment.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextdocumentwriter.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtextlist.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtexttable.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiversion.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		ui_chooselevelwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QGridLayout \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDesktopWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chooselevelwindow.o ../MATF_Chicken_Invaders/src/chooselevelwindow.cpp
 
 optionswindow.o: ../MATF_Chicken_Invaders/src/optionswindow.cpp ../MATF_Chicken_Invaders/headers/optionswindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDialog \
@@ -1570,8 +2417,29 @@ optionswindow.o: ../MATF_Chicken_Invaders/src/optionswindow.cpp ../MATF_Chicken_
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
-		ui_optionswindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractslider.h \
+		ui_optionswindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -2041,8 +2909,28 @@ gamewindow.o: ../MATF_Chicken_Invaders/src/gamewindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtexttable.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtguiversion.h \
-		ui_gamewindow.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		ui_gamewindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
@@ -2167,6 +3055,25 @@ main.o: ../MATF_Chicken_Invaders/src/main.cpp ../MATF_Chicken_Invaders/headers/m
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QDesktopWidget \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
@@ -2284,8 +3191,26 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		ui_mainwindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -2395,7 +3320,6 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qloggingcategory.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qmath.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimedata.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimedatabase.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qmimetype.h \
@@ -2503,7 +3427,6 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglframebufferobject.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglpaintdevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglpixeltransferoptions.h \
-		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qopenglshaderprogram.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltexture.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qopengltextureblitter.h \
@@ -2553,7 +3476,11 @@ mainwindow.o: ../MATF_Chicken_Invaders/src/mainwindow.cpp ../MATF_Chicken_Invade
 		../MATF_Chicken_Invaders/headers/spaceship.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QGraphicsItem \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qgraphicsitem.h \
-		../MATF_Chicken_Invaders/headers/optionswindow.h
+		../MATF_Chicken_Invaders/headers/optionswindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractslider.h \
+		../MATF_Chicken_Invaders/headers/chooselevelwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../MATF_Chicken_Invaders/src/mainwindow.cpp
 
 usernamewindow.o: ../MATF_Chicken_Invaders/src/usernamewindow.cpp ../MATF_Chicken_Invaders/headers/usernamewindow.h \
@@ -2661,8 +3588,31 @@ usernamewindow.o: ../MATF_Chicken_Invaders/src/usernamewindow.cpp ../MATF_Chicke
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_usernamewindow.h \
+		../MATF_Chicken_Invaders/headers/mainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		ui_usernamewindow.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -2689,12 +3639,17 @@ usernamewindow.o: ../MATF_Chicken_Invaders/src/usernamewindow.cpp ../MATF_Chicke
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
 		../../../Qt/5.15.1/gcc_64/include/QtWidgets/QSpacerItem
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o usernamewindow.o ../MATF_Chicken_Invaders/src/usernamewindow.cpp
 
 qrc_images.o: qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp
+
+qrc_sounds.o: qrc_sounds.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_sounds.o qrc_sounds.cpp
+
+moc_chooselevelwindow.o: moc_chooselevelwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chooselevelwindow.o moc_chooselevelwindow.cpp
 
 moc_gamewindow.o: moc_gamewindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gamewindow.o moc_gamewindow.cpp

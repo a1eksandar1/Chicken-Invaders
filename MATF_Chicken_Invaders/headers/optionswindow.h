@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "headers/mainwindow.h"
+#include <QSlider>
 
 namespace Ui {
 class OptionsWindow;
@@ -11,6 +12,9 @@ class OptionsWindow;
 class OptionsWindow : public QDialog
 {
     Q_OBJECT
+
+public slots:
+    void volumeChanged();
 
 protected:
     void resizeEvent(QResizeEvent *) override;

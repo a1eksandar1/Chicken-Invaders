@@ -17,10 +17,13 @@
 #include <iostream>
 #include "headers/gamewindow.h"
 #include "headers/optionswindow.h"
+#include <QMediaPlayer>
+#include "headers/chooselevelwindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QPixmap bkgnd(":images/backgrounds/level1.png");
+
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
@@ -57,12 +60,15 @@ void MainWindow::onPlay()
         GameWindow* gw = new GameWindow(this);
         gw->start();
 
-//        Ovo ne radi:
-//        gw->setWindowState(Qt::WindowFullScreen);
-//        gw->show();
-
         gw->setWindowFlags(Qt::Window);
         gw->showFullScreen();
+
+        music->stop();
+    }
+    else if(uw->levelChooseReady()){
+        ChooseLevelWindow* lw = new ChooseLevelWindow(this);
+        lw->setWindowFlags(Qt::Window);
+        lw->showFullScreen();
     }
 }
 
@@ -76,9 +82,15 @@ void MainWindow::onOptions()
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    hard(false)
+    hard(false),
+    music(new QMediaPlayer),
+    volume(100),
+    userCurrentLevel(1)
 {
     ui->setupUi(this);
+
+    music->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
+    music->play();
 
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
@@ -98,4 +110,30 @@ bool MainWindow::isHard()
 void MainWindow::setHard(bool h)
 {
     hard = h;
+}
+
+void MainWindow::playMusic()
+{
+    music->play();
+}
+
+void MainWindow::setVolume(int volume)
+{
+    this->volume = volume;
+    music->setVolume(volume);
+}
+
+int MainWindow::getVolume()
+{
+    return volume;
+}
+
+int MainWindow::getUserCurrentLevel()
+{
+    return userCurrentLevel;
+}
+
+void MainWindow::setUserCurrentLevel(int level)
+{
+    userCurrentLevel = level;
 }

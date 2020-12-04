@@ -2,6 +2,7 @@
 #define USERNAMEWINDOW_H
 
 #include <QDialog>
+#include "headers/mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class UsernameWindow; }
@@ -20,14 +21,17 @@ public slots:
     void onCancel();
 
 public:
-    UsernameWindow(QWidget *parent = nullptr);
+    UsernameWindow(MainWindow *parent = nullptr);
     ~UsernameWindow();
 
     bool ready();
+    bool levelChooseReady();
 
 private:
     Ui::UsernameWindow *ui;
     bool m_ready;
+    bool m_levelChooseReady;
+    MainWindow* mw;
 };
 
 #endif // USERNAMEWINDOW_H

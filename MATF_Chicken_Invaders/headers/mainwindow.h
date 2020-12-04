@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMediaPlayer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,9 +27,17 @@ public:
 
     bool isHard();
     void setHard(bool h);
+    void playMusic();
+    void setVolume(int volume);
+    int getVolume();
+    int getUserCurrentLevel();
+    void setUserCurrentLevel(int level);
 
 private:
     Ui::MainWindow *ui;
     bool hard;
+    QMediaPlayer* music;
+    int volume;
+    int userCurrentLevel;
 };
 #endif // MAINWINDOW_H

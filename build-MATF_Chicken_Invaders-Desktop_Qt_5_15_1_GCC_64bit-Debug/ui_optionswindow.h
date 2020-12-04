@@ -16,6 +16,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 
@@ -25,18 +26,20 @@ class Ui_OptionsWindow
 {
 public:
     QGridLayout *gridLayout;
-    QPushButton *backButton;
-    QSpacerItem *horizontalSpacer_3;
     QSpacerItem *verticalSpacer_2;
-    QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout;
     QLabel *difficulty_label;
     QRadioButton *easyButton;
     QRadioButton *hardButton;
-    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *horizontalSpacer_3;
+    QSlider *volumeSlider;
+    QLabel *label;
     QSpacerItem *verticalSpacer_3;
-    QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer_4;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *backButton;
 
     void setupUi(QDialog *OptionsWindow)
     {
@@ -47,38 +50,9 @@ public:
         gridLayout = new QGridLayout(OptionsWindow);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        backButton = new QPushButton(OptionsWindow);
-        backButton->setObjectName(QString::fromUtf8("backButton"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(backButton->sizePolicy().hasHeightForWidth());
-        backButton->setSizePolicy(sizePolicy);
-        backButton->setMaximumSize(QSize(200, 65));
-        backButton->setStyleSheet(QString::fromUtf8("#backButton {\n"
-"background-color: transparent;\n"
-"border-image: url(:images/buttons/backButton.png);\n"
-"background: none;\n"
-"border: none;\n"
-"background-repeat: none;\n"
-"}\n"
-"#backButton:pressed {\n"
-"border-image: url(:images/buttons/backButton_pressed.png);\n"
-"}"));
-
-        gridLayout->addWidget(backButton, 5, 1, 1, 1);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_3, 1, 2, 1, 1);
-
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout->addItem(verticalSpacer_2, 0, 3, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer, 1, 1, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -92,11 +66,11 @@ public:
 
         easyButton = new QRadioButton(OptionsWindow);
         easyButton->setObjectName(QString::fromUtf8("easyButton"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(easyButton->sizePolicy().hasHeightForWidth());
-        easyButton->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(easyButton->sizePolicy().hasHeightForWidth());
+        easyButton->setSizePolicy(sizePolicy);
         easyButton->setStyleSheet(QString::fromUtf8("#easyButton {\n"
 "background-color: transparent;\n"
 "border-image: url(:images/buttons/easyButton.png);\n"
@@ -112,8 +86,11 @@ public:
 
         hardButton = new QRadioButton(OptionsWindow);
         hardButton->setObjectName(QString::fromUtf8("hardButton"));
-        sizePolicy.setHeightForWidth(hardButton->sizePolicy().hasHeightForWidth());
-        hardButton->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(hardButton->sizePolicy().hasHeightForWidth());
+        hardButton->setSizePolicy(sizePolicy1);
         hardButton->setStyleSheet(QString::fromUtf8("#hardButton {\n"
 "background-color: transparent;\n"
 "border-image: url(:images/buttons/hardButton.png);\n"
@@ -134,28 +111,75 @@ public:
 
         gridLayout->addLayout(verticalLayout, 1, 3, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(horizontalSpacer, 3, 3, 1, 1);
+        gridLayout->addItem(verticalSpacer, 1, 1, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 1, 2, 1, 1);
+
+        volumeSlider = new QSlider(OptionsWindow);
+        volumeSlider->setObjectName(QString::fromUtf8("volumeSlider"));
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(volumeSlider->sizePolicy().hasHeightForWidth());
+        volumeSlider->setSizePolicy(sizePolicy2);
+        volumeSlider->setOrientation(Qt::Horizontal);
+
+        gridLayout->addWidget(volumeSlider, 4, 3, 1, 1);
+
+        label = new QLabel(OptionsWindow);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
+"border-image: url(:images/backgrounds/difficulty_label.png);\n"
+"background: none;"));
+
+        gridLayout->addWidget(label, 3, 3, 1, 1);
 
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout->addItem(verticalSpacer_3, 2, 3, 1, 1);
 
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_4, 6, 1, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 5, 3, 1, 1);
+
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer_2, 1, 4, 1, 1);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        backButton = new QPushButton(OptionsWindow);
+        backButton->setObjectName(QString::fromUtf8("backButton"));
+        sizePolicy1.setHeightForWidth(backButton->sizePolicy().hasHeightForWidth());
+        backButton->setSizePolicy(sizePolicy1);
+        backButton->setMaximumSize(QSize(200, 65));
+        backButton->setStyleSheet(QString::fromUtf8("#backButton {\n"
+"background-color: transparent;\n"
+"border-image: url(:images/buttons/backButton.png);\n"
+"background: none;\n"
+"border: none;\n"
+"background-repeat: none;\n"
+"}\n"
+"#backButton:pressed {\n"
+"border-image: url(:images/buttons/backButton_pressed.png);\n"
+"}"));
 
-        gridLayout->addItem(verticalSpacer_4, 4, 1, 1, 1);
+        gridLayout->addWidget(backButton, 7, 1, 1, 1);
 
         gridLayout->setRowStretch(0, 3);
-        gridLayout->setRowStretch(1, 2);
+        gridLayout->setRowStretch(1, 3);
         gridLayout->setRowStretch(2, 1);
         gridLayout->setRowStretch(3, 1);
-        gridLayout->setRowStretch(4, 4);
-        gridLayout->setRowStretch(5, 1);
+        gridLayout->setRowStretch(4, 1);
+        gridLayout->setRowStretch(5, 3);
+        gridLayout->setRowStretch(6, 3);
+        gridLayout->setRowStretch(7, 1);
         gridLayout->setColumnStretch(1, 1);
         gridLayout->setColumnStretch(2, 2);
         gridLayout->setColumnStretch(3, 2);
@@ -169,10 +193,11 @@ public:
     void retranslateUi(QDialog *OptionsWindow)
     {
         OptionsWindow->setWindowTitle(QCoreApplication::translate("OptionsWindow", "Dialog", nullptr));
-        backButton->setText(QString());
         difficulty_label->setText(QString());
         easyButton->setText(QString());
         hardButton->setText(QString());
+        label->setText(QString());
+        backButton->setText(QString());
     } // retranslateUi
 
 };

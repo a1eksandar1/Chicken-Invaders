@@ -1,6 +1,12 @@
 #include "headers/optionswindow.h"
 #include "ui_optionswindow.h"
 #include "headers/mainwindow.h"
+#include <QSlider>
+
+void OptionsWindow::volumeChanged()
+{
+    mw->setVolume(ui->volumeSlider->value());
+}
 
 void OptionsWindow::resizeEvent(QResizeEvent *event)
 {
@@ -22,8 +28,10 @@ OptionsWindow::OptionsWindow(MainWindow *parent) :
 
     ui->easyButton->setChecked(!parent->isHard());
     ui->hardButton->setChecked(parent->isHard());
+    ui->volumeSlider->setValue(mw->getVolume());
 
     connect(ui->backButton, &QPushButton::clicked, this, &OptionsWindow::onBack);
+    connect(ui->volumeSlider, &QSlider::valueChanged, mw, &MainWindow::setVolume);
 }
 
 OptionsWindow::~OptionsWindow()

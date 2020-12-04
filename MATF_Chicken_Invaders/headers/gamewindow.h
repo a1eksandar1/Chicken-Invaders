@@ -7,6 +7,8 @@
 #include <QDialog>
 #include <QtCore>
 #include <QtGui>
+#include "headers/mainwindow.h"
+#include <QMediaPlayer>
 
 namespace Ui {
 class GameWindow;
@@ -21,7 +23,7 @@ protected:
 
 
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(MainWindow *parent = nullptr);
     ~GameWindow();
 
     void start();
@@ -29,6 +31,8 @@ public:
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
+    QMediaPlayer* music;
+    MainWindow* mw;
 };
 
 #endif // GAMEWINDOW_H
