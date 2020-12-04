@@ -33,6 +33,7 @@ private:
     QGraphicsScene *scene;
     QMediaPlayer* music;
     MainWindow* mw;
+    QTimer *timer;
 };
 
 #endif // GAMEWINDOW_H

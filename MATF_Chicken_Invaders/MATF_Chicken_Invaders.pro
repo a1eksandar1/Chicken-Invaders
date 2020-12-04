@@ -11,6 +11,8 @@ CONFIG += c++17
 
 SOURCES += \
     src/chooselevelwindow.cpp \
+    src/chicken.cpp \
+    src/egg.cpp \
     src/optionswindow.cpp \
     src/spaceship.cpp \
     src/gamewindow.cpp \
@@ -20,8 +22,11 @@ SOURCES += \
 
 HEADERS += \
     headers/chooselevelwindow.h \
+    headers/chicken.h \
+    headers/egg.h \
     headers/gamewindow.h \
     headers/mainwindow.h \
+    headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h
     headers/spaceship.h
