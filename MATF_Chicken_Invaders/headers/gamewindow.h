@@ -29,6 +29,7 @@ public:
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
+    QTimer *timer;
 };
 
 #endif // GAMEWINDOW_H

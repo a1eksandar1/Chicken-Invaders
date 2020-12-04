@@ -37,6 +37,10 @@
         <file>spaceships/5.png</file>
         <file>spaceships/6.png</file>
         <file>spaceships/1.png</file>
+        <file>chicken/egg_1.png</file>
+        <file>chicken/egg_2.png</file>
+        <file>chicken/matf_chicken1.png</file>
+        <file>chicken/matf_chicken2.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

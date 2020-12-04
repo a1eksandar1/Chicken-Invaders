@@ -9,6 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/chicken.cpp \
+    src/egg.cpp \
     src/optionswindow.cpp \
     src/spaceship.cpp \
     src/gamewindow.cpp \
@@ -17,8 +19,11 @@ SOURCES += \
     src/usernamewindow.cpp
 
 HEADERS += \
+    headers/chicken.h \
+    headers/egg.h \
     headers/gamewindow.h \
     headers/mainwindow.h \
+    headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h
     headers/spaceship.h
