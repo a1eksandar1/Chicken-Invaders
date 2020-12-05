@@ -31,8 +31,8 @@ public:
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
-    QMediaPlayer* music;
-    MainWindow* mw;
+    QMediaPlayer *music;
+    MainWindow *mw;
     QTimer *timer;
 };
 

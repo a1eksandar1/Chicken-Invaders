@@ -3,12 +3,15 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
+#include "headers/mainwindow.h"
 
 class Chicken: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
+
+
 public:
-    Chicken(int m, int n);
+    Chicken(MainWindow *parent, int m, int n);
     ~Chicken();
 
     int getImgChange() const;
@@ -22,6 +25,7 @@ private:
     int imgChange;
     int orientation=10;
     int width, height;
+    MainWindow *mw;
 
 protected:
     void advance(int step) override;

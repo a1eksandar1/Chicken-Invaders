@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QMediaPlayer>
+#include "headers/mainwindow.h"
+
 class Egg: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    Egg();
+    Egg(MainWindow *parent);
 
 public slots:
     void move();
@@ -19,7 +21,6 @@ private:
     int width, height;
     QMediaPlayer * eggSound;
     bool broken = false;
-
 };
 
 #endif // EGG_H

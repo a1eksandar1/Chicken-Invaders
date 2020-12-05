@@ -57,16 +57,12 @@ void MainWindow::onPlay()
     uw->exec();
 
     if(uw->ready()){
-        GameWindow* gw = new GameWindow(this);
-        gw->start();
-
-        gw->setWindowFlags(Qt::Window);
-        gw->showFullScreen();
-
-        music->stop();
+        openGameWindow();
+        uw->setReady(false);
     }
     else if(uw->levelChooseReady()){
         ChooseLevelWindow* lw = new ChooseLevelWindow(this);
+
         lw->setWindowFlags(Qt::Window);
         lw->showFullScreen();
     }
@@ -84,13 +80,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     hard(false),
     music(new QMediaPlayer),
-    volume(100),
-    userCurrentLevel(1)
+    volume(30),
+    userCurrentLevel(1),
+    desiredLevel(0),
+    reachedLevel(1)
 {
     ui->setupUi(this);
 
     music->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
     music->play();
+    music->setVolume(volume);
 
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
@@ -102,7 +101,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::isHard()
+bool MainWindow::isHard() const
 {
     return hard;
 }
@@ -123,12 +122,12 @@ void MainWindow::setVolume(int volume)
     music->setVolume(volume);
 }
 
-int MainWindow::getVolume()
+int MainWindow::getVolume() const
 {
     return volume;
 }
 
-int MainWindow::getUserCurrentLevel()
+int MainWindow::getUserCurrentLevel() const
 {
     return userCurrentLevel;
 }
@@ -136,4 +135,36 @@ int MainWindow::getUserCurrentLevel()
 void MainWindow::setUserCurrentLevel(int level)
 {
     userCurrentLevel = level;
+}
+
+int MainWindow::getDesiredLevel() const
+{
+    return desiredLevel;
+}
+
+void MainWindow::setDesiredLevel(int value)
+{
+    desiredLevel = value;
+}
+
+int MainWindow::getReachedLevel() const
+{
+    return reachedLevel;
+}
+
+void MainWindow::setReachedLevel(int value)
+{
+    reachedLevel = value;
+}
+
+void MainWindow::openGameWindow()
+{
+    GameWindow* gw = new GameWindow(this);
+    gw->start();
+
+    gw->setWindowFlags(Qt::Window);
+    gw->showFullScreen();
+
+    music->stop();
+
 }

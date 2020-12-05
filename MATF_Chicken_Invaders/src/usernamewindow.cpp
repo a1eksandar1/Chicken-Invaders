@@ -3,7 +3,7 @@
 
 void UsernameWindow::onOk()
 {
-    if(mw->getUserCurrentLevel() == 1)
+    if(mw->getReachedLevel() == 1)
         m_ready = true;
     else
         m_levelChooseReady = true;
@@ -51,7 +51,7 @@ UsernameWindow::~UsernameWindow()
     delete ui;
 }
 
-bool UsernameWindow::ready()
+bool UsernameWindow::ready() const
 {
     return m_ready;
 }
@@ -59,4 +59,9 @@ bool UsernameWindow::ready()
 bool UsernameWindow::levelChooseReady()
 {
     return m_levelChooseReady;
+}
+
+void UsernameWindow::setReady(bool value)
+{
+    m_ready = value;
 }
