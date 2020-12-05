@@ -17,9 +17,6 @@ public:
     int getOrientation() const;
     void setOrientation(int value);
 
-public slots:
-    void eggs();
-
 private:
     int m,n;
     int imgChange;

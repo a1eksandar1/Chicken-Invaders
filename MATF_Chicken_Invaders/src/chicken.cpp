@@ -32,16 +32,7 @@ Chicken::~Chicken()
 
 }
 
-void Chicken::eggs()
-{
-    int random_number = rand() % 7;
-    if (random_number == 5)
-    {
-        Egg * egg = new Egg();
-        egg->setPos(pos().x(),pos().y()+200);
-        scene()->addItem(egg);
-    }
-}
+
 
 int Chicken::getOrientation() const
 {
@@ -77,7 +68,7 @@ void Chicken::advance(int step)
 
     imgChange = (imgChange + 1)%2;
 
-    int random_number = rand() % 1000;
+    int random_number = rand() % 700;
     if (random_number == 5)
     {
         Egg * egg = new Egg();

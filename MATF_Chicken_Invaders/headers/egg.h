@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
-
+#include <QMediaPlayer>
 class Egg: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -17,6 +17,9 @@ public slots:
 
 private:
     int width, height;
+    QMediaPlayer * eggSound;
+    bool broken = false;
+
 };
 
 #endif // EGG_H
