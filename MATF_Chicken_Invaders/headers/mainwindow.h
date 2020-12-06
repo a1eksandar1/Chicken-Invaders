@@ -20,6 +20,7 @@ public slots:
     void onQuit();
     void onPlay();
     void onOptions();
+    void onHof();
 
 public:
     MainWindow(QWidget *parent = nullptr);
