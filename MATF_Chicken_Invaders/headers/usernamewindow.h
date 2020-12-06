@@ -24,8 +24,9 @@ public:
     UsernameWindow(MainWindow *parent = nullptr);
     ~UsernameWindow();
 
-    bool ready();
+    bool ready() const;
     bool levelChooseReady();
+    void setReady(bool value);
 
 private:
     Ui::UsernameWindow *ui;

@@ -102,7 +102,7 @@ void GameWindow::start()
     {
         for (int j = 0; j < 3; j++)
         {
-            chick[i][j] = new Chicken(i,j);
+            chick[i][j] = new Chicken(mw,i,j);
             scene->addItem(chick[i][j]);
         }
     }
