@@ -2,20 +2,27 @@
 #define SPACESHIP_H
 
 #include <QPainter>
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 #include <QDebug>
+#include <QObject>
+#include <QKeyEvent>
 
-class Spaceship : public QGraphicsItem
+class Spaceship : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
+
 public:
     Spaceship();
+    QPointF getPosition();
+    void throw_projectile();
+    void move_left();
+    void move_right();
+    void move_up();
+    void move_down();
 
-    QRectF boundingRect() const;
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
-    bool Pressed;
-protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent* event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
+private:
+    bool alive = true;
 };
 
 #endif // SPACESHIP_H

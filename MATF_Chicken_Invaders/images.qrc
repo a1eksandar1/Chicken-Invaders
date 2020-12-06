@@ -42,6 +42,7 @@
         <file>chicken/egg_2.png</file>
         <file>chicken/matf_chicken1.png</file>
         <file>chicken/matf_chicken2.png</file>
+        <file>spaceships/projectile.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

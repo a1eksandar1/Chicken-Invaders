@@ -1,45 +1,40 @@
 #include "headers/spaceship.h"
+#include "headers/projectile.h"
+#include <QTimer>
 
-Spaceship::Spaceship() :
-    Pressed(false)
+Spaceship::Spaceship()
 {
-    setFlag(ItemIsMovable);
+    setPixmap(QPixmap(":images/spaceships/1.png"));
 }
 
-QRectF Spaceship::boundingRect() const
+QPointF Spaceship::getPosition()
 {
-    return QRectF(0,0,100,79);
+    return pos();
 }
 
-void Spaceship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Spaceship::throw_projectile()
 {
-    QRectF rect = boundingRect(); // da bi mogli rect.getCoords()
-    QImage image(":images/spaceships/1.png");
-    QBrush brush(image);
-
-    if(Pressed)
-    {
-        // ako je kliknut
-    }
-    else
-    {
-        // ako nije
-    }
-
-    painter->fillRect(rect, brush);
-    painter->drawRect(rect);
+    Projectile* projectile = new Projectile();
+    projectile->setPos(pos().x()+40, pos().y()-20);
+    scene()->addItem(projectile);
 }
 
-void Spaceship::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Spaceship::move_left()
 {
-    Pressed = true;
-    update();
-    QGraphicsItem::mousePressEvent(event);
+    setPos(pos().x()-10, pos().y());
 }
 
-void Spaceship::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void Spaceship::move_right()
 {
-    Pressed = false;
-    update();
-    QGraphicsItem::mouseReleaseEvent(event);
+    setPos(pos().x()+10, pos().y());
+}
+
+void Spaceship::move_up()
+{
+    setPos(pos().x(), pos().y()-10);
+}
+
+void Spaceship::move_down()
+{
+    setPos(pos().x(), pos().y()+10);
 }

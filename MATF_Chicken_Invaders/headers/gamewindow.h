@@ -21,7 +21,6 @@ class GameWindow : public QWidget
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
-
 public:
     explicit GameWindow(MainWindow *parent = nullptr);
     ~GameWindow();
@@ -34,6 +33,7 @@ private:
     QMediaPlayer* music;
     MainWindow* mw;
     QTimer *timer;
+    Spaceship* spaceship;
 };
 
 #endif // GAMEWINDOW_H

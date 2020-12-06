@@ -1,5 +1,6 @@
 #include "headers/gamewindow.h"
 #include "headers/chicken.h"
+#include "headers/projectile.h"
 #include "ui_gamewindow.h"
 #include <QDialog>
 #include <QKeyEvent>
@@ -7,6 +8,7 @@
 #include <QMediaPlayer>
 #include <QScreen>
 #include <QTimer>
+#include <iostream>
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -22,6 +24,21 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
         music->stop();
         mw->playMusic();
         break;
+    case Qt::Key_Space:
+        spaceship->throw_projectile();
+        break;
+    case Qt::Key_A:
+        spaceship->move_left();
+        break;
+    case Qt::Key_D:
+        spaceship->move_right();
+        break;
+    case Qt::Key_W:
+        spaceship->move_up();
+        break;
+    case Qt::Key_S:
+        spaceship->move_down();
+        break;
     default:
         QWidget::keyPressEvent(event);
     }
@@ -33,7 +50,8 @@ GameWindow::GameWindow(MainWindow *parent) :
     scene(new QGraphicsScene(this)),
     music(new QMediaPlayer),
     mw(parent),
-    timer(new QTimer(this))
+    timer(new QTimer(this)),
+    spaceship(new Spaceship())
 
 {
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -56,8 +74,12 @@ GameWindow::~GameWindow()
 }
 
 void GameWindow::start()
-{   
-    auto spaceship = new Spaceship();
+{
+    QRect rec = QApplication::primaryScreen()->geometry();
+    int height = rec.height();
+    int width = rec.width();
+
+    spaceship->setPos(height-100, width/2);
     scene->addItem(spaceship);
 
 //    Chicken* chicken = new Chicken(1,1);
@@ -85,10 +107,7 @@ void GameWindow::start()
         }
     }
 
-
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
-
-
 
 }
