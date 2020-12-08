@@ -27,7 +27,7 @@ public:
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
-    int projectilesLevel = 5;
+    int projectilesLevel = 1;
     bool throwingAllowed = true;
 };
 
