@@ -7,5 +7,6 @@
         <file>sounds/Victory.mp3</file>
         <file>sounds/Egg.mp3</file>
         <file>sounds/Projectile.mp3</file>
+        <file>sounds/shot_chicken.mp3</file>
     </qresource>
 </RCC>

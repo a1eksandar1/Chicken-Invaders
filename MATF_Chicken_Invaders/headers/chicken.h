@@ -20,12 +20,20 @@ public:
     int getOrientation() const;
     void setOrientation(int value);
 
+    bool getShot() const;
+    void setShot(bool value);
+
 private:
     int m,n;
     int imgChange;
     int orientation=10;
     int width, height;
+    bool shot = false;
     MainWindow *mw;
+    QMediaPlayer * chicken_sound;
+
+public slots:
+    void clean();
 
 protected:
     void advance(int step) override;
