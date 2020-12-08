@@ -2,6 +2,8 @@
 #include "headers/projectile.h"
 #include <QTimer>
 #include <vector>
+#include <QApplication>
+#include <QScreen>
 
 Spaceship::Spaceship()
 {
@@ -85,4 +87,12 @@ bool Spaceship::getThrowingAllowed()
 void Spaceship::setThrowingAllowed(bool isAllowed)
 {
     throwingAllowed = isAllowed;
+}
+
+qreal Spaceship::yStart()
+{
+    QRect rec = QApplication::primaryScreen()->geometry();
+    int width = rec.width();
+
+    return width/2;
 }

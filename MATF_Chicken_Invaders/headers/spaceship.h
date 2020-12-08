@@ -23,6 +23,7 @@ public:
     void move_down();
     bool getThrowingAllowed();
     void setThrowingAllowed(bool isAllowed);
+    qreal yStart();
 
 private:
     bool alive = true;
