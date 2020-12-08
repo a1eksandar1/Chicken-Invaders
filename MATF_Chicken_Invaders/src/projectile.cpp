@@ -7,7 +7,7 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 
-Projectile::Projectile(QTimer* timer)
+Projectile::Projectile(QTimer* timer, int num) : number(num)
 {
     setPixmap(QPixmap(":images/spaceships/projectile.png").scaled(40,40,Qt::KeepAspectRatio));
 
@@ -26,9 +26,25 @@ QPointF Projectile::getPosition()
 
 void Projectile::move()
 {
-    setPos(x(), y()-5);
+    switch (number) {
+    case 1:
+        setPos(x()-0.5, y()-5);
+        break;
+    case 2:
+        setPos(x()+0.5, y()-5);
+        break;
+    case 3:
+        setPos(x()-1, y()-5);
+        break;
+    case 4:
+        setPos(x()+1, y()-5);
+        break;
+    default: // 0
+        setPos(x(), y()-5);
+    }
 
-    // if pos > ..
+    if(pos().y() < 0)
+        this->clean();
 }
 
 void Projectile::clean()

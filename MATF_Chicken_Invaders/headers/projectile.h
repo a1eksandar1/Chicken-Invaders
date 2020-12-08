@@ -11,7 +11,7 @@ class Projectile : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    Projectile(QTimer* timer);
+    Projectile(QTimer* timer, int num);
     QPointF getPosition();
 
 public slots:
@@ -21,6 +21,7 @@ public slots:
 private:
     bool exploded = false;
     QMediaPlayer* projectileSound;
+    int number;
 };
 
 #endif // PROJECTILE_H
