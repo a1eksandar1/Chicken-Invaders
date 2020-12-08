@@ -7,9 +7,9 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 
-Projectile::Projectile(QTimer* timer, int num) : number(num)
+Projectile::Projectile(Spaceship* ss, QTimer* timer, int num) : number(num), spaceship(ss)
 {
-    setPixmap(QPixmap(":images/spaceships/projectile.png").scaled(40,40,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":images/spaceships/projectile.png"));
 
     projectileSound = new QMediaPlayer;
     projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
@@ -41,10 +41,13 @@ void Projectile::move()
         break;
     default: // 0
         setPos(x(), y()-5);
+        if(pos().y() < 0)
+            this->clean();
+        if(pos().y() > 600)
+            spaceship->setThrowingAllowed(false);
+        else
+            spaceship->setThrowingAllowed(true);
     }
-
-    if(pos().y() < 0)
-        this->clean();
 }
 
 void Projectile::clean()

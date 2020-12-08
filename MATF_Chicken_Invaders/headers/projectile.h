@@ -5,13 +5,14 @@
 #include <QGraphicsPixmapItem>
 #include <QMediaPlayer>
 #include <QTimer>
+#include "headers/spaceship.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    Projectile(QTimer* timer, int num);
+    Projectile(Spaceship* ss, QTimer* timer, int num);
     QPointF getPosition();
 
 public slots:
@@ -22,6 +23,7 @@ private:
     bool exploded = false;
     QMediaPlayer* projectileSound;
     int number;
+    Spaceship* spaceship;
 };
 
 #endif // PROJECTILE_H

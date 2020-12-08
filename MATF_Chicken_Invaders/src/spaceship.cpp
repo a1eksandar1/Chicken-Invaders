@@ -19,11 +19,11 @@ void Spaceship::throw_projectile()
     std::vector<Projectile*> projectiles;
     for(int i=0; i<projectilesLevel; i++){ // alociranje projektila
         if(projectilesLevel == 1 || projectilesLevel == 2)
-            projectiles.push_back(new Projectile(throwingProjectilesTimer, 0));
+            projectiles.push_back(new Projectile(this, throwingProjectilesTimer, 0));
         else if(projectilesLevel == 3 || projectilesLevel == 5)
-            projectiles.push_back(new Projectile(throwingProjectilesTimer, i));
+            projectiles.push_back(new Projectile(this, throwingProjectilesTimer, i));
         else
-            projectiles.push_back(new Projectile(throwingProjectilesTimer, i+1));
+            projectiles.push_back(new Projectile(this, throwingProjectilesTimer, i+1));
     }
 
     switch (projectilesLevel) { // postavljanje pozicije projektila
@@ -75,4 +75,14 @@ void Spaceship::move_up()
 void Spaceship::move_down()
 {
     setPos(pos().x(), pos().y()+10);
+}
+
+bool Spaceship::getThrowingAllowed()
+{
+    return throwingAllowed;
+}
+
+void Spaceship::setThrowingAllowed(bool isAllowed)
+{
+    throwingAllowed = isAllowed;
 }
