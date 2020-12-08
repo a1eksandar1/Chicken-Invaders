@@ -33,6 +33,7 @@ private:
     QMediaPlayer *music;
     MainWindow *mw;
     QTimer *timer;
+    // za spaceship
     Spaceship* spaceship;
 };
 

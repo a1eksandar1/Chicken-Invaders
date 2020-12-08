@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QKeyEvent>
+#include <QTimer>
 
 class Spaceship : public QObject, public QGraphicsPixmapItem
 {
@@ -20,9 +21,14 @@ public:
     void move_right();
     void move_up();
     void move_down();
+    bool getThrowingAllowed();
+    void setThrowingAllowed(bool isAllowed);
 
 private:
     bool alive = true;
+    QTimer* throwingProjectilesTimer;
+    int projectilesLevel = 1;
+    bool throwingAllowed = true;
 };
 
 #endif // SPACESHIP_H
