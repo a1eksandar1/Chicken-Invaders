@@ -28,22 +28,22 @@ void Projectile::move()
 {
     switch (number) {
     case 1:
-        setPos(x()-0.5, y()-5);
+        setPos(x()-0.5, y()-10);
         break;
     case 2:
-        setPos(x()+0.5, y()-5);
+        setPos(x()+0.5, y()-10);
         break;
     case 3:
-        setPos(x()-1, y()-5);
+        setPos(x()-1, y()-10);
         break;
     case 4:
-        setPos(x()+1, y()-5);
+        setPos(x()+1, y()-10);
         break;
     default: // 0
-        setPos(x(), y()-5);
-        if(pos().y() < 0)
+        setPos(x(), y()-10);
+        if(pos().y() < -300)
             this->clean();
-        if(pos().y() > 600)
+        if(spaceship->getPosition().y() - pos().y() < 300)
             spaceship->setThrowingAllowed(false);
         else
             spaceship->setThrowingAllowed(true);

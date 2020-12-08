@@ -23,12 +23,19 @@ public:
     void move_down();
     bool getThrowingAllowed();
     void setThrowingAllowed(bool isAllowed);
+    int decreaseLivesNumAndGetCurrNumLives();
+    void setStartingPosition(int pos_x, int pos_y);
+    int getStartingXPos();
+    int getStartingYPos();
 
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
     int projectilesLevel = 5;
     bool throwingAllowed = true;
+    int numberOfLives = 3;
+    int startingXPosition;
+    int startingYPosition;
 };
 
 #endif // SPACESHIP_H

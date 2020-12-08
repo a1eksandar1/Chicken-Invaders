@@ -59,22 +59,26 @@ void Spaceship::throw_projectile()
 
 void Spaceship::move_left()
 {
-    setPos(pos().x()-10, pos().y());
+    if(pos().x() > 10)
+        setPos(pos().x()-10, pos().y());
 }
 
 void Spaceship::move_right()
 {
-    setPos(pos().x()+10, pos().y());
+    if(pos().x() < 2*getStartingXPos()-10)
+        setPos(pos().x()+10, pos().y());
 }
 
 void Spaceship::move_up()
 {
-    setPos(pos().x(), pos().y()-10);
+    if(pos().y() > 10)
+        setPos(pos().x(), pos().y()-10);
 }
 
 void Spaceship::move_down()
 {
-    setPos(pos().x(), pos().y()+10);
+    if(pos().y() < getStartingYPos()-10)
+        setPos(pos().x(), pos().y()+10);
 }
 
 bool Spaceship::getThrowingAllowed()
@@ -85,4 +89,25 @@ bool Spaceship::getThrowingAllowed()
 void Spaceship::setThrowingAllowed(bool isAllowed)
 {
     throwingAllowed = isAllowed;
+}
+
+int Spaceship::decreaseLivesNumAndGetCurrNumLives()
+{
+    return --numberOfLives;
+}
+
+void Spaceship::setStartingPosition(int pos_x, int pos_y)
+{
+    startingXPosition = pos_x;
+    startingYPosition = pos_y;
+}
+
+int Spaceship::getStartingXPos()
+{
+    return startingXPosition;
+}
+
+int Spaceship::getStartingYPos()
+{
+    return startingYPosition;
 }
