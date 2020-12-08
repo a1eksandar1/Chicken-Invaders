@@ -13,8 +13,9 @@ Gift::Gift(MainWindow *parent)
     setPixmap(QPixmap(":images/chicken/gift_1.png").scaled(60,60,Qt::KeepAspectRatio));
 
     giftSound = new QMediaPlayer;
-    giftSound->setMedia(QUrl("qrc:/sounds/sounds/Egg.mp3"));
+    giftSound->setMedia(QUrl("qrc:/sounds/sounds/GiftSound.mp3"));
     giftSound->setVolume(parent->getVolume());
+    giftSound->play();
 
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));

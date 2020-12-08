@@ -14,7 +14,7 @@ Chicken::Chicken(MainWindow *parent, int m, int n)
 {
 
     chicken_sound = new QMediaPlayer;
-    chicken_sound->setMedia(QUrl("qrc:/sounds/sounds/shot_chicken.mp3"));
+    chicken_sound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
     chicken_sound->setVolume(parent->getVolume());
 
     this->m = m;
