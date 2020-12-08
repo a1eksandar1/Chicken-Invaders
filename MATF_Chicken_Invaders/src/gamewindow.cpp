@@ -85,15 +85,6 @@ void GameWindow::start()
     spaceship->setPos(height-100, width/2);
     scene->addItem(spaceship);
 
-//    Chicken* chicken = new Chicken(1,1);
-//    scene->addItem(chicken);
-//    Chicken* chicken2 = new Chicken(3,1);
-//    scene->addItem(chicken2);
-//    Chicken* chicken3 = new Chicken(7,1);
-//    scene->addItem(chicken3);
-//    Chicken* chicken4 = new Chicken(5,1);
-//    scene->addItem(chicken4);
-
     QVector<QVector<Chicken*>> chick;
     chick.resize(8);
     for (int i=0; i < 8; i++)
