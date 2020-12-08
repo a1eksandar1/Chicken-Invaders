@@ -4,13 +4,14 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QMediaPlayer>
+#include <QTimer>
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    Projectile();
+    Projectile(QTimer* timer);
     QPointF getPosition();
 
 public slots:

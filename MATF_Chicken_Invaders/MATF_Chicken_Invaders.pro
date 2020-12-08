@@ -11,6 +11,8 @@ CONFIG += c++17
 
 SOURCES += \
     src/projectile.cpp \
+    src/planet.cpp \
+    src/sidespaceship.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
     src/egg.cpp \
@@ -30,7 +32,9 @@ HEADERS += \
     headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h \
-    headers/projectile.h
+    headers/projectile.h \
+    headers/sidespaceship.h \
+    headers/planet.h \
     headers/spaceship.h
 
 FORMS += \
@@ -47,4 +51,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     images.qrc \
-    sounds.qrc
+    sounds.qrc \

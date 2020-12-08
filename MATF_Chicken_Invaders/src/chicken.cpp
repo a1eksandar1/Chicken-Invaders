@@ -8,7 +8,8 @@
 #include <QScreen>
 #include <QApplication>
 
-Chicken::Chicken(int m, int n)
+Chicken::Chicken(MainWindow *parent, int m, int n)
+    : mw(parent)
 {
     this->m = m;
     this->n = n;
@@ -71,7 +72,7 @@ void Chicken::advance(int step)
     int random_number = rand() % 700;
     if (random_number == 5)
     {
-        Egg * egg = new Egg();
+        Egg * egg = new Egg(mw);
         egg->setPos(pos().x(),pos().y()+100);
         scene()->addItem(egg);
     }

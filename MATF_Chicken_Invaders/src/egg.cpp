@@ -7,12 +7,13 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 
-Egg::Egg()
+Egg::Egg(MainWindow *parent)
 {
     setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(50,50,Qt::KeepAspectRatio));
 
     eggSound = new QMediaPlayer;
     eggSound->setMedia(QUrl("qrc:/sounds/sounds/Egg.mp3"));
+    eggSound->setVolume(parent->getVolume());
 
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));

@@ -7,15 +7,14 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 
-Projectile::Projectile()
+Projectile::Projectile(QTimer* timer)
 {
-    setPixmap(QPixmap(":images/spaceships/projectile.png").scaled(20,20,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":images/spaceships/projectile.png").scaled(40,40,Qt::KeepAspectRatio));
 
     projectileSound = new QMediaPlayer;
     projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
     projectileSound->play();
 
-    QTimer* timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(10);
 }

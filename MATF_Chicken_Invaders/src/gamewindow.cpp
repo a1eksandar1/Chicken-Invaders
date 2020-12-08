@@ -27,16 +27,16 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Space:
         spaceship->throw_projectile();
         break;
-    case Qt::Key_A:
+    case Qt::Key_Left: // change it to be LeftArrow
         spaceship->move_left();
         break;
-    case Qt::Key_D:
+    case Qt::Key_Right: // change it to be RightArrow
         spaceship->move_right();
         break;
-    case Qt::Key_W:
+    case Qt::Key_Up: // change it to be UpArrow
         spaceship->move_up();
         break;
-    case Qt::Key_S:
+    case Qt::Key_Down: // change it to be DownArrow
         spaceship->move_down();
         break;
     default:
@@ -102,7 +102,7 @@ void GameWindow::start()
     {
         for (int j = 0; j < 3; j++)
         {
-            chick[i][j] = new Chicken(i,j);
+            chick[i][j] = new Chicken(mw,i,j);
             scene->addItem(chick[i][j]);
         }
     }

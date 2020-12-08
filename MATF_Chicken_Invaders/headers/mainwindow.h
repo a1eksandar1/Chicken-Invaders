@@ -25,13 +25,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    bool isHard();
+    bool isHard() const;
     void setHard(bool h);
     void playMusic();
     void setVolume(int volume);
-    int getVolume();
-    int getUserCurrentLevel();
+    int getVolume() const;
+    int getUserCurrentLevel() const;
     void setUserCurrentLevel(int level);
+    int getDesiredLevel() const;
+    void setDesiredLevel(int value);
+    int getReachedLevel() const;
+    void setReachedLevel(int value);
+    void openGameWindow();
 
 private:
     Ui::MainWindow *ui;
@@ -39,5 +44,7 @@ private:
     QMediaPlayer* music;
     int volume;
     int userCurrentLevel;
+    int desiredLevel;
+    int reachedLevel;
 };
 #endif // MAINWINDOW_H
