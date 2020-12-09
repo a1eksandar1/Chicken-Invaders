@@ -6,6 +6,7 @@
 #include <QMediaPlayer>
 #include <QTimer>
 #include "headers/spaceship.h"
+#include "headers/chicken.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {
@@ -15,6 +16,7 @@ public:
     Projectile(Spaceship* ss, QTimer* timer, int num);
     QPointF getPosition();
 
+    void colision();
 public slots:
     void move();
     void clean();

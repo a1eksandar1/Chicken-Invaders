@@ -13,6 +13,7 @@ class Egg: public QObject, public QGraphicsPixmapItem
 public:
     Egg(MainWindow *parent);
 
+    void colision();
 public slots:
     void move();
     void clean();

@@ -1,6 +1,8 @@
 #include "headers/egg.h"
+#include "headers/spaceship.h"
 #include <QTimer>
 #include <QGraphicsScene>
+#include <QGraphicsItem>
 #include <QList>
 #include <QScreen>
 #include <QApplication>
@@ -44,11 +46,44 @@ void Egg::move()
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(1000);
     }
+
+    colision();
+
+}
+
+void Egg::colision()
+{
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid (Spaceship))
+        {
+            clean();
+
+            auto explosionSound = new QMediaPlayer;
+
+            auto spaceship = static_cast<Spaceship*>(colItem);
+            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0)
+            {
+                delete colItem;
+                // gameover
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                explosionSound->play();
+            }
+            else
+            {
+                spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                explosionSound->play();
+            }
+
+            return;
+        }
+    }
 }
 
 void Egg::clean()
 {
     scene()->removeItem(this);
     delete this;
-
 }

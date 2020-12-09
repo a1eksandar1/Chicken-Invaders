@@ -56,6 +56,30 @@ void Projectile::move()
             else
                 spaceship->setThrowingAllowed(true);
         }
+        if(pos().y() < -300)
+            this->clean();
+        if(spaceship->getPosition().y() - pos().y() < 300)
+            spaceship->setThrowingAllowed(false);
+        else
+            spaceship->setThrowingAllowed(true);
+
+        colision();
+
+    }
+}
+
+void Projectile::colision()
+{
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid (Chicken))
+        {
+            auto chicken = static_cast<Chicken*>(colItem);
+            chicken->die();
+
+            clean();
+        }
     }
 }
 
