@@ -36,8 +36,7 @@ HEADERS += \
     headers/optionswindow.h \
     headers/projectile.h \
     headers/sidespaceship.h \
-    headers/planet.h \
-    headers/spaceship.h
+    headers/planet.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
