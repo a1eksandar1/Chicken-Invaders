@@ -56,6 +56,12 @@ void Projectile::move()
             else
                 spaceship->setThrowingAllowed(true);
         }
+        if(pos().y() < -300)
+            this->clean();
+        if(spaceship->getPosition().y() - pos().y() < 300)
+            spaceship->setThrowingAllowed(false);
+        else
+            spaceship->setThrowingAllowed(true);
     }
 }
 

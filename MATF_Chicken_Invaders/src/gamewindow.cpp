@@ -82,7 +82,9 @@ void GameWindow::start()
     int height = rec.height();
     int width = rec.width();
 
-    spaceship->setPos(height-100, width/2);
+    spaceship->setStartingPosition(width/2-65, height-120);
+
+    spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
 
     QVector<QVector<Chicken*>> chick;

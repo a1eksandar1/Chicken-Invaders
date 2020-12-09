@@ -9,5 +9,6 @@
         <file>sounds/Projectile.mp3</file>
         <file>sounds/GiftSound.mp3</file>
         <file>sounds/ShotChicken.mp3</file>
+        <file>sounds/SpaceshipExplosion.mp3</file>
     </qresource>
 </RCC>
