@@ -13,8 +13,6 @@ Chicken::Chicken(MainWindow *parent, int m, int n)
     : mw(parent)
 {
 
-
-
     this->m = m;
     this->n = n;
     setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
@@ -59,6 +57,18 @@ void Chicken::setShot(bool value)
     shot = value;
 }
 
+void Chicken::die()
+{
+    setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
+    imgChange=3;
+
+    mw->chickenSound->play();
+
+    QTimer *cleanTimer = new QTimer(this);
+    connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
+    cleanTimer->start(200);
+}
+
 void Chicken::clean()
 {
     scene()->removeItem(this);
@@ -86,7 +96,8 @@ void Chicken::advance(int step)
         setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
     if(imgChange == 1)
         setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(120,120,Qt::KeepAspectRatio));
-
+    if(imgChange == 3)
+        return;
     imgChange = (imgChange + 1)%2;
 
     int random_number = rand() % 700;
@@ -95,8 +106,6 @@ void Chicken::advance(int step)
         Egg * egg = new Egg(mw);
         egg->setPos(pos().x(),pos().y()+100);
         scene()->addItem(egg);
-
-        setShot(true); //for testing
 
     }
 
@@ -108,15 +117,16 @@ void Chicken::advance(int step)
 
     }
 
-    if(getShot())
-    {
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
-        mw->chickenSound->play();
+//    if(getShot())
+//    {
+//        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
+//        mw->chickenSound->play();
 
-        QTimer *cleanTimer = new QTimer(this);
-        connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
-        cleanTimer->start(500);
-    }
+//        QTimer *cleanTimer = new QTimer(this);
+//        connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
+//        cleanTimer->start(500);
+//    }
+
     if(pos().x() + 150*(7-m) > width - 150)
         orientation = -10;
 

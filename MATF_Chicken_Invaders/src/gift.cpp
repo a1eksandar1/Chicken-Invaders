@@ -5,14 +5,14 @@
 #include <QList>
 #include <QScreen>
 #include <QApplication>
-#include <QMediaPlayer>
 #include <QSoundEffect>
 
-Gift::Gift(MainWindow *parent)
+Gift::Gift(MainWindow *parent) :
+    mw(parent)
 {
     setPixmap(QPixmap(":images/chicken/gift_1.png").scaled(60,60,Qt::KeepAspectRatio));
 
-    parent->giftSound->play();
+    mw->giftSound->play();
 
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
@@ -35,6 +35,8 @@ void Gift::move()
     {
         clean();
     }
+
+    colision();
 }
 
 void Gift::clean()
@@ -42,4 +44,23 @@ void Gift::clean()
     scene()->removeItem(this);
     delete this;
 
+}
+
+void Gift::colision()
+{
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid(Spaceship))
+        {
+            auto spaceship = static_cast<Spaceship*>(colItem);
+            int level = spaceship->getProjectilesLevel();
+            if(level < 5)
+                spaceship->setProjectilesLevel(level+1);
+
+            mw->giftSound->play();
+
+            clean();
+        }
+    }
 }

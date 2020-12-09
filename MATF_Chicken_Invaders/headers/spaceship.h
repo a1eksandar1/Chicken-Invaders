@@ -32,11 +32,13 @@ public:
 
 public:
     MainWindow *mw;
+    int getProjectilesLevel() const;
+    void setProjectilesLevel(int value);
 
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
-    int projectilesLevel = 5;
+    int projectilesLevel = 1;
     bool throwingAllowed = true;
     int numberOfLives = 3;
     int startingXPosition;

@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
-#include <QMediaPlayer>
 #include "headers/mainwindow.h"
 
 class Egg: public QObject, public QGraphicsPixmapItem
@@ -13,6 +12,7 @@ class Egg: public QObject, public QGraphicsPixmapItem
 public:
     Egg(MainWindow *parent);
 
+    void colision();
 public slots:
     void move();
     void clean();

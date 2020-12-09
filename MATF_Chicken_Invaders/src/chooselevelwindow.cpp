@@ -1,6 +1,5 @@
 #include "headers/chooselevelwindow.h"
 #include "ui_chooselevelwindow.h"
-#include <iostream>
 #include <QDesktopWidget>
 #include <QDebug>
 

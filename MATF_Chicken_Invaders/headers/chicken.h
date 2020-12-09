@@ -5,10 +5,10 @@
 #include <QGraphicsPixmapItem>
 #include "headers/mainwindow.h"
 
+
 class Chicken: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
-
 
 public:
     Chicken(MainWindow *parent, int m, int n);
@@ -22,6 +22,7 @@ public:
 
     bool getShot() const;
     void setShot(bool value);
+    void die();
 
 private:
     int m,n;

@@ -11,10 +11,7 @@ Projectile::Projectile(Spaceship* ss, QTimer* timer, int num) : number(num), spa
 {
     setPixmap(QPixmap(":images/spaceships/projectile.png"));
 
-//    projectileSound = new QMediaPlayer;
-//    projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
-//    projectileSound->play();
-
+    spaceship->mw->projectileSound->stop();
     spaceship->mw->projectileSound->play();
 
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -64,6 +61,24 @@ void Projectile::move()
             spaceship->setThrowingAllowed(false);
         else
             spaceship->setThrowingAllowed(true);
+
+        colision();
+
+    }
+}
+
+void Projectile::colision()
+{
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid (Chicken))
+        {
+            auto chicken = static_cast<Chicken*>(colItem);
+            chicken->die();
+
+            clean();
+        }
     }
 }
 

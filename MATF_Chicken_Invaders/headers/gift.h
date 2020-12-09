@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
-#include <QMediaPlayer>
 #include "headers/mainwindow.h"
+#include "headers/spaceship.h"
 
 class Gift: public QObject, public QGraphicsPixmapItem
 {
@@ -13,12 +13,14 @@ class Gift: public QObject, public QGraphicsPixmapItem
 public:
     Gift(MainWindow *parent);
 
+    void colision();
 public slots:
     void move();
     void clean();
 
 private:
     int width, height;
+    MainWindow *mw;
 };
 
 

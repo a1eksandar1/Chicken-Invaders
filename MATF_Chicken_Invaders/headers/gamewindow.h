@@ -8,7 +8,6 @@
 #include <QtCore>
 #include <QtGui>
 #include "headers/mainwindow.h"
-#include <QMediaPlayer>
 
 namespace Ui {
 class GameWindow;

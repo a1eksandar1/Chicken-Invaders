@@ -83,6 +83,7 @@ void Spaceship::move_down()
 {
     if(pos().y() < getStartingYPos()-20)
         setPos(pos().x(), pos().y()+30);
+
 }
 
 bool Spaceship::getThrowingAllowed()
@@ -121,4 +122,14 @@ int Spaceship::getStartingXPos()
 int Spaceship::getStartingYPos()
 {
     return startingYPosition;
+}
+
+int Spaceship::getProjectilesLevel() const
+{
+    return projectilesLevel;
+}
+
+void Spaceship::setProjectilesLevel(int value)
+{
+    projectilesLevel = value;
 }

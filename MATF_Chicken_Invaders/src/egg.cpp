@@ -6,7 +6,6 @@
 #include <QList>
 #include <QScreen>
 #include <QApplication>
-#include <QMediaPlayer>
 #include <QSoundEffect>
 
 Egg::Egg(MainWindow *parent) :
@@ -44,23 +43,52 @@ void Egg::move()
         cleanTimer->start(1000);
     }
 
-    QList<QGraphicsItem*> colliding_items = collidingItems();
-    for(auto colItem : colliding_items){
-        if(typeid (*colItem) == typeid (Spaceship)){
+//    QList<QGraphicsItem*> colliding_items = collidingItems();
+//    for(auto colItem : colliding_items){
+//        if(typeid (*colItem) == typeid (Spaceship)){
 
-            scene()->removeItem(this);
-            delete this;
+//            scene()->removeItem(this);
+//            delete this;
+
+//            auto spaceship = static_cast<Spaceship*>(colItem);
+//            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0){
+//                delete colItem;
+//                // gameover
+//                mw->gameOverSound->play();
+//                mw->close();
+//            }
+//            else{
+//                spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
+//                mw->explosionSound->play();
+
+    colision();
+
+}
+
+void Egg::colision()
+{
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid (Spaceship))
+        {
+            clean();
+
+            auto explosionSound = new QMediaPlayer;
 
             auto spaceship = static_cast<Spaceship*>(colItem);
-            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0){
+            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0)
+            {
                 delete colItem;
                 // gameover
-                mw->gameOverSound->play();
-                mw->close();
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                explosionSound->play();
             }
-            else{
+            else
+            {
                 spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
-                mw->explosionSound->play();
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                explosionSound->play();
             }
 
             return;
@@ -72,5 +100,4 @@ void Egg::clean()
 {
     scene()->removeItem(this);
     delete this;
-
 }
