@@ -13,9 +13,7 @@ Chicken::Chicken(MainWindow *parent, int m, int n)
     : mw(parent)
 {
 
-    chicken_sound = new QMediaPlayer;
-    chicken_sound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
-    chicken_sound->setVolume(parent->getVolume());
+
 
     this->m = m;
     this->n = n;
@@ -113,7 +111,10 @@ void Chicken::advance(int step)
     if(getShot())
     {
         setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
+        chicken_sound = new QMediaPlayer;
+        chicken_sound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
         chicken_sound->play();
+
         QTimer *cleanTimer = new QTimer(this);
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(500);
