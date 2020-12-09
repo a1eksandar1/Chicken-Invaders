@@ -5,8 +5,6 @@
 #include <QGraphicsScene>
 #include "spaceship.h"
 #include <QDialog>
-#include <QtCore>
-#include <QtGui>
 #include "headers/mainwindow.h"
 
 namespace Ui {

@@ -4,8 +4,6 @@
 #include <QList>
 #include <QScreen>
 #include <QApplication>
-#include <QMediaPlayer>
-#include <QSoundEffect>
 
 Projectile::Projectile(Spaceship* ss, QTimer* timer, int num) : number(num), spaceship(ss)
 {

@@ -1,16 +1,14 @@
 #include "headers/chicken.h"
 #include <QTimer>
-#include <QGraphicsScene>
 #include <QList>
 #include "headers/egg.h"
 #include "headers/gift.h"
-#include <stdlib.h>
 #include <QDebug>
 #include <QScreen>
 #include <QApplication>
 
-Chicken::Chicken(MainWindow *parent, int m, int n)
-    : mw(parent)
+Chicken::Chicken(MainWindow *parent, int m, int n) :
+    mw(parent)
 {
 
     this->m = m;
@@ -62,7 +60,9 @@ void Chicken::die()
     setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
     imgChange=3;
 
+    mw->chickenSound->stop();
     mw->chickenSound->play();
+    mw->chickenSound->setVolume(100);
 
     QTimer *cleanTimer = new QTimer(this);
     connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
@@ -103,7 +103,7 @@ void Chicken::advance(int step)
     int random_number = rand() % 700;
     if (random_number == 5)
     {
-        Egg * egg = new Egg(mw);
+        Egg *egg = new Egg(mw);
         egg->setPos(pos().x(),pos().y()+100);
         scene()->addItem(egg);
 
@@ -116,16 +116,6 @@ void Chicken::advance(int step)
         scene()->addItem(gift);
 
     }
-
-//    if(getShot())
-//    {
-//        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
-//        mw->chickenSound->play();
-
-//        QTimer *cleanTimer = new QTimer(this);
-//        connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
-//        cleanTimer->start(500);
-//    }
 
     if(pos().x() + 150*(7-m) > width - 150)
         orientation = -10;

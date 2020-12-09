@@ -4,14 +4,13 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include "headers/mainwindow.h"
-#include <QGraphicsItem>
-#include <QGraphicsPixmapItem>
 #include <QPainter>
 
 class Planet : public QObject, public QGraphicsItem
 {
 
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 
 signals:
     void neptuneClicked();
@@ -25,13 +24,13 @@ signals:
     void mercuryClicked();
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
 public:
     Planet(MainWindow *parent, qreal pos_x, qreal pos_y, qreal height, qreal width, QString name);
 
-    QRectF boundingRect() const;
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+    QRectF boundingRect() const override;
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
 private:
     qreal pos_x;

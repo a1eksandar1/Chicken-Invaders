@@ -43,24 +43,6 @@ void Egg::move()
         cleanTimer->start(1000);
     }
 
-//    QList<QGraphicsItem*> colliding_items = collidingItems();
-//    for(auto colItem : colliding_items){
-//        if(typeid (*colItem) == typeid (Spaceship)){
-
-//            scene()->removeItem(this);
-//            delete this;
-
-//            auto spaceship = static_cast<Spaceship*>(colItem);
-//            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0){
-//                delete colItem;
-//                // gameover
-//                mw->gameOverSound->play();
-//                mw->close();
-//            }
-//            else{
-//                spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
-//                mw->explosionSound->play();
-
     colision();
 
 }

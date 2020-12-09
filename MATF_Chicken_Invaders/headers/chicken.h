@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include "headers/mainwindow.h"
+#include "headers/egg.h"
 
 
 class Chicken: public QObject, public QGraphicsPixmapItem

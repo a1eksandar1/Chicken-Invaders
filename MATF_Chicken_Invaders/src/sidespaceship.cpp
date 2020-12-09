@@ -2,7 +2,6 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QList>
-#include <stdlib.h>
 #include <QDebug>
 #include <QScreen>
 #include <QApplication>

@@ -47,13 +47,11 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 }
 
 GameWindow::GameWindow(MainWindow *parent) :
-    QWidget(parent),
+    mw(parent),
     ui(new Ui::GameWindow),
     scene(new QGraphicsScene(this)),
-    mw(parent),
     timer(new QTimer(this)),
     spaceship(new Spaceship(mw))
-
 {
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -105,4 +103,6 @@ void GameWindow::start()
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
 
+
+//    connect(venus, &Planet::venusClicked, this, &ChooseLevelWindow::onVenus);
 }

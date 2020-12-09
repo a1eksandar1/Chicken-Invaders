@@ -1,14 +1,14 @@
 #include "headers/planet.h"
 #include <QTimer>
 #include <QGraphicsScene>
-#include <QList>
-#include <stdlib.h>
 #include <QDebug>
 #include <QScreen>
 #include <QApplication>
 
 void Planet::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    (void)event;
+
     if(name == "Pluto"){
         mw->setDesiredLevel(1);
         emit plutoClicked();
@@ -82,6 +82,8 @@ QRectF Planet::boundingRect() const
 
 void Planet::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    (void)option;
+    (void)widget;
     //Ne pomaze
     //QPen bp(Qt::black);
     //bp.setWidth(0);
