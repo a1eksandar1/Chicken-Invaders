@@ -38,6 +38,8 @@ void Gift::move()
     {
         clean();
     }
+
+    colision();
 }
 
 void Gift::clean()
@@ -45,4 +47,23 @@ void Gift::clean()
     scene()->removeItem(this);
     delete this;
 
+}
+
+void Gift::colision()
+{
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid(Spaceship))
+        {
+            auto spaceship = static_cast<Spaceship*>(colItem);
+            int level = spaceship->getProjectilesLevel();
+            if(level < 5)
+                spaceship->setProjectilesLevel(level+1);
+
+            giftSound->play();
+
+            clean();
+        }
+    }
 }

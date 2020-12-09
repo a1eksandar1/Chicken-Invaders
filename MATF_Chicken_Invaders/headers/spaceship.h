@@ -24,12 +24,22 @@ public:
     bool getThrowingAllowed();
     void setThrowingAllowed(bool isAllowed);
     qreal yStart();
+    int decreaseLivesNumAndGetCurrNumLives();
+    void setStartingPosition(int pos_x, int pos_y);
+    int getStartingXPos();
+    int getStartingYPos();
+
+    int getProjectilesLevel() const;
+    void setProjectilesLevel(int value);
 
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
     int projectilesLevel = 1;
     bool throwingAllowed = true;
+    int numberOfLives = 3;
+    int startingXPosition;
+    int startingYPosition;
 };
 
 #endif // SPACESHIP_H
