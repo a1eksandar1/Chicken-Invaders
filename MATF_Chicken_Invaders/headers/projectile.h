@@ -21,7 +21,6 @@ public slots:
 
 private:
     bool exploded = false;
-    QMediaPlayer* projectileSound;
     int number;
     Spaceship* spaceship;
 };

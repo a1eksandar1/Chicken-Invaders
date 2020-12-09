@@ -3,18 +3,11 @@
 #include <QDesktopWidget>
 #include <QPalette>
 #include <QPainter>
-#include <QApplication>
-#include <QList>
-#include <QDialog>
-#include <QMessageBox>
 #include <QKeyEvent>
-#include <QMessageBox>
 #include <QtGui>
 #include <QPushButton>
 #include <QDebug>
-#include <QHBoxLayout>
 #include "headers/usernamewindow.h"
-#include <iostream>
 #include "headers/gamewindow.h"
 #include "headers/optionswindow.h"
 #include <QMediaPlayer>
@@ -79,21 +72,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     hard(false),
-    music(new QMediaPlayer),
     volume(20),
     userCurrentLevel(1),
     desiredLevel(0),
     reachedLevel(1)
 {
     ui->setupUi(this);
-
-    music->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
-    music->play();
-    music->setVolume(volume);
-
-    connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
-    connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
-    connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
+    setMusic();
+    setConnects();
 }
 
 MainWindow::~MainWindow()
@@ -111,15 +97,21 @@ void MainWindow::setHard(bool h)
     hard = h;
 }
 
-void MainWindow::playMusic()
+void MainWindow::playBackgroundMusic()
 {
-    music->play();
+    backGroundMusic->play();
 }
 
 void MainWindow::setVolume(int volume)
 {
     this->volume = volume;
-    music->setVolume(volume);
+    backGroundMusic->setVolume(volume);
+    chickenSound->setVolume(volume);
+    gameOverSound->setVolume(volume);
+    eggSound->setVolume(volume);
+    explosionSound->setVolume(volume);
+    giftSound->setVolume(volume);
+    projectileSound->setVolume(volume);
 }
 
 int MainWindow::getVolume() const
@@ -164,7 +156,50 @@ void MainWindow::openGameWindow()
 
     gw->setWindowFlags(Qt::Window);
     gw->showFullScreen();
+}
 
-    music->stop();
+void MainWindow::setBackGroundMusic(QString str)
+{
+    backGroundMusic->setMedia(QUrl(str));
+}
 
+void MainWindow::stopBackGroundMusic()
+{
+    backGroundMusic->stop();
+}
+
+void MainWindow::setMusic()
+{
+    backGroundMusic = new QMediaPlayer;
+    projectileSound = new QMediaPlayer;
+    eggSound = new QMediaPlayer;
+    explosionSound = new QMediaPlayer;
+    chickenSound = new QMediaPlayer;
+    giftSound = new QMediaPlayer;
+    gameOverSound = new QMediaPlayer;
+
+    backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
+    chickenSound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
+    giftSound->setMedia(QUrl("qrc:/sounds/sounds/GiftSound.mp3"));
+    projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
+    eggSound->setMedia(QUrl("qrc:/sounds/sounds/Egg.mp3"));
+    explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+    gameOverSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+
+    backGroundMusic->setVolume(volume);
+    chickenSound->setVolume(volume);
+    gameOverSound->setVolume(volume);
+    eggSound->setVolume(volume);
+    explosionSound->setVolume(volume);
+    giftSound->setVolume(volume);
+    projectileSound->setVolume(volume);
+
+    backGroundMusic->play();
+}
+
+void MainWindow::setConnects()
+{
+    connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
+    connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
+    connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
 }

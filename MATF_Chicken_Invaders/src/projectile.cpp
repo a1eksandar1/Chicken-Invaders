@@ -11,9 +11,11 @@ Projectile::Projectile(Spaceship* ss, QTimer* timer, int num) : number(num), spa
 {
     setPixmap(QPixmap(":images/spaceships/projectile.png"));
 
-    projectileSound = new QMediaPlayer;
-    projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
-    projectileSound->play();
+//    projectileSound = new QMediaPlayer;
+//    projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
+//    projectileSound->play();
+
+    spaceship->mw->projectileSound->play();
 
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(10);

@@ -27,13 +27,13 @@ public:
 
     void start();
 
+public:
+    MainWindow *mw;
+
 private:
     Ui::GameWindow *ui;
     QGraphicsScene *scene;
-    QMediaPlayer *music;
-    MainWindow *mw;
     QTimer *timer;
-    // za spaceship
     Spaceship* spaceship;
 };
 

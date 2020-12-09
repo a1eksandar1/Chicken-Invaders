@@ -27,7 +27,7 @@ public:
 
     bool isHard() const;
     void setHard(bool h);
-    void playMusic();
+    void playBackgroundMusic();
     void setVolume(int volume);
     int getVolume() const;
     int getUserCurrentLevel() const;
@@ -37,14 +37,30 @@ public:
     int getReachedLevel() const;
     void setReachedLevel(int value);
     void openGameWindow();
+    void closeGameWindow();
+    void setBackGroundMusic(QString str);
+    void stopBackGroundMusic();
+
+private:
+    void setMusic();
+    void setConnects();
+
+public:
+    QMediaPlayer* backGroundMusic;
+    QMediaPlayer* projectileSound;
+    QMediaPlayer* giftSound;
+    QMediaPlayer* chickenSound;
+    QMediaPlayer* eggSound;
+    QMediaPlayer* explosionSound;
+    QMediaPlayer* gameOverSound;
 
 private:
     Ui::MainWindow *ui;
     bool hard;
-    QMediaPlayer* music;
     int volume;
     int userCurrentLevel;
     int desiredLevel;
     int reachedLevel;
+
 };
 #endif // MAINWINDOW_H

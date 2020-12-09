@@ -5,10 +5,8 @@
 #include <QDialog>
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
-#include <QMediaPlayer>
 #include <QScreen>
 #include <QTimer>
-#include <iostream>
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -21,8 +19,9 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
         }
         scene->clear();
         close();
-        music->stop();
-        mw->playMusic();
+        mw->backGroundMusic->stop();
+        mw->backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
+        mw->backGroundMusic->play();
         break;
     case Qt::Key_Space:
         if(spaceship->getThrowingAllowed()){
@@ -51,10 +50,9 @@ GameWindow::GameWindow(MainWindow *parent) :
     QWidget(parent),
     ui(new Ui::GameWindow),
     scene(new QGraphicsScene(this)),
-    music(new QMediaPlayer),
     mw(parent),
     timer(new QTimer(this)),
-    spaceship(new Spaceship())
+    spaceship(new Spaceship(mw))
 
 {
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -65,9 +63,10 @@ GameWindow::GameWindow(MainWindow *parent) :
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
 
-    music->setMedia(QUrl("qrc:/sounds/sounds/MainTheme1.mp3"));
-    music->setVolume(mw->getVolume());
-    music->play();
+    mw->backGroundMusic->stop();
+    mw->backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme1.mp3"));
+    mw->backGroundMusic->play();
+
     scene->setSceneRect(0, 0, width-30, height-30);
 }
 

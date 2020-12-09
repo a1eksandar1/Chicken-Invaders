@@ -19,7 +19,6 @@ public slots:
 
 private:
     int width, height;
-    QMediaPlayer * giftSound;
 };
 
 

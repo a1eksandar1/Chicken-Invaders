@@ -8,13 +8,14 @@
 #include <QObject>
 #include <QKeyEvent>
 #include <QTimer>
+#include "headers/mainwindow.h"
 
 class Spaceship : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    Spaceship();
+    Spaceship(MainWindow *parent);
     QPointF getPosition();
     void throw_projectile();
     void move_left();
@@ -29,10 +30,13 @@ public:
     int getStartingXPos();
     int getStartingYPos();
 
+public:
+    MainWindow *mw;
+
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
-    int projectilesLevel = 1;
+    int projectilesLevel = 5;
     bool throwingAllowed = true;
     int numberOfLives = 3;
     int startingXPosition;

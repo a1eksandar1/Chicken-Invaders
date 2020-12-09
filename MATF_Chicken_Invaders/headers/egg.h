@@ -19,8 +19,8 @@ public slots:
 
 private:
     int width, height;
-    QMediaPlayer * eggSound;
     bool broken = false;
+    MainWindow *mw;
 };
 
 #endif // EGG_H

@@ -9,13 +9,10 @@
 #include <QMediaPlayer>
 #include <QSoundEffect>
 
-Egg::Egg(MainWindow *parent)
+Egg::Egg(MainWindow *parent) :
+    mw(parent)
 {
     setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(50,50,Qt::KeepAspectRatio));
-
-    eggSound = new QMediaPlayer;
-    eggSound->setMedia(QUrl("qrc:/sounds/sounds/Egg.mp3"));
-    eggSound->setVolume(parent->getVolume());
 
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
@@ -38,7 +35,7 @@ void Egg::move()
     {
         if(!broken)
         {
-            eggSound->play();
+            mw->eggSound->play();
             broken = true;
         }
         setPixmap(QPixmap(":images/chicken/egg_2.png").scaled(50,50,Qt::KeepAspectRatio));
@@ -54,19 +51,16 @@ void Egg::move()
             scene()->removeItem(this);
             delete this;
 
-            auto explosionSound = new QMediaPlayer;
-
             auto spaceship = static_cast<Spaceship*>(colItem);
             if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0){
                 delete colItem;
                 // gameover
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
+                mw->gameOverSound->play();
+                mw->close();
             }
             else{
                 spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
+                mw->explosionSound->play();
             }
 
             return;

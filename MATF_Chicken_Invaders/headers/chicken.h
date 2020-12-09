@@ -30,7 +30,6 @@ private:
     int width, height;
     bool shot = false;
     MainWindow *mw;
-    QMediaPlayer * chicken_sound;
 
 public slots:
     void clean();

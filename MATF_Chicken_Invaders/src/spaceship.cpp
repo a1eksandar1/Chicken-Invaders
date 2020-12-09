@@ -5,7 +5,8 @@
 #include <QApplication>
 #include <QScreen>
 
-Spaceship::Spaceship()
+Spaceship::Spaceship(MainWindow *parent) :
+    mw(parent)
 {
     setPixmap(QPixmap(":images/spaceships/1.png"));
     throwingProjectilesTimer = new QTimer();
@@ -59,28 +60,29 @@ void Spaceship::throw_projectile()
         scene()->addItem(projectile);
 }
 
+//Malo sam ubrzao kretane svemirskog broda.
 void Spaceship::move_left()
 {
-    if(pos().x() > 10)
-        setPos(pos().x()-10, pos().y());
+    if(pos().x() > 20)
+        setPos(pos().x()-30, pos().y());
 }
 
 void Spaceship::move_right()
 {
-    if(pos().x() < 2*getStartingXPos()-10)
-        setPos(pos().x()+10, pos().y());
+    if(pos().x() < 2*getStartingXPos()-20)
+        setPos(pos().x()+30, pos().y());
 }
 
 void Spaceship::move_up()
 {
-    if(pos().y() > 10)
-        setPos(pos().x(), pos().y()-10);
+    if(pos().y() > 20)
+        setPos(pos().x(), pos().y()-30);
 }
 
 void Spaceship::move_down()
 {
-    if(pos().y() < getStartingYPos()-10)
-        setPos(pos().x(), pos().y()+10);
+    if(pos().y() < getStartingYPos()-20)
+        setPos(pos().x(), pos().y()+30);
 }
 
 bool Spaceship::getThrowingAllowed()
