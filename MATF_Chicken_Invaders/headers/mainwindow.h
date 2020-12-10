@@ -40,6 +40,8 @@ public:
     void closeGameWindow();
     void setBackGroundMusic(QString str);
     void stopBackGroundMusic();
+    bool getPlanetClicked() const;
+    void setPlanetClicked(bool value);
 
 private:
     void setMusic();
@@ -61,6 +63,7 @@ private:
     int userCurrentLevel;
     int desiredLevel;
     int reachedLevel;
+    bool planetClicked;
 
 };
 #endif // MAINWINDOW_H

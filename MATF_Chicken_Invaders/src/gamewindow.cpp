@@ -18,10 +18,10 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
             scene->items()[i]->setEnabled(false);
         }
         scene->clear();
-        close();
         mw->backGroundMusic->stop();
         mw->backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
         mw->backGroundMusic->play();
+        delete this;
         break;
     case Qt::Key_Space:
         if(spaceship->getThrowingAllowed()){

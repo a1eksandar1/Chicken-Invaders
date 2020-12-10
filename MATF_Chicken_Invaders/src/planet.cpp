@@ -9,59 +9,70 @@ void Planet::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     (void)event;
 
-    if(name == "Pluto"){
-        mw->setDesiredLevel(1);
-        emit plutoClicked();
-    }
-    else if(name == "Neptune"){
-        if(mw->getReachedLevel() > 1){
-            mw->setDesiredLevel(2);
-            emit neptuneClicked();
+    if(mw->getPlanetClicked() == false){
+        if(name == "Pluto"){
+            mw->setDesiredLevel(1);
+            mw->setPlanetClicked(true);
+            emit plutoClicked();
         }
-    }
-    else if(name == "Uranus"){
-        if(mw->getReachedLevel() > 2){
-        mw->setDesiredLevel(3);
-        emit uranusClicked();
+        else if(name == "Neptune"){
+            if(mw->getReachedLevel() > 1){
+                mw->setDesiredLevel(2);
+                mw->setPlanetClicked(true);
+                emit neptuneClicked();
+            }
         }
-    }
-    else if(name == "Saturn"){
-        if(mw->getReachedLevel() > 3){
-            mw->setDesiredLevel(4);
-            emit saturnClicked();
+        else if(name == "Uranus"){
+            if(mw->getReachedLevel() > 2){
+            mw->setDesiredLevel(3);
+            mw->setPlanetClicked(true);
+            emit uranusClicked();
+            }
         }
-    }
-    else if(name == "Jupiter"){
-        if(mw->getReachedLevel() > 4){
-            mw->setDesiredLevel(5);
-            emit jupiterClicked();
+        else if(name == "Saturn"){
+            if(mw->getReachedLevel() > 3){
+                mw->setDesiredLevel(4);
+                mw->setPlanetClicked(true);
+                emit saturnClicked();
+            }
         }
-    }
-    else if(name == "Mars"){
-        if(mw->getReachedLevel() > 5){
-            mw->setDesiredLevel(6);
-            emit marsClicked();
+        else if(name == "Jupiter"){
+            if(mw->getReachedLevel() > 4){
+                mw->setDesiredLevel(5);
+                mw->setPlanetClicked(true);
+                emit jupiterClicked();
+            }
         }
-    }
-    else if(name == "Earth"){
-        if(mw->getReachedLevel() > 6){
-            mw->setDesiredLevel(7);
-            emit earthClicked();
+        else if(name == "Mars"){
+            if(mw->getReachedLevel() > 5){
+                mw->setDesiredLevel(6);
+                mw->setPlanetClicked(true);
+                emit marsClicked();
+            }
         }
-    }
-    else if(name == "Venus"){
-        if(mw->getReachedLevel() > 7){
-            mw->setDesiredLevel(8);
-            emit venusClicked();
+        else if(name == "Earth"){
+            if(mw->getReachedLevel() > 6){
+                mw->setDesiredLevel(7);
+                mw->setPlanetClicked(true);
+                emit earthClicked();
+            }
         }
-    }
-    else if(name == "Mercury"){
-        if(mw->getReachedLevel() > 8){
-            mw->setDesiredLevel(9);
-            emit mercuryClicked();
+        else if(name == "Venus"){
+            if(mw->getReachedLevel() > 7){
+                mw->setDesiredLevel(8);
+                mw->setPlanetClicked(true);
+                emit venusClicked();
+            }
         }
+        else if(name == "Mercury"){
+            if(mw->getReachedLevel() > 8){
+                mw->setDesiredLevel(9);
+                mw->setPlanetClicked(true);
+                emit mercuryClicked();
+            }
+        }
+        update();
     }
-    update();
 }
 
 Planet::Planet(MainWindow *parent, qreal pos_x, qreal pos_y, qreal height, qreal width, QString name):
@@ -84,9 +95,8 @@ void Planet::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 {
     (void)option;
     (void)widget;
-    //Ne pomaze
-    //QPen bp(Qt::black);
-    //bp.setWidth(0);
-    //painter->setPen(bp);
+
+    QPen tp(Qt::transparent);
+    painter->setPen(tp);
     painter->drawEllipse(pos_x, pos_y, height, width);
 }

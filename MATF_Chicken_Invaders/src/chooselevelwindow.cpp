@@ -2,13 +2,14 @@
 #include "ui_chooselevelwindow.h"
 #include <QDesktopWidget>
 #include <QDebug>
+#include <QGraphicsPixmapItem>
 
 void ChooseLevelWindow::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key())
     {
     case Qt::Key_Escape:
-        close();
+        delete this;
         break;
     default:
         QWidget::keyPressEvent(event);
@@ -64,66 +65,74 @@ void ChooseLevelWindow::setGraphicsViewBackground()
 
 void ChooseLevelWindow::onPluto()
 {
-    ship->setBoundary(width/150);
+    ship->setBoundary_x(width/150);
+    ship->setBoundary_y(height - height/4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(30);
+    timer->start(10);
 }
 
 void ChooseLevelWindow::onNeptune()
 {
-    ship->setBoundary(width/12.5);
+    ship->setBoundary_x(width/12.5);
+    ship->setBoundary_y(height - height/3.5);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(25);
+    timer->start(10);
 }
 
 void ChooseLevelWindow::onUranus()
 {
-    ship->setBoundary(width/5.1);
+    ship->setBoundary_x(width/5.1);
+    ship->setBoundary_y(height - height/3.4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(25);
+    timer->start(10);
 }
 
 void ChooseLevelWindow::onSaturn()
 {
-    ship->setBoundary(width/2.95);
+    ship->setBoundary_x(width/2.95);
+    ship->setBoundary_y(height - height/3.4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(20);
+    timer->start(10);
 }
 
 void ChooseLevelWindow::onJupiter()
 {
-    ship->setBoundary(width/2.1);
+    ship->setBoundary_x(width/2.1);
+    ship->setBoundary_y(height - height/3.2);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(20);
+    timer->start(9);
 }
 
 void ChooseLevelWindow::onMars()
 {
-    ship->setBoundary(width/1.635);
+    ship->setBoundary_x(width/1.635);
+    ship->setBoundary_y(height - height/3.9);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(15);
+    timer->start(9);
 }
 
 void ChooseLevelWindow::onEarth()
 {
-    ship->setBoundary(width/1.45);
+    ship->setBoundary_x(width/1.45);
+    ship->setBoundary_y(height - height/3.5);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(15);
+    timer->start(9);
 }
 
 void ChooseLevelWindow::onVenus()
 {
-    ship->setBoundary(width/1.241);
+    ship->setBoundary_x(width/1.241);
+    ship->setBoundary_y(height - height/3.68);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(10);
+    timer->start(9);
 }
 
 void ChooseLevelWindow::onMercury()
 {
-
-    ship->setBoundary(width/1.08);
+    ship->setBoundary_x(width/1.08);
+    ship->setBoundary_y(height - height/4.1);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(10);
+    timer->start(9);
 }
 
 void ChooseLevelWindow::closeWindow()
@@ -158,6 +167,9 @@ ChooseLevelWindow::ChooseLevelWindow(MainWindow *parent) :
 
     addElementsOnScene();
 
+    QGraphicsPixmapItem *pm = scene->addPixmap(QPixmap(":images/backgrounds/choosethelevel.png"));
+    pm->setPos(width/3.3,height/4);
+
     connects();
 }
 
@@ -178,15 +190,15 @@ void ChooseLevelWindow::setDesiredLevel(int value)
 
 void ChooseLevelWindow::addElementsOnScene()
 {
-    pluto = new Planet(mw,width/60,height - height/4,65,65, "Pluto");
-    neptune = new Planet(mw,width/12.5,height - height/3.5,150,150, "Neptune");
-    uranus = new Planet(mw,width/5.1,height - height/3.5,140,140, "Uranus");
-    saturn = new Planet(mw,width/2.95,height - height/3.5,140,140, "Saturn");
-    jupiter = new Planet(mw,width/2.1,height - height/3.3,200,200, "Jupiter");
-    mars = new Planet(mw, width/1.635,height - height/3.9,80,80, "Mars");
-    earth = new Planet(mw,width/1.45,height - height/3.68,140,140,"Earth");
-    venus = new Planet(mw, width/1.241,height - height/3.68,140,140, "Venus");
-    mercury = new Planet(mw,width/1.08,height - height/4.2,90,90,"Mercury");
+    pluto = new Planet(mw,width/60,height - height/4,width/27,height/15, "Pluto");
+    neptune = new Planet(mw,width/12.5,height - height/3.5,width/12,height/7, "Neptune");
+    uranus = new Planet(mw,width/5.2,height - height/3.4,width/11,height/6.5, "Uranus");
+    saturn = new Planet(mw,width/3,height - height/3.4,width/12,height/7, "Saturn");
+    jupiter = new Planet(mw,width/2.15,height - height/3.2,width/8.6,height/4.7, "Jupiter");
+    mars = new Planet(mw, width/1.67,height - height/3.9,width/18,height/10, "Mars");
+    earth = new Planet(mw,width/1.47,height - height/3.5,width/12,height/7,"Earth");
+    venus = new Planet(mw, width/1.25,height - height/3.68,width/12,height/7, "Venus");
+    mercury = new Planet(mw,width/1.0847,height - height/4.1,width/19,height/10,"Mercury");
 
     scene->addItem(pluto);
     scene->addItem(neptune);

@@ -44,6 +44,10 @@ public:
     void setDesiredLevel(int value);
 
 private:
+    void addElementsOnScene();
+    void connects();
+
+private:
     Ui::ChooseLevelWindow *ui;
     QGraphicsScene *scene;
     MainWindow *mw;
@@ -62,9 +66,6 @@ private:
     qreal height;
     qreal width;
     QGraphicsEllipseItem *ellipse;
-
-    void addElementsOnScene();
-    void connects();
 };
 
 #endif // CHOOSELEVELWINDOW_H

@@ -45,6 +45,7 @@
         <file>spaceships/projectile.png</file>
         <file>chicken/gift_1.png</file>
         <file>chicken/shot_chicken.png</file>
+        <file>backgrounds/choosethelevel.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

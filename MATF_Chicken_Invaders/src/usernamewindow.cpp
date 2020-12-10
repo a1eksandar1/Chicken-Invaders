@@ -7,18 +7,18 @@ void UsernameWindow::onOk()
         m_ready = true;
     else
         m_levelChooseReady = true;
-    close();
+    delete this;
 }
 
 void UsernameWindow::onSkip()
 {
     m_ready = true;
-    close();
+    delete this;
 }
 
 void UsernameWindow::onCancel()
 {
-    close();
+    delete this;
 }
 
 void UsernameWindow::resizeEvent(QResizeEvent *event)

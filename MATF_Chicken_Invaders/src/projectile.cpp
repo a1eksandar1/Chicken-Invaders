@@ -11,6 +11,7 @@ Projectile::Projectile(Spaceship* ss, QTimer* timer, int num) : number(num), spa
 
     spaceship->mw->projectileSound->stop();
     spaceship->mw->projectileSound->play();
+    spaceship->mw->projectileSound->setVolume(spaceship->mw->getVolume());
 
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(10);

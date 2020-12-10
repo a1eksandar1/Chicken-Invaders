@@ -16,17 +16,22 @@ public:
     SideSpaceship(MainWindow *parent);
     ~SideSpaceship();
 
-    qreal getBoundary() const;
-    void setBoundary(const qreal &value);
-
-    int getMove() const;
-    void setMove(int value);
+    qreal getBoundary_x() const;
+    void setBoundary_x(const qreal &value);
+    qreal getBoundary_y() const;
+    void setBoundary_y(const qreal &value);
+    int getMove_x() const;
+    void setMove_x(int value);
+    int getMove_y() const;
+    void setMove_y(int value);
 
 private:
-    int move;
+    int move_x;
+    int move_y;
     int width, height;
     MainWindow *mw;
-    qreal boundary;
+    qreal boundary_x;
+    qreal boundary_y;
     bool moving;
 
 protected:
