@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     src/gift.cpp \
+    src/meteor.cpp \
     src/projectile.cpp \
     src/planet.cpp \
     src/sidespaceship.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     headers/gamewindow.h \
     headers/gift.h \
     headers/mainwindow.h \
+    headers/meteor.h \
     headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h \

@@ -6,6 +6,7 @@
 #include "spaceship.h"
 #include <QDialog>
 #include "headers/mainwindow.h"
+#include "meteor.h"
 
 namespace Ui {
 class GameWindow;

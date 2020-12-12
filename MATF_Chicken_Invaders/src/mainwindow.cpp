@@ -75,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
     volume(20),
     userCurrentLevel(1),
     desiredLevel(0),
-    reachedLevel(1)
+    reachedLevel(4)
 {
     ui->setupUi(this);
     setMusic();
