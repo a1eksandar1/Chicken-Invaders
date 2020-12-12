@@ -45,6 +45,8 @@
         <file>spaceships/projectile.png</file>
         <file>chicken/gift_1.png</file>
         <file>chicken/shot_chicken.png</file>
+        <file>meteor/meteor1.png</file>
+        <file>meteor/meteor2.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

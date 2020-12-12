@@ -102,6 +102,13 @@ void GameWindow::start()
             scene->addItem(chick[i][j]);
         }
     }
+    //testiranje
+     Meteor *meteor1 = new Meteor(mw,1,1);
+     scene->addItem(meteor1);
+
+     Meteor *meteor2 = new Meteor(mw,2,3);
+     scene->addItem(meteor2);
+
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);

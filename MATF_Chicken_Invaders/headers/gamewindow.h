@@ -9,6 +9,7 @@
 #include <QtGui>
 #include "headers/mainwindow.h"
 #include <QMediaPlayer>
+#include "meteor.h"
 
 namespace Ui {
 class GameWindow;
