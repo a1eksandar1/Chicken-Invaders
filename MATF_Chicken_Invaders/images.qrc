@@ -47,6 +47,7 @@
         <file>chicken/shot_chicken.png</file>
         <file>meteor/meteor1.png</file>
         <file>meteor/meteor2.png</file>
+        <file>backgrounds/choosethelevel.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

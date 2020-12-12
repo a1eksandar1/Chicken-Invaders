@@ -46,5 +46,5 @@ void OptionsWindow::onBack()
     else
         mw->setHard(false);
 
-    close();
+    delete this;
 }

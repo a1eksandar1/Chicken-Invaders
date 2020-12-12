@@ -6,13 +6,15 @@
 #include <QScreen>
 #include <QApplication>
 #include "headers/gamewindow.h"
+#include <QtMath>
 
-SideSpaceship::SideSpaceship(MainWindow *parent)
-    : move(5),
-      mw(parent),
-      boundary(std::numeric_limits<qreal>::max()),
-      moving(true)
-
+SideSpaceship::SideSpaceship(MainWindow *parent) :
+    move_x(5),
+    move_y(3),
+    mw(parent),
+    boundary_x(std::numeric_limits<qreal>::max()),
+    boundary_y(std::numeric_limits<qreal>::max()),
+    moving(true)
 {
     setPixmap(QPixmap(":images/spaceships/spaceship_on_the_side.png").scaled(120,120,Qt::KeepAspectRatio));
 
@@ -21,7 +23,7 @@ SideSpaceship::SideSpaceship(MainWindow *parent)
     int height = screenGeometry.height();
     int width = screenGeometry.width();
 
-    setPos(-100, height-height/3.5);
+    setPos(-200, 100);
 
     this->width = width;
     this->height = height;
@@ -33,24 +35,44 @@ SideSpaceship::~SideSpaceship()
 
 }
 
-qreal SideSpaceship::getBoundary() const
+qreal SideSpaceship::getBoundary_x() const
 {
-    return boundary;
+    return boundary_x;
 }
 
-void SideSpaceship::setBoundary(const qreal &value)
+void SideSpaceship::setBoundary_x(const qreal &value)
 {
-    boundary = value;
+    boundary_x = value;
 }
 
-int SideSpaceship::getMove() const
+int SideSpaceship::getMove_x() const
 {
-    return move;
+    return move_x;
 }
 
-void SideSpaceship::setMove(int value)
+void SideSpaceship::setMove_x(int value)
 {
-    move = value;
+    move_x = value;
+}
+
+qreal SideSpaceship::getBoundary_y() const
+{
+    return boundary_y;
+}
+
+void SideSpaceship::setBoundary_y(const qreal &value)
+{
+    boundary_y = value;
+}
+
+int SideSpaceship::getMove_y() const
+{
+    return move_y;
+}
+
+void SideSpaceship::setMove_y(int value)
+{
+    move_y = value;
 }
 
 void SideSpaceship::advance(int step)
@@ -58,11 +80,16 @@ void SideSpaceship::advance(int step)
     if(!step || !moving)
         return;
 
-    if(pos().x() >= boundary){
-        move = 0;
+    if(pos().x() >= boundary_x)
+        move_x = 0;
+
+    if(pos().y() >= boundary_y)
+        move_y = 0;
+
+    if(pos().x() >= boundary_x && pos().y() >= boundary_y){
         emit sidespaceshipStop();
         moving = false;
     }
 
-    setPos(pos().x()+move,pos().y());
+    setPos(pos().x()+move_x,pos().y()+move_y);
 }

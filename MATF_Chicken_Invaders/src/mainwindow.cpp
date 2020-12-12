@@ -54,6 +54,7 @@ void MainWindow::onPlay()
         uw->setReady(false);
     }
     else if(uw->levelChooseReady()){
+        planetClicked = false;
         ChooseLevelWindow* lw = new ChooseLevelWindow(this);
 
         lw->setWindowFlags(Qt::Window);
@@ -75,7 +76,8 @@ MainWindow::MainWindow(QWidget *parent) :
     volume(20),
     userCurrentLevel(1),
     desiredLevel(0),
-    reachedLevel(4)
+    reachedLevel(1),
+    planetClicked(false)
 {
     ui->setupUi(this);
     setMusic();
@@ -106,12 +108,10 @@ void MainWindow::setVolume(int volume)
 {
     this->volume = volume;
     backGroundMusic->setVolume(volume);
-    chickenSound->setVolume(volume);
     gameOverSound->setVolume(volume);
     eggSound->setVolume(volume);
     explosionSound->setVolume(volume);
     giftSound->setVolume(volume);
-    projectileSound->setVolume(volume);
 }
 
 int MainWindow::getVolume() const
@@ -166,6 +166,16 @@ void MainWindow::setBackGroundMusic(QString str)
 void MainWindow::stopBackGroundMusic()
 {
     backGroundMusic->stop();
+}
+
+bool MainWindow::getPlanetClicked() const
+{
+    return planetClicked;
+}
+
+void MainWindow::setPlanetClicked(bool value)
+{
+    planetClicked = value;
 }
 
 void MainWindow::setMusic()

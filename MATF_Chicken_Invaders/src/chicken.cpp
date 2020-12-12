@@ -62,7 +62,7 @@ void Chicken::die()
 
     mw->chickenSound->stop();
     mw->chickenSound->play();
-    mw->chickenSound->setVolume(100);
+    mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
 
     QTimer *cleanTimer = new QTimer(this);
     connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
