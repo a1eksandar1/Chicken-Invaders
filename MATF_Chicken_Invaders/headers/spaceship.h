@@ -38,7 +38,7 @@ public:
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
-    int projectilesLevel = 4;               //   VRATI NA 1
+    int projectilesLevel = 1;
     bool throwingAllowed = true;
     int numberOfLives = 3;
     int startingXPosition;
