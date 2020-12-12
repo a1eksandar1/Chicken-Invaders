@@ -25,8 +25,12 @@ void Spaceship::throw_projectile()
             projectiles.push_back(new Projectile(this, throwingProjectilesTimer, 0));
         else if(projectilesLevel == 3 || projectilesLevel == 5)
             projectiles.push_back(new Projectile(this, throwingProjectilesTimer, i));
-        else
-            projectiles.push_back(new Projectile(this, throwingProjectilesTimer, i+1));
+        else{
+            if(i == 0 || i == 1)
+                projectiles.push_back(new Projectile(this, throwingProjectilesTimer, 0));
+            else
+                projectiles.push_back(new Projectile(this, throwingProjectilesTimer, i+1));
+        }
     }
 
     switch (projectilesLevel) { // postavljanje pozicije projektila

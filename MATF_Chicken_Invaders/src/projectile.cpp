@@ -61,9 +61,8 @@ void Projectile::move()
         else
             spaceship->setThrowingAllowed(true);
 
-        colision();
-
     }
+    colision();
 }
 
 void Projectile::colision()
