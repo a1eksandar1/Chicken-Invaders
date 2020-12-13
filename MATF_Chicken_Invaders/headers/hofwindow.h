@@ -4,6 +4,10 @@
 #include "headers/mainwindow.h"
 
 #include <QDialog>
+#include <QtSql>
+#include <QtDebug>
+#include <QFileInfo>
+#include <player.h>
 
 namespace Ui {
 class HofWindow;
@@ -21,10 +25,12 @@ public:
     ~HofWindow();
 
     void onBack();
+    void LoadData();
 
 private:
     Ui::HofWindow *ui;
     MainWindow* mw;
+    QSqlDatabase mydb;
 };
 
 #endif // HOFWINDOW_H

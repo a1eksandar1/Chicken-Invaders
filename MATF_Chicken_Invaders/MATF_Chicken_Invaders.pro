@@ -1,4 +1,4 @@
-QT       += core gui \
+QT       += core gui sql \
          multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -10,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    player.cpp \
     src/hofwindow.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
@@ -19,7 +20,8 @@ SOURCES += \
     src/gamewindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/usernamewindow.cpp
+    src/usernamewindow.cpp \
+    src/player.cpp
 
 HEADERS += \
     headers/chooselevelwindow.h \
@@ -30,7 +32,8 @@ HEADERS += \
     headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h \
-    headers/hofwindow.h
+    headers/hofwindow.h \
+    headers/player.h \
     headers/spaceship.h
 
 FORMS += \
@@ -49,3 +52,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     images.qrc \
     sounds.qrc
+
+DISTFILES += \
+    database.db
