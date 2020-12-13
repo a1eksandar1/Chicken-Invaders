@@ -10,7 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    player.cpp \
+    src/player.cpp \
     src/hofwindow.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
@@ -20,8 +20,7 @@ SOURCES += \
     src/gamewindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/usernamewindow.cpp \
-    src/player.cpp
+    src/usernamewindow.cpp
 
 HEADERS += \
     headers/chooselevelwindow.h \
@@ -32,8 +31,8 @@ HEADERS += \
     headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h \
-    headers/hofwindow.h \
     headers/player.h \
+    headers/hofwindow.h \
     headers/spaceship.h
 
 FORMS += \

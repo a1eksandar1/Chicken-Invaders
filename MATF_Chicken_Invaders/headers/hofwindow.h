@@ -7,7 +7,7 @@
 #include <QtSql>
 #include <QtDebug>
 #include <QFileInfo>
-#include <player.h>
+#include "headers/player.h"
 
 namespace Ui {
 class HofWindow;
