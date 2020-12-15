@@ -145,7 +145,7 @@ border-image: url(:images/buttons/hardButton_pressed.png);
     <widget class="QLabel" name="label">
      <property name="styleSheet">
       <string notr="true">background-color: transparent;
-border-image: url(:images/backgrounds/difficulty_label.png);
+border-image: url(:images/backgrounds/volume_label.png);
 background: none;</string>
      </property>
      <property name="text">

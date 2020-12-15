@@ -48,6 +48,10 @@
         <file>meteor/meteor1.png</file>
         <file>meteor/meteor2.png</file>
         <file>backgrounds/choosethelevel.png</file>
+        <file>backgrounds/splash.png</file>
+        <file>backgrounds/volume_label.png</file>
+        <file>backgrounds/matf_chicken.ico</file>
+        <file>backgrounds/background.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

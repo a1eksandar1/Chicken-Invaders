@@ -10,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/maingamewindow.cpp \
     src/gift.cpp \
     src/meteor.cpp \
     src/projectile.cpp \
@@ -38,14 +39,16 @@ HEADERS += \
     headers/optionswindow.h \
     headers/projectile.h \
     headers/sidespaceship.h \
-    headers/planet.h
+    headers/planet.h \
+    headers/maingamewindow.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
     forms/mainwindow.ui \
     forms/usernamewindow.ui \
     forms/gamewindow.ui \
-    forms/optionswindow.ui
+    forms/optionswindow.ui \
+    forms/maingamewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -12,6 +12,7 @@
 #include "headers/optionswindow.h"
 #include <QMediaPlayer>
 #include "headers/chooselevelwindow.h"
+#include "headers/maingamewindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -51,6 +52,8 @@ void MainWindow::onPlay()
 
     if(uw->ready()){
         openGameWindow();
+
+
         uw->setReady(false);
     }
     else if(uw->levelChooseReady()){
@@ -151,8 +154,8 @@ void MainWindow::setReachedLevel(int value)
 
 void MainWindow::openGameWindow()
 {
-    GameWindow* gw = new GameWindow(this);
-    gw->start();
+    MainGameWindow* gw = new MainGameWindow(this);
+    //gw->start();
 
     gw->setWindowFlags(Qt::Window);
     gw->showFullScreen();
