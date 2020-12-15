@@ -26,7 +26,7 @@ public:
     void die();
 
 private:
-    int m,n;
+    int m, n;
     int imgChange;
     int orientation=10;
     int width, height;

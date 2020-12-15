@@ -14,16 +14,18 @@ Meteor::Meteor(MainWindow *parent, int m, int n)
     this->m = m;
     this->n = n;
 
-    auto x = 0.75*m*60;
-    auto y = 0.75*m*60;
+    int random1= rand() % 3;
+    int random2 = rand() % 5;
 
-    setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,y,Qt::KeepAspectRatio));
+    this->x = (random1 + 1)*30;
 
-    setPos(150*m, 120*n);
+    setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,x,Qt::KeepAspectRatio));
+
+    setPos(150*(m+random1) + 50*(random2), -150*(n+random2) + 30*random1);
 
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
-    moveTimer->start(100);
+    moveTimer->start(80);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -42,17 +44,6 @@ Meteor::~Meteor()
 }
 
 
-
-int Meteor::getOrientation() const
-{
-    return orientation;
-}
-
-void Meteor::setOrientation(int value)
-{
-    orientation = value;
-}
-
 bool Meteor::getShot() const
 {
     return shot;
@@ -65,7 +56,9 @@ void Meteor::setShot(bool value)
 
 void Meteor::die()
 {
-
+//TODO
+    scene()->removeItem(this);
+    delete this;
 }
 
 void Meteor::clean()
@@ -86,21 +79,20 @@ void Meteor::setImgChange(int value)
 
 void Meteor::move()
 {
-    auto x = 0.75*m*60;
-    auto y = 0.75*m*60;
-
     if(imgChange == 0)
-        setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,y,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,x,Qt::KeepAspectRatio));
     if(imgChange == 1)
-        setPixmap(QPixmap(":images/meteor/meteor2.png").scaled(x,y,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/meteor/meteor2.png").scaled(x,x,Qt::KeepAspectRatio));
     if(imgChange == 3)
         return;
     imgChange = (imgChange + 1)%2;
 
 
-    setPos(pos().x(),pos().y()+orientation);;
+    setPos(pos().x(),pos().y()+speed);;
+
 
 }
+
 
 void Meteor::advance(int step)
 {

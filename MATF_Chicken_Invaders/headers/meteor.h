@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include "headers/mainwindow.h"
-
+#include "headers/spaceship.h"
 
 class Meteor: public QObject, public QGraphicsPixmapItem
 {
@@ -17,22 +17,17 @@ public:
     int getImgChange() const;
     void setImgChange(int value);
 
-    int getOrientation() const;
-    void setOrientation(int value);
-
     bool getShot() const;
     void setShot(bool value);
     void die();
-
-
 private:
-    int m,n;
+    int m, n, x;
     int imgChange;
-    int orientation = 20;
+    int speed = 25;
     int width, height;
     bool shot = false;
     MainWindow *mw;
-    QMediaPlayer * chicken_sound;
+    QMediaPlayer * meteor_sound;
 
 public slots:
     void clean();

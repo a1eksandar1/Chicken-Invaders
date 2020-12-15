@@ -124,6 +124,37 @@ int Spaceship::getStartingYPos()
     return startingYPosition;
 }
 
+void Spaceship::collision()
+{
+
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(auto colItem : colliding_items)
+    {
+        if(typeid (*colItem) == typeid (Meteor))
+        {
+            auto meteor = static_cast<Meteor*>(colItem);
+            meteor->clean();
+            auto explosionSound = new QMediaPlayer;
+
+            if(decreaseLivesNumAndGetCurrNumLives() == 0)
+            {
+                delete this;
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                explosionSound->play();
+            }
+            else
+            {
+                setPos(getStartingXPos(), getStartingYPos());
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                explosionSound->play();
+            }
+
+            return;
+        }
+    }
+
+}
+
 int Spaceship::getProjectilesLevel() const
 {
     return projectilesLevel;
@@ -132,4 +163,11 @@ int Spaceship::getProjectilesLevel() const
 void Spaceship::setProjectilesLevel(int value)
 {
     projectilesLevel = value;
+}
+
+void Spaceship::advance(int step)
+{
+    if(!step)
+        return;
+    collision();
 }

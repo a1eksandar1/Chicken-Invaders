@@ -99,9 +99,9 @@ void Chicken::advance(int step)
     if(imgChange == 3)
         return;
     imgChange = (imgChange + 1)%2;
-
-    int random_number = rand() % 700;
-    if (random_number == 5)
+    int random_number1 = rand() % 300;
+    int random_number2 = rand() % 1000;
+    if (random_number1 == 5)
     {
         Egg *egg = new Egg(mw);
         egg->setPos(pos().x(),pos().y()+100);
@@ -109,7 +109,7 @@ void Chicken::advance(int step)
 
     }
 
-    if (random_number == 7)
+    if (random_number2 == 5)
     {
         Gift * gift = new Gift(mw);
         gift->setPos(pos().x(),pos().y()+100);

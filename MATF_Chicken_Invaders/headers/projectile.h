@@ -6,6 +6,7 @@
 #include <QTimer>
 #include "headers/spaceship.h"
 #include "headers/chicken.h"
+#include "headers/meteor.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {

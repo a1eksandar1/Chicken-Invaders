@@ -84,28 +84,37 @@ void GameWindow::start()
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
 
-    QVector<QVector<Chicken*>> chick;
-    chick.resize(8);
-    for (int i=0; i < 8; i++)
+//    QVector<QVector<Chicken*>> chick;
+//    chick.resize(8);
+//    for (int i=0; i < 8; i++)
+//    {
+//        chick[i].resize(3);
+//    }
+
+//    for (int i=0; i < 8 ; i++)
+//    {
+//        for (int j = 0; j < 3; j++)
+//        {
+//            chick[i][j] = new Chicken(mw,i,j);
+//            scene->addItem(chick[i][j]);
+//        }
+//    }
+
+    QVector<QVector<Meteor*>> meteors;
+    meteors.resize(7);
+    for (int i=0; i < 7; i++)
     {
-        chick[i].resize(3);
+        meteors[i].resize(10);
     }
 
-    for (int i=0; i < 8 ; i++)
+    for (int i=0; i < 7 ; i++)
     {
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < 10; j++)
         {
-            chick[i][j] = new Chicken(mw,i,j);
-            scene->addItem(chick[i][j]);
+            meteors[i][j] = new Meteor(mw,i,j);
+            scene->addItem(meteors[i][j]);
         }
     }
-    //testiranje
-     Meteor *meteor1 = new Meteor(mw,1,1);
-     scene->addItem(meteor1);
-
-     Meteor *meteor2 = new Meteor(mw,2,3);
-     scene->addItem(meteor2);
-
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
