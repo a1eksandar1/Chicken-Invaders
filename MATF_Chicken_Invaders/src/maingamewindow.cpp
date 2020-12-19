@@ -56,6 +56,7 @@ void MainGameWindow::keyPressEvent(QKeyEvent *event)
             scene->items()[i]->setEnabled(false);
         }
         scene->clear();
+        mw->gamePrepareSound->stop();
         mw->backGroundMusic->play();
         delete this;
         break;

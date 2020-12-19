@@ -170,13 +170,18 @@ border-color: purple;</string>
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true"> border-style: outset;
- border-width: 2px;
- border-radius: 50px;
- border-color: purple;
+           <string notr="true">#okButton{
+border-style: outset;
+border-width: 2px;
+border-radius: 50px;
+border-color: purple;
 background-color: transparent;
 border-image: url(:images/buttons/ok_button.png);
-background: none;</string>
+background: none;
+}
+#okButton:pressed {
+border-image: url(:images/buttons/ok_button_pressed.png);
+}</string>
           </property>
           <property name="text">
            <string/>
@@ -192,13 +197,18 @@ background: none;</string>
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true"> border-style: outset;
- border-width: 2px;
- border-radius: 50px;
- border-color: purple;
+           <string notr="true">#skipButton{
+border-style: outset;
+border-width: 2px;
+border-radius: 50px;
+border-color: purple;
 background-color: transparent;
 border-image: url(:images/buttons/skip_button.png);
-background: none;</string>
+background: none;
+}
+#skipButton:pressed {
+border-image: url(:images/buttons/skip_button_pressed.png);
+}</string>
           </property>
           <property name="text">
            <string/>
@@ -214,13 +224,18 @@ background: none;</string>
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true"> border-style: outset;
- border-width: 2px;
- border-radius: 50px;
- border-color: purple;
+           <string notr="true">#cancelButton{
+border-style: outset;
+border-width: 2px;
+border-radius: 50px;
+border-color: purple;
 background-color: transparent;
 border-image: url(:images/buttons/cancel_button.png);
-</string>
+background: none;
+}
+#cancelButton:pressed {
+border-image: url(:images/buttons/cancel_button_pressed.png);
+}</string>
           </property>
           <property name="text">
            <string/>

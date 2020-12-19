@@ -209,6 +209,7 @@ void MainWindow::setMusic()
     explosionSound->setVolume(volume);
     giftSound->setVolume(volume);
     projectileSound->setVolume(volume);
+    gamePrepareSound->setVolume(volume);
 
     backGroundMusic->play();
 }
