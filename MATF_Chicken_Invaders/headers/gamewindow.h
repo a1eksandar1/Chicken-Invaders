@@ -18,11 +18,12 @@ class GameWindow : public QWidget
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent * event) override;
 
 public:
     explicit GameWindow(MainWindow *parent = nullptr);
     ~GameWindow();
-
+    void checkTimer();
     void start();
 
 public:

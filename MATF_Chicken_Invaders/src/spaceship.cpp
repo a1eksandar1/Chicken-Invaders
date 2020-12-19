@@ -10,6 +10,9 @@ Spaceship::Spaceship(MainWindow *parent) :
 {
     setPixmap(QPixmap(":images/spaceships/1.png"));
     throwingProjectilesTimer = new QTimer();
+    moving_timer = new QTimer();
+    moving_timer->setInterval(10);
+    connect(moving_timer, SIGNAL(timeout()), this, SLOT(move()));
 }
 
 QPointF Spaceship::getPosition()
@@ -64,31 +67,17 @@ void Spaceship::throw_projectile()
         scene()->addItem(projectile);
 }
 
-//Malo sam ubrzao kretane svemirskog broda.
-void Spaceship::move_left()
+/*void Spaceship::move_left()
 {
     if(pos().x() > 20)
-        setPos(pos().x()-30, pos().y());
+        setPos(pos().x()-5, pos().y());
 }
 
 void Spaceship::move_right()
 {
     if(pos().x() < 2*getStartingXPos()-20)
-        setPos(pos().x()+30, pos().y());
-}
-
-void Spaceship::move_up()
-{
-    if(pos().y() > 20)
-        setPos(pos().x(), pos().y()-30);
-}
-
-void Spaceship::move_down()
-{
-    if(pos().y() < getStartingYPos()-20)
-        setPos(pos().x(), pos().y()+30);
-
-}
+        setPos(pos().x()+5, pos().y());
+}*/
 
 bool Spaceship::getThrowingAllowed()
 {
@@ -115,7 +104,7 @@ int Spaceship::decreaseLivesNumAndGetCurrNumLives(){
 void Spaceship::setStartingPosition(int pos_x, int pos_y)
 {
     startingXPosition = pos_x;
-    startingYPosition = pos_y;
+    startingYPosition = pos_y - 50;
 }
 
 int Spaceship::getStartingXPos()
@@ -136,4 +125,34 @@ int Spaceship::getProjectilesLevel() const
 void Spaceship::setProjectilesLevel(int value)
 {
     projectilesLevel = value;
+}
+
+int Spaceship::getDirection()
+{
+    return direction;
+}
+
+void Spaceship::setDirection(int d)
+{
+    direction = d;
+}
+
+void Spaceship::move()
+{
+    if((direction == -1 && pos().x() <= 20) || (direction == 1 && pos().x() >= 2*getStartingXPos()-20)){
+        direction = 0;
+        return;
+    }
+
+    setPos(pos().x()+5*direction, pos().y());
+}
+
+void Spaceship::start_moving_timer()
+{
+    moving_timer->start();
+}
+
+void Spaceship::stop_moving_timer()
+{
+    moving_timer->stop();
 }
