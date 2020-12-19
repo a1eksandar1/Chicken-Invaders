@@ -69,6 +69,7 @@ void ChooseLevelWindow::onPluto()
     ship->setBoundary_y(height - height/4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(10);
+    mw->setDesiredLevel(1);
 }
 
 void ChooseLevelWindow::onNeptune()
@@ -77,6 +78,7 @@ void ChooseLevelWindow::onNeptune()
     ship->setBoundary_y(height - height/3.5);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(10);
+    mw->setDesiredLevel(1);
 }
 
 void ChooseLevelWindow::onUranus()
@@ -85,6 +87,7 @@ void ChooseLevelWindow::onUranus()
     ship->setBoundary_y(height - height/3.4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(10);
+    mw->setDesiredLevel(1);
 }
 
 void ChooseLevelWindow::onSaturn()

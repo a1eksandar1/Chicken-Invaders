@@ -41,7 +41,10 @@ public:
     void setBackGroundMusic(QString str);
     void stopBackGroundMusic();
     bool getPlanetClicked() const;
-    void setPlanetClicked(bool value);
+    void setPlanetClicked(bool value);    
+    int getScore() const;
+    void setScore(int value);
+
 
 private:
     void setMusic();
@@ -55,6 +58,8 @@ public:
     QMediaPlayer* eggSound;
     QMediaPlayer* explosionSound;
     QMediaPlayer* gameOverSound;
+    QMediaPlayer* gamePrepareSound;
+    int score;
 
 private:
     Ui::MainWindow *ui;

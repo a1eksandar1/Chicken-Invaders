@@ -2,13 +2,13 @@
     <qresource prefix="/sounds">
         <file>sounds/BossFight.mp3</file>
         <file>sounds/GameOver.mp3</file>
-        <file>sounds/MainTheme1.mp3</file>
-        <file>sounds/MainTheme2.mp3</file>
         <file>sounds/Victory.mp3</file>
         <file>sounds/Egg.mp3</file>
         <file>sounds/Projectile.mp3</file>
         <file>sounds/GiftSound.mp3</file>
         <file>sounds/ShotChicken.mp3</file>
         <file>sounds/SpaceshipExplosion.mp3</file>
+        <file>sounds/prepare.mp3</file>
+        <file>sounds/MainTheme.mp3</file>
     </qresource>
 </RCC>

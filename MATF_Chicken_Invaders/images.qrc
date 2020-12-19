@@ -52,6 +52,7 @@
         <file>backgrounds/volume_label.png</file>
         <file>backgrounds/matf_chicken.ico</file>
         <file>backgrounds/background.png</file>
+        <file>backgrounds/wave1_1.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -74,11 +74,12 @@ void MainWindow::onOptions()
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    score(0),
     ui(new Ui::MainWindow),
     hard(false),
     volume(20),
     userCurrentLevel(1),
-    desiredLevel(0),
+    desiredLevel(1),
     reachedLevel(1),
     planetClicked(false)
 {
@@ -154,11 +155,11 @@ void MainWindow::setReachedLevel(int value)
 
 void MainWindow::openGameWindow()
 {
-    MainGameWindow* gw = new MainGameWindow(this);
-    //gw->start();
+    MainGameWindow* mgw = new MainGameWindow(this);
+    mgw->start();
 
-    gw->setWindowFlags(Qt::Window);
-    gw->showFullScreen();
+    mgw->setWindowFlags(Qt::Window);
+    mgw->showFullScreen();
 }
 
 void MainWindow::setBackGroundMusic(QString str)
@@ -190,14 +191,16 @@ void MainWindow::setMusic()
     chickenSound = new QMediaPlayer;
     giftSound = new QMediaPlayer;
     gameOverSound = new QMediaPlayer;
+    gamePrepareSound = new QMediaPlayer;
 
-    backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
+    backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme.mp3"));
     chickenSound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
     giftSound->setMedia(QUrl("qrc:/sounds/sounds/GiftSound.mp3"));
     projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
     eggSound->setMedia(QUrl("qrc:/sounds/sounds/Egg.mp3"));
     explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
     gameOverSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+    gamePrepareSound->setMedia(QUrl("qrc:/sounds/sounds/prepare.mp3"));
 
     backGroundMusic->setVolume(volume);
     chickenSound->setVolume(volume);
@@ -215,4 +218,14 @@ void MainWindow::setConnects()
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
+}
+
+int MainWindow::getScore() const
+{
+    return score;
+}
+
+void MainWindow::setScore(int value)
+{
+    score = value;
 }
