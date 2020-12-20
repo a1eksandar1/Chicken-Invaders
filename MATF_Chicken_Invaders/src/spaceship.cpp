@@ -1,5 +1,6 @@
 #include "headers/spaceship.h"
 #include "headers/projectile.h"
+#include "headers/drumstick.h"
 #include <QTimer>
 #include <vector>
 #include <QApplication>
@@ -147,8 +148,8 @@ void Spaceship::collision()
         }
         else if(typeid (*colItem) == typeid (Egg))
         {
-            auto meteor = static_cast<Egg*>(colItem);
-            meteor->clean();
+            auto egg = static_cast<Egg*>(colItem);
+            egg->clean();
             auto explosionSound = new QMediaPlayer;
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
@@ -164,6 +165,14 @@ void Spaceship::collision()
                 explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
                 explosionSound->play();
             }
+
+            return;
+        }
+        else if(typeid (*colItem) == typeid (Drumstick))
+        {
+            auto drumstick = static_cast<Drumstick*>(colItem);
+            drumstick->clean();
+      //TODO: points
 
             return;
         }

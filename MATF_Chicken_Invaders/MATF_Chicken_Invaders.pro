@@ -10,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/drumstick.cpp \
     src/maingamewindow.cpp \
     src/chickenmatrixgame.cpp \
     src/bigeggbullets.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     headers/bigegg.h \
     headers/chooselevelwindow.h \
     headers/chicken.h \
+    headers/drumstick.h \
     headers/egg.h \
     headers/gamewindow.h \
     headers/gift.h \

@@ -20,11 +20,11 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::chickenMatrixGame()
 {
 
-    cMatrixGame->start();
+//    cMatrixGame->start();
     //
-    //MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
-    //mShowerGame->start();
-    //
+    MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
+    mShowerGame->start();
+
     //sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
     //sideMShowerGame->start();
 }
