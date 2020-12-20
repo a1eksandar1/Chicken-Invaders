@@ -2,6 +2,9 @@
 #include "ui_maingamewindow.h"
 #include <QScreen>
 #include "headers/chicken.h"
+#include "headers/sidemeteorshowergame.h"
+#include "headers/chickenmatrixgame.h"
+#include "headers/meteorshowergame.h"
 
 void MainGameWindow::slow_down()
 {
@@ -14,26 +17,16 @@ void MainGameWindow::removeMessage()
     scene->removeItem(message);
 }
 
-void MainGameWindow::igra1PomocnaFunkcija()
+void MainGameWindow::chickenMatrixGame()
 {
-    QVector<QVector<Chicken*>> chick;
-    chick.resize(8);
-    for (int i=0; i < 8; i++)
-    {
-        chick[i].resize(3);
-    }
-
-    for (int i=0; i < 8 ; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            chick[i][j] = new Chicken(mw,i,j);
-            scene->addItem(chick[i][j]);
-        }
-    }
-
-    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    timer->start(200);
+    ChickenMatrixGame * cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
+    cMatrixGame->start();
+    //
+    //MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
+    //mShowerGame->start();
+    //
+    //sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
+    //sideMShowerGame->start();
 }
 
 void MainGameWindow::stopPrepareMusic()
@@ -44,6 +37,14 @@ void MainGameWindow::stopPrepareMusic()
 void MainGameWindow::playPrepareMusic()
 {
     mw->gamePrepareSound->play();
+}
+
+void MainGameWindow::setUserMessage()
+{
+    QPixmap pm(":/images/backgrounds/wave1_1.png");
+    message->setPixmap(pm);
+    message->setPos(width/3.5, height/5.5);
+    scene->addItem(message);
 }
 
 void MainGameWindow::keyPressEvent(QKeyEvent *event)
@@ -91,7 +92,8 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     fly_speed(20000),
     spaceship(new Spaceship(mw)),
     timer(new QTimer(this)),
-    message(new QGraphicsPixmapItem)
+    message(new QGraphicsPixmapItem),
+    cMatrixGame(new ChickenMatrixGame(mw, scene, 8,3))
 {
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
@@ -142,16 +144,14 @@ void MainGameWindow::setFly_speed(int value)
 
 void MainGameWindow::level1()
 {
-    QPixmap pm(":/images/backgrounds/wave1_1.png");
-    message->setPixmap(pm);
-    message->setPos(width/3.5, height/5.5);
-    scene->addItem(message);
-
+    QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3000, this, &MainGameWindow::removeMessage);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::igra1PomocnaFunkcija);
+    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame);
 
+    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    timer->start(200);
 }
 
 void MainGameWindow::level2()

@@ -11,10 +11,13 @@ CONFIG += c++17
 
 SOURCES += \
     src/maingamewindow.cpp \
+    src/chickenmatrixgame.cpp \
     src/gift.cpp \
     src/meteor.cpp \
+    src/meteorshowergame.cpp \
     src/projectile.cpp \
     src/planet.cpp \
+    src/sidemeteorshowergame.cpp \
     src/sidespaceship.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
@@ -27,6 +30,7 @@ SOURCES += \
     src/usernamewindow.cpp
 
 HEADERS += \
+    headers/chickenmatrixgame.h \
     headers/chooselevelwindow.h \
     headers/chicken.h \
     headers/egg.h \
@@ -34,6 +38,8 @@ HEADERS += \
     headers/gift.h \
     headers/mainwindow.h \
     headers/meteor.h \
+    headers/meteorshowergame.h \
+    headers/sidemeteorshowergame.h \
     headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h \

@@ -29,6 +29,7 @@ public:
     void setStartingPosition(int pos_x, int pos_y);
     int getStartingXPos();
     int getStartingYPos();
+    void collision();
 
 public:
     MainWindow *mw;
@@ -43,6 +44,9 @@ private:
     int numberOfLives = 3;
     int startingXPosition;
     int startingYPosition;
+
+protected:
+    void advance(int step) override;
 };
 
 #endif // SPACESHIP_H

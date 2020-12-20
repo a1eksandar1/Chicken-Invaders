@@ -15,6 +15,9 @@
 #include <QPropertyAnimation>
 #include <QTimer>
 
+#include "headers/sidemeteorshowergame.h"
+#include "headers/chickenmatrixgame.h"
+#include "headers/meteorshowergame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 
@@ -35,9 +38,10 @@ class MainGameWindow : public QWidget
 public slots:
     void slow_down();
     void removeMessage();
-    void igra1PomocnaFunkcija();
+    void chickenMatrixGame();
     void stopPrepareMusic();
     void playPrepareMusic();
+    void setUserMessage();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -72,6 +76,7 @@ private:
     Spaceship *spaceship;
     QTimer *timer;
     QGraphicsPixmapItem *message;
+    ChickenMatrixGame * cMatrixGame;
 };
 
 #endif // MAINGAMEWINDOW_H

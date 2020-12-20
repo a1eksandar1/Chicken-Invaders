@@ -29,15 +29,16 @@ Egg::Egg(MainWindow *parent) :
 
 void Egg::move()
 {
-    setPos(x(), y()+10);
-    if(pos().y() > height - 150)
+    if(!broken)
+        setPos(x(), y()+10);
+    if(pos().y() > height - 100)
     {
         if(!broken)
         {
             mw->eggSound->play();
             broken = true;
         }
-        setPixmap(QPixmap(":images/chicken/egg_2.png").scaled(50,50,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/egg_2.png").scaled(80,80,Qt::KeepAspectRatio));
         QTimer *cleanTimer = new QTimer(this);
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(1000);

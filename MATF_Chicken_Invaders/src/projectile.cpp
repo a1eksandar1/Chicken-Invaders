@@ -74,7 +74,14 @@ void Projectile::colision()
         {
             auto chicken = static_cast<Chicken*>(colItem);
             chicken->die();
-
+            spaceship->setThrowingAllowed(true);
+            clean();
+        }
+        else if(typeid (*colItem) == typeid (Meteor))
+        {
+            auto meteor = static_cast<Meteor*>(colItem);
+            meteor->die();
+            spaceship->setThrowingAllowed(true);
             clean();
         }
     }
