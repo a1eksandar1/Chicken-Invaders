@@ -6,8 +6,8 @@
 #include <QDebug>
 #include <QScreen>
 #include <QApplication>
-
-Chicken::Chicken(MainWindow *parent, int m, int n) :
+#include "headers/drumstick.h"
+Chicken::Chicken(MainWindow *parent, int m, int n, int num) :
     mw(parent)
 {
 
@@ -15,7 +15,7 @@ Chicken::Chicken(MainWindow *parent, int m, int n) :
     this->n = n;
     setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
 
-    setPos(150*m + 20, 120*n + 10);
+    setPos(150*m + 20, -120*(num-n) - 10);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -57,17 +57,26 @@ void Chicken::setShot(bool value)
 
 void Chicken::die()
 {
-    emit chickenDied();
-    setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
-    imgChange=3;
+    if(!shot)
+    {
+        shot = true;
+        emit chickenDied();
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
+        imgChange=3;
 
-    mw->chickenSound->stop();
-    mw->chickenSound->play();
-    mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
+        mw->chickenSound->stop();
+        mw->chickenSound->play();
+        mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
 
-    QTimer *cleanTimer = new QTimer(this);
-    connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
-    cleanTimer->start(200);
+        Drumstick *drumstick = new Drumstick(mw);
+        drumstick->setPos(pos().x(),pos().y()+100);
+        scene()->addItem(drumstick);
+
+
+        QTimer *cleanTimer = new QTimer(this);
+        connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
+        cleanTimer->start(200);
+    }
 }
 
 void Chicken::clean()
@@ -124,6 +133,10 @@ void Chicken::advance(int step)
     if(pos().x() - 150*(m) < 0)
         orientation = 10;
 
-    setPos(pos().x()+orientation,pos().y());
+    if(pos().y() < 120*n + 10)
+        setPos(pos().x()+orientation,pos().y()+10);
+    else
+        setPos(pos().x()+orientation,pos().y());
+
 
 }

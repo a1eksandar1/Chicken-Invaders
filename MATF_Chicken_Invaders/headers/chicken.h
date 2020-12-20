@@ -12,7 +12,7 @@ class Chicken: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    Chicken(MainWindow *parent, int m, int n);
+    Chicken(MainWindow *parent, int m, int n, int num);
     ~Chicken();
 
 signals:
@@ -29,8 +29,10 @@ public:
     void setShot(bool value);
     void die();
 
+    void move1();
+    void move();
 private:
-    int m, n;
+    int m, n, num;
     int imgChange;
     int orientation=10;
     int width, height;
