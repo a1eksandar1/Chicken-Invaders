@@ -15,6 +15,10 @@ public:
     Chicken(MainWindow *parent, int m, int n);
     ~Chicken();
 
+signals:
+    void chickenDied();
+
+public:
     int getImgChange() const;
     void setImgChange(int value);
 

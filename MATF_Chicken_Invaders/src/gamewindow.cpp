@@ -7,6 +7,9 @@
 #include <QGraphicsPixmapItem>
 #include <QScreen>
 #include <QTimer>
+#include "headers/chickenmatrixgame.h"
+#include "headers/meteorshowergame.h"
+#include "headers/sidemeteorshowergame.h"
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -84,37 +87,14 @@ void GameWindow::start()
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
 
-//    QVector<QVector<Chicken*>> chick;
-//    chick.resize(8);
-//    for (int i=0; i < 8; i++)
-//    {
-//        chick[i].resize(3);
-//    }
+//  ChickenMatrixGame * cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
+//  cMatrixGame->start();
+//
+//  MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
+//  mShowerGame->start();
 
-//    for (int i=0; i < 8 ; i++)
-//    {
-//        for (int j = 0; j < 3; j++)
-//        {
-//            chick[i][j] = new Chicken(mw,i,j);
-//            scene->addItem(chick[i][j]);
-//        }
-//    }
-
-    QVector<QVector<Meteor*>> meteors;
-    meteors.resize(7);
-    for (int i=0; i < 7; i++)
-    {
-        meteors[i].resize(10);
-    }
-
-    for (int i=0; i < 7 ; i++)
-    {
-        for (int j = 0; j < 10; j++)
-        {
-            meteors[i][j] = new Meteor(mw,i,j);
-            scene->addItem(meteors[i][j]);
-        }
-    }
+    sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
+    sideMShowerGame->start();
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);

@@ -48,6 +48,8 @@
         <file>meteor/meteor1.png</file>
         <file>meteor/meteor2.png</file>
         <file>backgrounds/choosethelevel.png</file>
+        <file>meteor/meteor3.png</file>
+        <file>meteor/meteor4.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

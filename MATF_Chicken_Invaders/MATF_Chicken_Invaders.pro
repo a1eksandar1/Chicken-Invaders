@@ -10,10 +10,13 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/chickenmatrixgame.cpp \
     src/gift.cpp \
     src/meteor.cpp \
+    src/meteorshowergame.cpp \
     src/projectile.cpp \
     src/planet.cpp \
+    src/sidemeteorshowergame.cpp \
     src/sidespaceship.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
@@ -26,6 +29,7 @@ SOURCES += \
     src/usernamewindow.cpp
 
 HEADERS += \
+    headers/chickenmatrixgame.h \
     headers/chooselevelwindow.h \
     headers/chicken.h \
     headers/egg.h \
@@ -33,6 +37,8 @@ HEADERS += \
     headers/gift.h \
     headers/mainwindow.h \
     headers/meteor.h \
+    headers/meteorshowergame.h \
+    headers/sidemeteorshowergame.h \
     headers/spaceship.h \
     headers/usernamewindow.h \
     headers/optionswindow.h \

@@ -57,6 +57,7 @@ void Chicken::setShot(bool value)
 
 void Chicken::die()
 {
+    emit chickenDied();
     setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
     imgChange=3;
 

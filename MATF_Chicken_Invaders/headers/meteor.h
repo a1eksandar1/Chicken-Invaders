@@ -11,7 +11,7 @@ class Meteor: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    Meteor(MainWindow *parent, int m, int n);
+    Meteor(MainWindow *parent, int m, int n, int v);
     ~Meteor();
 
     int getImgChange() const;
@@ -20,8 +20,12 @@ public:
     bool getShot() const;
     void setShot(bool value);
     void die();
+
+signals:
+    void meteorShot();
+
 private:
-    int m, n, x;
+    int m, n, x, v, random1, random2;
     int imgChange;
     int speed = 25;
     int width, height;
@@ -31,8 +35,9 @@ private:
 
 public slots:
     void clean();
-    void move();
+    void move1();
 
+    void move2();
 protected:
     void advance(int step) override;
 };
