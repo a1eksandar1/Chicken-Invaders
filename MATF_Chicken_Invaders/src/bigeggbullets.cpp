@@ -5,7 +5,7 @@
 
 bigEggBullets::bigEggBullets(QTimer* timer, int num) : number(num)
 {
-    setPixmap(QPixmap(":images/chicken/bigEggBullet2.png"));
+    setPixmap(QPixmap(":images/chicken/bigEggBullet.png"));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
