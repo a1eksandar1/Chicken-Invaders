@@ -47,37 +47,84 @@ void MainGameWindow::setUserMessage()
     scene->addItem(message);
 }
 
+//void MainGameWindow::keyPressEvent(QKeyEvent *event)
+//{
+//    switch(event->key())
+//    {
+//    case Qt::Key_Escape:
+//        for(size_t i=0, n = scene->items().size(); i<n; i++)
+//        {
+//            scene->items()[i]->setEnabled(false);
+//        }
+//        scene->clear();
+//        mw->gamePrepareSound->stop();
+//        mw->backGroundMusic->play();
+//        delete this;
+//        break;
+//    case Qt::Key_Space:
+//        if(spaceship->getThrowingAllowed()){
+//            spaceship->setThrowingAllowed(false);
+//            spaceship->throw_projectile();
+//        }
+//        break;
+//    case Qt::Key_A: // change it to be LeftArrow
+//        spaceship->move_left();
+//        break;
+//    case Qt::Key_D: // change it to be RightArrow
+//        spaceship->move_right();
+//        break;
+//    case Qt::Key_W: // change it to be UpArrow
+//        spaceship->move_up();
+//        break;
+//    case Qt::Key_S: // change it to be DownArrow
+//        spaceship->move_down();
+//        break;
+//    default:
+//        QWidget::keyPressEvent(event);
+//    }
+//}
+
 void MainGameWindow::keyPressEvent(QKeyEvent *event)
 {
-    switch(event->key())
-    {
-    case Qt::Key_Escape:
+    if(event->key() == Qt::Key_Escape){
         for(size_t i=0, n = scene->items().size(); i<n; i++)
         {
             scene->items()[i]->setEnabled(false);
         }
         scene->clear();
-        mw->gamePrepareSound->stop();
         mw->backGroundMusic->play();
+        mw->gamePrepareSound->stop();
         delete this;
-        break;
-    case Qt::Key_Space:
+    }
+    if(event->key() == Qt::Key_Space){
         if(spaceship->getThrowingAllowed()){
             spaceship->setThrowingAllowed(false);
             spaceship->throw_projectile();
         }
-        break;
+    }
+    if(event->key() == Qt::Key_A){ // change it to be LeftArrow
+        spaceship->setDirection(-1);
+        spaceship->start_moving_timer();
+    }
+    if(event->key() == Qt::Key_D){ // change it to be LeftArrow
+        spaceship->setDirection(1);
+        spaceship->start_moving_timer();
+    }
+
+    QWidget::keyPressEvent(event);
+}
+
+void MainGameWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    switch(event->key())
+    {
     case Qt::Key_A: // change it to be LeftArrow
-        spaceship->move_left();
+        spaceship->setDirection(0);
+        spaceship->stop_moving_timer();
         break;
     case Qt::Key_D: // change it to be RightArrow
-        spaceship->move_right();
-        break;
-    case Qt::Key_W: // change it to be UpArrow
-        spaceship->move_up();
-        break;
-    case Qt::Key_S: // change it to be DownArrow
-        spaceship->move_down();
+        spaceship->setDirection(0);
+        spaceship->stop_moving_timer();
         break;
     default:
         QWidget::keyPressEvent(event);

@@ -45,6 +45,7 @@ public slots:
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent * event) override;
 
 public:
     explicit MainGameWindow(MainWindow *parent = nullptr);

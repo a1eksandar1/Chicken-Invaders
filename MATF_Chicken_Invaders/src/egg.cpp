@@ -44,40 +44,40 @@ void Egg::move()
         cleanTimer->start(1000);
     }
 
-    colision();
+    //colision();
 
 }
 
-void Egg::colision()
-{
-    QList<QGraphicsItem*> colliding_items = collidingItems();
-    for(auto colItem : colliding_items)
-    {
-        if(typeid (*colItem) == typeid (Spaceship))
-        {
-            clean();
+//void Egg::colision()
+//{
+//    QList<QGraphicsItem*> colliding_items = collidingItems();
+//    for(auto colItem : colliding_items)
+//    {
+//        if(typeid (*colItem) == typeid (Spaceship))
+//        {
+//            clean();
 
-            auto explosionSound = new QMediaPlayer;
+//            auto explosionSound = new QMediaPlayer;
 
-            auto spaceship = static_cast<Spaceship*>(colItem);
-            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                delete colItem;
-                // gameover
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
-            }
-            else
-            {
-                spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
-            }
+//            auto spaceship = static_cast<Spaceship*>(colItem);
+//            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0)
+//            {
+//                delete colItem;
+//                // gameover
+//                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+//                explosionSound->play();
+//            }
+//            else
+//            {
+//                spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
+//                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+//                explosionSound->play();
+//            }
 
-            return;
-        }
-    }
-}
+//            return;
+//        }
+//    }
+//}
 
 void Egg::clean()
 {

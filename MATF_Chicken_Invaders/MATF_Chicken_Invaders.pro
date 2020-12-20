@@ -12,6 +12,8 @@ CONFIG += c++17
 SOURCES += \
     src/maingamewindow.cpp \
     src/chickenmatrixgame.cpp \
+    src/bigeggbullets.cpp \
+    src/bigegg.cpp \
     src/gift.cpp \
     src/meteor.cpp \
     src/meteorshowergame.cpp \
@@ -31,6 +33,8 @@ SOURCES += \
 
 HEADERS += \
     headers/chickenmatrixgame.h \
+    headers/bigeggbullets.h \
+    headers/bigegg.h \
     headers/chooselevelwindow.h \
     headers/chicken.h \
     headers/egg.h \

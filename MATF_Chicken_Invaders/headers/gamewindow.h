@@ -18,11 +18,11 @@ class GameWindow : public QWidget
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent * event) override;
 
 public:
     explicit GameWindow(MainWindow *parent = nullptr);
     ~GameWindow();
-
     void start();
 
 public:
@@ -33,6 +33,7 @@ private:
     QGraphicsScene *scene;
     QTimer *timer;
     Spaceship* spaceship;
+    QTimer* throwingBulletsTimer;
 };
 
 #endif // GAMEWINDOW_H

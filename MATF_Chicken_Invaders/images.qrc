@@ -58,6 +58,11 @@
         <file>buttons/skip_button_pressed.png</file>
         <file>meteor/meteor3.png</file>
         <file>meteor/meteor4.png</file>
+        <file>chicken/bigEgg.png</file>
+        <file>chicken/bigEgg_cl3.png</file>
+        <file>chicken/bigEgg_cl2.png</file>
+        <file>chicken/bigEgg_cl1.png</file>
+        <file>chicken/bigEggBullet.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
