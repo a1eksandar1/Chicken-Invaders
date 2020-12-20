@@ -25,6 +25,8 @@ public:
     int getChickenCounter() const;
     void setChickenCounter(int value);
 
+    void clear();
+
 signals:
     void closeChickenMatrixGame();
 

@@ -63,4 +63,13 @@ void ChickenMatrixGame::setChickenCounter(int value)
     chickenCounter = value;
 }
 
+void ChickenMatrixGame::clear()
+{
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
 
+            scene->removeItem(matrix[i][j]);
+            matrix[i][j] = nullptr;
+        }
+    }
+}

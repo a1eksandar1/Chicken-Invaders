@@ -34,6 +34,9 @@ private:
     QTimer *timer;
     Spaceship* spaceship;
     QTimer* throwingBulletsTimer;
+
+public slots:
+    void kraj();
 };
 
 #endif // GAMEWINDOW_H

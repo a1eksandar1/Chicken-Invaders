@@ -14,6 +14,9 @@
 #include "headers/meteorshowergame.h"
 #include "headers/sidemeteorshowergame.h"
 
+void GameWindow::kraj(){
+    close();
+}
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Escape){
@@ -82,6 +85,8 @@ GameWindow::GameWindow(MainWindow *parent) :
     mw->backGroundMusic->play();
 
     scene->setSceneRect(0, 0, width-30, height-30);
+
+    connect(spaceship, &Spaceship::spaceshipDestroyed, this, &GameWindow::kraj);
 }
 
 GameWindow::~GameWindow()
@@ -123,20 +128,20 @@ void GameWindow::start()
 //    Meteor *meteor2 = new Meteor(mw,2,3);
 //    scene->addItem(meteor2);
 //=======
-//  ChickenMatrixGame * cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
-//  cMatrixGame->start();
+    ChickenMatrixGame * cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
+    cMatrixGame->start();
 //
 //  MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
 //  mShowerGame->start();
 
-    sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
-    sideMShowerGame->start();
+    //sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
+    //sideMShowerGame->start();
 //>>>>>>> maja
     // ovde pocinje igra
 
-    bigEgg *egg = new bigEgg(mw);
-    egg->setPos(width/2-210, pos().y() + 10);
-    scene->addItem(egg);
+    //bigEgg *egg = new bigEgg(mw);
+    //egg->setPos(width/2-210, pos().y() + 10);
+    //scene->addItem(egg);
 
     // egg->throw_bullets();
 

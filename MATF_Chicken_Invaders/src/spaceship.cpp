@@ -131,9 +131,10 @@ void Spaceship::collision()
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
-                delete this;
                 explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
                 explosionSound->play();
+                emit spaceshipDestroyed();
+                delete this;
             }
             else
             {
@@ -152,9 +153,10 @@ void Spaceship::collision()
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
-                delete this;
                 explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
                 explosionSound->play();
+                emit spaceshipDestroyed();
+                delete this;
             }
             else
             {

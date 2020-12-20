@@ -42,6 +42,7 @@ public slots:
     void stopPrepareMusic();
     void playPrepareMusic();
     void setUserMessage();
+    void endOfGame();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

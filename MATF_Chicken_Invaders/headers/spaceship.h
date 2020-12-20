@@ -14,6 +14,9 @@ class Spaceship : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
+signals:
+    void spaceshipDestroyed();
+
 public:
     Spaceship(MainWindow *parent);
     QPointF getPosition();

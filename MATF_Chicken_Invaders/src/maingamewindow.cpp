@@ -19,7 +19,7 @@ void MainGameWindow::removeMessage()
 
 void MainGameWindow::chickenMatrixGame()
 {
-    ChickenMatrixGame * cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
+
     cMatrixGame->start();
     //
     //MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
@@ -45,44 +45,15 @@ void MainGameWindow::setUserMessage()
     message->setPixmap(pm);
     message->setPos(width/3.5, height/5.5);
     scene->addItem(message);
+
+    QTimer::singleShot(3000, this, &MainGameWindow::removeMessage);
 }
 
-//void MainGameWindow::keyPressEvent(QKeyEvent *event)
-//{
-//    switch(event->key())
-//    {
-//    case Qt::Key_Escape:
-//        for(size_t i=0, n = scene->items().size(); i<n; i++)
-//        {
-//            scene->items()[i]->setEnabled(false);
-//        }
-//        scene->clear();
-//        mw->gamePrepareSound->stop();
-//        mw->backGroundMusic->play();
-//        delete this;
-//        break;
-//    case Qt::Key_Space:
-//        if(spaceship->getThrowingAllowed()){
-//            spaceship->setThrowingAllowed(false);
-//            spaceship->throw_projectile();
-//        }
-//        break;
-//    case Qt::Key_A: // change it to be LeftArrow
-//        spaceship->move_left();
-//        break;
-//    case Qt::Key_D: // change it to be RightArrow
-//        spaceship->move_right();
-//        break;
-//    case Qt::Key_W: // change it to be UpArrow
-//        spaceship->move_up();
-//        break;
-//    case Qt::Key_S: // change it to be DownArrow
-//        spaceship->move_down();
-//        break;
-//    default:
-//        QWidget::keyPressEvent(event);
-//    }
-//}
+void MainGameWindow::endOfGame()
+{
+    mw->backGroundMusic->play();
+    deleteLater();
+}
 
 void MainGameWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -165,13 +136,14 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     animation->setEndValue(QPoint(0,0));
     animation->start();
 
-    //QTimer::singleShot(3000, this, &MainGameWindow::slow_down);
-
     scene->addItem(background);
     scene->setFocus();
     scene->setSceneRect(0,0,width-30,height-30);
 
     mw->backGroundMusic->stop();
+
+
+    connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
 }
 
 MainGameWindow::~MainGameWindow()
@@ -191,11 +163,14 @@ void MainGameWindow::setFly_speed(int value)
 
 void MainGameWindow::level1()
 {
+    cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
+
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3000, this, &MainGameWindow::removeMessage);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame);
+
+    connect(cMatrixGame, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
