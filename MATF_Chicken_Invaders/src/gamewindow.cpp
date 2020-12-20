@@ -19,7 +19,7 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
         }
         scene->clear();
         mw->backGroundMusic->stop();
-        mw->backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme2.mp3"));
+        mw->backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme.mp3"));
         mw->backGroundMusic->play();
         delete this;
         break;
