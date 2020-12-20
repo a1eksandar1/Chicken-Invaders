@@ -1,6 +1,9 @@
 #include "headers/gamewindow.h"
 #include "headers/chicken.h"
+#include "headers/egg.h"
 #include "headers/projectile.h"
+#include "headers/bigegg.h"
+#include "headers/bigeggbullets.h"
 #include "ui_gamewindow.h"
 #include <QDialog>
 #include <QKeyEvent>
@@ -94,29 +97,17 @@ void GameWindow::start()
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
 
-    QVector<QVector<Chicken*>> chick;
-    chick.resize(8);
-    for (int i=0; i < 8; i++)
-    {
-        chick[i].resize(3);
-    }
+    // ovde pocinje igra
 
-    for (int i=0; i < 8 ; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            chick[i][j] = new Chicken(mw,i,j);
-            scene->addItem(chick[i][j]);
-        }
-    }
-    //testiranje
-     Meteor *meteor1 = new Meteor(mw,1,1);
-     scene->addItem(meteor1);
+    bigEgg *egg = new bigEgg(mw);
+    egg->setPos(width/2-210, pos().y() + 10);
+    scene->addItem(egg);
 
-     Meteor *meteor2 = new Meteor(mw,2,3);
-     scene->addItem(meteor2);
+    // egg->throw_bullets();
 
-     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-     timer->start(200);
+    // ovde se zavrsava
+
+    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    timer->start(200);
 
 }

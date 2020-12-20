@@ -23,7 +23,6 @@ protected:
 public:
     explicit GameWindow(MainWindow *parent = nullptr);
     ~GameWindow();
-    void checkTimer();
     void start();
 
 public:
@@ -34,6 +33,7 @@ private:
     QGraphicsScene *scene;
     QTimer *timer;
     Spaceship* spaceship;
+    QTimer* throwingBulletsTimer;
 };
 
 #endif // GAMEWINDOW_H

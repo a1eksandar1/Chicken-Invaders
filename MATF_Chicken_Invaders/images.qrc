@@ -48,6 +48,12 @@
         <file>meteor/meteor1.png</file>
         <file>meteor/meteor2.png</file>
         <file>backgrounds/choosethelevel.png</file>
+        <file>chicken/bigEgg.png</file>
+        <file>chicken/bigEggBullet2.png</file>
+        <file>chicken/bigEggBullet1.png</file>
+        <file>chicken/bigEgg_cl3.png</file>
+        <file>chicken/bigEgg_cl2.png</file>
+        <file>chicken/bigEgg_cl1.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
