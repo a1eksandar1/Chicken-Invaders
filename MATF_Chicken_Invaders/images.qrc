@@ -67,6 +67,9 @@
         <file>chicken/drumstick.png</file>
         <file>meteor/meteorShot.png</file>
         <file>backgrounds/wave1.png</file>
+        <file>spaceships/lives3.png</file>
+        <file>spaceships/lives2.png</file>
+        <file>spaceships/lives1.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

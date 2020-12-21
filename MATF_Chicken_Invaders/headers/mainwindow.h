@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <headers/score.h>
+#include <headers/lives.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,6 +46,7 @@ public:
     void setPlanetClicked(bool value);
     Score* getScore();
     void increaseScore();
+    Lives* getLives();
 
 private:
     void setMusic();
@@ -69,6 +71,7 @@ private:
     int reachedLevel;
     bool planetClicked;
     Score* score;
+    Lives* lives;
 
 
 };

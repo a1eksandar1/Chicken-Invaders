@@ -249,7 +249,14 @@ void MainGameWindow::start()
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
     mw->getScore()->setPos(pos().x()+20, pos().y());
+
+    // lisov menjao ovaj deo koda
+    mw->getScore()->setPos(pos().x()+10, pos().y());
     scene->addItem(mw->getScore());
+    mw->getLives()->setPos(width - 130, -20);
+    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
+    scene->addItem(mw->getLives());
+    // do ovde
 
     if(mw->getDesiredLevel() == 1){
         level1();
