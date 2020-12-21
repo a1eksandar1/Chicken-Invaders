@@ -65,6 +65,9 @@
         <file>chicken/bigEggBullet.png</file>
         <file>chicken/drumstick.png</file>
         <file>meteor/meteorShot.png</file>
+        <file>chicken/bigChicken.png</file>
+        <file>chicken/bigChicken2.png</file>
+        <file>chicken/roastChicken.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

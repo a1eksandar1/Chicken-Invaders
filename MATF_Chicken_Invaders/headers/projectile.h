@@ -7,6 +7,8 @@
 #include "headers/spaceship.h"
 #include "headers/chicken.h"
 #include "headers/meteor.h"
+#include "headers/bigchicken.h"
+#include "headers/drumstick.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {

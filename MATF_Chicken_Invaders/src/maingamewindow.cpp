@@ -5,6 +5,7 @@
 #include "headers/sidemeteorshowergame.h"
 #include "headers/chickenmatrixgame.h"
 #include "headers/meteorshowergame.h"
+#include "headers/bossgame.h"
 
 void MainGameWindow::slow_down()
 {
@@ -21,12 +22,15 @@ void MainGameWindow::chickenMatrixGame()
 {
 
 //    cMatrixGame->start();
-    //
-    MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
-    mShowerGame->start();
+
+//    MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
+//    mShowerGame->start();
 
     //sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
     //sideMShowerGame->start();
+
+    BossGame * bGame = new BossGame(mw, scene);
+    bGame->start();
 }
 
 void MainGameWindow::stopPrepareMusic()
