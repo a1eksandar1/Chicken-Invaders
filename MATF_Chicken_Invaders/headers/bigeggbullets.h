@@ -12,7 +12,6 @@ class bigEggBullets : public QObject, public QGraphicsPixmapItem
 
 public:
     bigEggBullets(QTimer* timer, int num); // broj oznacava u kom smeru ide metak
-    void collision();
 
 public slots:
     void move();

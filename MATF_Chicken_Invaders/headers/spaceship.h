@@ -29,6 +29,7 @@ public:
     int getStartingXPos();
     int getStartingYPos();
     void collision();
+    void checkIfSpaceshipDestroyed();
 
 public:
     MainWindow *mw;
@@ -38,6 +39,7 @@ public:
     void setDirection(int d);
     void start_moving_timer();
     void stop_moving_timer();
+    void revertProjectilesLevel();
 
 public slots:
     void move();

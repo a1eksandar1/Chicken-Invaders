@@ -1,6 +1,8 @@
 #include "headers/spaceship.h"
 #include "headers/projectile.h"
 #include "headers/drumstick.h"
+#include "headers/bigeggbullets.h"
+#include "headers/gift.h"
 #include <QTimer>
 #include <vector>
 #include <QApplication>
@@ -128,21 +130,8 @@ void Spaceship::collision()
         {
             auto meteor = static_cast<Meteor*>(colItem);
             meteor->clean();
-            auto explosionSound = new QMediaPlayer;
 
-            if(decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
-                emit spaceshipDestroyed();
-                delete this;
-            }
-            else
-            {
-                setPos(getStartingXPos(), getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
-            }
+            this->checkIfSpaceshipDestroyed();
 
             return;
         }
@@ -150,21 +139,8 @@ void Spaceship::collision()
         {
             auto egg = static_cast<Egg*>(colItem);
             egg->clean();
-            auto explosionSound = new QMediaPlayer;
 
-            if(decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
-                emit spaceshipDestroyed();
-                delete this;
-            }
-            else
-            {
-                setPos(getStartingXPos(), getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
-            }
+            this->checkIfSpaceshipDestroyed();
 
             return;
         }
@@ -172,12 +148,59 @@ void Spaceship::collision()
         {
             auto drumstick = static_cast<Drumstick*>(colItem);
             drumstick->clean();
-      //TODO: points
+
+// increase score
+            mw->increaseScore();
+
 
             return;
         }
+
+        else if(typeid (*colItem) == typeid (bigEggBullets))
+        {
+            auto bigEggBullet = static_cast<bigEggBullets*>(colItem);
+            bigEggBullet->clean();
+            // clean();
+
+            this->checkIfSpaceshipDestroyed();
+
+            return;
+        }
+
+        else if(typeid (*colItem) == typeid(Gift))
+        {
+            auto gift = static_cast<Gift*>(colItem);
+            int level = this->getProjectilesLevel();
+            if(level < 5)
+                this->setProjectilesLevel(level+1);
+
+            mw->giftSound->play();
+
+            gift->clean();
+        }
     }
 
+}
+
+void Spaceship::checkIfSpaceshipDestroyed()
+{
+    auto explosionSound = new QMediaPlayer;
+
+    this->revertProjectilesLevel();
+
+    if(decreaseLivesNumAndGetCurrNumLives() == 0)
+    {
+        explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+        explosionSound->play();
+        emit spaceshipDestroyed();
+        delete this;
+    }
+    else
+    {
+        setPos(getStartingXPos(), getStartingYPos());
+        explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+        explosionSound->play();
+    }
 }
 
 int Spaceship::getProjectilesLevel() const
@@ -225,4 +248,9 @@ void Spaceship::start_moving_timer()
 void Spaceship::stop_moving_timer()
 {
     moving_timer->stop();
+}
+
+void Spaceship::revertProjectilesLevel()
+{
+    projectilesLevel = 1;
 }

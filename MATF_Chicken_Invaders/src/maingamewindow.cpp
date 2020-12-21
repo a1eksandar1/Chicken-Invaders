@@ -248,6 +248,8 @@ void MainGameWindow::start()
 
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
+    mw->getScore()->setPos(pos().x()+20, pos().y());
+    scene->addItem(mw->getScore());
 
     if(mw->getDesiredLevel() == 1){
         level1();

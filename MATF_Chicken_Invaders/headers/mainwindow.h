@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <headers/score.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,10 +42,9 @@ public:
     void setBackGroundMusic(QString str);
     void stopBackGroundMusic();
     bool getPlanetClicked() const;
-    void setPlanetClicked(bool value);    
-    int getScore() const;
-    void setScore(int value);
-
+    void setPlanetClicked(bool value);
+    Score* getScore();
+    void increaseScore();
 
 private:
     void setMusic();
@@ -59,7 +59,6 @@ public:
     QMediaPlayer* explosionSound;
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
-    int score;
 
 private:
     Ui::MainWindow *ui;
@@ -69,6 +68,8 @@ private:
     int desiredLevel;
     int reachedLevel;
     bool planetClicked;
+    Score* score;
+
 
 };
 #endif // MAINWINDOW_H

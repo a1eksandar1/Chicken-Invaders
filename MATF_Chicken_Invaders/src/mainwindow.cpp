@@ -74,14 +74,14 @@ void MainWindow::onOptions()
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    score(0),
     ui(new Ui::MainWindow),
     hard(false),
     volume(20),
     userCurrentLevel(1),
     desiredLevel(1),
     reachedLevel(1),
-    planetClicked(false)
+    planetClicked(false),
+    score(new Score())
 {
     ui->setupUi(this);
     setMusic();
@@ -182,6 +182,16 @@ void MainWindow::setPlanetClicked(bool value)
     planetClicked = value;
 }
 
+Score *MainWindow::getScore()
+{
+    return score;
+}
+
+void MainWindow::increaseScore()
+{
+    score->increaseScore();
+}
+
 void MainWindow::setMusic()
 {
     backGroundMusic = new QMediaPlayer;
@@ -219,14 +229,4 @@ void MainWindow::setConnects()
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
-}
-
-int MainWindow::getScore() const
-{
-    return score;
-}
-
-void MainWindow::setScore(int value)
-{
-    score = value;
 }

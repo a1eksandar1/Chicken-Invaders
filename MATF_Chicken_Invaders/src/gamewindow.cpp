@@ -8,6 +8,7 @@
 #include <QDialog>
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
+#include <QGraphicsTextItem>
 #include <QScreen>
 #include <QTimer>
 #include "headers/chickenmatrixgame.h"
@@ -101,7 +102,6 @@ void GameWindow::start()
     int width = rec.width();
 
     spaceship->setStartingPosition(width/2-65, height-140);
-
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
 

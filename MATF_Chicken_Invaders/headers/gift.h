@@ -13,7 +13,6 @@ class Gift: public QObject, public QGraphicsPixmapItem
 public:
     Gift(MainWindow *parent);
 
-    void colision();
 public slots:
     void move();
     void clean();

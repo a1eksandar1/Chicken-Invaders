@@ -16,37 +16,6 @@ bigEggBullets::bigEggBullets(QTimer* timer, int num) : number(num)
     timer->start(10);
 }
 
-void bigEggBullets::collision()
-{
-    QList<QGraphicsItem*> colliding_items = collidingItems();
-    for(auto colItem : colliding_items)
-    {
-        if(typeid (*colItem) == typeid (Spaceship))
-        {
-            clean();
-
-            auto explosionSound = new QMediaPlayer;
-
-            auto spaceship = static_cast<Spaceship*>(colItem);
-            if(spaceship->decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                delete colItem;
-                // gameover
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
-            }
-            else
-            {
-                spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
-            }
-
-            return;
-        }
-    }
-}
-
 void bigEggBullets::move()
 {
     switch(number){
@@ -78,7 +47,6 @@ void bigEggBullets::move()
     default:
         break;
     }
-    collision();
 }
 
 void bigEggBullets::clean()
