@@ -35,10 +35,15 @@ class MainGameWindow : public QWidget
 {
     Q_OBJECT
 
+signals:
+    void gameStart();
+
 public slots:
     void slow_down();
     void removeMessage();
     void chickenMatrixGame();
+    void meteorShowerGame();
+    void SideMeteorShowerGame();
     void stopPrepareMusic();
     void playPrepareMusic();
     void setUserMessage();
@@ -78,7 +83,7 @@ private:
     Spaceship *spaceship;
     QTimer *timer;
     QGraphicsPixmapItem *message;
-    ChickenMatrixGame * cMatrixGame;
+    int localLevelCounter;
 };
 
 #endif // MAINGAMEWINDOW_H

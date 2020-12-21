@@ -2,9 +2,6 @@
 #include "ui_maingamewindow.h"
 #include <QScreen>
 #include "headers/chicken.h"
-#include "headers/sidemeteorshowergame.h"
-#include "headers/chickenmatrixgame.h"
-#include "headers/meteorshowergame.h"
 
 void MainGameWindow::slow_down()
 {
@@ -15,18 +12,34 @@ void MainGameWindow::slow_down()
 void MainGameWindow::removeMessage()
 {
     scene->removeItem(message);
+    if(localLevelCounter >= 2){
+        emit gameStart();
+    }
 }
 
 void MainGameWindow::chickenMatrixGame()
 {
-
+    ChickenMatrixGame *cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
     cMatrixGame->start();
-    //
-    //MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
-    //mShowerGame->start();
-    //
-    //sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
-    //sideMShowerGame->start();
+    connect(cMatrixGame, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+}
+
+void MainGameWindow::meteorShowerGame()
+{
+    if(localLevelCounter == 2){
+        MeteorShowerGame *mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
+        mShowerGame->start();
+        connect(mShowerGame, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
+    }
+}
+
+void MainGameWindow::SideMeteorShowerGame()
+{
+    if(localLevelCounter == 3){
+        sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
+        sideMShowerGame->start();
+        connect(sideMShowerGame, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
+    }
 }
 
 void MainGameWindow::stopPrepareMusic()
@@ -41,10 +54,22 @@ void MainGameWindow::playPrepareMusic()
 
 void MainGameWindow::setUserMessage()
 {
-    QPixmap pm(":/images/backgrounds/wave1_1.png");
-    message->setPixmap(pm);
+    if(localLevelCounter == 0){
+        QPixmap pm(":/images/backgrounds/wave1_1.png");
+        message->setPixmap(pm);
+    }
+    else if(localLevelCounter == 1){
+        QPixmap pm(":/images/backgrounds/wave2.png");
+        message->setPixmap(pm);
+    }
+    else if(localLevelCounter == 2){
+        QPixmap pm(":/images/backgrounds/wave3.png");
+        message->setPixmap(pm);
+    }
+
     message->setPos(width/3.5, height/5.5);
     scene->addItem(message);
+    ++localLevelCounter;
 
     QTimer::singleShot(3000, this, &MainGameWindow::removeMessage);
 }
@@ -111,7 +136,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     spaceship(new Spaceship(mw)),
     timer(new QTimer(this)),
     message(new QGraphicsPixmapItem),
-    cMatrixGame(new ChickenMatrixGame(mw, scene, 8,3))
+    localLevelCounter(0)
 {
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
@@ -144,6 +169,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
 
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
+    start();
 }
 
 MainGameWindow::~MainGameWindow()
@@ -163,14 +189,14 @@ void MainGameWindow::setFly_speed(int value)
 
 void MainGameWindow::level1()
 {
-    cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
 
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame);
 
-    connect(cMatrixGame, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::meteorShowerGame);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::SideMeteorShowerGame);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);

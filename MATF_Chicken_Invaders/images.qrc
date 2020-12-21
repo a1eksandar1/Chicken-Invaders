@@ -63,6 +63,8 @@
         <file>chicken/bigEgg_cl2.png</file>
         <file>chicken/bigEgg_cl1.png</file>
         <file>chicken/bigEggBullet.png</file>
+        <file>backgrounds/wave2.png</file>
+        <file>backgrounds/wave3.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

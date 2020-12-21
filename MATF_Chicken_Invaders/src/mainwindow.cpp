@@ -156,7 +156,7 @@ void MainWindow::setReachedLevel(int value)
 void MainWindow::openGameWindow()
 {
     MainGameWindow* mgw = new MainGameWindow(this);
-    mgw->start();
+    //mgw->start();
 
     mgw->setWindowFlags(Qt::Window);
     mgw->showFullScreen();
