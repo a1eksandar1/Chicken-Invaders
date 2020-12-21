@@ -15,7 +15,7 @@ ChickenMatrixGame::ChickenMatrixGame(MainWindow *parent, QGraphicsScene *scene,i
         {
             for (int j = 0; j < n; j++)
             {
-                matrix[i][j] = new Chicken(mw,i,j);
+                matrix[i][j] = new Chicken(mw,i,j, n);
             }
         }
 

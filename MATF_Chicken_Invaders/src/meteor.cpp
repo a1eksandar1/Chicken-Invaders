@@ -77,8 +77,12 @@ void Meteor::die()
 {
 //TODO
     emit meteorShot();
-    scene()->removeItem(this);
-    delete this;
+    setPixmap(QPixmap(":images/meteor/meteorShot.png").scaled(120,120,Qt::KeepAspectRatio));
+    imgChange=3;
+    QTimer *cleanTimer = new QTimer(this);
+    connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
+    cleanTimer->start(200);
+
 }
 
 void Meteor::clean()
@@ -114,7 +118,7 @@ void Meteor::move1()
     }
     else if(pos().x() > width)
     {
-        clean();
+        die();
     }
 
 }
