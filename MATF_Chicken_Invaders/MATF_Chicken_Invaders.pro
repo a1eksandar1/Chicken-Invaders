@@ -10,6 +10,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/balloonGame.cpp \
+    src/balloonchicken.cpp \
     src/bigchicken.cpp \
     src/bossgame.cpp \
     src/drumstick.cpp \
@@ -36,6 +38,8 @@ SOURCES += \
     src/usernamewindow.cpp
 
 HEADERS += \
+    headers/balloonchicken.h \
+    headers/balloongame.h \
     headers/bigchicken.h \
     headers/bossgame.h \
     headers/chickenmatrixgame.h \

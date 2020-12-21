@@ -2,10 +2,6 @@
 #include "ui_maingamewindow.h"
 #include <QScreen>
 #include "headers/chicken.h"
-#include "headers/sidemeteorshowergame.h"
-#include "headers/chickenmatrixgame.h"
-#include "headers/meteorshowergame.h"
-#include "headers/bossgame.h"
 
 void MainGameWindow::slow_down()
 {
@@ -26,11 +22,14 @@ void MainGameWindow::chickenMatrixGame()
 //    MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 5);
 //    mShowerGame->start();
 
-    //sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
-    //sideMShowerGame->start();
+//    sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
+//    sideMShowerGame->start();
 
-    BossGame * bGame = new BossGame(mw, scene);
-    bGame->start();
+//    BossGame * bGame = new BossGame(mw, scene);
+//    bGame->start();
+
+      BalloonGame * balloonGame = new BalloonGame(mw, scene, 8, 3);
+      balloonGame->start();
 }
 
 void MainGameWindow::stopPrepareMusic()
