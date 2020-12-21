@@ -43,6 +43,7 @@ private:
     int yOrientation=15;
     int width, height;
     int shotCounter = 20;
+    bool dead = false;
 
 
 public slots:

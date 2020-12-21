@@ -64,25 +64,30 @@ void BigChicken::die()
     }
     else
     {
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(500,500,Qt::KeepAspectRatio));
-        imgChange=3;
+        if(!dead)
+        {
+            dead = true;
 
-        RoastChicken *roastC = new RoastChicken(mw);
-        roastC->setPos(pos().x()-100,pos().y()+100);
-        scene()->addItem(roastC);
+            setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(500,500,Qt::KeepAspectRatio));
+            imgChange=3;
 
-        RoastChicken *roastC2 = new RoastChicken(mw);
-        roastC2->setPos(pos().x()+350,pos().y()+100);
-        scene()->addItem(roastC2);
+            RoastChicken *roastC = new RoastChicken(mw);
+            roastC->setPos(pos().x()-100,pos().y()+100);
+            scene()->addItem(roastC);
 
-        RoastChicken *roastC3 = new RoastChicken(mw);
-        roastC3->setPos(pos().x()+600,pos().y()+100);
-        scene()->addItem(roastC3);
+            RoastChicken *roastC2 = new RoastChicken(mw);
+            roastC2->setPos(pos().x()+350,pos().y()+0);
+            scene()->addItem(roastC2);
+
+            RoastChicken *roastC3 = new RoastChicken(mw);
+            roastC3->setPos(pos().x()+600,pos().y()+100);
+            scene()->addItem(roastC3);
 
 
-        QTimer *cleanTimer = new QTimer(this);
-        connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
-        cleanTimer->start(200);
+            QTimer *cleanTimer = new QTimer(this);
+            connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
+            cleanTimer->start(200);
+        }
     }
 }
 

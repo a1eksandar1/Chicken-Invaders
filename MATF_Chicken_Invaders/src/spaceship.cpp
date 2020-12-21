@@ -176,6 +176,14 @@ void Spaceship::collision()
 
             return;
         }
+        else if(typeid (*colItem) == typeid (RoastChicken))
+        {
+            auto roastC = static_cast<RoastChicken*>(colItem);
+            roastC->clean();
+      //TODO: points
+
+            return;
+        }
     }
 
 }
