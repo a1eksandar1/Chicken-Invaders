@@ -1,4 +1,4 @@
-QT       += core gui \
+QT       += core gui sql \
          multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -22,6 +22,8 @@ SOURCES += \
     src/planet.cpp \
     src/sidemeteorshowergame.cpp \
     src/sidespaceship.cpp \
+    src/player.cpp \
+    src/hofwindow.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
     src/egg.cpp \
@@ -52,7 +54,10 @@ HEADERS += \
     headers/projectile.h \
     headers/sidespaceship.h \
     headers/planet.h \
-    headers/maingamewindow.h
+    headers/maingamewindow.h \
+    headers/player.h \
+    headers/hofwindow.h \
+    headers/spaceship.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
@@ -61,6 +66,7 @@ FORMS += \
     forms/gamewindow.ui \
     forms/optionswindow.ui \
     forms/maingamewindow.ui
+    forms/hofwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -70,3 +76,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     images.qrc \
     sounds.qrc \
+    sounds.qrc
+
+DISTFILES += \
+    database.db

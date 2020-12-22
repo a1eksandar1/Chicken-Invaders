@@ -13,6 +13,7 @@
 #include <QMediaPlayer>
 #include "headers/chooselevelwindow.h"
 #include "headers/maingamewindow.h"
+#include "headers/hofwindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -70,6 +71,13 @@ void MainWindow::onOptions()
     OptionsWindow* ow = new OptionsWindow(this);
     ow->setWindowState(Qt::WindowFullScreen);
     ow->exec();
+}
+
+void MainWindow::onHof()
+{
+    HofWindow* hof = new HofWindow(this);
+    hof->setWindowState(Qt::WindowFullScreen);
+    hof->exec();
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -216,6 +224,7 @@ void MainWindow::setMusic()
 
 void MainWindow::setConnects()
 {
+    connect(ui->hof_button, &QPushButton::clicked, this, &MainWindow::onHof);
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
