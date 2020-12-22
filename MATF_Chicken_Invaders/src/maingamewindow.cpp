@@ -25,11 +25,11 @@ void MainGameWindow::chickenMatrixGame()
 //    sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
 //    sideMShowerGame->start();
 
-//    BossGame * bGame = new BossGame(mw, scene);
-//    bGame->start();
+    BossGame * bGame = new BossGame(mw, scene);
+    bGame->start();
 
-      BalloonGame * balloonGame = new BalloonGame(mw, scene, 8, 3);
-      balloonGame->start();
+//      BalloonGame * balloonGame = new BalloonGame(mw, scene, 8, 3);
+//      balloonGame->start();
 }
 
 void MainGameWindow::stopPrepareMusic()

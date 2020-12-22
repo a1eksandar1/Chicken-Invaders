@@ -35,6 +35,9 @@ public:
     int getShotCounter() const;
     void setShotCounter(int value);
 
+    int getWidth() const;
+    void setWidth(int value);
+
 private:
     MainWindow *mw;
     int m, n, chicken;

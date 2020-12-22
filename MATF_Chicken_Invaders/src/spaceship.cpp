@@ -1,6 +1,7 @@
 #include "headers/spaceship.h"
 #include "headers/projectile.h"
 #include "headers/drumstick.h"
+#include "headers/bigchicken.h"
 #include <QTimer>
 #include <vector>
 #include <QApplication>
@@ -181,6 +182,28 @@ void Spaceship::collision()
             auto roastC = static_cast<RoastChicken*>(colItem);
             roastC->clean();
       //TODO: points
+
+            return;
+        }
+        else if(typeid (*colItem) == typeid (BigChicken))
+        {
+            auto bc = static_cast<BigChicken*>(colItem);
+            bc->setPos((bc->getWidth()-2)/2-250, 0);
+            auto explosionSound = new QMediaPlayer;
+
+            if(decreaseLivesNumAndGetCurrNumLives() == 0)
+            {
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                explosionSound->play();
+                emit spaceshipDestroyed();
+                delete this;
+            }
+            else
+            {
+                setPos(getStartingXPos(), getStartingYPos());
+                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                explosionSound->play();
+            }
 
             return;
         }

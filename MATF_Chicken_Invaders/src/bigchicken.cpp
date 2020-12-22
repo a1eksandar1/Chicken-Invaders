@@ -111,6 +111,16 @@ void BigChicken::setShotCounter(int value)
     shotCounter = value;
 }
 
+int BigChicken::getWidth() const
+{
+    return width;
+}
+
+void BigChicken::setWidth(int value)
+{
+    width = value;
+}
+
 void BigChicken::clean()
 {
     scene()->removeItem(this);
