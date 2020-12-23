@@ -32,15 +32,20 @@ void Drumstick::move()
     QTransform transform;
     transform = transform.rotate(angle);
     setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(70,70,Qt::KeepAspectRatio).transformed(transform));
-    angle += 20;
+    if(!stop)
+    {
+       angle += 20;
+    }
+
 
     int random = rand()%2;
     if (random == 1)
         random = 1;
     else random = -1;
 
-    if(pos().y() > height - 100)
+    if(pos().y() > height - 110)
     {
+        setStop(true);
         QTimer *cleanTimer = new QTimer(this);
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(1000);
@@ -54,4 +59,14 @@ void Drumstick::clean()
 {
     scene()->removeItem(this);
     delete this;
+}
+
+bool Drumstick::getStop() const
+{
+    return stop;
+}
+
+void Drumstick::setStop(bool value)
+{
+    stop = value;
 }

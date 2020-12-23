@@ -20,6 +20,7 @@
 #include "headers/meteorshowergame.h"
 #include "headers/bossgame.h"
 #include "headers/balloongame.h"
+#include "headers/sideChickenGame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 

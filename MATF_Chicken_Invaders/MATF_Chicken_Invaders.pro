@@ -25,6 +25,8 @@ SOURCES += \
     src/projectile.cpp \
     src/planet.cpp \
     src/roastChicken.cpp \
+    src/sideChicken.cpp \
+    src/sideChickenGame.cpp \
     src/sidemeteorshowergame.cpp \
     src/sidespaceship.cpp \
     src/chooselevelwindow.cpp \
@@ -55,6 +57,8 @@ HEADERS += \
     headers/meteor.h \
     headers/meteorshowergame.h \
     headers/roastChicken.h \
+    headers/sideChicken.h \
+    headers/sideChickenGame.h \
     headers/sidemeteorshowergame.h \
     headers/spaceship.h \
     headers/usernamewindow.h \

@@ -71,6 +71,10 @@
         <file>chicken/balloonChicken1.png</file>
         <file>chicken/balloonChicken2.png</file>
         <file>chicken/balloonChicken3.png</file>
+        <file>chicken/leftsideChicken.png</file>
+        <file>chicken/rightsideChicken.png</file>
+        <file>chicken/leftsideChicken2.png</file>
+        <file>chicken/rightsideChicken2.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

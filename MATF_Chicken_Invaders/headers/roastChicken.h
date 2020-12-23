@@ -15,12 +15,16 @@ public:
 
     void colision();
 
+    bool getStop() const;
+    void setStop(bool value);
+
 public slots:
     void move();
     void clean();
 
 private:
     int width, height;
+    bool stop = false;
     double angle = 30;
     MainWindow *mw;
 };

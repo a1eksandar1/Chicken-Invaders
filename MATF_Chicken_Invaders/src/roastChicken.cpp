@@ -32,15 +32,19 @@ void RoastChicken::move()
     QTransform transform;
     transform = transform.rotate(angle);
     setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(90,90,Qt::KeepAspectRatio).transformed(transform));
-    angle += 20;
+    if(!stop)
+    {
+       angle += 20;
+    }
 
     int random = rand()%2;
     if (random == 1)
         random = 1;
     else random = -1;
 
-    if(pos().y() > height - 100)
+    if(pos().y() > height - 120)
     {
+        setStop(true);
         QTimer *cleanTimer = new QTimer(this);
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(1000);
@@ -54,4 +58,14 @@ void RoastChicken::clean()
 {
     scene()->removeItem(this);
     delete this;
+}
+
+bool RoastChicken::getStop() const
+{
+    return stop;
+}
+
+void RoastChicken::setStop(bool value)
+{
+    stop = value;
 }

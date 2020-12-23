@@ -1,7 +1,7 @@
 #include "headers/maingamewindow.h"
 #include "ui_maingamewindow.h"
 #include <QScreen>
-#include "headers/chicken.h"
+
 
 void MainGameWindow::slow_down()
 {
@@ -25,11 +25,13 @@ void MainGameWindow::chickenMatrixGame()
 //    sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 7, 5);
 //    sideMShowerGame->start();
 
-    BossGame * bGame = new BossGame(mw, scene);
-    bGame->start();
+//    BossGame * bGame = new BossGame(mw, scene);
+//    bGame->start();
 
-//      BalloonGame * balloonGame = new BalloonGame(mw, scene, 8, 3);
+//   BalloonGame * balloonGame = new BalloonGame(mw, scene, 8, 3);
 //      balloonGame->start();
+    SideChickenGame * sGame = new SideChickenGame(mw, scene, 10);
+    sGame->start();
 }
 
 void MainGameWindow::stopPrepareMusic()
@@ -114,7 +116,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     spaceship(new Spaceship(mw)),
     timer(new QTimer(this)),
     message(new QGraphicsPixmapItem),
-    cMatrixGame(new ChickenMatrixGame(mw, scene, 8,3))
+    cMatrixGame(new ChickenMatrixGame(mw, scene, 1,1))
 {
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
@@ -166,7 +168,7 @@ void MainGameWindow::setFly_speed(int value)
 
 void MainGameWindow::level1()
 {
-    cMatrixGame = new ChickenMatrixGame(mw, scene, 8,3);
+    cMatrixGame = new ChickenMatrixGame(mw, scene, 1,1);
 
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
