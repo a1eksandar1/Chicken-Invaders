@@ -1,17 +1,17 @@
-#ifndef DRUMSTICK_H
-#define DRUMSTICK_H
+#ifndef ROASTCHICKEN_H
+#define ROASTCHICKEN_H
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include "headers/mainwindow.h"
 #include <math.h>
 
-class Drumstick: public QObject, public QGraphicsPixmapItem
+class RoastChicken: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    Drumstick(MainWindow *parent);
+    RoastChicken(MainWindow *parent);
 
     void colision();
 
@@ -29,4 +29,4 @@ private:
     MainWindow *mw;
 };
 
-#endif // DRUMSTICK_H
+#endif // ROASTCHICKEN_H

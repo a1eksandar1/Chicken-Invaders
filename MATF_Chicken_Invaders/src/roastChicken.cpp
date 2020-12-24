@@ -1,4 +1,4 @@
-#include "headers/drumstick.h"
+#include "headers/roastChicken.h"
 #include "headers/spaceship.h"
 #include <QTimer>
 #include <QGraphicsScene>
@@ -8,10 +8,10 @@
 #include <QApplication>
 #include <QSoundEffect>
 
-Drumstick::Drumstick(MainWindow *parent) :
+RoastChicken::RoastChicken(MainWindow *parent) :
     mw(parent)
 {
-    setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(70,70,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(90,90,Qt::KeepAspectRatio));
 
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
@@ -27,43 +27,23 @@ Drumstick::Drumstick(MainWindow *parent) :
 
 }
 
-void Drumstick::move()
+void RoastChicken::move()
 {
     if(!mw->getFreezeScene()){
-//        QTransform transform;
-//        transform = transform.rotate(angle);
-//        setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(70,70,Qt::KeepAspectRatio).transformed(transform));
-//        angle += 20;
-
-//        int random = rand()%2;
-//        if (random == 1)
-//            random = 1;
-//        else random = -1;
-
-//        if(pos().y() > height - 100)
-//        {
-//            QTimer *cleanTimer = new QTimer(this);
-//            connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
-//            cleanTimer->start(1000);
-//        }
-//        else
-//            setPos(x()+10*random, y()+20);
-
         QTransform transform;
         transform = transform.rotate(angle);
-        setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(70,70,Qt::KeepAspectRatio).transformed(transform));
+        setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(90,90,Qt::KeepAspectRatio).transformed(transform));
         if(!stop)
         {
            angle += 20;
         }
-
 
         int random = rand()%2;
         if (random == 1)
             random = 1;
         else random = -1;
 
-        if(pos().y() > height - 110)
+        if(pos().y() > height - 120)
         {
             setStop(true);
             QTimer *cleanTimer = new QTimer(this);
@@ -75,18 +55,18 @@ void Drumstick::move()
     }
 }
 
-void Drumstick::clean()
+void RoastChicken::clean()
 {
     scene()->removeItem(this);
     delete this;
 }
 
-bool Drumstick::getStop() const
+bool RoastChicken::getStop() const
 {
     return stop;
 }
 
-void Drumstick::setStop(bool value)
+void RoastChicken::setStop(bool value)
 {
     stop = value;
 }

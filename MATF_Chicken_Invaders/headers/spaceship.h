@@ -9,6 +9,7 @@
 #include <QKeyEvent>
 #include <QTimer>
 #include "headers/mainwindow.h"
+#include "headers/roastChicken.h"
 
 class Spaceship : public QObject, public QGraphicsPixmapItem
 {

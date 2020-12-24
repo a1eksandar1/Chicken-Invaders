@@ -18,6 +18,9 @@
 #include "headers/sidemeteorshowergame.h"
 #include "headers/chickenmatrixgame.h"
 #include "headers/meteorshowergame.h"
+#include "headers/bossgame.h"
+#include "headers/balloongame.h"
+#include "headers/sideChickenGame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 
@@ -40,7 +43,7 @@ signals:
 
 public slots:
     void removeMessage();
-    void chickenMatrixGame_level1();
+    void slot_level1();
     void stopPrepareMusic();
     void playPrepareMusic();
     void setUserMessage();

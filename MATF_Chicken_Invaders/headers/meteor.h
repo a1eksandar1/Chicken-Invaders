@@ -27,7 +27,7 @@ signals:
 private:
     int m, n, x, v, random1, random2;
     int imgChange;
-    int speed = 25;
+    int speed = 30;
     int width, height;
     bool shot = false;
     MainWindow *mw;

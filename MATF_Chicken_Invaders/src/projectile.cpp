@@ -5,6 +5,7 @@
 #include <QScreen>
 #include <QApplication>
 
+
 Projectile::Projectile(Spaceship* ss, QTimer* timer, int num) : number(num), spaceship(ss)
 {
     setPixmap(QPixmap(":images/spaceships/projectile.png"));
@@ -85,6 +86,30 @@ void Projectile::colision()
         {
             auto meteor = static_cast<Meteor*>(colItem);
             meteor->die();
+            spaceship->setThrowingAllowed(true);
+            clean();
+        }
+        else if(typeid (*colItem) == typeid (BigChicken))
+        {
+            auto bChicken = static_cast<BigChicken*>(colItem);
+            bChicken->setPos(bChicken->pos().x()+bChicken->getXOrientation(),bChicken->pos().y()-bChicken->getYOrientation());
+            bChicken->die();
+
+
+            spaceship->setThrowingAllowed(true);
+            clean();
+        }
+        else if(typeid (*colItem) == typeid (BalloonChicken))
+        {
+            auto chicken = static_cast<BalloonChicken*>(colItem);
+            chicken->die();
+            spaceship->setThrowingAllowed(true);
+            clean();
+        }
+        else if(typeid (*colItem) == typeid (SideChicken))
+        {
+            auto chicken = static_cast<SideChicken*>(colItem);
+            chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
         }

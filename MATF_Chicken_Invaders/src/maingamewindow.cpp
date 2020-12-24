@@ -1,7 +1,6 @@
 #include "headers/maingamewindow.h"
 #include "ui_maingamewindow.h"
 #include <QScreen>
-#include "headers/chicken.h"
 
 MainGameWindow::MainGameWindow(MainWindow *parent) :
     ui(new Ui::MainGameWindow),
@@ -55,12 +54,12 @@ void MainGameWindow::removeMessage()
     }
 }
 
-void MainGameWindow::chickenMatrixGame_level1()
+void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 || waveCounter == 2 || waveCounter == 3){
-        ChickenMatrixGame *cMatrixGame = new ChickenMatrixGame(mw, scene, 5,3);
-        cMatrixGame->start();
-        connect(cMatrixGame, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        SideChickenGame *scg = new SideChickenGame(mw, scene, 3);
+        scg->start();
+        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -107,13 +106,12 @@ void MainGameWindow::setFly_speed(int value)
 
 void MainGameWindow::level1()
 {
-
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::chickenMatrixGame_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -124,7 +122,7 @@ void MainGameWindow::level2()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -135,7 +133,7 @@ void MainGameWindow::level3()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -146,7 +144,7 @@ void MainGameWindow::level4()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -157,7 +155,7 @@ void MainGameWindow::level5()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -168,7 +166,7 @@ void MainGameWindow::level6()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -179,7 +177,7 @@ void MainGameWindow::level7()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -190,7 +188,7 @@ void MainGameWindow::level8()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -201,7 +199,7 @@ void MainGameWindow::level9()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::chickenMatrixGame_level1);
+    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
