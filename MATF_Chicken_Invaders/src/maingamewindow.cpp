@@ -19,8 +19,8 @@ void MainGameWindow::chickenMatrixGame()
 
 //    cMatrixGame->start();
 
-    MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 8);
-    mShowerGame->start();
+//    MeteorShowerGame * mShowerGame = new MeteorShowerGame(mw, scene, 7, 8);
+//    mShowerGame->start();
 
 //    sideMeteorShowerGame * sideMShowerGame = new sideMeteorShowerGame(mw, scene, 8, 8);
 //    sideMShowerGame->start();
@@ -30,8 +30,8 @@ void MainGameWindow::chickenMatrixGame()
 
 //   BalloonGame * balloonGame = new BalloonGame(mw, scene, 8, 3);
 //      balloonGame->start();
-//    SideChickenGame * sGame = new SideChickenGame(mw, scene, 10);
-//    sGame->start();
+    SideChickenGame * sGame = new SideChickenGame(mw, scene, 15);
+    sGame->start();
 }
 
 void MainGameWindow::stopPrepareMusic()

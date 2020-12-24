@@ -130,15 +130,27 @@ void Meteor::move1()
 
 void Meteor::move2()
 {
-    if(imgChange == 0)
-        setPixmap(QPixmap(":images/meteor/meteor3.png").scaled(x,x,Qt::KeepAspectRatio));
-    if(imgChange == 1)
-        setPixmap(QPixmap(":images/meteor/meteor4.png").scaled(x,x,Qt::KeepAspectRatio));
-    if(imgChange == 3)
-        return;
-    imgChange = (imgChange + 1)%2;
+    if(!shot)
+    {
+        if(imgChange == 0)
+            setPixmap(QPixmap(":images/meteor/meteor3.png").scaled(x,x,Qt::KeepAspectRatio));
+        if(imgChange == 1)
+            setPixmap(QPixmap(":images/meteor/meteor4.png").scaled(x,x,Qt::KeepAspectRatio));
+        if(imgChange == 3)
+            return;
+        imgChange = (imgChange + 1)%2;
 
-    setPos(pos().x()+speed,pos().y()+speed);
+        setPos(pos().x()+speed,pos().y()+speed);
+
+        if(pos().y() > height)
+        {
+            die();
+        }
+        else if(pos().x() > width)
+        {
+            die();
+        }
+    }
 }
 
 
