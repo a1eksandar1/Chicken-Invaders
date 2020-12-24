@@ -10,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/quitgamewindow.cpp \
     src/balloonGame.cpp \
     src/balloonchicken.cpp \
     src/bigchicken.cpp \
@@ -66,7 +67,8 @@ HEADERS += \
     headers/projectile.h \
     headers/sidespaceship.h \
     headers/planet.h \
-    headers/maingamewindow.h
+    headers/maingamewindow.h \
+    headers/quitgamewindow.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
@@ -74,7 +76,8 @@ FORMS += \
     forms/usernamewindow.ui \
     forms/gamewindow.ui \
     forms/optionswindow.ui \
-    forms/maingamewindow.ui
+    forms/maingamewindow.ui \
+    forms/quitgamewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

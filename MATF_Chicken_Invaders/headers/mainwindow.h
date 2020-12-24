@@ -3,6 +3,14 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QDesktopWidget>
+#include <QPalette>
+#include <QPainter>
+#include <QKeyEvent>
+#include <QtGui>
+#include <QPushButton>
+#include <QDebug>
+#include <QMediaPlayer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +33,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void pauseAllSounds();
     bool isHard() const;
     void setHard(bool h);
     void playBackgroundMusic();

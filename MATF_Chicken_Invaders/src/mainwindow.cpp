@@ -1,18 +1,12 @@
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDesktopWidget>
-#include <QPalette>
-#include <QPainter>
-#include <QKeyEvent>
-#include <QtGui>
-#include <QPushButton>
-#include <QDebug>
+
 #include "headers/usernamewindow.h"
 #include "headers/gamewindow.h"
 #include "headers/optionswindow.h"
-#include <QMediaPlayer>
 #include "headers/chooselevelwindow.h"
 #include "headers/maingamewindow.h"
+#include "headers/quitgamewindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -52,8 +46,6 @@ void MainWindow::onPlay()
 
     if(uw->ready()){
         openGameWindow();
-
-
         uw->setReady(false);
     }
     else if(uw->levelChooseReady()){
@@ -175,6 +167,19 @@ bool MainWindow::getPlanetClicked() const
 void MainWindow::setPlanetClicked(bool value)
 {
     planetClicked = value;
+}
+
+void MainWindow::pauseAllSounds()
+{
+    backGroundMusic->pause();
+    projectileSound->pause();;
+    eggSound->pause();
+    explosionSound->pause();
+    chickenSound->pause();;
+    giftSound->pause();;
+    gameOverSound->pause();;
+    gamePrepareSound->pause();;
+    victorySound->pause();
 }
 
 void MainWindow::setMusic()

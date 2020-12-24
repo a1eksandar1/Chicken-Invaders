@@ -23,6 +23,7 @@
 #include "headers/sideChickenGame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
+#include "headers/gamewindow.h"
 
 class View;
 class AnimatedGraphicsItem : public QObject, public QGraphicsPixmapItem{
@@ -40,6 +41,7 @@ class MainGameWindow : public QWidget
 
 signals:
     void gameStart();
+    void esc();
 
 public slots:
     void removeMessage();
@@ -48,6 +50,7 @@ public slots:
     void playPrepareMusic();
     void setUserMessage();
     void endOfGame();
+    void continueGame();
     void victory();
 
 protected:
@@ -55,7 +58,7 @@ protected:
     void keyReleaseEvent(QKeyEvent * event) override;
 
 public:
-    explicit MainGameWindow(MainWindow *parent = nullptr);
+    MainGameWindow(MainWindow *parent = nullptr);
     ~MainGameWindow();
 
     int getFly_speed() const;
@@ -70,21 +73,26 @@ public:
     void level8();
     void level9();
     void start();
+    void openQuitGameWindow();
+
+public:
+    MainWindow *mw;
+    QPropertyAnimation *animation;
 
 private:
+    Ui::MainGameWindow *ui;
     int width;
     int height;
-    Ui::MainGameWindow *ui;
-    MainWindow *mw;
     AnimatedGraphicsItem *background;
     QGraphicsScene *scene;
     QScrollBar *scroll;
-    QPropertyAnimation *animation;
     int fly_speed;
     Spaceship *spaceship;
     QTimer *timer;
     QGraphicsPixmapItem *message;
     int waveCounter;
+    GameWindow *qgw;
+    bool openedQuitWindow;
 };
 
 #endif // MAINGAMEWINDOW_H

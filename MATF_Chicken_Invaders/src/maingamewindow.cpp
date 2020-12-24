@@ -1,17 +1,21 @@
 #include "headers/maingamewindow.h"
 #include "ui_maingamewindow.h"
 #include <QScreen>
+#include <QFocusEvent>
+
+#include "headers/quitgamewindow.h"
 
 MainGameWindow::MainGameWindow(MainWindow *parent) :
-    ui(new Ui::MainGameWindow),
     mw(parent),
+    ui(new Ui::MainGameWindow),
     scene(new QGraphicsScene(this)),
     scroll(new QScrollBar),
     fly_speed(20000),
     spaceship(new Spaceship(mw)),
     timer(new QTimer(this)),
     message(new QGraphicsPixmapItem),
-    waveCounter(0)
+    waveCounter(0),
+    openedQuitWindow(false)
 {
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
@@ -43,6 +47,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
+
     start();
 }
 
@@ -57,9 +62,9 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 || waveCounter == 2 || waveCounter == 3){
-        SideChickenGame *scg = new SideChickenGame(mw, scene, 3);
-        scg->start();
-        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 3, 3);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -77,6 +82,12 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
     deleteLater();
+}
+
+void MainGameWindow::continueGame()
+{
+    mw->setFreezeScene(false);
+    animation->start();
 }
 
 void MainGameWindow::victory()
@@ -378,18 +389,23 @@ void MainGameWindow::setUserMessage()
     QTimer::singleShot(3000, this, &MainGameWindow::removeMessage);
 }
 
+void MainGameWindow::openQuitGameWindow()
+{
+    QuitGameWindow *qgw = new QuitGameWindow(this);
+    //qgw->setWindowFlags(Qt::CustomizeWindowHint);
+    //qgw->setAttribute(Qt::WA_TranslucentBackground);
+    openedQuitWindow = true;
+    qgw->exec();
+}
+
 void MainGameWindow::keyPressEvent(QKeyEvent *event)
 {
+
     if(event->key() == Qt::Key_Escape){
-        for(size_t i=0, n = scene->items().size(); i<n; i++)
-        {
-            scene->items()[i]->setEnabled(false);
-        }
-        scene->clear();
-        mw->backGroundMusic->play();
-        mw->gamePrepareSound->stop();
-        mw->setDesiredLevel(1);
-        delete this;
+        mw->setFreezeScene(true);
+        animation->pause();
+        mw->pauseAllSounds();
+        openQuitGameWindow();
     }
     if(event->key() == Qt::Key_Space){
         if(spaceship->getThrowingAllowed()){
@@ -405,14 +421,12 @@ void MainGameWindow::keyPressEvent(QKeyEvent *event)
         spaceship->setDirection(1);
         spaceship->start_moving_timer();
     }
-    if(event->key() == Qt::Key_F){
-        mw->setFreezeScene(true);
-        animation->pause();
+    if(event->key() == Qt::Key_Escape){
+        emit esc();
+        openedQuitWindow = false;
+        continueGame();
     }
-    if(event->key() == Qt::Key_B){
-        mw->setFreezeScene(false);
-        animation->start();
-    }
+
 
     QWidget::keyPressEvent(event);
 }
@@ -423,6 +437,7 @@ void MainGameWindow::keyReleaseEvent(QKeyEvent *event)
     {
     case Qt::Key_A: // change it to be LeftArrow
         spaceship->setDirection(0);
+
         spaceship->stop_moving_timer();
         break;
     case Qt::Key_D: // change it to be RightArrow

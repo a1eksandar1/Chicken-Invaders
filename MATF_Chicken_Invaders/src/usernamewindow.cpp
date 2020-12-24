@@ -21,17 +21,17 @@ void UsernameWindow::onCancel()
     delete this;
 }
 
-void UsernameWindow::resizeEvent(QResizeEvent *event)
-{
-    QPixmap bkgnd(":images/backgrounds/usernameWindow.png");
-    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-    QPalette palette;
-    palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);
+//void UsernameWindow::resizeEvent(QResizeEvent *event)
+//{
+//    QPixmap bkgnd(":images/backgrounds/usernameWindow.png");
+//    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+//    QPalette palette;
+//    palette.setBrush(QPalette::Window, bkgnd);
+//    this->setPalette(palette);
 
 
-    QDialog::resizeEvent(event);
-}
+//    QDialog::resizeEvent(event);
+//}
 
 UsernameWindow::UsernameWindow(MainWindow *parent) :
     QDialog(parent),
