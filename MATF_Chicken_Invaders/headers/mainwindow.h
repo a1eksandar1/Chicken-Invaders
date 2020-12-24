@@ -30,13 +30,12 @@ public:
     void playBackgroundMusic();
     void setVolume(int volume);
     int getVolume() const;
-    int getUserCurrentLevel() const;
-    void setUserCurrentLevel(int level);
     int getDesiredLevel() const;
     void setDesiredLevel(int value);
     int getReachedLevel() const;
     void setReachedLevel(int value);
     void openGameWindow();
+    void openChooseLevelWindow();
     void closeGameWindow();
     void setBackGroundMusic(QString str);
     void stopBackGroundMusic();
@@ -44,7 +43,8 @@ public:
     void setPlanetClicked(bool value);    
     int getScore() const;
     void setScore(int value);
-
+    bool getFreezeScene() const;
+    void setFreezeScene(bool value);
 
 private:
     void setMusic();
@@ -59,16 +59,17 @@ public:
     QMediaPlayer* explosionSound;
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
+    QMediaPlayer* victorySound;
     int score;
 
 private:
     Ui::MainWindow *ui;
     bool hard;
     int volume;
-    int userCurrentLevel;
     int desiredLevel;
     int reachedLevel;
     bool planetClicked;
+    bool freezeScene;
 
 };
 #endif // MAINWINDOW_H

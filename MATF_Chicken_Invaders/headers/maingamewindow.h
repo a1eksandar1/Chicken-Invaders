@@ -39,15 +39,13 @@ signals:
     void gameStart();
 
 public slots:
-    void slow_down();
     void removeMessage();
-    void chickenMatrixGame();
-    void meteorShowerGame();
-    void SideMeteorShowerGame();
+    void chickenMatrixGame_level1();
     void stopPrepareMusic();
     void playPrepareMusic();
     void setUserMessage();
     void endOfGame();
+    void victory();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -83,7 +81,7 @@ private:
     Spaceship *spaceship;
     QTimer *timer;
     QGraphicsPixmapItem *message;
-    int localLevelCounter;
+    int waveCounter;
 };
 
 #endif // MAINGAMEWINDOW_H

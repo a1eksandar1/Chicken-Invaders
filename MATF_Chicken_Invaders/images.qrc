@@ -51,7 +51,6 @@
         <file>backgrounds/splash.png</file>
         <file>backgrounds/volume_label.png</file>
         <file>backgrounds/matf_chicken.ico</file>
-        <file>backgrounds/background.png</file>
         <file>buttons/cancel_button_pressed.png</file>
         <file>buttons/ok_button_pressed.png</file>
         <file>buttons/skip_button_pressed.png</file>
@@ -67,6 +66,7 @@
         <file>chicken/drumstick.png</file>
         <file>meteor/meteorShot.png</file>
         <file>backgrounds/wave1.png</file>
+        <file>backgrounds/congratulations.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

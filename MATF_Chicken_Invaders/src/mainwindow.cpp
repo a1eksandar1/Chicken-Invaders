@@ -57,11 +57,7 @@ void MainWindow::onPlay()
         uw->setReady(false);
     }
     else if(uw->levelChooseReady()){
-        planetClicked = false;
-        ChooseLevelWindow* lw = new ChooseLevelWindow(this);
-
-        lw->setWindowFlags(Qt::Window);
-        lw->showFullScreen();
+        openChooseLevelWindow();
     }
 }
 
@@ -78,10 +74,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     hard(false),
     volume(20),
-    userCurrentLevel(1),
     desiredLevel(1),
-    reachedLevel(1),
-    planetClicked(false)
+    reachedLevel(2),
+    planetClicked(false),
+    freezeScene(false)
 {
     ui->setupUi(this);
     setMusic();
@@ -123,16 +119,6 @@ int MainWindow::getVolume() const
     return volume;
 }
 
-int MainWindow::getUserCurrentLevel() const
-{
-    return userCurrentLevel;
-}
-
-void MainWindow::setUserCurrentLevel(int level)
-{
-    userCurrentLevel = level;
-}
-
 int MainWindow::getDesiredLevel() const
 {
     return desiredLevel;
@@ -160,6 +146,15 @@ void MainWindow::openGameWindow()
 
     mgw->setWindowFlags(Qt::Window);
     mgw->showFullScreen();
+}
+
+void MainWindow::openChooseLevelWindow()
+{
+    planetClicked = false;
+    ChooseLevelWindow* lw = new ChooseLevelWindow(this);
+
+    lw->setWindowFlags(Qt::Window);
+    lw->showFullScreen();
 }
 
 void MainWindow::setBackGroundMusic(QString str)
@@ -192,6 +187,7 @@ void MainWindow::setMusic()
     giftSound = new QMediaPlayer;
     gameOverSound = new QMediaPlayer;
     gamePrepareSound = new QMediaPlayer;
+    victorySound = new QMediaPlayer;
 
     backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme.mp3"));
     chickenSound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
@@ -201,6 +197,7 @@ void MainWindow::setMusic()
     explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
     gameOverSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
     gamePrepareSound->setMedia(QUrl("qrc:/sounds/sounds/prepare.mp3"));
+    victorySound->setMedia(QUrl("qrc:/sounds/sounds/Victory.mp3"));
 
     backGroundMusic->setVolume(volume);
     chickenSound->setVolume(volume);
@@ -210,6 +207,7 @@ void MainWindow::setMusic()
     giftSound->setVolume(volume);
     projectileSound->setVolume(volume);
     gamePrepareSound->setVolume(volume);
+    victorySound->setVolume(volume);
 
     backGroundMusic->play();
 }
@@ -219,6 +217,16 @@ void MainWindow::setConnects()
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
+}
+
+bool MainWindow::getFreezeScene() const
+{
+    return freezeScene;
+}
+
+void MainWindow::setFreezeScene(bool value)
+{
+    freezeScene = value;
 }
 
 int MainWindow::getScore() const

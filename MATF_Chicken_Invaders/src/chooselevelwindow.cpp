@@ -9,6 +9,7 @@ void ChooseLevelWindow::keyPressEvent(QKeyEvent *event)
     switch(event->key())
     {
     case Qt::Key_Escape:
+        mw->setDesiredLevel(1);
         delete this;
         break;
     default:
@@ -78,7 +79,7 @@ void ChooseLevelWindow::onNeptune()
     ship->setBoundary_y(height - height/3.5);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(10);
-    mw->setDesiredLevel(1);
+    mw->setDesiredLevel(2);
 }
 
 void ChooseLevelWindow::onUranus()
@@ -87,7 +88,7 @@ void ChooseLevelWindow::onUranus()
     ship->setBoundary_y(height - height/3.4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(10);
-    mw->setDesiredLevel(1);
+    mw->setDesiredLevel(3);
 }
 
 void ChooseLevelWindow::onSaturn()
@@ -96,6 +97,7 @@ void ChooseLevelWindow::onSaturn()
     ship->setBoundary_y(height - height/3.4);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(10);
+    mw->setDesiredLevel(4);
 }
 
 void ChooseLevelWindow::onJupiter()
@@ -104,6 +106,7 @@ void ChooseLevelWindow::onJupiter()
     ship->setBoundary_y(height - height/3.2);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(9);
+    mw->setDesiredLevel(5);
 }
 
 void ChooseLevelWindow::onMars()
@@ -112,6 +115,7 @@ void ChooseLevelWindow::onMars()
     ship->setBoundary_y(height - height/3.9);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(9);
+    mw->setDesiredLevel(6);
 }
 
 void ChooseLevelWindow::onEarth()
@@ -120,6 +124,7 @@ void ChooseLevelWindow::onEarth()
     ship->setBoundary_y(height - height/3.5);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(9);
+    mw->setDesiredLevel(7);
 }
 
 void ChooseLevelWindow::onVenus()
@@ -128,6 +133,7 @@ void ChooseLevelWindow::onVenus()
     ship->setBoundary_y(height - height/3.68);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(9);
+    mw->setDesiredLevel(8);
 }
 
 void ChooseLevelWindow::onMercury()
@@ -136,6 +142,7 @@ void ChooseLevelWindow::onMercury()
     ship->setBoundary_y(height - height/4.1);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(9);
+    mw->setDesiredLevel(9);
 }
 
 void ChooseLevelWindow::closeWindow()
@@ -170,8 +177,8 @@ ChooseLevelWindow::ChooseLevelWindow(MainWindow *parent) :
 
     addElementsOnScene();
 
-    QGraphicsPixmapItem *pm = scene->addPixmap(QPixmap(":images/backgrounds/choosethelevel.png"));
-    pm->setPos(width/3.3,height/4);
+    QGraphicsPixmapItem *pm = scene->addPixmap(QPixmap(":images/backgrounds/choosethelevel.png").scaled(width,height));
+    pm->setPos(0,0);
 
     connects();
 }

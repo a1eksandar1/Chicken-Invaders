@@ -102,41 +102,43 @@ void Chicken::advance(int step)
         return;
     }
 
-    if(imgChange == 0)
-        setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
-    if(imgChange == 1)
-        setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(120,120,Qt::KeepAspectRatio));
-    if(imgChange == 3)
-        return;
-    imgChange = (imgChange + 1)%2;
-    int random_number1 = rand() % 300;
-    int random_number2 = rand() % 1000;
-    if (random_number1 == 5)
-    {
-        Egg *egg = new Egg(mw);
-        egg->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(egg);
+    if(!mw->getFreezeScene()){
+
+        if(imgChange == 0)
+            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
+        if(imgChange == 1)
+            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+        if(imgChange == 3)
+            return;
+        imgChange = (imgChange + 1)%2;
+        int random_number1 = rand() % 300;
+        int random_number2 = rand() % 1000;
+        if (random_number1 == 5)
+        {
+            Egg *egg = new Egg(mw);
+            egg->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(egg);
+
+        }
+
+        if (random_number2 == 5)
+        {
+            Gift * gift = new Gift(mw);
+            gift->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(gift);
+
+        }
+
+        if(pos().x() + 150*(7-m) > width - 150)
+            orientation = -10;
+
+        if(pos().x() - 150*(m) < 0)
+            orientation = 10;
+
+        if(pos().y() < 120*n + 10)
+            setPos(pos().x()+orientation,pos().y()+10);
+        else
+            setPos(pos().x()+orientation,pos().y());
 
     }
-
-    if (random_number2 == 5)
-    {
-        Gift * gift = new Gift(mw);
-        gift->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(gift);
-
-    }
-
-    if(pos().x() + 150*(7-m) > width - 150)
-        orientation = -10;
-
-    if(pos().x() - 150*(m) < 0)
-        orientation = 10;
-
-    if(pos().y() < 120*n + 10)
-        setPos(pos().x()+orientation,pos().y()+10);
-    else
-        setPos(pos().x()+orientation,pos().y());
-
-
 }

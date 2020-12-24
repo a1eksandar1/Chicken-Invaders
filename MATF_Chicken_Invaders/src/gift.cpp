@@ -30,12 +30,13 @@ Gift::Gift(MainWindow *parent) :
 
 void Gift::move()
 {
-    setPos(x(), y()+10);
-    if(pos().y() > height)
-    {
-        clean();
+    if(!mw->getFreezeScene()){
+        setPos(x(), y()+10);
+        if(pos().y() > height)
+        {
+            clean();
+        }
     }
-
     colision();
 }
 
