@@ -12,7 +12,7 @@ class SideChicken: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    SideChicken(MainWindow *parent, int n, int num);
+    SideChicken(MainWindow *parent, int n);
     ~SideChicken();
 
 signals:
@@ -32,7 +32,7 @@ public:
     void move1();
     void move();
 private:
-    int m, n, num;
+    int n, num;
     int imgChange;
     int orientation=10;
     int width, height;

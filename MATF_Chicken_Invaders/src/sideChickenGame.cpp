@@ -2,14 +2,14 @@
 #include <QGraphicsScene>
 
 SideChickenGame::SideChickenGame(MainWindow *parent, QGraphicsScene *scene, int n):
-    mw(parent),scene(scene), m(m), n(n), chickenCounter(m*n)
+    mw(parent),scene(scene), n(n), chickenCounter(n)
 {
         matrix.resize(n);
 
 
             for (int i = 0; i < n; i++)
             {
-                matrix[i] = new SideChicken(mw,i,n);
+                matrix[i] = new SideChicken(mw,i);
             }
 
 

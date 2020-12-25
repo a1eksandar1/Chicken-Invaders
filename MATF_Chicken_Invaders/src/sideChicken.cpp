@@ -8,7 +8,7 @@
 #include <QApplication>
 #include "headers/drumstick.h"
 
-SideChicken::SideChicken(MainWindow *parent, int n, int num) :
+SideChicken::SideChicken(MainWindow *parent, int n) :
     mw(parent)
 {
 
@@ -18,7 +18,7 @@ SideChicken::SideChicken(MainWindow *parent, int n, int num) :
     t = 4*n*3.14/36;
     scale = 2 / ( 3 - cos(2 * t)) * 600;
 
-    setPos(700 + scale * cos(t), 200+ scale * sin(2 * t)/2);
+    setPos(width/2 + scale * cos(t), 200+ scale * sin(2 * t)/2);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -124,11 +124,6 @@ void SideChicken::advance(int step)
 
     }
 
-    if(pos().x() + 150*(7-m) > width - 150)
-        orientation = -10;
-
-    if(pos().x() - 150*(m) < 0)
-        orientation = 10;
 
 //    if(pos().y() < 120*n + 10)
 //        setPos(pos().x()+orientation,pos().y()+10);
@@ -160,7 +155,7 @@ void SideChicken::advance(int step)
     imgChange = (imgChange + 1)%2;
     scale = 2 / ( 3 - cos(2 * t)) * 600;
 
-    setPos(700 + scale * cos(t), 200+ scale * sin(2 * t)/2);
+    setPos(width/2 + scale * cos(t), 200+ scale * sin(2 * t)/2);
     t = t + 3.14/36;
     }
     else
@@ -168,7 +163,7 @@ void SideChicken::advance(int step)
         t = 0;
         scale = 2 / ( 3 - cos(2 * t)) * 600;
 
-        setPos(700 + scale * cos(t), 200+ scale * sin(2 * t)/2);
+        setPos(width/2 + scale * cos(t), 200+ scale * sin(2 * t)/2);
          t = t + 3.14/36;
     }
 }
