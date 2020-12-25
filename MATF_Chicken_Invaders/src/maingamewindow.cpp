@@ -44,6 +44,8 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     scene->setFocus();
     scene->setSceneRect(0,0,width-30,height-30);
 
+
+
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
@@ -392,9 +394,11 @@ void MainGameWindow::setUserMessage()
 void MainGameWindow::openQuitGameWindow()
 {
     QuitGameWindow *qgw = new QuitGameWindow(this);
-    //qgw->setWindowFlags(Qt::CustomizeWindowHint);
+    qgw->setWindowFlags(Qt::CustomizeWindowHint);
     //qgw->setAttribute(Qt::WA_TranslucentBackground);
     openedQuitWindow = true;
+
+    qgw->setFocus();
     qgw->exec();
 }
 

@@ -172,13 +172,13 @@ void MainWindow::setPlanetClicked(bool value)
 void MainWindow::pauseAllSounds()
 {
     backGroundMusic->pause();
-    projectileSound->pause();;
+    projectileSound->pause();
     eggSound->pause();
     explosionSound->pause();
-    chickenSound->pause();;
-    giftSound->pause();;
-    gameOverSound->pause();;
-    gamePrepareSound->pause();;
+    chickenSound->pause();
+    giftSound->pause();
+    gameOverSound->pause();
+    gamePrepareSound->pause();
     victorySound->pause();
 }
 

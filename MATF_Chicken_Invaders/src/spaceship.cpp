@@ -129,20 +129,19 @@ void Spaceship::collision()
         {
             auto meteor = static_cast<Meteor*>(colItem);
             meteor->clean();
-            auto explosionSound = new QMediaPlayer;
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                mw->explosionSound->play();
                 emit spaceshipDestroyed();
                 delete this;
             }
             else
             {
                 setPos(getStartingXPos(), getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                mw->explosionSound->play();
             }
 
             return;
@@ -151,20 +150,19 @@ void Spaceship::collision()
         {
             auto egg = static_cast<Egg*>(colItem);
             egg->clean();
-            auto explosionSound = new QMediaPlayer;
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                mw->explosionSound->play();
                 emit spaceshipDestroyed();
                 delete this;
             }
             else
             {
                 setPos(getStartingXPos(), getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                mw->explosionSound->play();
             }
 
             return;
@@ -189,20 +187,19 @@ void Spaceship::collision()
         {
             auto bc = static_cast<BigChicken*>(colItem);
             bc->setPos((bc->getWidth()-2)/2-250, 0);
-            auto explosionSound = new QMediaPlayer;
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                explosionSound->play();
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                mw->explosionSound->play();
                 emit spaceshipDestroyed();
                 delete this;
             }
             else
             {
                 setPos(getStartingXPos(), getStartingYPos());
-                explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                explosionSound->play();
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                mw->explosionSound->play();
             }
 
             return;

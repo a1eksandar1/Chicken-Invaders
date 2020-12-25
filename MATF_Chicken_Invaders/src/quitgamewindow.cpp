@@ -1,5 +1,6 @@
 #include "headers/quitgamewindow.h"
 #include "ui_quitgamewindow.h"
+#include <QFocusEvent>
 
 void QuitGameWindow::onOk()
 {
@@ -40,6 +41,8 @@ QuitGameWindow::QuitGameWindow(MainGameWindow *parent) :
     mgw(parent)
 {
     ui->setupUi(this);
+
+
 
     connect(ui->ok_button, &QPushButton::clicked, this, &QuitGameWindow::onOk);
     connect(ui->cancel_button, &QPushButton::clicked, this, &QuitGameWindow::onCancel);
