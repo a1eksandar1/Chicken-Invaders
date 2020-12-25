@@ -53,7 +53,6 @@ void sideMeteorShowerGame::onSideMeteorShot()
 
     if(getMeteorCounter() == 0)
     {
-        qDebug() << "Radi";
         emit closeSideMeteorShowerGame();
     }
 }
