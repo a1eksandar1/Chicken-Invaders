@@ -5,13 +5,14 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include "headers/bigegg.h"
+#include "headers/mainwindow.h"
 
 class bigEggBullets : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    bigEggBullets(QTimer* timer, int num); // broj oznacava u kom smeru ide metak
+    bigEggBullets(MainWindow *parent, QTimer* timer, int num); // broj oznacava u kom smeru ide metak
     void collision();
 
 public slots:
@@ -22,6 +23,7 @@ private:
     int number;
     int width;
     int height;
+    MainWindow *mw;
 };
 
 #endif // BIGEGGBULLETS_H

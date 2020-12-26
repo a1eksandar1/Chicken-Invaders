@@ -3,6 +3,8 @@
 #include <QScreen>
 #include <QFocusEvent>
 
+#include "headers/bigegg.h"
+#include "headers/bigeggbullets.h"
 #include "headers/quitgamewindow.h"
 
 MainGameWindow::MainGameWindow(MainWindow *parent) :
@@ -44,8 +46,6 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     scene->setFocus();
     scene->setSceneRect(0,0,width-30,height-30);
 
-
-
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
@@ -63,15 +63,23 @@ void MainGameWindow::removeMessage()
 
 void MainGameWindow::slot_level1()
 {
-    if(waveCounter == 1 || waveCounter == 3){
+    if(waveCounter == 1 ){
         ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 3, 3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 2){
+    else if(waveCounter == 3){
         sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,7,5);
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
+    }
+    else if(waveCounter == 2){
+        bigEgg *egg = new bigEgg(mw);
+        egg->setPos(width/2-210, pos().y() + 10);
+        scene->addItem(egg);
+
+        egg->throw_bullets();
+        connect(egg, &bigEgg::endOfBigEggGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -417,23 +425,24 @@ void MainGameWindow::keyPressEvent(QKeyEvent *event)
         openQuitGameWindow();
     }
     if(event->key() == Qt::Key_Space){
-        if(spaceship->getThrowingAllowed()){
-            spaceship->setThrowingAllowed(false);
-            spaceship->throw_projectile();
+        if(!mw->getFreezeScene()){
+            if(spaceship->getThrowingAllowed()){
+                spaceship->setThrowingAllowed(false);
+                spaceship->throw_projectile();
+            }
         }
     }
     if(event->key() == Qt::Key_A){ // change it to be LeftArrow
-        spaceship->setDirection(-1);
-        spaceship->start_moving_timer();
+        if(!mw->getFreezeScene()){
+            spaceship->setDirection(-1);
+            spaceship->start_moving_timer();
+        }
     }
     if(event->key() == Qt::Key_D){ // change it to be LeftArrow
-        spaceship->setDirection(1);
-        spaceship->start_moving_timer();
-    }
-    if(event->key() == Qt::Key_Escape){
-        emit esc();
-        openedQuitWindow = false;
-        continueGame();
+        if(!mw->getFreezeScene()){
+            spaceship->setDirection(1);
+            spaceship->start_moving_timer();
+        }
     }
 
 
