@@ -78,6 +78,9 @@
         <file>chicken/leftsideChicken2.png</file>
         <file>chicken/rightsideChicken2.png</file>
         <file>backgrounds/transparent.png</file>
+        <file>spaceships/lives3.png</file>
+        <file>spaceships/lives2.png</file>
+        <file>spaceships/lives1.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

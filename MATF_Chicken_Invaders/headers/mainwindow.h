@@ -11,6 +11,8 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QMediaPlayer>
+#include <headers/score.h>
+#include <headers/lives.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,10 +52,11 @@ public:
     void stopBackGroundMusic();
     bool getPlanetClicked() const;
     void setPlanetClicked(bool value);    
-    int getScore() const;
-    void setScore(int value);
     bool getFreezeScene() const;
     void setFreezeScene(bool value);
+    Score* getScore();
+    void increaseScore();
+    Lives* getLives();
 
 private:
     void setMusic();
@@ -69,7 +72,6 @@ public:
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
     QMediaPlayer* victorySound;
-    int score;
 
 private:
     Ui::MainWindow *ui;
@@ -79,6 +81,8 @@ private:
     int reachedLevel;
     bool planetClicked;
     bool freezeScene;
+    Score* score;
+    Lives* lives;
 
 };
 #endif // MAINWINDOW_H

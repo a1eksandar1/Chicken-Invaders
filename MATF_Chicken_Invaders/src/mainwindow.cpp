@@ -62,14 +62,15 @@ void MainWindow::onOptions()
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    score(0),
     ui(new Ui::MainWindow),
     hard(false),
     volume(20),
     desiredLevel(1),
     reachedLevel(2),
     planetClicked(false),
-    freezeScene(false)
+    freezeScene(false),
+    score(new Score()),
+    lives(new Lives())
 {
     ui->setupUi(this);
     setMusic();
@@ -182,6 +183,21 @@ void MainWindow::pauseAllSounds()
     victorySound->pause();
 }
 
+Score *MainWindow::getScore()
+{
+    return score;
+}
+
+void MainWindow::increaseScore()
+{
+    score->increaseScore();
+}
+
+Lives *MainWindow::getLives()
+{
+    return lives;
+}
+
 void MainWindow::setMusic()
 {
     backGroundMusic = new QMediaPlayer;
@@ -232,14 +248,4 @@ bool MainWindow::getFreezeScene() const
 void MainWindow::setFreezeScene(bool value)
 {
     freezeScene = value;
-}
-
-int MainWindow::getScore() const
-{
-    return score;
-}
-
-void MainWindow::setScore(int value)
-{
-    score = value;
 }

@@ -64,22 +64,19 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 ){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 3, 3);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 3 || waveCounter == 2){
+    else if(waveCounter == 2){
         sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,7,5);
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 5){
-        bigEgg *egg = new bigEgg(mw);
-        egg->setPos(width/2-210, pos().y() + 10);
-        scene->addItem(egg);
-
-        egg->throw_bullets();
-        connect(egg, &bigEgg::endOfBigEggGame, this, &MainGameWindow::setUserMessage);
+    else if(waveCounter == 3){
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 4);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -237,6 +234,15 @@ void MainGameWindow::start()
 
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
+    mw->getScore()->setPos(pos().x()+20, pos().y());
+
+    // lisov menjao ovaj deo koda
+    mw->getScore()->setPos(pos().x()+10, pos().y());
+    scene->addItem(mw->getScore());
+    mw->getLives()->setPos(width - 130, -20);
+    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
+    scene->addItem(mw->getLives());
+    // do ovde
 
     if(mw->getDesiredLevel() == 1){
         level1();
