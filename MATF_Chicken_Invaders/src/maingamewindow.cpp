@@ -68,12 +68,12 @@ void MainGameWindow::slot_level1()
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 3){
+    else if(waveCounter == 3 || waveCounter == 2){
         sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,7,5);
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 2){
+    else if(waveCounter == 5){
         bigEgg *egg = new bigEgg(mw);
         egg->setPos(width/2-210, pos().y() + 10);
         scene->addItem(egg);
