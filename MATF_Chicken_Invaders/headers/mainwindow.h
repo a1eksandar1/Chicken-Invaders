@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QSqlDatabase>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,6 +46,7 @@ public:
     void setPlanetClicked(bool value);    
     int getScore() const;
     void setScore(int value);
+    void connectToDatabase();
 
 
 private:
@@ -61,6 +63,9 @@ public:
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
     int score;
+    QSqlDatabase mydb;
+    QString active_player;
+
 
 private:
     Ui::MainWindow *ui;
@@ -70,6 +75,7 @@ private:
     int desiredLevel;
     int reachedLevel;
     bool planetClicked;
+
 
 };
 #endif // MAINWINDOW_H

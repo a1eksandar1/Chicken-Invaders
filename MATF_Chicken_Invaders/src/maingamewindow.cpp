@@ -2,6 +2,7 @@
 #include "ui_maingamewindow.h"
 #include <QScreen>
 #include "headers/chicken.h"
+#include "headers/usernamewindow.h"
 
 void MainGameWindow::slow_down()
 {

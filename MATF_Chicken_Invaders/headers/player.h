@@ -6,6 +6,10 @@ class Player
 {
 public:
     Player(std::string name, int score, int level);
+
+    std::string getName();
+    int getScore();
+    int getLevel();
 private:
     std::string name;
     int score;

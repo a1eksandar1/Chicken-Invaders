@@ -26,11 +26,15 @@ public:
 
     void onBack();
     void LoadData();
+    void insertPlayer(Player player);
+
+private slots:
+    void on_SqlButton_clicked();
 
 private:
     Ui::HofWindow *ui;
     MainWindow* mw;
-    QSqlDatabase mydb;
+//    QSqlDatabase mydb;
 };
 
 #endif // HOFWINDOW_H

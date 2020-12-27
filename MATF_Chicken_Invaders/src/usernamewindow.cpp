@@ -1,8 +1,51 @@
 #include "headers/usernamewindow.h"
 #include "ui_usernamewindow.h"
+#include "headers/player.h"
+#include "headers/hofwindow.h"
 
 void UsernameWindow::onOk()
 {
+
+    QString name = ui->lineEdit->text();
+
+
+
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    qry->prepare("select * from players where name = (:name)");
+    qry->bindValue(":name", name);
+    if(qry->exec()){
+        qry->next();
+        if (!qry->isValid()){
+            int score = 0;
+            int level = 1;
+            bool hard = false;
+            qry->prepare("insert into Players (name, score, level) values (:name, :score, :level)");
+            qry->bindValue(":name", name);
+            qry->bindValue(":score", score);
+            qry->bindValue(":level", level);
+            if(qry->exec()){
+                // todo print
+            }
+            else{
+                // todo print
+            }
+            mydb.commit();
+    }
+    else {
+//        ui->label->setText(qry->value(2).toString());
+        int score = qry->value(1).toInt();
+        int level = qry->value(2).toInt();
+        mw->setReachedLevel(level);
+        }
+    }
+    else{
+        ui->label->setText("puca prvi exec");
+    }
+
+    mw->active_player = name;
+//    ui->label->setText(mw->active_player);
+
     if(mw->getReachedLevel() == 1)
         m_ready = true;
     else

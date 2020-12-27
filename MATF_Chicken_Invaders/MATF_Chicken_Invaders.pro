@@ -65,7 +65,7 @@ FORMS += \
     forms/usernamewindow.ui \
     forms/gamewindow.ui \
     forms/optionswindow.ui \
-    forms/maingamewindow.ui
+    forms/maingamewindow.ui \
     forms/hofwindow.ui
 
 # Default rules for deployment.

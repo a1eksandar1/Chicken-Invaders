@@ -94,6 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setMusic();
     setConnects();
+    connectToDatabase();
 }
 
 MainWindow::~MainWindow()
@@ -238,4 +239,10 @@ int MainWindow::getScore() const
 void MainWindow::setScore(int value)
 {
     score = value;
+}
+
+void MainWindow::connectToDatabase(){
+    this->mydb = QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/cole/Desktop/Projects/15-matf-chicken-invaders/MATF_Chicken_Invaders/database.db");
+    mydb.open();
 }
