@@ -40,7 +40,7 @@ void UsernameWindow::onOk()
         }
     }
     else{
-        ui->label->setText("puca prvi exec");
+//        ui->label->setText("puca prvi exec");
     }
 
     mw->active_player = name;
