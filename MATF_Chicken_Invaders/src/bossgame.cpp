@@ -1,11 +1,10 @@
 #include "headers/bossgame.h"
 #include <QGraphicsScene>
 
-BossGame::BossGame(MainWindow *parent, QGraphicsScene *scene):
-    mw(parent),scene(scene)
+BossGame::BossGame(MainWindow *parent, QGraphicsScene *scene, int numOfShots):
+    mw(parent),scene(scene), numOfShots(numOfShots)
 {
-
-   bChicken = new BigChicken(mw, 0);
+   bChicken = new BigChicken(mw, numOfShots);
 }
 
 BossGame::~BossGame()
@@ -15,9 +14,7 @@ BossGame::~BossGame()
 
 void BossGame::start()
 {
-
     scene->addItem(bChicken);
-
 }
 
 void BossGame::onChickenDeath()
@@ -41,9 +38,6 @@ void BossGame::setChickenCounter(int value)
 
 void BossGame::clear()
 {
-
-
-            scene->removeItem(bChicken);
-            bChicken = nullptr;
-
+    scene->removeItem(bChicken);
+    bChicken = nullptr;
 }

@@ -15,7 +15,7 @@ class BossGame: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    BossGame(MainWindow *parent, QGraphicsScene *scene);
+    BossGame(MainWindow *parent, QGraphicsScene *scene, int numOfShots);
     ~BossGame();
     void start();
 
@@ -35,6 +35,7 @@ private:
     MainWindow *mw;
     QGraphicsScene *scene;
     int chickenCounter;
+    int numOfShots;
 
 };
 #endif // CHICKENMATRIXGAME_H

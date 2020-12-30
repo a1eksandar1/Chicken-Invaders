@@ -10,11 +10,10 @@
 Chicken::Chicken(MainWindow *parent, int m, int n, int num) :
     mw(parent)
 {
-
     this->m = m;
     this->n = n;
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
 
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
     setPos(150*m + 20, -120*(num-n) - 10);
 
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -24,8 +23,6 @@ Chicken::Chicken(MainWindow *parent, int m, int n, int num) :
 
     this->width = width;
     this->height = height;
-
-
 }
 
 Chicken::~Chicken()
@@ -72,7 +69,6 @@ void Chicken::die()
         drumstick->setPos(pos().x(),pos().y()+100);
         scene()->addItem(drumstick);
 
-
         QTimer *cleanTimer = new QTimer(this);
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(200);
@@ -110,7 +106,9 @@ void Chicken::advance(int step)
             setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(120,120,Qt::KeepAspectRatio));
         if(imgChange == 3)
             return;
+
         imgChange = (imgChange + 1)%2;
+
         int random_number1 = rand() % 300;
         int random_number2 = rand() % 1000;
         if (random_number1 == 5)
@@ -120,7 +118,6 @@ void Chicken::advance(int step)
             scene()->addItem(egg);
 
         }
-
         if (random_number2 == 5)
         {
             Gift * gift = new Gift(mw);
@@ -139,6 +136,5 @@ void Chicken::advance(int step)
             setPos(pos().x()+orientation,pos().y()+10);
         else
             setPos(pos().x()+orientation,pos().y());
-
     }
 }

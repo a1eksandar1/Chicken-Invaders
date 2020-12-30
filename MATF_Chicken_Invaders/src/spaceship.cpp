@@ -130,7 +130,7 @@ void Spaceship::collision()
         if(typeid (*colItem) == typeid (Meteor))
         {
             auto meteor = static_cast<Meteor*>(colItem);
-            meteor->clean();
+            meteor->die();
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
