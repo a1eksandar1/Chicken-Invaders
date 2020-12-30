@@ -1,6 +1,6 @@
 #include "headers/player.h"
 
-Player::Player(std::string name, int score, int level)
+Player::Player(std::string name, int score, int level, bool difficulty)
 {
 
 }
@@ -13,4 +13,7 @@ int Player::getScore(){
 }
 int Player::getLevel(){
     return this->level;
+}
+bool Player::getDifficulty(){
+    return this->difficulty;
 }

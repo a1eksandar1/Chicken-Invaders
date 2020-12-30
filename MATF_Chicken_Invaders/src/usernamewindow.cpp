@@ -14,37 +14,27 @@ void UsernameWindow::onOk()
     QSqlQuery *qry = new QSqlQuery(mydb);
     qry->prepare("select * from players where name = (:name)");
     qry->bindValue(":name", name);
-    if(qry->exec()){
-        qry->next();
+    qry->exec();
+    qry->next();
         if (!qry->isValid()){
             int score = 0;
             int level = 1;
-            bool hard = false;
-            qry->prepare("insert into Players (name, score, level) values (:name, :score, :level)");
+            bool difficulty = false;
+            qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
             qry->bindValue(":name", name);
             qry->bindValue(":score", score);
             qry->bindValue(":level", level);
-            if(qry->exec()){
-                // todo print
-            }
-            else{
-                // todo print
-            }
+            qry->bindValue(":difficulty", difficulty);
+            qry->exec();
             mydb.commit();
-    }
-    else {
-//        ui->label->setText(qry->value(2).toString());
-        int score = qry->value(1).toInt();
-        int level = qry->value(2).toInt();
-        mw->setReachedLevel(level);
         }
-    }
-    else{
-//        ui->label->setText("puca prvi exec");
-    }
+        else {
+            int level = qry->value(2).toInt();
+            mw->setReachedLevel(level);
+        }
+
 
     mw->active_player = name;
-//    ui->label->setText(mw->active_player);
 
     if(mw->getReachedLevel() == 1)
         m_ready = true;

@@ -4,6 +4,7 @@
 #include "headers/chicken.h"
 #include "headers/usernamewindow.h"
 #include <QFocusEvent>
+#include <QSqlQuery>
 
 #include "headers/bigegg.h"
 #include "headers/bigeggbullets.h"
@@ -110,7 +111,24 @@ void MainGameWindow::victory()
         mw->setReachedLevel(mw->getReachedLevel()+1);
     mw->victorySound->stop();
     mw->backGroundMusic->play();
+
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QString active_player = mw->active_player;
+    Score score = mw->getScore();
+    int value = score.getScore();
+    qry->prepare("update players set score = :score and level = :level where name = :active_player");
+    qry->bindValue(":active_player", active_player);
+    qry->bindValue(":score", value);
+    qry->bindValue(":level", mw->getReachedLevel());
+    qry->exec();
+
     mw->openChooseLevelWindow();
+
+
+
+
+
     deleteLater();
 }
 
