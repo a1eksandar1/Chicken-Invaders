@@ -15,24 +15,32 @@ Meteor::Meteor(MainWindow *parent, int m, int n, int v)
     this->m = m;
     this->n = n;
 
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    this->width = width;
+    this->height = height;
+
     int random1= rand() % 3;
     int random2 = rand() % 5;
 
     this->random1 = random1;
     this->random2 = random2;
 
-    this->x = (random1 + 1)*30;
+    this->x = (random1 + 1)*(width/35);
 
 
     setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,x,Qt::KeepAspectRatio));
 
     if(v == 1)
     {
-       setPos(150*(m+random1) + 50*(random2), -150*(n+random2) + 20*random1);
+       setPos(200*(m+1) + random2*5, -200*(n+1) + random2*5);
     }
     else if (v == 2)
     {
-        setPos(-100*sqrt(2)*(n+1) + 100, -150*(m+1)*(random1 + 1) + 150);
+        setPos(-200*(n+1) + random2*25, -200*(m+1) + random2*20);
     }
     QTimer *moveTimer = new QTimer(this);
     if(v==1)
@@ -46,13 +54,6 @@ Meteor::Meteor(MainWindow *parent, int m, int n, int v)
         moveTimer->start(80);
     }
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
 
 
 }
@@ -76,12 +77,16 @@ void Meteor::setShot(bool value)
 void Meteor::die()
 {
 //TODO
-    emit meteorShot();
-    setPixmap(QPixmap(":images/meteor/meteorShot.png").scaled(120,120,Qt::KeepAspectRatio));
-    imgChange=3;
-    QTimer *cleanTimer = new QTimer(this);
-    connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
-    cleanTimer->start(200);
+   if(!shot)
+   {
+        shot = true;
+        emit meteorShot();
+        setPixmap(QPixmap(":images/meteor/meteorShot.png").scaled(120,120,Qt::KeepAspectRatio));
+        imgChange=3;
+        QTimer *cleanTimer = new QTimer(this);
+        connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
+        cleanTimer->start(200);
+    }
 
 }
 
@@ -124,16 +129,26 @@ void Meteor::move1()
 }
 
 void Meteor::move2()
-{
-    if(imgChange == 0)
-        setPixmap(QPixmap(":images/meteor/meteor3.png").scaled(x,x,Qt::KeepAspectRatio));
-    if(imgChange == 1)
-        setPixmap(QPixmap(":images/meteor/meteor4.png").scaled(x,x,Qt::KeepAspectRatio));
-    if(imgChange == 3)
-        return;
-    imgChange = (imgChange + 1)%2;
+{ 
+        if(imgChange == 0)
+            setPixmap(QPixmap(":images/meteor/meteor3.png").scaled(x,x,Qt::KeepAspectRatio));
+        if(imgChange == 1)
+            setPixmap(QPixmap(":images/meteor/meteor4.png").scaled(x,x,Qt::KeepAspectRatio));
+        if(imgChange == 3)
+            return;
+        imgChange = (imgChange + 1)%2;
 
-    setPos(pos().x()+speed,pos().y()+speed);
+        setPos(pos().x()+speed,pos().y()+speed);
+
+        if(pos().y() > height)
+        {
+            die();
+        }
+        else if(pos().x() > width)
+        {
+            die();
+        }
+
 }
 
 

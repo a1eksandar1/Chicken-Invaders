@@ -1,19 +1,13 @@
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDesktopWidget>
-#include <QPalette>
-#include <QPainter>
-#include <QKeyEvent>
-#include <QtGui>
-#include <QPushButton>
-#include <QDebug>
+
 #include "headers/usernamewindow.h"
 #include "headers/gamewindow.h"
 #include "headers/optionswindow.h"
-#include <QMediaPlayer>
 #include "headers/chooselevelwindow.h"
 #include "headers/maingamewindow.h"
 #include "headers/hofwindow.h"
+#include "headers/quitgamewindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -53,16 +47,10 @@ void MainWindow::onPlay()
 
     if(uw->ready()){
         openGameWindow();
-
-
         uw->setReady(false);
     }
     else if(uw->levelChooseReady()){
-        planetClicked = false;
-        ChooseLevelWindow* lw = new ChooseLevelWindow(this);
-
-        lw->setWindowFlags(Qt::Window);
-        lw->showFullScreen();
+        openChooseLevelWindow();
     }
 }
 
@@ -82,14 +70,15 @@ void MainWindow::onHof()
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    score(0),
     ui(new Ui::MainWindow),
     hard(false),
     volume(20),
-    userCurrentLevel(1),
     desiredLevel(1),
-    reachedLevel(1),
-    planetClicked(false)
+    reachedLevel(2),
+    planetClicked(false),
+    freezeScene(false),
+    score(new Score()),
+    lives(new Lives())
 {
     ui->setupUi(this);
     setMusic();
@@ -132,16 +121,6 @@ int MainWindow::getVolume() const
     return volume;
 }
 
-int MainWindow::getUserCurrentLevel() const
-{
-    return userCurrentLevel;
-}
-
-void MainWindow::setUserCurrentLevel(int level)
-{
-    userCurrentLevel = level;
-}
-
 int MainWindow::getDesiredLevel() const
 {
     return desiredLevel;
@@ -171,6 +150,15 @@ void MainWindow::openGameWindow()
     mgw->showFullScreen();
 }
 
+void MainWindow::openChooseLevelWindow()
+{
+    planetClicked = false;
+    ChooseLevelWindow* lw = new ChooseLevelWindow(this);
+
+    lw->setWindowFlags(Qt::Window);
+    lw->showFullScreen();
+}
+
 void MainWindow::setBackGroundMusic(QString str)
 {
     backGroundMusic->setMedia(QUrl(str));
@@ -191,6 +179,34 @@ void MainWindow::setPlanetClicked(bool value)
     planetClicked = value;
 }
 
+void MainWindow::pauseAllSounds()
+{
+    backGroundMusic->pause();
+    projectileSound->pause();
+    eggSound->pause();
+    explosionSound->pause();
+    chickenSound->pause();
+    giftSound->pause();
+    gameOverSound->pause();
+    gamePrepareSound->pause();
+    victorySound->pause();
+}
+
+Score *MainWindow::getScore()
+{
+    return score;
+}
+
+void MainWindow::increaseScore()
+{
+    score->increaseScore();
+}
+
+Lives *MainWindow::getLives()
+{
+    return lives;
+}
+
 void MainWindow::setMusic()
 {
     backGroundMusic = new QMediaPlayer;
@@ -201,6 +217,7 @@ void MainWindow::setMusic()
     giftSound = new QMediaPlayer;
     gameOverSound = new QMediaPlayer;
     gamePrepareSound = new QMediaPlayer;
+    victorySound = new QMediaPlayer;
 
     backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme.mp3"));
     chickenSound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
@@ -210,6 +227,7 @@ void MainWindow::setMusic()
     explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
     gameOverSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
     gamePrepareSound->setMedia(QUrl("qrc:/sounds/sounds/prepare.mp3"));
+    victorySound->setMedia(QUrl("qrc:/sounds/sounds/Victory.mp3"));
 
     backGroundMusic->setVolume(volume);
     chickenSound->setVolume(volume);
@@ -219,6 +237,7 @@ void MainWindow::setMusic()
     giftSound->setVolume(volume);
     projectileSound->setVolume(volume);
     gamePrepareSound->setVolume(volume);
+    victorySound->setVolume(volume);
 
     backGroundMusic->play();
 }
@@ -231,14 +250,14 @@ void MainWindow::setConnects()
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
 }
 
-int MainWindow::getScore() const
+bool MainWindow::getFreezeScene() const
 {
-    return score;
+    return freezeScene;
 }
 
-void MainWindow::setScore(int value)
+void MainWindow::setFreezeScene(bool value)
 {
-    score = value;
+    freezeScene = value;
 }
 
 void MainWindow::connectToDatabase(){

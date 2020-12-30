@@ -4,6 +4,16 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QSqlDatabase>
+#include <QDesktopWidget>
+#include <QPalette>
+#include <QPainter>
+#include <QKeyEvent>
+#include <QtGui>
+#include <QPushButton>
+#include <QDebug>
+#include <QMediaPlayer>
+#include <headers/score.h>
+#include <headers/lives.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,27 +37,31 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void pauseAllSounds();
     bool isHard() const;
     void setHard(bool h);
     void playBackgroundMusic();
     void setVolume(int volume);
     int getVolume() const;
-    int getUserCurrentLevel() const;
-    void setUserCurrentLevel(int level);
     int getDesiredLevel() const;
     void setDesiredLevel(int value);
     int getReachedLevel() const;
     void setReachedLevel(int value);
     void openGameWindow();
+    void openChooseLevelWindow();
     void closeGameWindow();
     void setBackGroundMusic(QString str);
     void stopBackGroundMusic();
     bool getPlanetClicked() const;
     void setPlanetClicked(bool value);    
-    int getScore() const;
     void setScore(int value);
     void connectToDatabase();
 
+    bool getFreezeScene() const;
+    void setFreezeScene(bool value);
+    Score* getScore();
+    void increaseScore();
+    Lives* getLives();
 
 private:
     void setMusic();
@@ -62,19 +76,20 @@ public:
     QMediaPlayer* explosionSound;
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
-    int score;
     QSqlDatabase mydb;
     QString active_player;
-
+    QMediaPlayer* victorySound;
 
 private:
     Ui::MainWindow *ui;
     bool hard;
     int volume;
-    int userCurrentLevel;
     int desiredLevel;
     int reachedLevel;
     bool planetClicked;
+    bool freezeScene;
+    Score* score;
+    Lives* lives;
 
 
 };

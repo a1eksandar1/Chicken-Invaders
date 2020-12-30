@@ -12,8 +12,8 @@ class UsernameWindow : public QDialog
 {
     Q_OBJECT
 
-protected:
-    void resizeEvent(QResizeEvent *event) override;
+//protected:
+    //void resizeEvent(QResizeEvent *event) override;
 
 public slots:
     void onOk();

@@ -10,6 +10,13 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/quitgamewindow.cpp \
+    src/balloonGame.cpp \
+    src/balloonchicken.cpp \
+    src/bigchicken.cpp \
+    src/bossgame.cpp \
+    src/lives.cpp \
+    src/score.cpp \
     src/drumstick.cpp \
     src/maingamewindow.cpp \
     src/chickenmatrixgame.cpp \
@@ -20,6 +27,9 @@ SOURCES += \
     src/meteorshowergame.cpp \
     src/projectile.cpp \
     src/planet.cpp \
+    src/roastChicken.cpp \
+    src/sideChicken.cpp \
+    src/sideChickenGame.cpp \
     src/sidemeteorshowergame.cpp \
     src/sidespaceship.cpp \
     src/player.cpp \
@@ -35,6 +45,12 @@ SOURCES += \
     src/usernamewindow.cpp
 
 HEADERS += \
+    headers/balloonchicken.h \
+    headers/balloongame.h \
+    headers/bigchicken.h \
+    headers/bossgame.h \
+    headers/lives.h \
+    headers/score.h \
     headers/chickenmatrixgame.h \
     headers/bigeggbullets.h \
     headers/bigegg.h \
@@ -47,6 +63,9 @@ HEADERS += \
     headers/mainwindow.h \
     headers/meteor.h \
     headers/meteorshowergame.h \
+    headers/roastChicken.h \
+    headers/sideChicken.h \
+    headers/sideChickenGame.h \
     headers/sidemeteorshowergame.h \
     headers/spaceship.h \
     headers/usernamewindow.h \
@@ -57,7 +76,8 @@ HEADERS += \
     headers/maingamewindow.h \
     headers/player.h \
     headers/hofwindow.h \
-    headers/spaceship.h
+    headers/spaceship.h \
+    headers/quitgamewindow.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
@@ -66,7 +86,8 @@ FORMS += \
     forms/gamewindow.ui \
     forms/optionswindow.ui \
     forms/maingamewindow.ui \
-    forms/hofwindow.ui
+    forms/hofwindow.ui \
+    forms/quitgamewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

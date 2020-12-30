@@ -46,8 +46,10 @@ void bigEgg::collision()
             else if(getCurrHealth() == 25)
                 setPixmap(QPixmap(":images/chicken/bigEgg_cl3.png").scaled(500,500,Qt::KeepAspectRatio));
 
-            if(decrementAndGetCurrHealth() == 0)
+            if(decrementAndGetCurrHealth() == 0){
+                emit endOfBigEggGame();
                 clean();
+            }
 
             return;
         }
@@ -56,34 +58,37 @@ void bigEgg::collision()
 
 void bigEgg::throw_bullets()
 {
-    std::vector<bigEggBullets*> big_egg_bullets;
-    for (int i=1; i<6; i++){
-        big_egg_bullets.push_back(new bigEggBullets(timerForEachBullet, i));
+    if(!mw->getFreezeScene()){
+        std::vector<bigEggBullets*> big_egg_bullets;
+        for (int i=1; i<6; i++){
+            big_egg_bullets.push_back(new bigEggBullets(mw,timerForEachBullet, i));
+        }
+
+        big_egg_bullets[0]->setPos(pos().x()+440, pos().y()+250);
+        big_egg_bullets[1]->setPos(pos().x()+385, pos().y()+430);
+        big_egg_bullets[2]->setPos(pos().x()+185, pos().y()+500);
+        big_egg_bullets[3]->setPos(pos().x(), pos().y()+430);
+        big_egg_bullets[4]->setPos(pos().x()-50, pos().y()+250);
+
+        for(auto bull : big_egg_bullets)
+            scene()->addItem(bull);
     }
-
-    big_egg_bullets[0]->setPos(pos().x()+440, pos().y()+250);
-    big_egg_bullets[1]->setPos(pos().x()+385, pos().y()+430);
-    big_egg_bullets[2]->setPos(pos().x()+185, pos().y()+500);
-    big_egg_bullets[3]->setPos(pos().x(), pos().y()+430);
-    big_egg_bullets[4]->setPos(pos().x()-50, pos().y()+250);
-
-    for(auto bull : big_egg_bullets)
-        scene()->addItem(bull);
 }
 
 void bigEgg::move()
 {
-    if(direction > 0){ // ide udesno
-        if(pos().x() > width - 930)
-            direction = -direction;
-    }
-    else{ // ide ulevo
-        if(pos().x() < 500)
-            direction = -direction;
-    }
+    if(!mw->getFreezeScene()){
+        if(direction > 0){ // ide udesno
+            if(pos().x() > width - 930)
+                direction = -direction;
+        }
+        else{ // ide ulevo
+            if(pos().x() < 500)
+                direction = -direction;
+        }
 
-    setPos(pos().x() + 3*direction, pos().y());
-
+        setPos(pos().x() + 3*direction, pos().y());
+    }
     collision();
 }
 

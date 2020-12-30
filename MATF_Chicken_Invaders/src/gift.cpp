@@ -30,13 +30,13 @@ Gift::Gift(MainWindow *parent) :
 
 void Gift::move()
 {
-    setPos(x(), y()+10);
-    if(pos().y() > height)
-    {
-        clean();
+    if(!mw->getFreezeScene()){
+        setPos(x(), y()+10);
+        if(pos().y() > height)
+        {
+            clean();
+        }
     }
-
-    colision();
 }
 
 void Gift::clean()
@@ -44,23 +44,4 @@ void Gift::clean()
     scene()->removeItem(this);
     delete this;
 
-}
-
-void Gift::colision()
-{
-    QList<QGraphicsItem*> colliding_items = collidingItems();
-    for(auto colItem : colliding_items)
-    {
-        if(typeid (*colItem) == typeid(Spaceship))
-        {
-            auto spaceship = static_cast<Spaceship*>(colItem);
-            int level = spaceship->getProjectilesLevel();
-            if(level < 5)
-                spaceship->setProjectilesLevel(level+1);
-
-            mw->giftSound->play();
-
-            clean();
-        }
-    }
 }

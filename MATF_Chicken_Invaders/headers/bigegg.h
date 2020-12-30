@@ -10,6 +10,9 @@ class bigEgg : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
+signals:
+    void endOfBigEggGame();
+
 public:
     bigEgg(MainWindow* parent);
     void collision();

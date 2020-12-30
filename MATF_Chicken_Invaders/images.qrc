@@ -51,7 +51,6 @@
         <file>backgrounds/splash.png</file>
         <file>backgrounds/volume_label.png</file>
         <file>backgrounds/matf_chicken.ico</file>
-        <file>backgrounds/background.png</file>
         <file>buttons/cancel_button_pressed.png</file>
         <file>buttons/ok_button_pressed.png</file>
         <file>buttons/skip_button_pressed.png</file>
@@ -67,6 +66,21 @@
         <file>chicken/drumstick.png</file>
         <file>meteor/meteorShot.png</file>
         <file>backgrounds/wave1.png</file>
+        <file>backgrounds/congratulations.png</file>
+        <file>chicken/bigChicken.png</file>
+        <file>chicken/bigChicken2.png</file>
+        <file>chicken/roastChicken.png</file>
+        <file>chicken/balloonChicken1.png</file>
+        <file>chicken/balloonChicken2.png</file>
+        <file>chicken/balloonChicken3.png</file>
+        <file>chicken/leftsideChicken.png</file>
+        <file>chicken/rightsideChicken.png</file>
+        <file>chicken/leftsideChicken2.png</file>
+        <file>chicken/rightsideChicken2.png</file>
+        <file>backgrounds/transparent.png</file>
+        <file>spaceships/lives3.png</file>
+        <file>spaceships/lives2.png</file>
+        <file>spaceships/lives1.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
