@@ -31,6 +31,8 @@ public:
     int getStartingYPos();
     void collision();
     void checkIfSpaceshipDestroyed();
+    bool isCurrentlyDestroyed = false;
+    void setInvisible();
 
 public:
     MainWindow *mw;
@@ -44,11 +46,13 @@ public:
 
 public slots:
     void move();
+    void enableSpaceshipAfterDestroying();
 
 private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
     QTimer* moving_timer;
+    QTimer* destroyedTimer;
     int projectilesLevel = 1;
     bool throwingAllowed = true;
     int numberOfLives = 3;
