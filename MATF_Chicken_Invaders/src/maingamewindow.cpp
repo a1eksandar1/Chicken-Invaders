@@ -56,7 +56,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
 void MainGameWindow::removeMessage()
 {
     scene->removeItem(message);
-    if(waveCounter >= 2){
+    if(waveCounter <= 2){
         emit gameStart();
     }
 }
@@ -79,6 +79,86 @@ void MainGameWindow::slot_level1()
         ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 4);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+    }
+}
+
+void MainGameWindow::slot_level2()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level3()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level4()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level5()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level6()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level7()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level8()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
+    }
+}
+
+void MainGameWindow::slot_level9()
+{
+    if(waveCounter == 1 ){
+    }
+    else if(waveCounter == 2){
+    }
+    else if(waveCounter == 3){
     }
 }
 
@@ -134,7 +214,6 @@ void MainGameWindow::level1()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
@@ -147,7 +226,8 @@ void MainGameWindow::level2()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -158,7 +238,8 @@ void MainGameWindow::level3()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -169,7 +250,8 @@ void MainGameWindow::level4()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -180,7 +262,8 @@ void MainGameWindow::level5()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -191,7 +274,8 @@ void MainGameWindow::level6()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -202,7 +286,8 @@ void MainGameWindow::level7()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -213,7 +298,8 @@ void MainGameWindow::level8()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -224,7 +310,8 @@ void MainGameWindow::level9()
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::slot_level1);
+
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
