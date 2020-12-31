@@ -24,8 +24,6 @@ BigChicken::BigChicken(MainWindow *parent, int shotCounter) :
     this->height = height;
 
     setPos((width-30)/2, -500);
-
-
 }
 
 BigChicken::~BigChicken()

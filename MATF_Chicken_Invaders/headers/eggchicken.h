@@ -1,5 +1,5 @@
-#ifndef CHICKEN_H
-#define CHICKEN_H
+#ifndef EGGCHICKEN_H
+#define EGGCHICKEN_H
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
@@ -7,16 +7,16 @@
 #include "headers/egg.h"
 
 
-class Chicken: public QObject, public QGraphicsPixmapItem
+class EggChicken: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    Chicken(MainWindow *parent, int m, int n, int num1, int num2);
-    ~Chicken();
+    EggChicken(MainWindow *parent, int num);
+    ~EggChicken();
 
 signals:
-    void chickenDied();
+    void eggChickenDied();
 
 public:
     int getImgChange() const;
@@ -31,12 +31,17 @@ public:
 
     void move1();
     void move();
+
 private:
-    int m, n, num1, num2;
-    int imgChange;
+    int m, n, num;
+    int imgChange = 0;
+    bool isEgg = true;
     int orientation=10;
     int width, height;
+    int color;
+    double scale=1, t=0;
     bool shot = false;
+    int random1;
     MainWindow *mw;
 
 public slots:
@@ -46,4 +51,4 @@ protected:
     void advance(int step) override;
 };
 
-#endif // CHICKEN_H
+#endif // EGGCHICKEN_H

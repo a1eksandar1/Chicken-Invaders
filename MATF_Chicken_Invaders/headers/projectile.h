@@ -11,7 +11,7 @@
 #include "headers/drumstick.h"
 #include "headers/balloonchicken.h"
 #include "headers/sideChicken.h"
-
+#include "headers/eggchicken.h"
 class Projectile : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

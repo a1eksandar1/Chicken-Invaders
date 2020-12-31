@@ -81,6 +81,12 @@
         <file>spaceships/lives3.png</file>
         <file>spaceships/lives2.png</file>
         <file>spaceships/lives1.png</file>
+        <file>chicken/bluechicken.png</file>
+        <file>chicken/bluechicken2.png</file>
+        <file>chicken/greenchicken.png</file>
+        <file>chicken/greenchicken2.png</file>
+        <file>chicken/pinkchicken.png</file>
+        <file>chicken/pinkchicken2.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

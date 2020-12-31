@@ -64,12 +64,18 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 ){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1, 1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+//        SideChickenGame *scg = new SideChickenGame(mw, scene, 15);
+//        scg->start();
+//        connect(scg, &SideChickenGame::closeSideChickenGame, this, &MainGameWindow::setUserMessage);
+//        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9, 4);
+//        cmg->start();
+//        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 10);
+        ecg->start();
+        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,1,1);
+        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,2,2);
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }

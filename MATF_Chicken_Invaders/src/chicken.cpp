@@ -7,14 +7,11 @@
 #include <QScreen>
 #include <QApplication>
 #include "headers/drumstick.h"
-Chicken::Chicken(MainWindow *parent, int m, int n, int num) :
-    mw(parent)
+Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
+    num1(num1), num2(num2), mw(parent)
 {
     this->m = m;
     this->n = n;
-
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
-    setPos(150*m + 20, -120*(num-n) - 10);
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -23,6 +20,10 @@ Chicken::Chicken(MainWindow *parent, int m, int n, int num) :
 
     this->width = width;
     this->height = height;
+
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(height/7,height/7,Qt::KeepAspectRatio));
+    setPos(width/11*m + 20, -height/7*(num2-n) - 10);
+
 }
 
 Chicken::~Chicken()
@@ -126,13 +127,13 @@ void Chicken::advance(int step)
 
         }
 
-        if(pos().x() + 150*(7-m) > width - 150)
+        if(pos().x() + width/11*(num1-1-m) > width - width/11)
             orientation = -10;
 
-        if(pos().x() - 150*(m) < 0)
+        if(pos().x() - width/11*(m) < 0)
             orientation = 10;
 
-        if(pos().y() < 120*n + 10)
+        if(pos().y() < height/7*n + 10)
             setPos(pos().x()+orientation,pos().y()+10);
         else
             setPos(pos().x()+orientation,pos().y());

@@ -42,7 +42,7 @@ void SideChickenGame::onChickenDeath()
     chickenCounter = chickenCounter - 1;
     if(chickenCounter == 0)
     {
-        emit closeChickenMatrixGame();
+        emit closeSideChickenGame();
     }
 }
 
