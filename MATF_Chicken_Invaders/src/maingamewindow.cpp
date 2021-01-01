@@ -63,7 +63,7 @@ void MainGameWindow::removeMessage()
 
 void MainGameWindow::slot_level1()
 {
-    if(waveCounter == 1 ){
+    if(waveCounter == 3 ){
         //SideChickenGame *scg = new SideChickenGame(mw, scene, 10);
         //scg->start();
 
@@ -75,7 +75,7 @@ void MainGameWindow::slot_level1()
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 3){
+    else if(waveCounter == 1){
         ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 4);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
@@ -240,10 +240,10 @@ void MainGameWindow::start()
 
     // lisov menjao ovaj deo koda
     mw->getScore()->setPos(pos().x()+10, pos().y());
-    scene->addItem(mw->getScore());
     mw->getLives()->setPos(width - 130, -20);
+    // scene->addItem(mw->getScore());
+    // scene->addItem(mw->getLives());
     // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
-    scene->addItem(mw->getLives());
     // do ovde
 
     if(mw->getDesiredLevel() == 1){
