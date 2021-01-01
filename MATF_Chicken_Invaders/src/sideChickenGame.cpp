@@ -42,6 +42,7 @@ void SideChickenGame::onChickenDeath()
     chickenCounter = chickenCounter - 1;
     if(chickenCounter == 0)
     {
+        clear();
         emit closeChickenMatrixGame();
     }
 }
@@ -59,10 +60,7 @@ void SideChickenGame::setChickenCounter(int value)
 void SideChickenGame::clear()
 {
     for(int i = 0; i < n; i++){
-
-
-            scene->removeItem(matrix[i]);
-            matrix[i]= nullptr;
-
+        matrix[i]= nullptr;
     }
+    matrix.clear();
 }

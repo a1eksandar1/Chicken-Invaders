@@ -50,6 +50,7 @@ void MeteorShowerGame::onMeteorShot()
     meteorCounter =  meteorCounter - 1;
     if(meteorCounter == 0)
     {
+        clear();
         emit closeMeteorShowerGame();
     }
 
@@ -66,3 +67,13 @@ void MeteorShowerGame::setMeteorCounter(int value)
 }
 
 
+void MeteorShowerGame::clear()
+{
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
+            matrix[i][j] = nullptr;
+        }
+        matrix[i].clear();
+    }
+    matrix.clear();
+}

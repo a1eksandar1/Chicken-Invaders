@@ -56,59 +56,75 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
 void MainGameWindow::removeMessage()
 {
     scene->removeItem(message);
-    if(waveCounter <= 2){
-        emit gameStart();
-    }
+    emit gameStart();
 }
 
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 ){
-        //SideChickenGame *scg = new SideChickenGame(mw, scene, 10);
-        //scg->start();
-
-        BossGame *bg = new BossGame(mw, scene);
-        bg->start();
-    }
-    else if(waveCounter == 2){
-        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,7,5);
-        smsg->start();
-        connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
-    }
-    else if(waveCounter == 3){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 4);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+
+    }
+    else if(waveCounter == 2){
+        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,8, 9);
+        msg->start();
+        connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
+    }
+    else if(waveCounter == 3){
+        SideChickenGame *scg = new SideChickenGame(mw, scene, 15);
+        scg->start();
+        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level2()
 {
-    if(waveCounter == 1 ){
+    if(waveCounter == 1){
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9,4);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        BalloonGame *bg = new BalloonGame(mw, scene, 8,3);
+        bg->start();
+        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
+        bigEggGame(50);
     }
 }
 
 void MainGameWindow::slot_level3()
 {
     if(waveCounter == 1 ){
+        SideChickenGame *scg = new SideChickenGame(mw, scene, 18);
+        scg->start();
+        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 8, 8);
+        smsg->start();
+        connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
+        // Kokoske krug planeta
     }
 }
 
 void MainGameWindow::slot_level4()
 {
     if(waveCounter == 1 ){
+        BalloonGame *bg = new BalloonGame(mw, scene, 9, 4);
+        bg->start();
+        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        // Egg chicken game
     }
     else if(waveCounter == 3){
+        bigEggGame(100);
     }
 }
 
@@ -223,11 +239,12 @@ void MainGameWindow::level1()
 
 void MainGameWindow::level2()
 {
+    //U svim igrama treba da bude !frezze, a ne frezze!!!!!
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level2);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -326,11 +343,11 @@ void MainGameWindow::start()
     mw->getScore()->setPos(pos().x()+20, pos().y());
 
     // lisov menjao ovaj deo koda
-    mw->getScore()->setPos(pos().x()+10, pos().y());
-    scene->addItem(mw->getScore());
-    mw->getLives()->setPos(width - 130, -20);
+    //mw->getScore()->setPos(pos().x()+10, pos().y());
+    //scene->addItem(mw->getScore());
+    //mw->getLives()->setPos(width - 130, -20);
     // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
-    scene->addItem(mw->getLives());
+    //scene->addItem(mw->getLives());
     // do ovde
 
     if(mw->getDesiredLevel() == 1){
@@ -480,7 +497,7 @@ void MainGameWindow::setUserMessage()
         QPixmap pm(":/images/backgrounds/wave3.png");
         message->setPixmap(pm.scaled(width,height));
     }
-    else if(waveCounter % 3  == 0 && waveCounter != 0){
+    else if(waveCounter == 3){
         QPixmap pm(":/images/backgrounds/congratulations.png");
         message->setPixmap(pm.scaled(width,height));
 
@@ -508,6 +525,17 @@ void MainGameWindow::openQuitGameWindow()
 
     qgw->setFocus();
     qgw->exec();
+}
+
+void MainGameWindow::bigEggGame(int health)
+{
+    bigEgg *egg = new bigEgg(mw);
+    egg->setHealth(health);
+    egg->setPos(width/2-210, pos().y() + 10);
+    scene->addItem(egg);
+
+    egg->throw_bullets();
+    connect(egg, &bigEgg::endOfBigEggGame, this, &MainGameWindow::setUserMessage);
 }
 
 void MainGameWindow::keyPressEvent(QKeyEvent *event)

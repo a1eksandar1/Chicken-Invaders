@@ -105,65 +105,66 @@ void SideChicken::advance(int step)
         return;
     }
 
+    if(!mw->getFreezeScene()){
+        int random_number1 = rand() % 300;
+        int random_number2 = rand() % 1000;
+        if (random_number1 == 5)
+        {
+            Egg *egg = new Egg(mw);
+            egg->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(egg);
 
-    int random_number1 = rand() % 300;
-    int random_number2 = rand() % 1000;
-    if (random_number1 == 5)
-    {
-        Egg *egg = new Egg(mw);
-        egg->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(egg);
+        }
 
-    }
+        if (random_number2 == 5)
+        {
+            Gift * gift = new Gift(mw);
+            gift->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(gift);
 
-    if (random_number2 == 5)
-    {
-        Gift * gift = new Gift(mw);
-        gift->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(gift);
-
-    }
-
-
-//    if(pos().y() < 120*n + 10)
-//        setPos(pos().x()+orientation,pos().y()+10);
-//    else
-//        setPos(pos().x()+orientation,pos().y());
-    if(t<=2*3.14)
-    {
-    if(t<=3.14)
-    {
-        if(imgChange == 0)
-        setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(120,120,Qt::KeepAspectRatio));
-        else if(imgChange == 1)
-        setPixmap(QPixmap(":images/chicken/leftsideChicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+        }
 
 
-    }
-    else
-    {
-        if(imgChange == 0)
-        setPixmap(QPixmap(":images/chicken/rightsideChicken.png").scaled(120,120,Qt::KeepAspectRatio));
-        else if(imgChange ==1)
-            setPixmap(QPixmap(":images/chicken/rightsideChicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+    //    if(pos().y() < 120*n + 10)
+    //        setPos(pos().x()+orientation,pos().y()+10);
+    //    else
+    //        setPos(pos().x()+orientation,pos().y());
+        if(t<=2*3.14)
+        {
+        if(t<=3.14)
+        {
+            if(imgChange == 0)
+            setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(120,120,Qt::KeepAspectRatio));
+            else if(imgChange == 1)
+            setPixmap(QPixmap(":images/chicken/leftsideChicken2.png").scaled(120,120,Qt::KeepAspectRatio));
 
 
-    }
-    if (imgChange == 3)
-        return;
+        }
+        else
+        {
+            if(imgChange == 0)
+            setPixmap(QPixmap(":images/chicken/rightsideChicken.png").scaled(120,120,Qt::KeepAspectRatio));
+            else if(imgChange ==1)
+                setPixmap(QPixmap(":images/chicken/rightsideChicken2.png").scaled(120,120,Qt::KeepAspectRatio));
 
-    imgChange = (imgChange + 1)%2;
-    scale = 2 / ( 3 - cos(2 * t)) * 600;
 
-    setPos(width/2 + scale * cos(t), 200+ scale * sin(2 * t)/2);
-    t = t + 3.14/36;
-    }
-    else
-    {
-        t = 0;
+        }
+        if (imgChange == 3)
+            return;
+
+        imgChange = (imgChange + 1)%2;
         scale = 2 / ( 3 - cos(2 * t)) * 600;
 
         setPos(width/2 + scale * cos(t), 200+ scale * sin(2 * t)/2);
-         t = t + 3.14/36;
+        t = t + 3.14/36;
+        }
+        else
+        {
+            t = 0;
+            scale = 2 / ( 3 - cos(2 * t)) * 600;
+
+            setPos(width/2 + scale * cos(t), 200+ scale * sin(2 * t)/2);
+             t = t + 3.14/36;
+        }
     }
 }

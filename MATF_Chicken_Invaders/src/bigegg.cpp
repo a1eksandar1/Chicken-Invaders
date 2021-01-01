@@ -75,6 +75,16 @@ void bigEgg::throw_bullets()
     }
 }
 
+int bigEgg::getHealth() const
+{
+    return health;
+}
+
+void bigEgg::setHealth(int value)
+{
+    health = value;
+}
+
 void bigEgg::move()
 {
     if(!mw->getFreezeScene()){

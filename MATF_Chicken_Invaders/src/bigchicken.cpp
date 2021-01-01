@@ -144,39 +144,40 @@ void BigChicken::advance(int step)
         return;
     }
 
-    if(imgChange == 0)
-        setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(500,500,Qt::KeepAspectRatio));
-    if(imgChange == 1)
-        setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(500,500,Qt::KeepAspectRatio));
-    if(imgChange == 3)
-        return;
-    imgChange = (imgChange + 1)%2;
-    int random_number1 = rand() % 200;
-    int random_number2 = rand() % 700;
-    if (random_number1 == 5)
-    {
-        Egg *egg = new Egg(mw);
-        egg->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(egg);
+    if(!mw->getFreezeScene()){
+        if(imgChange == 0)
+            setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(500,500,Qt::KeepAspectRatio));
+        if(imgChange == 1)
+            setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(500,500,Qt::KeepAspectRatio));
+        if(imgChange == 3)
+            return;
+        imgChange = (imgChange + 1)%2;
+        int random_number1 = rand() % 200;
+        int random_number2 = rand() % 700;
+        if (random_number1 == 5)
+        {
+            Egg *egg = new Egg(mw);
+            egg->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(egg);
+
+        }
+
+        if (random_number2 == 5)
+        {
+            Gift * gift = new Gift(mw);
+            gift->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(gift);
+
+        }
+
+        if(pos().x() > width - 1000)
+            xOrientation = -10;
+
+        if(pos().x() < 500)
+            xOrientation = 10;
+
+        setPos(pos().x()+xOrientation,pos().y()+yOrientation);
 
     }
-
-    if (random_number2 == 5)
-    {
-        Gift * gift = new Gift(mw);
-        gift->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(gift);
-
-    }
-
-    if(pos().x() > width - 1000)
-        xOrientation = -10;
-
-    if(pos().x() < 500)
-        xOrientation = 10;
-
-    setPos(pos().x()+xOrientation,pos().y()+yOrientation);
-
-
 
 }

@@ -51,6 +51,8 @@ void ChickenMatrixGame::onChickenDeath()
     if(chickenCounter == 0)
     {
         emit closeChickenMatrixGame();
+        clear();
+
     }
 }
 
@@ -68,9 +70,9 @@ void ChickenMatrixGame::clear()
 {
     for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
-
-            scene->removeItem(matrix[i][j]);
             matrix[i][j] = nullptr;
         }
+        matrix[i].clear();
     }
+    matrix.clear();
 }

@@ -23,6 +23,7 @@ public:
 
     int getMeteorCounter() const;
     void setMeteorCounter(int value);
+    void clear();
 
 signals:
     void closeMeteorShowerGame();

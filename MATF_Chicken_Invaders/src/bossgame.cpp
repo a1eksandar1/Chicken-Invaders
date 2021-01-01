@@ -25,6 +25,7 @@ void BossGame::onChickenDeath()
     chickenCounter = chickenCounter - 1;
     if(chickenCounter == 0)
     {
+        clear();
         emit closeBossGame();
     }
 }
@@ -41,9 +42,5 @@ void BossGame::setChickenCounter(int value)
 
 void BossGame::clear()
 {
-
-
-            scene->removeItem(bChicken);
-            bChicken = nullptr;
-
+    bChicken = nullptr;
 }

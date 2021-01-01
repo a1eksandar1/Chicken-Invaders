@@ -82,6 +82,7 @@ public:
     void level9();
     void start();
     void openQuitGameWindow();
+    void bigEggGame(int health);
 
 public:
     MainWindow *mw;
