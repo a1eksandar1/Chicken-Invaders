@@ -12,7 +12,7 @@ class EggChicken: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    EggChicken(MainWindow *parent, int num);
+    EggChicken(MainWindow *parent, int m, int n);
     ~EggChicken();
 
 signals:
@@ -33,7 +33,7 @@ public:
     void move();
 
 private:
-    int m, n, num;
+    int m, n;
     int imgChange = 0;
     bool isEgg = true;
     int orientation=10;

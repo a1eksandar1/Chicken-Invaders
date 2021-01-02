@@ -70,7 +70,7 @@ void MainGameWindow::slot_level1()
 //        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9, 4);
 //        cmg->start();
 //        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
-        EggChickenGame *ecg = new EggChickenGame(mw, scene, 10);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 30);
         ecg->start();
         connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }

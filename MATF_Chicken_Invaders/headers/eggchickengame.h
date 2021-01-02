@@ -33,7 +33,7 @@ private:
     QVector<EggChicken*> matrix;
     MainWindow *mw;
     QGraphicsScene *scene;
-    int num;
+    int num, count;
     int chickenCounter;
 
 };

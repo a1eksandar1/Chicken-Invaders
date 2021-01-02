@@ -8,16 +8,16 @@
 #include <QApplication>
 #include "headers/drumstick.h"
 
-EggChicken::EggChicken(MainWindow *parent, int num) :
-    num(num), mw(parent)
+
+EggChicken::EggChicken(MainWindow *parent, int m, int n) :
+    m(m), n(n), mw(parent)
 {
 
     setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(100,100,Qt::KeepAspectRatio));
 
-    this->random1 = rand()%3;
-    this->color = random1;
-    setPos(150*(num%8) + 20*(rand()%4), -160*random1);
+    this->color = rand()%3;
 
+    setPos(100 *m + 30, -100*(n+1));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -164,11 +164,11 @@ void EggChicken::advance(int step)
 
     if(isEgg)
     {
-            setPos(pos().x(),pos().y()+10);
+            setPos(pos().x(),pos().y()+20);
     }
     else
     {
-        setPos(pos().x()+orientation,pos().y()+10);
+        setPos(pos().x()+orientation,pos().y()+20);
         orientation = -orientation;
     }
 
