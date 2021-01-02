@@ -10,12 +10,12 @@ public:
     std::string getName();
     int getScore();
     int getLevel();
-    bool getDifficulty();
+    int getDifficulty();
 private:
     std::string name;
     int score;
     int level;
-    bool difficulty;
+    int difficulty;
 };
 
 #endif // PLAYER_H

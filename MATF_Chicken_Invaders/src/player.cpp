@@ -14,6 +14,6 @@ int Player::getScore(){
 int Player::getLevel(){
     return this->level;
 }
-bool Player::getDifficulty(){
+int Player::getDifficulty(){
     return this->difficulty;
 }

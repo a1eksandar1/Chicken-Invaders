@@ -14,12 +14,15 @@ void UsernameWindow::onOk()
     QSqlQuery *qry = new QSqlQuery(mydb);
     qry->prepare("select * from players where name = (:name)");
     qry->bindValue(":name", name);
+    qDebug()<< name;
     qry->exec();
     qry->next();
+//    qDebug() << qry->
         if (!qry->isValid()){
+            qDebug() << "nije usao ovde?";
             int score = 0;
             int level = 1;
-            bool difficulty = false;
+            int difficulty = 0;
             qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
             qry->bindValue(":name", name);
             qry->bindValue(":score", score);
@@ -27,8 +30,10 @@ void UsernameWindow::onOk()
             qry->bindValue(":difficulty", difficulty);
             qry->exec();
             mydb.commit();
+            mw->setReachedLevel(level);
         }
         else {
+            qDebug() << "usao je u drugi";
             int level = qry->value(2).toInt();
             mw->setReachedLevel(level);
         }

@@ -96,6 +96,18 @@ void MainGameWindow::playPrepareMusic()
 void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
+
+//    QSqlDatabase mydb = QSqlDatabase::database();a
+//    QSqlQuery *qry = new QSqlQuery(mydb);
+//    QString active_player = mw->active_player;
+//    Score score = mw->getScore();
+//    int value = score.getScore();
+//    qry->prepare("update players set score = :score and level = :level where name = :active_player");
+//    qry->bindValue(":active_player", active_player);
+//    qry->bindValue(":score", value);
+//    qry->bindValue(":level", mw->getReachedLevel());
+//    qry->exec();
+
     deleteLater();
 }
 
@@ -112,16 +124,18 @@ void MainGameWindow::victory()
     mw->victorySound->stop();
     mw->backGroundMusic->play();
 
-    QSqlDatabase mydb = QSqlDatabase::database();
-    QSqlQuery *qry = new QSqlQuery(mydb);
-    QString active_player = mw->active_player;
-    Score score = mw->getScore();
-    int value = score.getScore();
-    qry->prepare("update players set score = :score and level = :level where name = :active_player");
-    qry->bindValue(":active_player", active_player);
-    qry->bindValue(":score", value);
-    qry->bindValue(":level", mw->getReachedLevel());
-    qry->exec();
+//    QSqlDatabase mydb = QSqlDatabase::database();
+//    QSqlQuery *qry = new QSqlQuery(mydb);
+//    QString active_player = mw->active_player;
+//    Score score = mw->getScore();
+//    int value = score.getScore();
+//    qry->prepare("update players set score = :score and level = :level where name = :active_player");
+//    qry->bindValue(":active_player", active_player);
+//    qry->bindValue(":score", value);
+//    qry->bindValue(":level", mw->getReachedLevel());
+//    qry->exec();
+
+    qDebug()<< "puca ovde";
 
     mw->openChooseLevelWindow();
 
