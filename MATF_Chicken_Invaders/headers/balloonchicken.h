@@ -12,7 +12,7 @@ class BalloonChicken: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    BalloonChicken(MainWindow *parent, int m, int n, int num);
+    BalloonChicken(MainWindow *parent, int m, int n, int num1, int num2);
     ~BalloonChicken();
 
 signals:
@@ -32,7 +32,7 @@ public:
     void move1();
     void move();
 private:
-    int m, n, num;
+    int m, n, num1, num2;
     int imgChange;
     int orientation=10;
     int width, height;

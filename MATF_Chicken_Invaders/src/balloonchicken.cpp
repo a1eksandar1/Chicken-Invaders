@@ -8,15 +8,13 @@
 #include <QApplication>
 #include "headers/drumstick.h"
 
-BalloonChicken::BalloonChicken(MainWindow *parent, int m, int n, int num) :
-    mw(parent)
+BalloonChicken::BalloonChicken(MainWindow *parent, int m, int n, int num1, int num2) :
+    num1(num1), num2(num2),mw(parent)
 {
 
     this->m = m;
     this->n = n;
-    setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(170,150,Qt::KeepAspectRatio));
 
-    setPos(150*m + 20, -170*(num-n));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -24,11 +22,12 @@ BalloonChicken::BalloonChicken(MainWindow *parent, int m, int n, int num) :
     int width = screenGeometry.width();
 
     this->width = width;
-    this->height = height;
 
+    this->height = height;
+    setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(width/11,height/7,Qt::KeepAspectRatio));
+    setPos(width/11*m + 30, -height/6*(num2-n));
 
 }
-
 BalloonChicken::~BalloonChicken()
 {
 
@@ -60,9 +59,9 @@ void BalloonChicken::die()
 {
     balloonCounter--;
     if(balloonCounter == 2)
-        setPixmap(QPixmap(":images/chicken/balloonChicken2.png").scaled(170,150,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/balloonChicken2.png").scaled(width/11,height/7,Qt::KeepAspectRatio));
     if(balloonCounter == 1)
-        setPixmap(QPixmap(":images/chicken/balloonChicken1.png").scaled(170,150,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/balloonChicken1.png").scaled(width/11,height/7,Qt::KeepAspectRatio));
     else if(balloonCounter == 0 and !shot)
     {
         shot = true;
@@ -127,13 +126,14 @@ void BalloonChicken::advance(int step)
 
         }
 
-        if(pos().x() + 150*(7-m) > width - 150)
+
+        if(pos().x() + width/11*(num1-1-m) > width - width/11)
             orientation = -10;
 
-        if(pos().x() - 150*(m) < 0)
+        if(pos().x() - width/11*(m) < 0)
             orientation = 10;
 
-        if(pos().y() < 170*n)
+        if(pos().y() < height/6*n)
             setPos(pos().x()+orientation,pos().y()+10);
         else
             setPos(pos().x()+orientation,pos().y());

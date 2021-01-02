@@ -14,7 +14,7 @@ class WaveChickenGame: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    WaveChickenGame(MainWindow *parent, QGraphicsScene *scene, int num);
+    WaveChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int waves);
     ~WaveChickenGame();
     void start();
 
@@ -35,6 +35,7 @@ private:
     MainWindow *mw;
     QGraphicsScene *scene;
     int num, count;
+    int waves;
     int chickenCounter;
 
 };

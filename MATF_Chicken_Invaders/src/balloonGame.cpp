@@ -15,7 +15,7 @@ BalloonGame::BalloonGame(MainWindow *parent, QGraphicsScene *scene,int m, int n)
         {
             for (int j = 0; j < n; j++)
             {
-                matrix[i][j] = new BalloonChicken(mw,i,j, n);
+                matrix[i][j] = new BalloonChicken(mw,i,j, m,n);
             }
         }
 

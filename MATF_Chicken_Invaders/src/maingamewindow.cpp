@@ -82,7 +82,7 @@ void MainGameWindow::slot_level1()
 void MainGameWindow::slot_level2()
 {
     if(waveCounter == 1){
-        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,1);
         wcg->start();
         connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
@@ -142,7 +142,7 @@ void MainGameWindow::slot_level5()
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow:: setUserMessage);
     }
     else if(waveCounter == 2){
-        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,2);
         wcg->start();
         connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
@@ -204,7 +204,7 @@ void MainGameWindow::slot_level8()
         connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,3);
         wcg->start();
         connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
