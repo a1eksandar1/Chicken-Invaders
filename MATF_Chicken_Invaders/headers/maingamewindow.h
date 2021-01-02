@@ -22,6 +22,7 @@
 #include "headers/balloongame.h"
 #include "headers/sideChickenGame.h"
 #include "headers/eggchickengame.h"
+#include "headers/wavechickengame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 #include "headers/gamewindow.h"

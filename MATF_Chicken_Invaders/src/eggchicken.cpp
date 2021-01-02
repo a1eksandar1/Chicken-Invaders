@@ -17,7 +17,7 @@ EggChicken::EggChicken(MainWindow *parent, int m, int n) :
 
     this->color = rand()%3;
 
-    setPos(100 *m + 30, -100*(n+1));
+    setPos(120*m + 20, -100*(n+1));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();

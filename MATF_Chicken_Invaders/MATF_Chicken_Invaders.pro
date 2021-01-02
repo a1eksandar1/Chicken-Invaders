@@ -42,7 +42,9 @@ SOURCES += \
     src/gamewindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/usernamewindow.cpp
+    src/usernamewindow.cpp \
+    src/wavechicken.cpp \
+    src/wavechickengame.cpp
 
 HEADERS += \
     headers/balloonchicken.h \
@@ -76,7 +78,9 @@ HEADERS += \
     headers/sidespaceship.h \
     headers/planet.h \
     headers/maingamewindow.h \
-    headers/quitgamewindow.h
+    headers/quitgamewindow.h \
+    headers/wavechicken.h \
+    headers/wavechickengame.h
 
 FORMS += \
     forms/chooselevelwindow.ui \

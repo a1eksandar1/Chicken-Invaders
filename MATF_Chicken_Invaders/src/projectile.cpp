@@ -120,6 +120,13 @@ void Projectile::colision()
             spaceship->setThrowingAllowed(true);
             clean();
         }
+        else if(typeid (*colItem) == typeid (WaveChicken))
+        {
+            auto chicken = static_cast<WaveChicken*>(colItem);
+            chicken->die();
+            spaceship->setThrowingAllowed(true);
+            clean();
+        }
     }
 }
 

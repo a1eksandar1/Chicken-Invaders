@@ -70,9 +70,12 @@ void MainGameWindow::slot_level1()
 //        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9, 4);
 //        cmg->start();
 //        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
-        EggChickenGame *ecg = new EggChickenGame(mw, scene, 30);
-        ecg->start();
-        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
+//        EggChickenGame *ecg = new EggChickenGame(mw, scene, 30);
+//        ecg->start();
+//        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 13);
+        wcg->start();
+        connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
         sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw,scene,2,2);
