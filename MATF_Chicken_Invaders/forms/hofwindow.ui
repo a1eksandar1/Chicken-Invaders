@@ -45,7 +45,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>256</width>
+         <width>550</width>
          <height>16777215</height>
         </size>
        </property>
@@ -54,9 +54,14 @@
 border-radius: 20px;
 font-size: 20px;
 color:  white;
-text-align: center;</string>
+text-align: center;
+background:transparent;
+font-weight: bold;</string>
        </property>
        <property name="autoScroll">
+        <bool>false</bool>
+       </property>
+       <property name="showDropIndicator" stdset="0">
         <bool>false</bool>
        </property>
        <property name="dragEnabled">
@@ -78,16 +83,16 @@ text-align: center;</string>
         <bool>false</bool>
        </property>
        <attribute name="horizontalHeaderVisible">
-        <bool>true</bool>
+        <bool>false</bool>
        </attribute>
        <attribute name="horizontalHeaderCascadingSectionResizes">
         <bool>false</bool>
        </attribute>
        <attribute name="horizontalHeaderMinimumSectionSize">
-        <number>250</number>
+        <number>230</number>
        </attribute>
        <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>200</number>
+        <number>230</number>
        </attribute>
        <attribute name="horizontalHeaderHighlightSections">
         <bool>false</bool>

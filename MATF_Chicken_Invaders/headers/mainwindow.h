@@ -14,6 +14,7 @@
 #include <QMediaPlayer>
 #include <headers/score.h>
 #include <headers/lives.h>
+#include <headers/player.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -60,7 +61,7 @@ public:
     bool getFreezeScene() const;
     void setFreezeScene(bool value);
     Score* getScore();
-    void increaseScore();
+//    void increaseScore();
     Lives* getLives();
 
 private:
@@ -77,7 +78,7 @@ public:
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
     QSqlDatabase mydb;
-    QString active_player;
+    Player* active_player;
     QMediaPlayer* victorySound;
 
 private:

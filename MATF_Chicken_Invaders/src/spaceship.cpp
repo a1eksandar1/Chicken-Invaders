@@ -177,8 +177,9 @@ void Spaceship::collision()
             drumstick->clean();
 
 // increase score
-            for(int i=0; i<10;i++)
-                mw->getScore()->increaseScore();
+//            for(int i=0; i<10;i++)
+//                mw->getScore()->increaseScore();
+            emit changeScore(10);
 
             return;
         }
@@ -187,8 +188,9 @@ void Spaceship::collision()
             auto roastC = static_cast<RoastChicken*>(colItem);
             roastC->clean();
       //TODO: points
-            for(int i=0; i<50;i++)
-                mw->getScore()->increaseScore();
+//            for(int i=0; i<50;i++)
+//                mw->getScore()->increaseScore();
+            emit changeScore(50);
 
             return;
         }
@@ -223,7 +225,6 @@ void Spaceship::collision()
 
             return;
         }
-
         else if(typeid (*colItem) == typeid(Gift))
         {
             auto gift = static_cast<Gift*>(colItem);

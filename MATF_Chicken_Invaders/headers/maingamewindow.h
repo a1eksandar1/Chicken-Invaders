@@ -52,6 +52,8 @@ public slots:
     void endOfGame();
     void continueGame();
     void victory();
+    void increaseScore(int step);
+    void updatePlayer();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

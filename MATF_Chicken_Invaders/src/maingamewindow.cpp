@@ -25,7 +25,6 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
     ui->graphicsView->setScene(scene);
-    qDebug()<< "usao";
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -53,6 +52,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
+    connect(spaceship, &Spaceship::changeScore, this, &MainGameWindow::increaseScore);
 
     start();
 }
@@ -100,19 +100,7 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
 
-
-
-    QSqlDatabase mydb = QSqlDatabase::database();
-    QSqlQuery *qry = new QSqlQuery(mydb);
-    QString active_player = mw->active_player;
-    int score = mw->getScore()->getScore();
-    qry->prepare("update players set score = :score, level = :level where name = :active_player");
-    qry->bindValue(":score", score);
-    qry->bindValue(":level", mw->getReachedLevel());
-    qry->bindValue(":active_player", active_player);
-    qry->exec();
-    mydb.commit();
-
+    updatePlayer();
 
     deleteLater();
 }
@@ -130,17 +118,8 @@ void MainGameWindow::victory()
     mw->victorySound->stop();
     mw->backGroundMusic->play();
 
-    QSqlDatabase mydb = QSqlDatabase::database();
-    QSqlQuery *qry = new QSqlQuery(mydb);
-    QString active_player = mw->active_player;
-    int score = mw->getScore()->getScore();
-    qry->prepare("update players set score = :score, level = :level where name = :active_player");
-    qry->bindValue(":active_player", active_player);
-    qry->bindValue(":score", score);
-    qry->bindValue(":level", mw->getReachedLevel());
-    qry->exec();
-    mydb.commit();
 
+    updatePlayer();
 
     mw->openChooseLevelWindow();
     deleteLater();
@@ -270,14 +249,12 @@ void MainGameWindow::start()
 
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
-    mw->getScore()->setPos(pos().x()+20, pos().y());
 
-    // lisov menjao ovaj deo koda
-    mw->getScore()->setPos(pos().x()+10, pos().y());
-    scene->addItem(mw->getScore());
-    mw->getLives()->setPos(width - 130, -20);
-    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
-    scene->addItem(mw->getLives());
+
+    Score* score = mw->getScore();
+    scene->addItem(score);
+
+
     // do ovde
     // do ovde negde puca program na drugi ulazak
 
@@ -510,4 +487,31 @@ void MainGameWindow::keyReleaseEvent(QKeyEvent *event)
     default:
         QWidget::keyPressEvent(event);
     }
+}
+
+void MainGameWindow::increaseScore(int step){
+     int diff = mw->active_player->getDifficulty();
+     if(diff){
+        step = step * 2;
+     }
+      mw->getScore()->increaseScore(step);
+      mw->getScore()->setPlainText(QString("Score: ") + QString::number(mw->getScore()->getScore()));
+}
+
+void MainGameWindow::updatePlayer(){
+
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QString active_player = mw->active_player->getName();
+    int current_high_score = mw->active_player->getScore();
+    int score = mw->getScore()->getScore();
+    if (score>current_high_score){
+        qry->prepare("update players set score = :score, level = :level where name = :active_player");
+        qry->bindValue(":active_player", active_player);
+        qry->bindValue(":score", score);
+        qry->bindValue(":level", mw->getReachedLevel());
+        qry->exec();
+        mydb.commit();
+    }
+
 }

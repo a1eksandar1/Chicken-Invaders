@@ -16,11 +16,15 @@ void UsernameWindow::onOk()
     qry->bindValue(":name", name);
     qry->exec();
     qry->next();
-//    qDebug() << qry->
         if (!qry->isValid()){
             int score = 0;
             int level = 1;
             int difficulty = 0;
+
+            if(mw->isHard()){
+                difficulty = 1;
+            }
+
             qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
             qry->bindValue(":name", name);
             qry->bindValue(":score", score);
@@ -28,16 +32,27 @@ void UsernameWindow::onOk()
             qry->bindValue(":difficulty", difficulty);
             qry->exec();
             mydb.commit();
+
+
             mw->setReachedLevel(level);
+            mw->active_player = new Player(name, score, level, difficulty);
+            mw->setHard(difficulty == 1 ? true:false);
+
         }
         else {
-            qDebug() << "usao je u drugi";
             int level = qry->value(2).toInt();
+            int score = qry->value(1).toInt();
+            int diff = qry->value(3).toInt();
+
             mw->setReachedLevel(level);
+            mw->active_player = new Player(name, score, level, diff);
+
+            if(diff){
+                mw->setHard(true);
+            }
+            else mw->setHard(false);
         }
 
-
-    mw->active_player = name;
 
     if(mw->getReachedLevel() == 1)
         m_ready = true;

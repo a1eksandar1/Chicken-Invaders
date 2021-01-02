@@ -1,18 +1,18 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
-
+#include <QString>
 class Player
 {
 public:
-    Player(std::string name, int score, int level, bool difficulty);
+    Player(QString name, int score, int level, bool difficulty);
 
-    std::string getName();
+    QString getName();
     int getScore();
     int getLevel();
     int getDifficulty();
 private:
-    std::string name;
+    QString name;
     int score;
     int level;
     int difficulty;

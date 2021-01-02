@@ -197,10 +197,10 @@ Score *MainWindow::getScore()
     return score;
 }
 
-void MainWindow::increaseScore()
-{
-    score->increaseScore();
-}
+//void MainWindow::increaseScore()
+//{
+//    score->increaseScore();
+//}
 
 Lives *MainWindow::getLives()
 {

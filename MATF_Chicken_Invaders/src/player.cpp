@@ -1,11 +1,14 @@
 #include "headers/player.h"
 
-Player::Player(std::string name, int score, int level, bool difficulty)
+Player::Player(QString name, int score, int level, bool difficulty)
 {
-
+    this->name = name;
+    this->score = score;
+    this->difficulty = difficulty;
+    this->level = level;
 }
 
-std::string Player::getName(){
+QString Player::getName(){
     return this->name;
 }
 int Player::getScore(){

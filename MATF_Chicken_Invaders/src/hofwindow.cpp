@@ -41,13 +41,13 @@ void HofWindow::LoadData(){
 
 void HofWindow::insertPlayer(Player player){
     QSqlQuery *qry = new QSqlQuery(mw->mydb);
-    std::string str = player.getName();
-    QString name = QString::fromUtf8(str.c_str());
+    QString str = player.getName();
+//    QString name = QString::fromUtf8(str.c_str());
     int score = player.getScore();
     int level = player.getLevel();
     bool difficulty = player.getDifficulty();
     qry->prepare("insert into players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
-    qry->bindValue(":name",name);
+    qry->bindValue(":name",str);
     qry->bindValue(":score",score);
     qry->bindValue(":level",level);
     qry->bindValue(":difficulty",difficulty);

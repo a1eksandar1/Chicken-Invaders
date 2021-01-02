@@ -17,6 +17,7 @@ class Spaceship : public QObject, public QGraphicsPixmapItem
 
 signals:
     void spaceshipDestroyed();
+    void changeScore(int step);
 
 public:
     Spaceship(MainWindow *parent);
