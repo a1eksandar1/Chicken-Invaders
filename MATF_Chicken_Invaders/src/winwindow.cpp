@@ -12,6 +12,7 @@ void winWindow::onBack()
     mw->victorySound->stop();
     mw->backGroundMusic->play();
     mw->setReachedLevel(1);
+    mw->setProjectilesLevel(1);
     delete this;
 }
 

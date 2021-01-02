@@ -11,8 +11,6 @@
 SideChicken::SideChicken(MainWindow *parent, int n) :
     mw(parent)
 {
-
-
     this->n = n;
     setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(120,120,Qt::KeepAspectRatio));
     t = 4*n*3.14/36;

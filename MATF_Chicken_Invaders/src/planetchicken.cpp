@@ -1,4 +1,4 @@
-#include "headers/chicken.h"
+#include "headers/planetchicken.h"
 #include <QTimer>
 #include <QList>
 #include "headers/egg.h"
@@ -7,12 +7,13 @@
 #include <QScreen>
 #include <QApplication>
 #include "headers/drumstick.h"
-Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
-    num1(num1), num2(num2), mw(parent)
-{
-    this->m = m;
-    this->n = n;
 
+
+PlanetChicken::PlanetChicken(MainWindow *parent, int m, int n) :
+    m(m), n(n), mw(parent)
+{
+
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(100,100,Qt::KeepAspectRatio));
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -20,45 +21,46 @@ Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
 
     this->width = width;
     this->height = height;
+    this->color = rand()%3;
 
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(height/7,height/7,Qt::KeepAspectRatio));
-    setPos(width/11*m + 20, -height/7*(num2-n) - 10);
+
+    setPos((width)/2+130, -100*(n+1) + 50);
+
 
 }
 
-Chicken::~Chicken()
+PlanetChicken::~PlanetChicken()
 {
 
 }
 
 
-
-int Chicken::getOrientation() const
+int PlanetChicken::getOrientation() const
 {
     return orientation;
 }
 
-void Chicken::setOrientation(int value)
+void PlanetChicken::setOrientation(int value)
 {
     orientation = value;
 }
 
-bool Chicken::getShot() const
+bool PlanetChicken::getShot() const
 {
     return shot;
 }
 
-void Chicken::setShot(bool value)
+void PlanetChicken::setShot(bool value)
 {
     shot = value;
 }
 
-void Chicken::die()
+void PlanetChicken::die()
 {
     if(!shot)
     {
         shot = true;
-        emit chickenDied();
+        emit planetChickenDied();
         setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
         imgChange=3;
 
@@ -70,37 +72,38 @@ void Chicken::die()
         drumstick->setPos(pos().x(),pos().y()+100);
         scene()->addItem(drumstick);
 
+
         QTimer *cleanTimer = new QTimer(this);
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(200);
     }
 }
 
-void Chicken::clean()
+void PlanetChicken::clean()
 {
     scene()->removeItem(this);
     delete this;
 }
 
-int Chicken::getImgChange() const
+int PlanetChicken::getImgChange() const
 {
     return imgChange;
 }
 
-void Chicken::setImgChange(int value)
+void PlanetChicken::setImgChange(int value)
 {
     imgChange = value;
 }
 
-void Chicken::advance(int step)
+void PlanetChicken::advance(int step)
 {
     if (!step)
     {
         return;
     }
 
-    if(!mw->getFreezeScene()){
 
+    if(!mw->getFreezeScene()){
         if(imgChange == 0)
             setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
         if(imgChange == 1)
@@ -110,8 +113,10 @@ void Chicken::advance(int step)
 
         imgChange = (imgChange + 1)%2;
 
+
         int random_number1 = rand() % 300;
         int random_number2 = rand() % 1000;
+
         if (random_number1 == 5)
         {
             Egg *egg = new Egg(mw);
@@ -119,6 +124,7 @@ void Chicken::advance(int step)
             scene()->addItem(egg);
 
         }
+
         if (random_number2 == 5)
         {
             Gift * gift = new Gift(mw);
@@ -127,15 +133,22 @@ void Chicken::advance(int step)
 
         }
 
-        if(pos().x() + width/11*(num1-1-m) > width - width/11)
-            orientation = -10;
+        if(pos().y()> height/2-100)
+            rotate = true;
 
-        if(pos().x() - width/11*(m) < 0)
-            orientation = 10;
+        if(!rotate)
+        {
+            setPos(pos().x(),pos().y()+orientation);
+        }
+        else if(rotate)
+        {
+            double x = cos(t)*scale;
+            double y = sin(t)*scale;
+            setPos(width/2-75+x, height/2-75+y);
+            t += 0.1;
+        }
 
-        if(pos().y() < height/7*n + 10)
-            setPos(pos().x()+orientation,pos().y()+10);
-        else
-            setPos(pos().x()+orientation,pos().y());
+        if(pos().y() > height)
+            die();
     }
 }

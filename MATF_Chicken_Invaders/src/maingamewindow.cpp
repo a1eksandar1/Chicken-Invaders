@@ -63,7 +63,7 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 ){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 3);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8,3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
@@ -82,16 +82,14 @@ void MainGameWindow::slot_level1()
 void MainGameWindow::slot_level2()
 {
     if(waveCounter == 1){
-        //Ovde ide waveChicken(1)
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12);
+        wcg->start();
+        connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        //Ovde ide eggChicken(20)
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 20);
+        ecg->start();
+        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
         bigEggGame(50);
@@ -103,18 +101,17 @@ void MainGameWindow::slot_level3()
     if(waveCounter == 1 ){
         SideChickenGame *scg = new SideChickenGame(mw, scene, 18);
         scg->start();
-        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        connect(scg, &SideChickenGame::closeSideChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 7, 8);
+        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 7,7);
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        // Ovde treba kokoske krug planeta
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        PlanetChickenGame *pcg = new PlanetChickenGame(mw, scene, 10,2);
+        pcg->start();
+        connect(pcg, &PlanetChickenGame::closePlanetChickenGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -126,13 +123,12 @@ void MainGameWindow::slot_level4()
         connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        // Egg chicken game
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 30);
+        ecg->start();
+        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        BossGame *bg = new BossGame(mw, scene);
+        BossGame *bg = new BossGame(mw, scene, 75);
         bg->start();
         connect(bg, &BossGame::closeBossGame, this, &MainGameWindow::setUserMessage);
     }
@@ -146,10 +142,9 @@ void MainGameWindow::slot_level5()
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow:: setUserMessage);
     }
     else if(waveCounter == 2){
-        //Ovde treba waveChicken(2);
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12);
+        wcg->start();
+        connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
         MeteorShowerGame *msg = new MeteorShowerGame(mw, scene, 8,9);
@@ -161,10 +156,9 @@ void MainGameWindow::slot_level5()
 void MainGameWindow::slot_level6()
 {
     if(waveCounter == 1 ){
-        //Ovde treba eggChicken(30);
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 40);
+        ecg->start();
+        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
         BalloonGame *bg = new BalloonGame(mw, scene, 10,4);
@@ -180,10 +174,9 @@ void MainGameWindow::slot_level6()
 void MainGameWindow::slot_level7()
 {
     if(waveCounter == 1 ){
-        //Ovde treba planetChicken
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        PlanetChickenGame *pcg = new PlanetChickenGame(mw, scene, 10,1);
+        pcg->start();
+        connect(pcg, &PlanetChickenGame::closePlanetChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
         sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 8,9);
@@ -194,7 +187,7 @@ void MainGameWindow::slot_level7()
     else if(waveCounter == 3){
         SideChickenGame *scg = new SideChickenGame(mw, scene, 20);
         scg->start();
-        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        connect(scg, &SideChickenGame::closeSideChickenGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -211,33 +204,28 @@ void MainGameWindow::slot_level8()
         connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        //Ovde treba waveChicken(3);
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12);
+        wcg->start();
+        connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level9()
 {
     if(waveCounter == 1 ){
-        BalloonGame *bg = new BalloonGame(mw, scene, 1,1);
+        BalloonGame *bg = new BalloonGame(mw, scene, 10, 5);
         bg->start();
         connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        //Ovde treba eggChicken(40);
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 50);
+        ecg->start();
+        connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        //BossGame *bg = new BossGame(mw, scene);
-        //bg->start();
-        //connect(bg, &BossGame::closeBossGame, this, &MainGameWindow::setUserMessage);
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        BossGame *bg = new BossGame(mw, scene,100);
+        bg->start();
+        connect(bg, &BossGame::closeBossGame, this, &MainGameWindow::setUserMessage);
     }
 }
 

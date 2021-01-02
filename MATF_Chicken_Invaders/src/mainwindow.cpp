@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     hard(false),
     volume(20),
     desiredLevel(1),
-    reachedLevel(1),
+    reachedLevel(9),
     planetClicked(false),
     freezeScene(false),
     score(new Score()),

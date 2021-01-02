@@ -131,7 +131,7 @@ void Spaceship::collision()
         if(typeid (*colItem) == typeid (Meteor))
         {
             auto meteor = static_cast<Meteor*>(colItem);
-            meteor->clean();
+            meteor->die();
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
@@ -188,6 +188,27 @@ void Spaceship::collision()
             auto roastC = static_cast<RoastChicken*>(colItem);
             roastC->clean();
       //TODO: points
+
+            return;
+        }
+        else if(typeid (*colItem) == typeid (EggChicken))
+        {
+            auto ec = static_cast<EggChicken*>(colItem);
+            ec->die();
+
+            if(decreaseLivesNumAndGetCurrNumLives() == 0)
+            {
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                mw->explosionSound->play();
+                emit spaceshipDestroyed();
+                delete this;
+            }
+            else
+            {
+                setPos(getStartingXPos(), getStartingYPos());
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                mw->explosionSound->play();
+            }
 
             return;
         }

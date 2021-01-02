@@ -28,7 +28,7 @@ public:
     void clear();
 
 signals:
-    void closeChickenMatrixGame();
+    void closeSideChickenGame();
 
 public slots:
     void onChickenDeath();

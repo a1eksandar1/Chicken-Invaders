@@ -10,8 +10,8 @@
 #include "headers/drumstick.h"
 #include "headers/roastChicken.h"
 
-BigChicken::BigChicken(MainWindow *parent, int chicken) :
-    mw(parent), chicken(chicken)
+BigChicken::BigChicken(MainWindow *parent, int shotCounter) :
+    mw(parent), shotCounter(shotCounter)
 {
     setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(500,500,Qt::KeepAspectRatio));
 
@@ -24,8 +24,6 @@ BigChicken::BigChicken(MainWindow *parent, int chicken) :
     this->height = height;
 
     setPos((width-30)/2, -500);
-
-
 }
 
 BigChicken::~BigChicken()
@@ -48,10 +46,11 @@ void BigChicken::setXOrientation(int value)
 
 void BigChicken::die()
 {
+    shotCounter--;
+
     if(shotCounter > 0)
     {
-        shotCounter--;
-//        setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(600,600,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(600,600,Qt::KeepAspectRatio));
         mw->chickenSound->stop();
         mw->chickenSound->play();
         mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
@@ -67,6 +66,7 @@ void BigChicken::die()
         if(!dead)
         {
             dead = true;
+            emit bigChickenDied();
 
             setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(500,500,Qt::KeepAspectRatio));
             imgChange=3;
