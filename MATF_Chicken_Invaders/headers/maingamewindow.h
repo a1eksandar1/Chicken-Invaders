@@ -23,6 +23,7 @@
 #include "headers/sideChickenGame.h"
 #include "headers/eggchickengame.h"
 #include "headers/wavechickengame.h"
+#include "headers/planetchickengame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 #include "headers/gamewindow.h"

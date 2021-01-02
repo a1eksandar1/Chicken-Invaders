@@ -87,6 +87,8 @@
         <file>chicken/greenchicken2.png</file>
         <file>chicken/pinkchicken.png</file>
         <file>chicken/pinkchicken2.png</file>
+        <file>chicken/earth.png</file>
+        <file>chicken/uranus.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -12,6 +12,8 @@ CONFIG += c++17
 SOURCES += \
     src/eggchicken.cpp \
     src/eggchickengame.cpp \
+    src/planetchicken.cpp \
+    src/planetchickengame.cpp \
     src/quitgamewindow.cpp \
     src/balloonGame.cpp \
     src/balloonchicken.cpp \
@@ -54,6 +56,8 @@ HEADERS += \
     headers/eggchicken.h \
     headers/eggchickengame.h \
     headers/lives.h \
+    headers/planetchicken.h \
+    headers/planetchickengame.h \
     headers/score.h \
     headers/chickenmatrixgame.h \
     headers/bigeggbullets.h \
