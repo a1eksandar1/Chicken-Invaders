@@ -8,18 +8,16 @@ void UsernameWindow::onOk()
 
     QString name = ui->lineEdit->text();
 
-
+    qDebug() << "novo ime: " << name;
 
     QSqlDatabase mydb = QSqlDatabase::database();
     QSqlQuery *qry = new QSqlQuery(mydb);
     qry->prepare("select * from players where name = (:name)");
     qry->bindValue(":name", name);
-    qDebug()<< name;
     qry->exec();
     qry->next();
 //    qDebug() << qry->
         if (!qry->isValid()){
-            qDebug() << "nije usao ovde?";
             int score = 0;
             int level = 1;
             int difficulty = 0;

@@ -177,8 +177,8 @@ void Spaceship::collision()
             drumstick->clean();
 
 // increase score
-            mw->increaseScore();
-
+            for(int i=0; i<10;i++)
+                mw->getScore()->increaseScore();
 
             return;
         }
@@ -187,6 +187,8 @@ void Spaceship::collision()
             auto roastC = static_cast<RoastChicken*>(colItem);
             roastC->clean();
       //TODO: points
+            for(int i=0; i<50;i++)
+                mw->getScore()->increaseScore();
 
             return;
         }

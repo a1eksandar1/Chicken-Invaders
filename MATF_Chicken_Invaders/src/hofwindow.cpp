@@ -33,7 +33,7 @@ HofWindow::~HofWindow()
 void HofWindow::LoadData(){
     QSqlQueryModel *modal = new QSqlQueryModel();
     QSqlQuery *qry = new QSqlQuery(mw->mydb);
-    qry->prepare("Select name, score from players");
+    qry->prepare("Select name, score from players order by score desc");
     qry->exec();
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);

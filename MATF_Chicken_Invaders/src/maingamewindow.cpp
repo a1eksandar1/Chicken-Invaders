@@ -25,6 +25,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
     ui->graphicsView->setScene(scene);
+    qDebug()<< "usao";
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -99,16 +100,19 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
 
-//    QSqlDatabase mydb = QSqlDatabase::database();a
-//    QSqlQuery *qry = new QSqlQuery(mydb);
-//    QString active_player = mw->active_player;
-//    Score score = mw->getScore();
-//    int value = score.getScore();
-//    qry->prepare("update players set score = :score and level = :level where name = :active_player");
-//    qry->bindValue(":active_player", active_player);
-//    qry->bindValue(":score", value);
-//    qry->bindValue(":level", mw->getReachedLevel());
-//    qry->exec();
+
+
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QString active_player = mw->active_player;
+    int score = mw->getScore()->getScore();
+    qry->prepare("update players set score = :score, level = :level where name = :active_player");
+    qry->bindValue(":score", score);
+    qry->bindValue(":level", mw->getReachedLevel());
+    qry->bindValue(":active_player", active_player);
+    qry->exec();
+    mydb.commit();
+
 
     deleteLater();
 }
@@ -126,25 +130,19 @@ void MainGameWindow::victory()
     mw->victorySound->stop();
     mw->backGroundMusic->play();
 
-//    QSqlDatabase mydb = QSqlDatabase::database();
-//    QSqlQuery *qry = new QSqlQuery(mydb);
-//    QString active_player = mw->active_player;
-//    Score score = mw->getScore();
-//    int value = score.getScore();
-//    qry->prepare("update players set score = :score and level = :level where name = :active_player");
-//    qry->bindValue(":active_player", active_player);
-//    qry->bindValue(":score", value);
-//    qry->bindValue(":level", mw->getReachedLevel());
-//    qry->exec();
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QString active_player = mw->active_player;
+    int score = mw->getScore()->getScore();
+    qry->prepare("update players set score = :score, level = :level where name = :active_player");
+    qry->bindValue(":active_player", active_player);
+    qry->bindValue(":score", score);
+    qry->bindValue(":level", mw->getReachedLevel());
+    qry->exec();
+    mydb.commit();
 
-    qDebug()<< "puca ovde";
 
     mw->openChooseLevelWindow();
-
-
-
-
-
     deleteLater();
 }
 
@@ -266,6 +264,8 @@ void MainGameWindow::level9()
 
 void MainGameWindow::start()
 {
+
+
     spaceship->setStartingPosition(width/2-65, height-120);
 
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
@@ -279,6 +279,7 @@ void MainGameWindow::start()
     // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
     scene->addItem(mw->getLives());
     // do ovde
+    // do ovde negde puca program na drugi ulazak
 
     if(mw->getDesiredLevel() == 1){
         level1();
@@ -307,6 +308,7 @@ void MainGameWindow::start()
     else if(mw->getDesiredLevel() == 9){
         level9();
     }
+
 }
 
 void MainGameWindow::setUserMessage()
@@ -448,6 +450,7 @@ void MainGameWindow::setUserMessage()
 
 void MainGameWindow::openQuitGameWindow()
 {
+
     QuitGameWindow *qgw = new QuitGameWindow(this);
     qgw->setWindowFlags(Qt::CustomizeWindowHint);
     //qgw->setAttribute(Qt::WA_TranslucentBackground);
