@@ -20,18 +20,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     QMainWindow::resizeEvent(event);
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *event)
-{
-    switch(event->key())
-    {
-    case Qt::Key_Escape:
-        close();
-        break;
-    default:
-        QMainWindow::keyPressEvent(event);
-    }
-}
-
 void MainWindow::onQuit()
 {
     close();
@@ -66,11 +54,12 @@ MainWindow::MainWindow(QWidget *parent) :
     hard(false),
     volume(20),
     desiredLevel(1),
-    reachedLevel(2),
+    reachedLevel(1),
     planetClicked(false),
     freezeScene(false),
     score(new Score()),
-    lives(new Lives())
+    lives(new Lives()),
+    projectilesLevel(1)
 {
     ui->setupUi(this);
     setMusic();
@@ -135,7 +124,6 @@ void MainWindow::setReachedLevel(int value)
 void MainWindow::openGameWindow()
 {
     MainGameWindow* mgw = new MainGameWindow(this);
-    //mgw->start();
 
     mgw->setWindowFlags(Qt::Window);
     mgw->showFullScreen();
@@ -238,6 +226,16 @@ void MainWindow::setConnects()
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
+}
+
+int MainWindow::getProjectilesLevel() const
+{
+    return projectilesLevel;
+}
+
+void MainWindow::setProjectilesLevel(int value)
+{
+    projectilesLevel = value;
 }
 
 bool MainWindow::getFreezeScene() const

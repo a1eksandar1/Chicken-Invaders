@@ -24,7 +24,6 @@ class MainWindow : public QMainWindow
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
-    void keyPressEvent(QKeyEvent *event) override;
 
 public slots:
     void onQuit();
@@ -72,6 +71,8 @@ public:
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
     QMediaPlayer* victorySound;
+    int getProjectilesLevel() const;
+    void setProjectilesLevel(int value);
 
 private:
     Ui::MainWindow *ui;
@@ -83,6 +84,7 @@ private:
     bool freezeScene;
     Score* score;
     Lives* lives;
+    int projectilesLevel;
 
 };
 #endif // MAINWINDOW_H

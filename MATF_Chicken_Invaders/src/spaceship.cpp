@@ -17,6 +17,7 @@ Spaceship::Spaceship(MainWindow *parent) :
     moving_timer = new QTimer();
     moving_timer->setInterval(10);
     connect(moving_timer, SIGNAL(timeout()), this, SLOT(move()));
+    projectilesLevel = mw->getProjectilesLevel();
 }
 
 QPointF Spaceship::getPosition()

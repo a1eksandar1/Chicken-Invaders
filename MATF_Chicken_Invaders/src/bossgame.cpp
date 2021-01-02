@@ -26,6 +26,7 @@ void BossGame::onChickenDeath()
     if(chickenCounter == 0)
     {
         clear();
+        qDebug() << "radi";
         emit closeBossGame();
     }
 }

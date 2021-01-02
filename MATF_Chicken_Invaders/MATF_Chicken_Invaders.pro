@@ -40,7 +40,8 @@ SOURCES += \
     src/gamewindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/usernamewindow.cpp
+    src/usernamewindow.cpp \
+    src/winwindow.cpp
 
 HEADERS += \
     headers/balloonchicken.h \
@@ -72,7 +73,8 @@ HEADERS += \
     headers/sidespaceship.h \
     headers/planet.h \
     headers/maingamewindow.h \
-    headers/quitgamewindow.h
+    headers/quitgamewindow.h \
+    headers/winwindow.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
@@ -81,7 +83,8 @@ FORMS += \
     forms/gamewindow.ui \
     forms/optionswindow.ui \
     forms/maingamewindow.ui \
-    forms/quitgamewindow.ui
+    forms/quitgamewindow.ui \
+    forms/winwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

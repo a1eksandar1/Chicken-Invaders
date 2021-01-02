@@ -5,6 +5,7 @@
 void QuitGameWindow::onOk()
 {
     mgw->endOfGame();
+    mgw->mw->setReachedLevel(1);
     mgw->mw->setFreezeScene(false);
     delete this;
 }
@@ -41,8 +42,6 @@ QuitGameWindow::QuitGameWindow(MainGameWindow *parent) :
     mgw(parent)
 {
     ui->setupUi(this);
-
-
 
     connect(ui->ok_button, &QPushButton::clicked, this, &QuitGameWindow::onOk);
     connect(ui->cancel_button, &QPushButton::clicked, this, &QuitGameWindow::onCancel);

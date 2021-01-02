@@ -6,6 +6,7 @@
 #include "headers/bigegg.h"
 #include "headers/bigeggbullets.h"
 #include "headers/quitgamewindow.h"
+#include "headers/winwindow.h"
 
 MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw(parent),
@@ -65,31 +66,32 @@ void MainGameWindow::slot_level1()
         ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
-
     }
     else if(waveCounter == 2){
-        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,8, 9);
+        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,8, 8);
         msg->start();
         connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        SideChickenGame *scg = new SideChickenGame(mw, scene, 15);
-        scg->start();
-        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        BalloonGame *bg = new BalloonGame(mw, scene, 8, 3);
+        bg->start();
+        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level2()
 {
     if(waveCounter == 1){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9,4);
+        //Ovde ide waveChicken(1)
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        BalloonGame *bg = new BalloonGame(mw, scene, 8,3);
-        bg->start();
-        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
+        //Ovde ide eggChicken(20)
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
         bigEggGame(50);
@@ -104,12 +106,15 @@ void MainGameWindow::slot_level3()
         connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 8, 8);
+        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 7, 8);
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        // Kokoske krug planeta
+        // Ovde treba kokoske krug planeta
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -122,59 +127,117 @@ void MainGameWindow::slot_level4()
     }
     else if(waveCounter == 2){
         // Egg chicken game
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        bigEggGame(100);
+        BossGame *bg = new BossGame(mw, scene);
+        bg->start();
+        connect(bg, &BossGame::closeBossGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level5()
 {
     if(waveCounter == 1 ){
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9,5);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow:: setUserMessage);
     }
     else if(waveCounter == 2){
+        //Ovde treba waveChicken(2);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
+        MeteorShowerGame *msg = new MeteorShowerGame(mw, scene, 8,9);
+        msg->start();
+        connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level6()
 {
     if(waveCounter == 1 ){
+        //Ovde treba eggChicken(30);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        BalloonGame *bg = new BalloonGame(mw, scene, 10,4);
+        bg->start();
+        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
+
     }
     else if(waveCounter == 3){
+        bigEggGame(100);
     }
 }
 
 void MainGameWindow::slot_level7()
 {
     if(waveCounter == 1 ){
+        //Ovde treba planetChicken
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        sideMeteorShowerGame *smsg = new sideMeteorShowerGame(mw, scene, 8,9);
+        smsg->start();
+        connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
+
     }
     else if(waveCounter == 3){
+        SideChickenGame *scg = new SideChickenGame(mw, scene, 20);
+        scg->start();
+        connect(scg, &SideChickenGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level8()
 {
     if(waveCounter == 1 ){
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 10, 6);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        MeteorShowerGame *msg = new MeteorShowerGame(mw, scene, 8, 11);
+        msg->start();
+        connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
+        //Ovde treba waveChicken(3);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
 void MainGameWindow::slot_level9()
 {
     if(waveCounter == 1 ){
+        BalloonGame *bg = new BalloonGame(mw, scene, 1,1);
+        bg->start();
+        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
+        //Ovde treba eggChicken(40);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
+        //BossGame *bg = new BossGame(mw, scene);
+        //bg->start();
+        //connect(bg, &BossGame::closeBossGame, this, &MainGameWindow::setUserMessage);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);
+        cmg->start();
+        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
     }
 }
 
@@ -202,12 +265,20 @@ void MainGameWindow::continueGame()
 
 void MainGameWindow::victory()
 {
-    if(mw->getReachedLevel() == mw->getDesiredLevel())
-        mw->setReachedLevel(mw->getReachedLevel()+1);
-    mw->victorySound->stop();
-    mw->backGroundMusic->play();
-    mw->openChooseLevelWindow();
-    deleteLater();
+    if(mw->getDesiredLevel() != 9){
+        if(mw->getReachedLevel() == mw->getDesiredLevel())
+            mw->setReachedLevel(mw->getReachedLevel()+1);
+        mw->victorySound->stop();
+        mw->backGroundMusic->play();
+        mw->openChooseLevelWindow();
+        deleteLater();
+    }
+    else{
+        winWindow *ww = new winWindow(mw);
+        ww->setWindowState(Qt::WindowFullScreen);
+        ww->exec();
+        deleteLater();
+    }
 }
 
 MainGameWindow::~MainGameWindow()
@@ -239,7 +310,6 @@ void MainGameWindow::level1()
 
 void MainGameWindow::level2()
 {
-    //U svim igrama treba da bude !frezze, a ne frezze!!!!!
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
@@ -256,7 +326,7 @@ void MainGameWindow::level3()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level3);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -268,7 +338,7 @@ void MainGameWindow::level4()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level4);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -280,7 +350,7 @@ void MainGameWindow::level5()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level5);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -292,7 +362,7 @@ void MainGameWindow::level6()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level6);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -304,7 +374,7 @@ void MainGameWindow::level7()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level7);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -316,7 +386,7 @@ void MainGameWindow::level8()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level8);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -328,7 +398,7 @@ void MainGameWindow::level9()
     QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
     QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
-    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
+    connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level9);
 
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(200);
@@ -504,8 +574,9 @@ void MainGameWindow::setUserMessage()
         message->setPos(0, 0);
         scene->addItem(message);
         mw->victorySound->play();
+        mw->setProjectilesLevel(spaceship->getProjectilesLevel());
 
-        QTimer::singleShot(4000, this, &MainGameWindow::victory);
+        QTimer::singleShot(5000, this, &MainGameWindow::victory);
         return;
     }
 
@@ -520,7 +591,6 @@ void MainGameWindow::openQuitGameWindow()
 {
     QuitGameWindow *qgw = new QuitGameWindow(this);
     qgw->setWindowFlags(Qt::CustomizeWindowHint);
-    //qgw->setAttribute(Qt::WA_TranslucentBackground);
     openedQuitWindow = true;
 
     qgw->setFocus();
@@ -540,7 +610,6 @@ void MainGameWindow::bigEggGame(int health)
 
 void MainGameWindow::keyPressEvent(QKeyEvent *event)
 {
-
     if(event->key() == Qt::Key_Escape){
         mw->setFreezeScene(true);
         animation->pause();
