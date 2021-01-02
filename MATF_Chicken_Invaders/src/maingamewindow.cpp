@@ -63,7 +63,7 @@ void MainGameWindow::removeMessage()
 
 void MainGameWindow::slot_level1()
 {
-    if(waveCounter == 1 ){
+    if(waveCounter == 3 ){
 //        SideChickenGame *scg = new SideChickenGame(mw, scene, 15);
 //        scg->start();
 //        connect(scg, &SideChickenGame::closeSideChickenGame, this, &MainGameWindow::setUserMessage);
@@ -85,7 +85,7 @@ void MainGameWindow::slot_level1()
         smsg->start();
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
-    else if(waveCounter == 3){
+    else if(waveCounter == 1){
         BossGame * bg = new BossGame(mw, scene, 1);
         bg->start();
         connect(bg, &BossGame::closeBossGame, this, &MainGameWindow::setUserMessage);

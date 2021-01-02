@@ -66,6 +66,7 @@ void BigChicken::die()
         if(!dead)
         {
             dead = true;
+            emit bigChickenDied();
 
             setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(500,500,Qt::KeepAspectRatio));
             imgChange=3;

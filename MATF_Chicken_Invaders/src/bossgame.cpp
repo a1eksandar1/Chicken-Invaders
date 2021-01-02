@@ -5,6 +5,7 @@ BossGame::BossGame(MainWindow *parent, QGraphicsScene *scene, int numOfShots):
     mw(parent),scene(scene), numOfShots(numOfShots)
 {
    bChicken = new BigChicken(mw, numOfShots);
+
 }
 
 BossGame::~BossGame()
@@ -15,25 +16,14 @@ BossGame::~BossGame()
 void BossGame::start()
 {
     scene->addItem(bChicken);
+    connect(bChicken, &BigChicken::bigChickenDied, this, &BossGame::onChickenDeath);
+
+
 }
 
 void BossGame::onChickenDeath()
 {
-    chickenCounter = chickenCounter - 1;
-    if(chickenCounter == 0)
-    {
         emit closeBossGame();
-    }
-}
-
-int BossGame::getChickenCounter() const
-{
-    return chickenCounter;
-}
-
-void BossGame::setChickenCounter(int value)
-{
-    chickenCounter = value;
 }
 
 void BossGame::clear()

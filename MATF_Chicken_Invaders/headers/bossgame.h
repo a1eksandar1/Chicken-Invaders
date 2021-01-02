@@ -19,9 +19,6 @@ public:
     ~BossGame();
     void start();
 
-    int getChickenCounter() const;
-    void setChickenCounter(int value);
-
     void clear();
 
 signals:
@@ -34,7 +31,6 @@ private:
     BigChicken * bChicken;
     MainWindow *mw;
     QGraphicsScene *scene;
-    int chickenCounter;
     int numOfShots;
 
 };

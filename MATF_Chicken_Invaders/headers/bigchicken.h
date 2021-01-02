@@ -16,7 +16,7 @@ public:
     ~BigChicken();
 
 signals:
-    void BigchickenDied();
+    void bigChickenDied();
 
 public:
     int getImgChange() const;
