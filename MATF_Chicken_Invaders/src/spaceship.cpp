@@ -12,7 +12,6 @@
 Spaceship::Spaceship(MainWindow *parent) :
     mw(parent)
 {
-    qDebug() << "IZ HARD JE " << mw->isHard();
     if(!mw->isHard())
         setPixmap(QPixmap(":images/spaceships/1.png"));
     else
