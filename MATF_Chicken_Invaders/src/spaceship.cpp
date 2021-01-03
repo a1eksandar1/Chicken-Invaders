@@ -177,19 +177,7 @@ void Spaceship::collision()
             auto ec = static_cast<EggChicken*>(colItem);
             ec->die();
 
-            if(decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                mw->explosionSound->play();
-                emit spaceshipDestroyed();
-                delete this;
-            }
-            else
-            {
-                setPos(getStartingXPos(), getStartingYPos());
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                mw->explosionSound->play();
-            }
+            this->checkIfSpaceshipDestroyed();
 
             return;
         }
