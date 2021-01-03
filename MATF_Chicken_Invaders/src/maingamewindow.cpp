@@ -247,7 +247,7 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
 
-    updatePlayer(this->current_high_score);
+//    updatePlayer(this->current_high_score);
     qDebug() << "endofGame";
 
     deleteLater();
@@ -264,6 +264,7 @@ void MainGameWindow::victory()
     if(mw->getDesiredLevel() != 9){
         if(mw->getReachedLevel() == mw->getDesiredLevel())
             mw->setReachedLevel(mw->getReachedLevel()+1);
+        updatePlayer(this->current_high_score);
         mw->victorySound->stop();
         mw->backGroundMusic->play();
         mw->openChooseLevelWindow();
@@ -694,6 +695,6 @@ void MainGameWindow::updatePlayer(int current_high_score){
         qry->exec();
         mydb.commit();
     }
-    mw->getScore()->resetScore();
+
 
 }

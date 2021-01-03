@@ -7,6 +7,7 @@ void UsernameWindow::onOk()
 {
 
     QString name = ui->lineEdit->text();
+    mw->getScore()->resetScore();
 
     qDebug() << "novo ime: " << name;
 
