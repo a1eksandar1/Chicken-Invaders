@@ -14,6 +14,7 @@
 #include "headers/eggchicken.h"
 #include "headers/planetchicken.h"
 #include "headers/wavechicken.h"
+#include "headers/bigegg.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {

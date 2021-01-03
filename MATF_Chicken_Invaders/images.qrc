@@ -90,6 +90,7 @@
         <file>chicken/pinkchicken2.png</file>
         <file>chicken/earth.png</file>
         <file>chicken/uranus.png</file>
+        <file>spaceships/1_cd.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

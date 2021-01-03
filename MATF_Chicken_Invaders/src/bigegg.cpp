@@ -30,32 +30,6 @@ bigEgg::bigEgg(MainWindow *parent) : mw(parent)
     this->height = height;
 }
 
-void bigEgg::collision()
-{
-    QList<QGraphicsItem*> colliding_items = collidingItems();
-    for(auto colItem : colliding_items)
-    {
-        if(typeid (*colItem) == typeid (Projectile))
-        {
-            delete colItem;
-
-            if(getCurrHealth() == 75)
-                setPixmap(QPixmap(":images/chicken/bigEgg_cl1.png").scaled(500,500,Qt::KeepAspectRatio));
-            else if(getCurrHealth() == 50)
-                setPixmap(QPixmap(":images/chicken/bigEgg_cl2.png").scaled(500,500,Qt::KeepAspectRatio));
-            else if(getCurrHealth() == 25)
-                setPixmap(QPixmap(":images/chicken/bigEgg_cl3.png").scaled(500,500,Qt::KeepAspectRatio));
-
-            if(decrementAndGetCurrHealth() == 0){
-                emit endOfBigEggGame();
-                clean();
-            }
-
-            return;
-        }
-    }
-}
-
 void bigEgg::throw_bullets()
 {
     if(!mw->getFreezeScene()){
@@ -99,7 +73,6 @@ void bigEgg::move()
 
         setPos(pos().x() + 3*direction, pos().y());
     }
-    collision();
 }
 
 void bigEgg::clean()

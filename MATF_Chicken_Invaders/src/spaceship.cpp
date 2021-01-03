@@ -14,6 +14,8 @@ Spaceship::Spaceship(MainWindow *parent) :
 {
     setPixmap(QPixmap(":images/spaceships/1.png"));
     throwingProjectilesTimer = new QTimer();
+    destroyedTimer = new QTimer();
+    connect(destroyedTimer, SIGNAL(timeout()), this, SLOT(enableSpaceshipAfterDestroying()));
     moving_timer = new QTimer();
     moving_timer->setInterval(10);
     connect(moving_timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -133,19 +135,6 @@ void Spaceship::collision()
             auto meteor = static_cast<Meteor*>(colItem);
             meteor->die();
 
-            if(decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                mw->explosionSound->play();
-                emit spaceshipDestroyed();
-                delete this;
-            }
-            else
-            {
-                setPos(getStartingXPos(), getStartingYPos());
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                mw->explosionSound->play();
-            }
             this->checkIfSpaceshipDestroyed();
 
             return;
@@ -155,19 +144,6 @@ void Spaceship::collision()
             auto egg = static_cast<Egg*>(colItem);
             egg->clean();
 
-            if(decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                mw->explosionSound->play();
-                emit spaceshipDestroyed();
-                delete this;
-            }
-            else
-            {
-                setPos(getStartingXPos(), getStartingYPos());
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                mw->explosionSound->play();
-            }
             this->checkIfSpaceshipDestroyed();
 
             return;
@@ -177,9 +153,8 @@ void Spaceship::collision()
             auto drumstick = static_cast<Drumstick*>(colItem);
             drumstick->clean();
 
-// increase score
+            // increase score
             mw->increaseScore();
-
 
             return;
         }
@@ -217,19 +192,7 @@ void Spaceship::collision()
             auto bc = static_cast<BigChicken*>(colItem);
             bc->setPos((bc->getWidth()-2)/2-250, 0);
 
-            if(decreaseLivesNumAndGetCurrNumLives() == 0)
-            {
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-                mw->explosionSound->play();
-                emit spaceshipDestroyed();
-                delete this;
-            }
-            else
-            {
-                setPos(getStartingXPos(), getStartingYPos());
-                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-                mw->explosionSound->play();
-            }
+            this->checkIfSpaceshipDestroyed();
 
             return;
         }
@@ -261,23 +224,30 @@ void Spaceship::collision()
 
 void Spaceship::checkIfSpaceshipDestroyed()
 {
-    auto explosionSound = new QMediaPlayer;
-
     this->revertProjectilesLevel();
 
     if(decreaseLivesNumAndGetCurrNumLives() == 0)
     {
-        explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
-        explosionSound->play();
+        mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+        mw->explosionSound->play();
         emit spaceshipDestroyed();
         delete this;
     }
     else
     {
         setPos(getStartingXPos(), getStartingYPos());
-        explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
-        explosionSound->play();
+        mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+        mw->explosionSound->play();
+
+        setInvisible();
     }
+}
+
+void Spaceship::setInvisible()
+{
+    isCurrentlyDestroyed = true;
+    setPixmap(QPixmap(":images/spaceships/1_cd.png"));
+    destroyedTimer->start(3000);
 }
 
 int Spaceship::getProjectilesLevel() const
@@ -294,7 +264,9 @@ void Spaceship::advance(int step)
 {
     if(!step)
         return;
-    collision();
+
+    if(!isCurrentlyDestroyed)
+        collision();
 }
 
 int Spaceship::getDirection()
@@ -315,6 +287,13 @@ void Spaceship::move()
     }
 
     setPos(pos().x()+5*direction, pos().y());
+}
+
+void Spaceship::enableSpaceshipAfterDestroying()
+{
+    setPixmap(QPixmap(":images/spaceships/1.png"));
+    destroyedTimer->stop();
+    isCurrentlyDestroyed = false;
 }
 
 void Spaceship::start_moving_timer()
