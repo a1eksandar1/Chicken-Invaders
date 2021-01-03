@@ -5,6 +5,8 @@
 #include <QGraphicsPixmapItem>
 #include "headers/mainwindow.h"
 #include "headers/egg.h"
+#include "headers/gift.h"
+#include "headers/drumstick.h"
 
 
 class Chicken: public QObject, public QGraphicsPixmapItem
@@ -19,20 +21,13 @@ signals:
     void chickenDied();
 
 public:
-    int getImgChange() const;
-    void setImgChange(int value);
-
-    int getOrientation() const;
-    void setOrientation(int value);
-
-    bool getShot() const;
-    void setShot(bool value);
     void die();
 
     void move1();
     void move();
 private:
     int m, n, num1, num2;
+    int shotCounter;
     int imgChange;
     int orientation=10;
     int width, height;

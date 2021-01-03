@@ -13,7 +13,6 @@ PlanetChicken::PlanetChicken(MainWindow *parent, int m, int n) :
     m(m), n(n), mw(parent)
 {
 
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(100,100,Qt::KeepAspectRatio));
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -21,10 +20,9 @@ PlanetChicken::PlanetChicken(MainWindow *parent, int m, int n) :
 
     this->width = width;
     this->height = height;
-    this->color = rand()%3;
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
 
-
-    setPos((width)/2+130, -100*(n+1) + 50);
+    setPos((width)/2+130, -height/9*(n+1) + 50);
 
 
 }
@@ -105,9 +103,9 @@ void PlanetChicken::advance(int step)
 
     if(!mw->getFreezeScene()){
         if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120,120,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
         if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
         if(imgChange == 3)
             return;
 

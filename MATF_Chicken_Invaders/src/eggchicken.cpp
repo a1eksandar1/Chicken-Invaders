@@ -13,12 +13,6 @@ EggChicken::EggChicken(MainWindow *parent, int m, int n) :
     m(m), n(n), mw(parent)
 {
 
-    setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(100,100,Qt::KeepAspectRatio));
-
-    this->color = rand()%3;
-
-    setPos(120*m + 20, -100*(n+1));
-
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -26,6 +20,12 @@ EggChicken::EggChicken(MainWindow *parent, int m, int n) :
 
     this->width = width;
     this->height = height;
+
+    setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(width/14,height/10,Qt::KeepAspectRatio));
+
+    this->color = rand()%3;
+
+    setPos(width/10*m + 20, -height/9*(n+1));
 
 
 }
@@ -35,16 +35,6 @@ EggChicken::~EggChicken()
 
 }
 
-
-int EggChicken::getOrientation() const
-{
-    return orientation;
-}
-
-void EggChicken::setOrientation(int value)
-{
-    orientation = value;
-}
 
 bool EggChicken::getShot() const
 {
@@ -70,7 +60,7 @@ void EggChicken::die()
     {
         shot = true;
         emit eggChickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/14,height/10,Qt::KeepAspectRatio));
         imgChange=3;
 
         mw->chickenSound->stop();
@@ -117,9 +107,9 @@ void EggChicken::advance(int step)
             if(color == 0)
             {
                 if(imgChange == 0)
-                    setPixmap(QPixmap(":images/chicken/greenchicken.png").scaled(120,120,Qt::KeepAspectRatio));
+                    setPixmap(QPixmap(":images/chicken/greenchicken.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
                 if(imgChange == 1)
-                    setPixmap(QPixmap(":images/chicken/greenchicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+                    setPixmap(QPixmap(":images/chicken/greenchicken2.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
                 if(imgChange == 3)
                     return;
 
@@ -128,9 +118,9 @@ void EggChicken::advance(int step)
             else if(color == 1)
             {
                 if(imgChange == 0)
-                    setPixmap(QPixmap(":images/chicken/bluechicken.png").scaled(120,120,Qt::KeepAspectRatio));
+                    setPixmap(QPixmap(":images/chicken/bluechicken.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
                 if(imgChange == 1)
-                    setPixmap(QPixmap(":images/chicken/bluechicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+                    setPixmap(QPixmap(":images/chicken/bluechicken2.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
                 if(imgChange == 3)
                     return;
 
@@ -139,9 +129,9 @@ void EggChicken::advance(int step)
             else if(color == 2)
             {
                 if(imgChange == 0)
-                    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(120,120,Qt::KeepAspectRatio));
+                    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
                 if(imgChange == 1)
-                    setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+                    setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
                 if(imgChange == 3)
                     return;
 
@@ -170,12 +160,12 @@ void EggChicken::advance(int step)
 
         if(isEgg)
         {
-                setPos(pos().x(),pos().y()+20);
+                setPos(pos().x(),pos().y()+yOrientation);
         }
         else
         {
-            setPos(pos().x()+orientation,pos().y()+20);
-            orientation = -orientation;
+            setPos(pos().x()+xOrientation,pos().y()+yOrientation);
+            xOrientation = -xOrientation;
         }
 
         if(pos().y() > height)

@@ -31,16 +31,15 @@ Meteor::Meteor(MainWindow *parent, int m, int n, int v)
 
     this->x = (random1 + 1)*(width/35);
 
-
     setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,x,Qt::KeepAspectRatio));
 
     if(v == 1)
     {
-       setPos(200*(m+1) + random2*5, -200*(n+1) + random2*5);
+       setPos(width/8*(m+1) + random2*5, -width/8*(n+1) + random2*5);
     }
     else if (v == 2)
     {
-        setPos(-200*(n+1) + random2*25, -200*(m+1) + random2*20);
+        setPos(-width/8*(n+1) + random2*25, -width/8*(m+1) + random2*20);
     }
     QTimer *moveTimer = new QTimer(this);
     if(v==1)
@@ -53,7 +52,6 @@ Meteor::Meteor(MainWindow *parent, int m, int n, int v)
         connect(moveTimer, SIGNAL(timeout()), this, SLOT(move2()));
         moveTimer->start(80);
     }
-
 
 
 }

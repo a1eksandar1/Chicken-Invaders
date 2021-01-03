@@ -6,7 +6,7 @@
 
 int find_rand()
 {
-    return rand()%15;
+    return rand()%10;
 }
 
 EggChickenGame::EggChickenGame(MainWindow *parent, QGraphicsScene *scene,int num):
@@ -22,9 +22,9 @@ EggChickenGame::EggChickenGame(MainWindow *parent, QGraphicsScene *scene,int num
         r2.resize(num);
 
         std::vector<std::vector<bool>> taken;
-        taken.resize(15);
-        for (int i = 0; i < 15; i++)
-            taken[i].resize(15, false);
+        taken.resize(10);
+        for (int i = 0; i < 10; i++)
+            taken[i].resize(10, false);
 
         std::generate(r1.begin(), r1.end(), find_rand);
         std::generate(r2.begin(), r2.end(), find_rand);

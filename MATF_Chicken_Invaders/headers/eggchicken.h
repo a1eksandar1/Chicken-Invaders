@@ -22,9 +22,6 @@ public:
     int getImgChange() const;
     void setImgChange(int value);
 
-    int getOrientation() const;
-    void setOrientation(int value);
-
     bool getShot() const;
     void setShot(bool value);
     void die();
@@ -36,7 +33,7 @@ private:
     int m, n;
     int imgChange = 0;
     bool isEgg = true;
-    int orientation=10;
+    int xOrientation=10, yOrientation=20;
     int width, height;
     int color;
     double scale=1, t=0;

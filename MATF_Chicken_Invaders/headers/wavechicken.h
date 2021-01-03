@@ -35,7 +35,7 @@ public:
 private:
     int m, n;
     int imgChange = 0;
-    bool isEgg = true;
+    bool wave = true;
     int orientation=20;
     int width, height;
     int color;

@@ -1,17 +1,22 @@
 #include "headers/chicken.h"
+
+#include <QApplication>
+#include <QScreen>
+#include <QDebug>
 #include <QTimer>
 #include <QList>
-#include "headers/egg.h"
-#include "headers/gift.h"
-#include <QDebug>
-#include <QScreen>
-#include <QApplication>
-#include "headers/drumstick.h"
+
 Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
     num1(num1), num2(num2), mw(parent)
 {
     this->m = m;
     this->n = n;
+
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
+
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -32,30 +37,10 @@ Chicken::~Chicken()
 }
 
 
-
-int Chicken::getOrientation() const
-{
-    return orientation;
-}
-
-void Chicken::setOrientation(int value)
-{
-    orientation = value;
-}
-
-bool Chicken::getShot() const
-{
-    return shot;
-}
-
-void Chicken::setShot(bool value)
-{
-    shot = value;
-}
-
 void Chicken::die()
 {
-    if(!shot)
+    shotCounter--;
+    if(!shot and shotCounter == 0)
     {
         shot = true;
         emit chickenDied();
@@ -80,16 +65,6 @@ void Chicken::clean()
 {
     scene()->removeItem(this);
     delete this;
-}
-
-int Chicken::getImgChange() const
-{
-    return imgChange;
-}
-
-void Chicken::setImgChange(int value)
-{
-    imgChange = value;
 }
 
 void Chicken::advance(int step)
