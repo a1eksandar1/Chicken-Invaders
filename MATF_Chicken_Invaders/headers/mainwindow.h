@@ -76,6 +76,7 @@ public:
     QMediaPlayer* explosionSound;
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
+    QMediaPlayer* drumstickSound;
     QSqlDatabase mydb;
     Player* active_player;
     QMediaPlayer* victorySound;

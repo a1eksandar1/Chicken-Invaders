@@ -151,6 +151,8 @@ void Spaceship::collision()
         else if(typeid (*colItem) == typeid (Drumstick))
         {
             auto drumstick = static_cast<Drumstick*>(colItem);
+            mw->drumstickSound->play();
+            mw->drumstickSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
             drumstick->clean();
 
 
@@ -164,6 +166,8 @@ void Spaceship::collision()
         else if(typeid (*colItem) == typeid (RoastChicken))
         {
             auto roastC = static_cast<RoastChicken*>(colItem);
+            mw->drumstickSound->play();
+            mw->drumstickSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
             roastC->clean();
       //TODO: points
 //            for(int i=0; i<50;i++)
