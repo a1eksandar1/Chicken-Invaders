@@ -10,6 +10,8 @@ void ChooseLevelWindow::keyPressEvent(QKeyEvent *event)
     {
     case Qt::Key_Escape:
         mw->setDesiredLevel(1);
+        mw->setReachedLevel(1);
+        mw->setProjectilesLevel(1);
         delete this;
         break;
     default:

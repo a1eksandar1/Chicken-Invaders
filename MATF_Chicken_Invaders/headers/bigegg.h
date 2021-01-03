@@ -21,6 +21,9 @@ public:
     int decrementAndGetCurrHealth();
     int getCurrHealth();
 
+    int getHealth() const;
+    void setHealth(int value);
+
 public slots:
     void move();
     void clean();

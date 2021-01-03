@@ -53,6 +53,7 @@ void sideMeteorShowerGame::onSideMeteorShot()
 
     if(getMeteorCounter() == 0)
     {
+        clear();
         emit closeSideMeteorShowerGame();
     }
 }
@@ -68,3 +69,13 @@ void sideMeteorShowerGame::setMeteorCounter(int value)
 }
 
 
+void sideMeteorShowerGame::clear()
+{
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < n; j++){
+            matrix[i][j] = nullptr;
+        }
+        matrix[i].clear();
+    }
+    matrix.clear();
+}

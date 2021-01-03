@@ -50,7 +50,7 @@ private:
     bool alive = true;
     QTimer* throwingProjectilesTimer;
     QTimer* moving_timer;
-    int projectilesLevel = 1;
+    int projectilesLevel;
     bool throwingAllowed = true;
     int numberOfLives = 3;
     int startingXPosition;

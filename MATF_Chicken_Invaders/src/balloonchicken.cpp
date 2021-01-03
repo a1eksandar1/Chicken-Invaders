@@ -108,35 +108,35 @@ void BalloonChicken::advance(int step)
         return;
     }
 
+    if(!mw->getFreezeScene()){
+        int random_number1 = rand() % 300;
+        int random_number2 = rand() % 1000;
+        if (random_number1 == 5)
+        {
+            Egg *egg = new Egg(mw);
+            egg->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(egg);
 
-    int random_number1 = rand() % 300;
-    int random_number2 = rand() % 1000;
-    if (random_number1 == 5)
-    {
-        Egg *egg = new Egg(mw);
-        egg->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(egg);
+        }
+
+        if (random_number2 == 5)
+        {
+            Gift * gift = new Gift(mw);
+            gift->setPos(pos().x(),pos().y()+100);
+            scene()->addItem(gift);
+
+        }
+
+        if(pos().x() + 150*(7-m) > width - 150)
+            orientation = -10;
+
+        if(pos().x() - 150*(m) < 0)
+            orientation = 10;
+
+        if(pos().y() < 170*n)
+            setPos(pos().x()+orientation,pos().y()+10);
+        else
+            setPos(pos().x()+orientation,pos().y());
 
     }
-
-    if (random_number2 == 5)
-    {
-        Gift * gift = new Gift(mw);
-        gift->setPos(pos().x(),pos().y()+100);
-        scene()->addItem(gift);
-
-    }
-
-    if(pos().x() + 150*(7-m) > width - 150)
-        orientation = -10;
-
-    if(pos().x() - 150*(m) < 0)
-        orientation = 10;
-
-    if(pos().y() < 170*n)
-        setPos(pos().x()+orientation,pos().y()+10);
-    else
-        setPos(pos().x()+orientation,pos().y());
-
-
 }

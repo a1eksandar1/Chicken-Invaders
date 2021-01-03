@@ -17,6 +17,7 @@ Spaceship::Spaceship(MainWindow *parent) :
     moving_timer = new QTimer();
     moving_timer->setInterval(10);
     connect(moving_timer, SIGNAL(timeout()), this, SLOT(move()));
+    projectilesLevel = mw->getProjectilesLevel();
 }
 
 QPointF Spaceship::getPosition()
@@ -130,7 +131,7 @@ void Spaceship::collision()
         if(typeid (*colItem) == typeid (Meteor))
         {
             auto meteor = static_cast<Meteor*>(colItem);
-            meteor->clean();
+            meteor->die();
 
             if(decreaseLivesNumAndGetCurrNumLives() == 0)
             {
@@ -191,6 +192,27 @@ void Spaceship::collision()
 //            for(int i=0; i<50;i++)
 //                mw->getScore()->increaseScore();
             emit changeScore(50);
+
+            return;
+        }
+        else if(typeid (*colItem) == typeid (EggChicken))
+        {
+            auto ec = static_cast<EggChicken*>(colItem);
+            ec->die();
+
+            if(decreaseLivesNumAndGetCurrNumLives() == 0)
+            {
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
+                mw->explosionSound->play();
+                emit spaceshipDestroyed();
+                delete this;
+            }
+            else
+            {
+                setPos(getStartingXPos(), getStartingYPos());
+                mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
+                mw->explosionSound->play();
+            }
 
             return;
         }

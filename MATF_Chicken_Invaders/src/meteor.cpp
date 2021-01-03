@@ -108,28 +108,32 @@ void Meteor::setImgChange(int value)
 
 void Meteor::move1()
 {
-    if(imgChange == 0)
-        setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,x,Qt::KeepAspectRatio));
-    if(imgChange == 1)
-        setPixmap(QPixmap(":images/meteor/meteor2.png").scaled(x,x,Qt::KeepAspectRatio));
-    if(imgChange == 3)
-        return;
-    imgChange = (imgChange + 1)%2;
+    if(!mw->getFreezeScene()){
+        if(imgChange == 0)
+            setPixmap(QPixmap(":images/meteor/meteor1.png").scaled(x,x,Qt::KeepAspectRatio));
+        if(imgChange == 1)
+            setPixmap(QPixmap(":images/meteor/meteor2.png").scaled(x,x,Qt::KeepAspectRatio));
+        if(imgChange == 3)
+            return;
+        imgChange = (imgChange + 1)%2;
 
-    setPos(pos().x(),pos().y()+speed);
-    if(pos().y() > height)
-    {
-        die();
-    }
-    else if(pos().x() > width)
-    {
-        die();
+        setPos(pos().x(),pos().y()+speed);
+        if(pos().y() > height)
+        {
+            die();
+        }
+        else if(pos().x() > width)
+        {
+            die();
+        }
     }
 
 }
 
 void Meteor::move2()
 { 
+
+    if(!mw->getFreezeScene()){
         if(imgChange == 0)
             setPixmap(QPixmap(":images/meteor/meteor3.png").scaled(x,x,Qt::KeepAspectRatio));
         if(imgChange == 1)
@@ -148,6 +152,7 @@ void Meteor::move2()
         {
             die();
         }
+    }
 
 }
 

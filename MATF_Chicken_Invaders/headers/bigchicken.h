@@ -12,11 +12,11 @@ class BigChicken: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    BigChicken(MainWindow *parent, int chicken);
+    BigChicken(MainWindow *parent, int shotCounter);
     ~BigChicken();
 
 signals:
-    void BigchickenDied();
+    void bigChickenDied();
 
 public:
     int getImgChange() const;
@@ -40,12 +40,12 @@ public:
 
 private:
     MainWindow *mw;
-    int m, n, chicken;
+    int m, n;
     int imgChange;
     int xOrientation=10;
     int yOrientation=15;
     int width, height;
-    int shotCounter = 20;
+    int shotCounter;
     bool dead = false;
 
 

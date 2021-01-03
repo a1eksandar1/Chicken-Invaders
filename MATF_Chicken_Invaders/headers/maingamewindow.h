@@ -21,6 +21,9 @@
 #include "headers/bossgame.h"
 #include "headers/balloongame.h"
 #include "headers/sideChickenGame.h"
+#include "headers/eggchickengame.h"
+#include "headers/wavechickengame.h"
+#include "headers/planetchickengame.h"
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 #include "headers/gamewindow.h"
@@ -46,6 +49,14 @@ signals:
 public slots:
     void removeMessage();
     void slot_level1();
+    void slot_level2();
+    void slot_level3();
+    void slot_level4();
+    void slot_level5();
+    void slot_level6();
+    void slot_level7();
+    void slot_level8();
+    void slot_level9();
     void stopPrepareMusic();
     void playPrepareMusic();
     void setUserMessage();
@@ -76,6 +87,7 @@ public:
     void level9();
     void start();
     void openQuitGameWindow();
+    void bigEggGame(int health);
 
 public:
     MainWindow *mw;

@@ -10,6 +10,10 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/eggchicken.cpp \
+    src/eggchickengame.cpp \
+    src/planetchicken.cpp \
+    src/planetchickengame.cpp \
     src/quitgamewindow.cpp \
     src/balloonGame.cpp \
     src/balloonchicken.cpp \
@@ -42,14 +46,21 @@ SOURCES += \
     src/gamewindow.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/usernamewindow.cpp
+    src/usernamewindow.cpp \
+    src/winwindow.cpp \
+    src/wavechicken.cpp \
+    src/wavechickengame.cpp
 
 HEADERS += \
     headers/balloonchicken.h \
     headers/balloongame.h \
     headers/bigchicken.h \
     headers/bossgame.h \
+    headers/eggchicken.h \
+    headers/eggchickengame.h \
     headers/lives.h \
+    headers/planetchicken.h \
+    headers/planetchickengame.h \
     headers/score.h \
     headers/chickenmatrixgame.h \
     headers/bigeggbullets.h \
@@ -77,7 +88,11 @@ HEADERS += \
     headers/player.h \
     headers/hofwindow.h \
     headers/spaceship.h \
-    headers/quitgamewindow.h
+    headers/quitgamewindow.h \
+    headers/quitgamewindow.h \
+    headers/winwindow.h \
+    headers/wavechicken.h \
+    headers/wavechickengame.h
 
 FORMS += \
     forms/chooselevelwindow.ui \
@@ -87,7 +102,9 @@ FORMS += \
     forms/optionswindow.ui \
     forms/maingamewindow.ui \
     forms/hofwindow.ui \
-    forms/quitgamewindow.ui
+    forms/quitgamewindow.ui \
+    forms/quitgamewindow.ui \
+    forms/winwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
