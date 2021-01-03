@@ -297,8 +297,6 @@ void MainGameWindow::setFly_speed(int value)
 void MainGameWindow::level1()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level1);
 
@@ -309,8 +307,6 @@ void MainGameWindow::level1()
 void MainGameWindow::level2()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level2);
 
@@ -321,8 +317,6 @@ void MainGameWindow::level2()
 void MainGameWindow::level3()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level3);
 
@@ -333,8 +327,6 @@ void MainGameWindow::level3()
 void MainGameWindow::level4()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level4);
 
@@ -345,8 +337,6 @@ void MainGameWindow::level4()
 void MainGameWindow::level5()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level5);
 
@@ -357,8 +347,6 @@ void MainGameWindow::level5()
 void MainGameWindow::level6()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level6);
 
@@ -369,8 +357,6 @@ void MainGameWindow::level6()
 void MainGameWindow::level7()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level7);
 
@@ -381,8 +367,6 @@ void MainGameWindow::level7()
 void MainGameWindow::level8()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level8);
 
@@ -393,8 +377,6 @@ void MainGameWindow::level8()
 void MainGameWindow::level9()
 {
     QTimer::singleShot(0, this, &MainGameWindow::setUserMessage);
-    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
-    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
 
     connect(this, &MainGameWindow::gameStart, this, &MainGameWindow::slot_level9);
 
@@ -475,107 +457,107 @@ void MainGameWindow::setUserMessage()
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 2){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wav4.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 1 && mw->getDesiredLevel() == 2){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave5.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 2 && mw->getDesiredLevel() == 2){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave6.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 3){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave7.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 1 && mw->getDesiredLevel() == 3){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave8.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 2 && mw->getDesiredLevel() == 3){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave9.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 4){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave10.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 1 && mw->getDesiredLevel() == 4){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave11.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 2 && mw->getDesiredLevel() == 4){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave12.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 5){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave13.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 1 && mw->getDesiredLevel() == 5){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave14.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 2 && mw->getDesiredLevel() == 5){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave15.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 6){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave16.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 1 && mw->getDesiredLevel() == 6){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave17.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 2 && mw->getDesiredLevel() == 6){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave18.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 7){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave19.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 1 && mw->getDesiredLevel() == 7){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave20.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 2 && mw->getDesiredLevel() == 7){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave21.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 0 && mw->getDesiredLevel() == 8){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave22.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 1 && mw->getDesiredLevel() == 8){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave23.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 2 && mw->getDesiredLevel() == 8){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave24.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 0 && mw->getDesiredLevel() == 9){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave25.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 1 && mw->getDesiredLevel() == 9){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave26.png");
         message->setPixmap(pm.scaled(width,height));
     }
 
     else if(waveCounter == 2 && mw->getDesiredLevel() == 9){
-        QPixmap pm(":/images/backgrounds/wave3.png");
+        QPixmap pm(":/images/backgrounds/wave27.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 3){
@@ -591,11 +573,14 @@ void MainGameWindow::setUserMessage()
         return;
     }
 
+    QTimer::singleShot(0, this, &MainGameWindow::playPrepareMusic);
+    QTimer::singleShot(3500, this, &MainGameWindow::stopPrepareMusic);
+
     message->setPos(0, 0);
     scene->addItem(message);
     ++waveCounter;
 
-    QTimer::singleShot(3000, this, &MainGameWindow::removeMessage);
+    QTimer::singleShot(3500, this, &MainGameWindow::removeMessage);
 }
 
 void MainGameWindow::openQuitGameWindow()

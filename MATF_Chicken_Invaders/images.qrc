@@ -31,11 +31,7 @@
         <file>buttons/hardButton_pressed.png</file>
         <file>buttons/easyButton_pressed.png</file>
         <file>buttons/backButton_pressed.png</file>
-        <file>spaceships/2.png</file>
-        <file>spaceships/3.png</file>
         <file>spaceships/4.png</file>
-        <file>spaceships/5.png</file>
-        <file>spaceships/6.png</file>
         <file>spaceships/1.png</file>
         <file>spaceships/spaceship_on_the_side.png</file>
         <file>chicken/egg_1.png</file>
@@ -91,6 +87,30 @@
         <file>chicken/earth.png</file>
         <file>chicken/uranus.png</file>
         <file>spaceships/1_cd.png</file>
+        <file>backgrounds/wave4.png</file>
+        <file>backgrounds/wave5.png</file>
+        <file>backgrounds/wave6.png</file>
+        <file>backgrounds/wave7.png</file>
+        <file>backgrounds/wave8.png</file>
+        <file>backgrounds/wave9.png</file>
+        <file>backgrounds/wave10.png</file>
+        <file>backgrounds/wave11.png</file>
+        <file>backgrounds/wave12.png</file>
+        <file>backgrounds/wave13.png</file>
+        <file>backgrounds/wave14.png</file>
+        <file>backgrounds/wave15.png</file>
+        <file>backgrounds/wave16.png</file>
+        <file>backgrounds/wave17.png</file>
+        <file>backgrounds/wave18.png</file>
+        <file>backgrounds/wave19.png</file>
+        <file>backgrounds/wave20.png</file>
+        <file>backgrounds/wave21.png</file>
+        <file>backgrounds/wave22.png</file>
+        <file>backgrounds/wave23.png</file>
+        <file>backgrounds/wave24.png</file>
+        <file>backgrounds/wave25.png</file>
+        <file>backgrounds/wave26.png</file>
+        <file>backgrounds/wave27.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

@@ -12,7 +12,11 @@
 Spaceship::Spaceship(MainWindow *parent) :
     mw(parent)
 {
-    setPixmap(QPixmap(":images/spaceships/1.png"));
+    qDebug() << "IZ HARD JE " << mw->isHard();
+    if(!mw->isHard())
+        setPixmap(QPixmap(":images/spaceships/1.png"));
+    else
+        setPixmap(QPixmap(":images/spaceships/4.png"));
     throwingProjectilesTimer = new QTimer();
     destroyedTimer = new QTimer();
     connect(destroyedTimer, SIGNAL(timeout()), this, SLOT(enableSpaceshipAfterDestroying()));

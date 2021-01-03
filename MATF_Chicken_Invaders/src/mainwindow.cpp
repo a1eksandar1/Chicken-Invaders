@@ -260,6 +260,6 @@ void MainWindow::setFreezeScene(bool value)
 
 void MainWindow::connectToDatabase(){
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/cole/Desktop/Projects/15-matf-chicken-invaders/MATF_Chicken_Invaders/database.db");
+    mydb.setDatabaseName("/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders/database.db");
     mydb.open();
 }
