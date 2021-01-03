@@ -127,6 +127,7 @@ void Projectile::colision()
                 emit bEgg->endOfBigEggGame();
                 bEgg->clean();
             }
+            spaceship->setThrowingAllowed(true);
             clean();
 
             return;
