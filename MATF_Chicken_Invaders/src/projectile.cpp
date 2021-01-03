@@ -95,7 +95,6 @@ void Projectile::colision()
             bChicken->setPos(bChicken->pos().x()+bChicken->getXOrientation(),bChicken->pos().y()-bChicken->getYOrientation());
             bChicken->die();
 
-
             spaceship->setThrowingAllowed(true);
             clean();
         }
@@ -112,6 +111,25 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+        }
+        else if(typeid (*colItem) == typeid (bigEgg))
+        {
+            auto bEgg = static_cast<bigEgg*>(colItem);
+
+            if(bEgg->getCurrHealth() == 75)
+                bEgg->setPixmap(QPixmap(":images/chicken/bigEgg_cl1.png").scaled(500,500,Qt::KeepAspectRatio));
+            else if(bEgg->getCurrHealth() == 50)
+                bEgg->setPixmap(QPixmap(":images/chicken/bigEgg_cl2.png").scaled(500,500,Qt::KeepAspectRatio));
+            else if(bEgg->getCurrHealth() == 25)
+                bEgg->setPixmap(QPixmap(":images/chicken/bigEgg_cl3.png").scaled(500,500,Qt::KeepAspectRatio));
+
+            if(bEgg->decrementAndGetCurrHealth() == 0){
+                emit bEgg->endOfBigEggGame();
+                bEgg->clean();
+            }
+            clean();
+
+            return;
         }
     }
 }

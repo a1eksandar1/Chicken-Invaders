@@ -76,9 +76,9 @@ void MainGameWindow::slot_level1()
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 1){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8, 4);
-        cmg->start();
-        connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+        bigEgg *egg = new bigEgg(mw);
+        egg->setPos(width/2-210, pos().y() + 10);
+        scene->addItem(egg);
     }
 }
 

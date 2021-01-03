@@ -15,7 +15,6 @@ signals:
 
 public:
     bigEgg(MainWindow* parent);
-    void collision();
     QTimer* timerForEachBullet;
     QTimer* throwingTimer;
     int decrementAndGetCurrHealth();
