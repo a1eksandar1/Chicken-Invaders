@@ -6,6 +6,7 @@ void QuitGameWindow::onOk()
 {
     mgw->endOfGame();
     mgw->mw->setReachedLevel(1);
+    mgw->mw->setDesiredLevel(1);
     mgw->mw->setFreezeScene(false);
     mgw->mw->setProjectilesLevel(1);
     delete this;
