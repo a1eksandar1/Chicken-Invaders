@@ -36,6 +36,7 @@ private:
     int m, n;
     int imgChange = 0;
     bool wave = true;
+    int shotCounter;
     int orientation=20;
     int width, height;
     int color;

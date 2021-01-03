@@ -12,6 +12,10 @@
 EggChicken::EggChicken(MainWindow *parent, int m, int n) :
     m(m), n(n), mw(parent)
 {
+    if(mw->isHard())
+        this->shotCounter = 3;
+    else if(!mw->isHard())
+        this->shotCounter = 2;
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -48,6 +52,7 @@ void EggChicken::setShot(bool value)
 
 void EggChicken::die()
 {
+    shotCounter--;
     if(isEgg and (pos().y() >height or pos().x() > width) and !shot)
     {
         shot = true;
@@ -56,7 +61,7 @@ void EggChicken::die()
     }
     else if(isEgg)
         isEgg = false;
-    else if(!isEgg and !shot)
+    else if(!isEgg and !shot and shotCounter == 0)
     {
         shot = true;
         emit eggChickenDied();

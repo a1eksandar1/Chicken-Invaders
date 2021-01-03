@@ -12,6 +12,10 @@
 PlanetChicken::PlanetChicken(MainWindow *parent, int m, int n) :
     m(m), n(n), mw(parent)
 {
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -55,7 +59,8 @@ void PlanetChicken::setShot(bool value)
 
 void PlanetChicken::die()
 {
-    if(!shot)
+    shotCounter--;
+    if(!shot and shotCounter == 0)
     {
         shot = true;
         emit planetChickenDied();

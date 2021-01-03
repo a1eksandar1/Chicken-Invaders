@@ -12,8 +12,11 @@
 WaveChicken::WaveChicken(MainWindow *parent, int m, int n) :
     m(m), n(n), mw(parent)
 {
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
 
-    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -21,7 +24,8 @@ WaveChicken::WaveChicken(MainWindow *parent, int m, int n) :
 
     this->width = width;
     this->height = height;
-    this->color = rand()%3;
+
+    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
 
     setPos(width/10*m + 20, -height/9*(n+1));
 
@@ -57,7 +61,8 @@ void WaveChicken::setShot(bool value)
 
 void WaveChicken::die()
 {
-    if(!shot)
+    shotCounter--;
+    if(!shot and shotCounter == 0)
     {
         shot = true;
         emit waveChickenDied();

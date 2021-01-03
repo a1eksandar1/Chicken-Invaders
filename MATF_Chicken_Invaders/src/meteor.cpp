@@ -15,6 +15,11 @@ Meteor::Meteor(MainWindow *parent, int m, int n, int v)
     this->m = m;
     this->n = n;
 
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
+
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -74,6 +79,7 @@ void Meteor::setShot(bool value)
 
 void Meteor::die()
 {
+   shotCounter--;
    if(!shot and (pos().y() > height or pos().x() > width))
    {
        shot = true;
@@ -81,7 +87,7 @@ void Meteor::die()
        clean();
    }
 
-   if(!shot)
+   if(!shot and shotCounter == 0)
    {
         shot = true;
         emit meteorShot();

@@ -34,6 +34,7 @@ private:
     int imgChange = 0;
     bool isEgg = true;
     int xOrientation=10, yOrientation=20;
+    int shotCounter;
     int width, height;
     int color;
     double scale=1, t=0;

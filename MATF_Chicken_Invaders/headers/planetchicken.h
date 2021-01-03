@@ -42,6 +42,7 @@ private:
     double t=0, scale = 220;
     bool shot = false;
     int random1;
+    int shotCounter;
     MainWindow *mw;
 
 public slots:

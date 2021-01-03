@@ -12,6 +12,13 @@ SideChicken::SideChicken(MainWindow *parent, int n) :
     mw(parent)
 {
     this->n = n;
+
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
+
+
     setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
     t = 4*n*3.14/40;
     scale = 2 / ( 3 - cos(2 * t)) * 650;
@@ -58,7 +65,8 @@ void SideChicken::setShot(bool value)
 
 void SideChicken::die()
 {
-    if(!shot)
+    shotCounter--;
+    if(!shot and shotCounter == 0)
     {
         shot = true;
         emit chickenDied();
