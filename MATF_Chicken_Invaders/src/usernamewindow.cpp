@@ -1,8 +1,59 @@
 #include "headers/usernamewindow.h"
 #include "ui_usernamewindow.h"
+#include "headers/player.h"
+#include "headers/hofwindow.h"
 
 void UsernameWindow::onOk()
 {
+
+    QString name = ui->lineEdit->text();
+
+    qDebug() << "novo ime: " << name;
+
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    qry->prepare("select * from players where name = (:name)");
+    qry->bindValue(":name", name);
+    qry->exec();
+    qry->next();
+        if (!qry->isValid()){
+            int score = 0;
+            int level = 1;
+            int difficulty = 0;
+
+            if(mw->isHard()){
+                difficulty = 1;
+            }
+
+            qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
+            qry->bindValue(":name", name);
+            qry->bindValue(":score", score);
+            qry->bindValue(":level", level);
+            qry->bindValue(":difficulty", difficulty);
+            qry->exec();
+            mydb.commit();
+
+
+            mw->setReachedLevel(level);
+            mw->active_player = new Player(name, score, level, difficulty);
+            mw->setHard(difficulty == 1 ? true:false);
+
+        }
+        else {
+            int level = qry->value(2).toInt();
+            int score = qry->value(1).toInt();
+            int diff = qry->value(3).toInt();
+
+            mw->setReachedLevel(level);
+            mw->active_player = new Player(name, score, level, diff);
+
+            if(diff){
+                mw->setHard(true);
+            }
+            else mw->setHard(false);
+        }
+
+
     if(mw->getReachedLevel() == 1)
         m_ready = true;
     else

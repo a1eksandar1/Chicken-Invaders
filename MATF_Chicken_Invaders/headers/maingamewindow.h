@@ -63,6 +63,8 @@ public slots:
     void endOfGame();
     void continueGame();
     void victory();
+    void increaseScore(int step);
+    void updatePlayer(int current_high_score);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -86,6 +88,7 @@ public:
     void start();
     void openQuitGameWindow();
     void bigEggGame(int health);
+    int current_high_score;
 
 public:
     MainWindow *mw;

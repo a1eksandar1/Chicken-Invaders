@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QSqlDatabase>
 #include <QDesktopWidget>
 #include <QPalette>
 #include <QPainter>
@@ -13,6 +14,7 @@
 #include <QMediaPlayer>
 #include <headers/score.h>
 #include <headers/lives.h>
+#include <headers/player.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,6 +31,7 @@ public slots:
     void onQuit();
     void onPlay();
     void onOptions();
+    void onHof();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -51,10 +54,13 @@ public:
     void stopBackGroundMusic();
     bool getPlanetClicked() const;
     void setPlanetClicked(bool value);    
+    void setScore(int value);
+    void connectToDatabase();
+
     bool getFreezeScene() const;
     void setFreezeScene(bool value);
     Score* getScore();
-    void increaseScore();
+//    void increaseScore();
     Lives* getLives();
 
 private:
@@ -70,6 +76,8 @@ public:
     QMediaPlayer* explosionSound;
     QMediaPlayer* gameOverSound;
     QMediaPlayer* gamePrepareSound;
+    QSqlDatabase mydb;
+    Player* active_player;
     QMediaPlayer* victorySound;
     int getProjectilesLevel() const;
     void setProjectilesLevel(int value);
@@ -85,6 +93,7 @@ private:
     Score* score;
     Lives* lives;
     int projectilesLevel;
+
 
 };
 #endif // MAINWINDOW_H

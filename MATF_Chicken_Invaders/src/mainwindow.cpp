@@ -6,6 +6,7 @@
 #include "headers/optionswindow.h"
 #include "headers/chooselevelwindow.h"
 #include "headers/maingamewindow.h"
+#include "headers/hofwindow.h"
 #include "headers/quitgamewindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -48,6 +49,13 @@ void MainWindow::onOptions()
     ow->exec();
 }
 
+void MainWindow::onHof()
+{
+    HofWindow* hof = new HofWindow(this);
+    hof->setWindowState(Qt::WindowFullScreen);
+    hof->exec();
+}
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -64,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setMusic();
     setConnects();
+    connectToDatabase();
 }
 
 MainWindow::~MainWindow()
@@ -176,10 +185,10 @@ Score *MainWindow::getScore()
     return score;
 }
 
-void MainWindow::increaseScore()
-{
-    score->increaseScore();
-}
+//void MainWindow::increaseScore()
+//{
+//    score->increaseScore();
+//}
 
 Lives *MainWindow::getLives()
 {
@@ -223,6 +232,7 @@ void MainWindow::setMusic()
 
 void MainWindow::setConnects()
 {
+    connect(ui->hof_button, &QPushButton::clicked, this, &MainWindow::onHof);
     connect(ui->quit_button, &QPushButton::clicked, this, &MainWindow::onQuit);
     connect(ui->play_button, &QPushButton::clicked, this, &MainWindow::onPlay);
     connect(ui->options_button, &QPushButton::clicked, this, &MainWindow::onOptions);
@@ -246,4 +256,10 @@ bool MainWindow::getFreezeScene() const
 void MainWindow::setFreezeScene(bool value)
 {
     freezeScene = value;
+}
+
+void MainWindow::connectToDatabase(){
+    this->mydb = QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("/home/marko/Desktop/15-matf-chicken-invaders/MATF_Chicken_Invaders/database.db");
+    mydb.open();
 }

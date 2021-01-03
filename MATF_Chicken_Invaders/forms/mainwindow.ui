@@ -139,7 +139,7 @@ border-image: url(:images/buttons/options_button_pressed.png);
      </spacer>
     </item>
     <item row="2" column="2">
-     <widget class="QPushButton" name="hallOfFame_button">
+     <widget class="QPushButton" name="hof_button">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -147,14 +147,14 @@ border-image: url(:images/buttons/options_button_pressed.png);
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true">#hallOfFame_button {
+       <string notr="true">#hof_button {
 background-color: transparent;
 border-image: url(:images/buttons/hall_of_fame_button.png);
 background: none;
 border: none;
 background-repeat: none;
 }
-#hallOfFame_button:pressed {
+#hof_button:pressed {
 border-image: url(:images/buttons/hall_of_fame_button_pressed.png);
 }</string>
       </property>
@@ -197,7 +197,7 @@ border-image: url(:images/buttons/hall_of_fame_button_pressed.png);
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

@@ -1,7 +1,10 @@
 #include "headers/maingamewindow.h"
 #include "ui_maingamewindow.h"
 #include <QScreen>
+#include "headers/chicken.h"
+#include "headers/usernamewindow.h"
 #include <QFocusEvent>
+#include <QSqlQuery>
 
 #include "headers/bigegg.h"
 #include "headers/bigeggbullets.h"
@@ -50,6 +53,7 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
+    connect(spaceship, &Spaceship::changeScore, this, &MainGameWindow::increaseScore);
 
     start();
 }
@@ -242,6 +246,10 @@ void MainGameWindow::playPrepareMusic()
 void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
+
+    updatePlayer(this->current_high_score);
+    qDebug() << "endofGame";
+
     deleteLater();
 }
 
@@ -262,6 +270,7 @@ void MainGameWindow::victory()
         deleteLater();
     }
     else{
+        updatePlayer(this->current_high_score);
         winWindow *ww = new winWindow(mw);
         ww->setWindowState(Qt::WindowFullScreen);
         ww->exec();
@@ -394,11 +403,22 @@ void MainGameWindow::level9()
 
 void MainGameWindow::start()
 {
+
+
     spaceship->setStartingPosition(width/2-65, height-120);
 
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
-    mw->getScore()->setPos(pos().x()+20, pos().y());
+
+    this->current_high_score = mw->active_player->getScore();
+    qDebug() << "current player: " << mw->active_player->getName() << this->current_high_score;
+//    mw->active_player->setScore(0);
+//    qDebug() << "new score: " << mw->active_player->getScore();
+//    Score* score = mw->getScore();
+//    scene->addItem(score);
+
+
+//    mw->getScore()->setPos(pos().x()+20, pos().y());
 
     // lisov menjao ovaj deo koda
     //mw->getScore()->setPos(pos().x()+10, pos().y());
@@ -407,6 +427,7 @@ void MainGameWindow::start()
     // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
     //scene->addItem(mw->getLives());
     // do ovde
+    // do ovde negde puca program na drugi ulazak
 
     if(mw->getDesiredLevel() == 1){
         level1();
@@ -435,6 +456,7 @@ void MainGameWindow::start()
     else if(mw->getDesiredLevel() == 9){
         level9();
     }
+
 }
 
 void MainGameWindow::setUserMessage()
@@ -577,6 +599,7 @@ void MainGameWindow::setUserMessage()
 
 void MainGameWindow::openQuitGameWindow()
 {
+
     QuitGameWindow *qgw = new QuitGameWindow(this);
     qgw->setWindowFlags(Qt::CustomizeWindowHint);
     openedQuitWindow = true;
@@ -645,4 +668,32 @@ void MainGameWindow::keyReleaseEvent(QKeyEvent *event)
     default:
         QWidget::keyPressEvent(event);
     }
+}
+
+void MainGameWindow::increaseScore(int step){
+     int diff = mw->active_player->getDifficulty();
+     if(diff){
+        step = step * 2;
+     }
+      mw->getScore()->increaseScore(step);
+      mw->getScore()->setPlainText(QString("Score: ") + QString::number(mw->getScore()->getScore()));
+      qDebug() << mw->getScore()->getScore();
+}
+
+void MainGameWindow::updatePlayer(int current_high_score){
+
+    QSqlDatabase mydb = QSqlDatabase::database();
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QString active_player = mw->active_player->getName();
+    int score = mw->getScore()->getScore();
+    if (score>current_high_score){
+        qry->prepare("update players set score = :score, level = :level where name = :active_player");
+        qry->bindValue(":active_player", active_player);
+        qry->bindValue(":score", score);
+        qry->bindValue(":level", mw->getReachedLevel());
+        qry->exec();
+        mydb.commit();
+    }
+    mw->getScore()->resetScore();
+
 }

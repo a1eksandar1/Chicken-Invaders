@@ -1,4 +1,4 @@
-QT       += core gui \
+QT       += core gui sql \
          multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -36,6 +36,8 @@ SOURCES += \
     src/sideChickenGame.cpp \
     src/sidemeteorshowergame.cpp \
     src/sidespaceship.cpp \
+    src/player.cpp \
+    src/hofwindow.cpp \
     src/chooselevelwindow.cpp \
     src/chicken.cpp \
     src/egg.cpp \
@@ -83,6 +85,10 @@ HEADERS += \
     headers/sidespaceship.h \
     headers/planet.h \
     headers/maingamewindow.h \
+    headers/player.h \
+    headers/hofwindow.h \
+    headers/spaceship.h \
+    headers/quitgamewindow.h \
     headers/quitgamewindow.h \
     headers/winwindow.h \
     headers/wavechicken.h \
@@ -95,6 +101,8 @@ FORMS += \
     forms/gamewindow.ui \
     forms/optionswindow.ui \
     forms/maingamewindow.ui \
+    forms/hofwindow.ui \
+    forms/quitgamewindow.ui \
     forms/quitgamewindow.ui \
     forms/winwindow.ui
 
@@ -106,3 +114,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     images.qrc \
     sounds.qrc \
+    sounds.qrc
+
+DISTFILES += \
+    database.db
