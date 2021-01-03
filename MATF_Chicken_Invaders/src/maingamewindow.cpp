@@ -247,7 +247,8 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
 
-    updatePlayer();
+    updatePlayer(this->current_high_score);
+    qDebug() << "endofGame";
 
     deleteLater();
 }
@@ -265,8 +266,7 @@ void MainGameWindow::victory()
     mw->victorySound->stop();
     mw->backGroundMusic->play();
 
-
-    updatePlayer();
+//    updatePlayer(this->current_high_score);
 
     mw->openChooseLevelWindow();
     deleteLater();
@@ -279,6 +279,8 @@ void MainGameWindow::victory()
         deleteLater();
     }
     else{
+        updatePlayer(this->current_high_score);
+        qDebug()<<"ovde ide update?";
         winWindow *ww = new winWindow(mw);
         ww->setWindowState(Qt::WindowFullScreen);
         ww->exec();
@@ -418,12 +420,15 @@ void MainGameWindow::start()
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
 
+    this->current_high_score = mw->active_player->getScore();
+    qDebug() << "current player: " << mw->active_player->getName() << this->current_high_score;
+//    mw->active_player->setScore(0);
+//    qDebug() << "new score: " << mw->active_player->getScore();
+//    Score* score = mw->getScore();
+//    scene->addItem(score);
 
-    Score* score = mw->getScore();
-    scene->addItem(score);
 
-
-    mw->getScore()->setPos(pos().x()+20, pos().y());
+//    mw->getScore()->setPos(pos().x()+20, pos().y());
 
     // lisov menjao ovaj deo koda
     //mw->getScore()->setPos(pos().x()+10, pos().y());
@@ -682,14 +687,14 @@ void MainGameWindow::increaseScore(int step){
      }
       mw->getScore()->increaseScore(step);
       mw->getScore()->setPlainText(QString("Score: ") + QString::number(mw->getScore()->getScore()));
+      qDebug() << mw->getScore()->getScore();
 }
 
-void MainGameWindow::updatePlayer(){
+void MainGameWindow::updatePlayer(int current_high_score){
 
     QSqlDatabase mydb = QSqlDatabase::database();
     QSqlQuery *qry = new QSqlQuery(mydb);
     QString active_player = mw->active_player->getName();
-    int current_high_score = mw->active_player->getScore();
     int score = mw->getScore()->getScore();
     if (score>current_high_score){
         qry->prepare("update players set score = :score, level = :level where name = :active_player");
@@ -699,5 +704,6 @@ void MainGameWindow::updatePlayer(){
         qry->exec();
         mydb.commit();
     }
+    mw->getScore()->resetScore();
 
 }

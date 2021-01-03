@@ -11,6 +11,7 @@ public:
     int getScore();
     int getLevel();
     int getDifficulty();
+    void setScore(int newScore);
 private:
     QString name;
     int score;

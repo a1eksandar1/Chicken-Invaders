@@ -20,3 +20,7 @@ int Player::getLevel(){
 int Player::getDifficulty(){
     return this->difficulty;
 }
+
+void Player::setScore(int newScore){
+    this->score = newScore;
+}

@@ -9,6 +9,7 @@ public:
     Score(QGraphicsItem* parent = 0);
     void increaseScore(int step);
     int getScore();
+    void resetScore();
 
 private:
     int score = 0;
