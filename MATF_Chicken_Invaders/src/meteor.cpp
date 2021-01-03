@@ -76,7 +76,13 @@ void Meteor::setShot(bool value)
 
 void Meteor::die()
 {
-//TODO
+   if(!shot and (pos().y() > height or pos().x() > width))
+   {
+       shot = true;
+       emit meteorShot();
+       clean();
+   }
+
    if(!shot)
    {
         shot = true;

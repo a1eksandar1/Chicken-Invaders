@@ -109,7 +109,7 @@ void MainGameWindow::slot_level3()
         connect(smsg, &sideMeteorShowerGame::closeSideMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        PlanetChickenGame *pcg = new PlanetChickenGame(mw, scene, 10,2);
+        PlanetChickenGame *pcg = new PlanetChickenGame(mw, scene, 12,2);
         pcg->start();
         connect(pcg, &PlanetChickenGame::closePlanetChickenGame, this, &MainGameWindow::setUserMessage);
     }
@@ -174,7 +174,7 @@ void MainGameWindow::slot_level6()
 void MainGameWindow::slot_level7()
 {
     if(waveCounter == 1 ){
-        PlanetChickenGame *pcg = new PlanetChickenGame(mw, scene, 10,1);
+        PlanetChickenGame *pcg = new PlanetChickenGame(mw, scene, 12,1);
         pcg->start();
         connect(pcg, &PlanetChickenGame::closePlanetChickenGame, this, &MainGameWindow::setUserMessage);
     }

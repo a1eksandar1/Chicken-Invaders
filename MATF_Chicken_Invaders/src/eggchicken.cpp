@@ -58,9 +58,14 @@ void EggChicken::setShot(bool value)
 
 void EggChicken::die()
 {
-    if(isEgg)
+    if(isEgg and (pos().y() >height or pos().x() > width) and !shot)
+    {
+        shot = true;
+        emit eggChickenDied();
+        clean();
+    }
+    else if(isEgg)
         isEgg = false;
-
     else if(!isEgg and !shot)
     {
         shot = true;

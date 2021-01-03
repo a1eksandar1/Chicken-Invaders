@@ -21,14 +21,14 @@ PlanetChickenGame::PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene,i
     {
         planet = new QGraphicsPixmapItem();
         planet->setPixmap(QPixmap(":images/chicken/earth.png").scaled(150,150,Qt::KeepAspectRatio));
-        planet->setPos((width-180)/2,(height-180)/2);
+        planet->setPos((width-180)/2,(height-500)/2);
         scene->addItem(planet);
     }
     else if(pl == 2)
     {
         planet = new QGraphicsPixmapItem();
         planet->setPixmap(QPixmap(":images/chicken/uranus.png").scaled(150,150,Qt::KeepAspectRatio));
-        planet->setPos((width-180)/2,(height-180)/2);
+        planet->setPos((width-180)/2,(height-500)/2);
         scene->addItem(planet);
     }
 

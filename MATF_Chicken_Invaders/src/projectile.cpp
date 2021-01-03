@@ -81,6 +81,7 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
         else if(typeid (*colItem) == typeid (Meteor))
         {
@@ -88,6 +89,7 @@ void Projectile::colision()
             meteor->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
         else if(typeid (*colItem) == typeid (BigChicken))
         {
@@ -98,6 +100,7 @@ void Projectile::colision()
 
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
         else if(typeid (*colItem) == typeid (BalloonChicken))
         {
@@ -105,6 +108,8 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
+
         }
         else if(typeid (*colItem) == typeid (SideChicken))
         {
@@ -112,6 +117,7 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
         else if(typeid (*colItem) == typeid (EggChicken))
         {
@@ -119,6 +125,7 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
         else if(typeid (*colItem) == typeid (WaveChicken))
         {
@@ -126,6 +133,7 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
         else if(typeid (*colItem) == typeid (PlanetChicken))
         {
@@ -133,6 +141,7 @@ void Projectile::colision()
             chicken->die();
             spaceship->setThrowingAllowed(true);
             clean();
+            return;
         }
     }
 }

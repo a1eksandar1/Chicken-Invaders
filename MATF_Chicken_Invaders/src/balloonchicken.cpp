@@ -15,7 +15,6 @@ BalloonChicken::BalloonChicken(MainWindow *parent, int m, int n, int num1, int n
     this->m = m;
     this->n = n;
 
-
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();

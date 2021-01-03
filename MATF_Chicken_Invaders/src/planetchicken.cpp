@@ -114,13 +114,20 @@ void PlanetChicken::advance(int step)
         imgChange = (imgChange + 1)%2;
 
 
-        int random_number1 = rand() % 300;
+        int random_number1 = rand() % 6;
         int random_number2 = rand() % 1000;
 
-        if (random_number1 == 5)
+        if (random_number1 % 2 == 0 and !rotate)
         {
             Egg *egg = new Egg(mw);
-            egg->setPos(pos().x(),pos().y()+100);
+            egg->setPos(pos().x()+20,pos().y()+100);
+            scene()->addItem(egg);
+
+        }
+        if(random_number1 == 5)
+        {
+            Egg *egg = new Egg(mw);
+            egg->setPos(pos().x()+20,pos().y()+100);
             scene()->addItem(egg);
 
         }
@@ -133,7 +140,7 @@ void PlanetChicken::advance(int step)
 
         }
 
-        if(pos().y()> height/2-100)
+        if(pos().y()> height/2-250)
             rotate = true;
 
         if(!rotate)
@@ -144,7 +151,7 @@ void PlanetChicken::advance(int step)
         {
             double x = cos(t)*scale;
             double y = sin(t)*scale;
-            setPos(width/2-75+x, height/2-75+y);
+            setPos(width/2-75+x, height/2-230+y);
             t += 0.1;
         }
 
