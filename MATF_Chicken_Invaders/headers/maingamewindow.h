@@ -24,6 +24,7 @@
 #include "headers/spaceship.h"
 #include "headers/mainwindow.h"
 #include "headers/gamewindow.h"
+#include "headers/lives.h"
 
 class View;
 class AnimatedGraphicsItem : public QObject, public QGraphicsPixmapItem{

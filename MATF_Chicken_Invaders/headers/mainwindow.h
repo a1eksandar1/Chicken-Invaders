@@ -56,7 +56,6 @@ public:
     void setFreezeScene(bool value);
     Score* getScore();
     void increaseScore();
-    Lives* getLives();
 
 private:
     void setMusic();
@@ -82,7 +81,6 @@ private:
     bool planetClicked;
     bool freezeScene;
     Score* score;
-    Lives* lives;
 
 };
 #endif // MAINWINDOW_H

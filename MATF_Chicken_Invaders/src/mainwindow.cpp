@@ -69,8 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
     reachedLevel(2),
     planetClicked(false),
     freezeScene(false),
-    score(new Score()),
-    lives(new Lives())
+    score(new Score())
 {
     ui->setupUi(this);
     setMusic();
@@ -191,11 +190,6 @@ Score *MainWindow::getScore()
 void MainWindow::increaseScore()
 {
     score->increaseScore();
-}
-
-Lives *MainWindow::getLives()
-{
-    return lives;
 }
 
 void MainWindow::setMusic()

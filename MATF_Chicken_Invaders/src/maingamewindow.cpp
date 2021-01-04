@@ -50,6 +50,14 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
 
+    // lisov menjao ovaj deo koda
+    // mw->getScore()->setPos(pos().x()+10, pos().y());
+    // mw->getLives()->setPos(width - 130, -20);
+    // scene->addItem(mw->getScore());
+    // scene->addItem(mw->getLives());
+    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
+    // do ovde
+
     start();
 }
 
@@ -237,14 +245,6 @@ void MainGameWindow::start()
     spaceship->setPos(spaceship->getStartingXPos(), spaceship->getStartingYPos());
     scene->addItem(spaceship);
     mw->getScore()->setPos(pos().x()+20, pos().y());
-
-    // lisov menjao ovaj deo koda
-    mw->getScore()->setPos(pos().x()+10, pos().y());
-    mw->getLives()->setPos(width - 130, -20);
-    // scene->addItem(mw->getScore());
-    // scene->addItem(mw->getLives());
-    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
-    // do ovde
 
     if(mw->getDesiredLevel() == 1){
         level1();
