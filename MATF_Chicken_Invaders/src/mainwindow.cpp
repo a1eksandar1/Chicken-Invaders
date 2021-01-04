@@ -213,7 +213,7 @@ void MainWindow::setMusic()
     backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme.mp3"));
     chickenSound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
     giftSound->setMedia(QUrl("qrc:/sounds/sounds/GiftSound.mp3"));
-    projectileSound->setMedia(QUrl("qrc:/sounds/sounds/Projectile.mp3"));
+    projectileSound->setMedia(QUrl("qrc:/sounds/sounds/laser.mp3"));
     eggSound->setMedia(QUrl("qrc:/sounds/sounds/Egg.mp3"));
     explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
     gameOverSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));

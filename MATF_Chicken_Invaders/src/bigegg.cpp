@@ -28,6 +28,8 @@ bigEgg::bigEgg(MainWindow *parent) : mw(parent)
 
     this->width = width;
     this->height = height;
+
+    setPos((width-30)/2, -500);
 }
 
 void bigEgg::throw_bullets()
