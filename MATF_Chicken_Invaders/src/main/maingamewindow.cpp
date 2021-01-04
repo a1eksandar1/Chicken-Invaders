@@ -256,14 +256,14 @@ void MainGameWindow::slot_level8()
 void MainGameWindow::slot_level9()
 {
     if(waveCounter == 1 ){
-        BalloonGame *bg = new BalloonGame(mw, scene, 10, 5);
-        bg->start();
-        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
-    }
-    else if(waveCounter == 2){
         EggChickenGame *ecg = new EggChickenGame(mw, scene, 50);
         ecg->start();
         connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
+    }
+    else if(waveCounter == 2){
+        BalloonGame *bg = new BalloonGame(mw, scene, 10, 5);
+        bg->start();
+        connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
         BossGame *bg = new BossGame(mw, scene,100);
