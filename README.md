@@ -1,6 +1,6 @@
 # <img src="MATF_Chicken_Invaders/backgrounds/splash.png" width="150"/> MATF Chicken Invaders
 
-Zle kokoske osvajaci i njihovi saradnici napadaju galaksiju Mlecni put. Cilj ove igre jeste da ih porazimo i tako je oslobodimo. 
+Zle kokoske osvajaci i njihovi saradnici napadaju galaksiju Mlecni put. Cilj ove igre jeste da ih porazimo i tako je oslobodimo nasu galaksiju. 
 To mozemo izvesti jedino tako sto cemo krenuti od Plutona, a zatim oslobadjati jednu po jednu planetu sve do Sunca. 
 Ovaj poduhvat nije nimalo lak jer pored poznatih neprijatelja u svemiru postoje i jos neke neocekivane pretnje. 
 Nadamo se da ste spremni za uzbudljivu avanturu!
