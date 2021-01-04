@@ -58,6 +58,7 @@ private:
     int numberOfLives = 3;
     int startingXPosition;
     int startingYPosition;
+    int width, height;
 
 protected:
     void advance(int step) override;
