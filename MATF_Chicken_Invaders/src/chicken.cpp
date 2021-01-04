@@ -26,8 +26,8 @@ Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
     this->width = width;
     this->height = height;
 
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(height/7,height/7,Qt::KeepAspectRatio));
-    setPos(width/11*m + 20, -height/7*(num2-n) - 10);
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/13,height/7,Qt::KeepAspectRatio));
+    setPos(width/13*m + 30, -height/7*(num2-n) - 20);
 
 }
 
@@ -102,10 +102,10 @@ void Chicken::advance(int step)
 
         }
 
-        if(pos().x() + width/11*(num1-1-m) > width - width/11)
+        if(pos().x() + width/13*(num1-1-m) > width - width/13)
             orientation = -10;
 
-        if(pos().x() - width/11*(m) < 0)
+        if(pos().x() - width/13*(m) < 0)
             orientation = 10;
 
         if(pos().y() < height/7*n + 10)

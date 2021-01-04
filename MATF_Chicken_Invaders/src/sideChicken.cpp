@@ -27,13 +27,11 @@ SideChicken::SideChicken(MainWindow *parent, int n) :
     this->width = width;
     this->height = height;
 
-    setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/16,width/16,Qt::KeepAspectRatio));
     t = 4*n*3.14/40;
-    scale = 2 / ( 3 - cos(2 * t)) * (width/2);
+    scale = 2 / ( 3 - cos(2 * t)) * (width/2.5);
 
     setPos(width/2 - width/20 + scale * cos(t), height/3 + scale * sin(2 * t)/2);
-
-
 
 }
 
@@ -71,7 +69,7 @@ void SideChicken::die()
     {
         shot = true;
         emit chickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/16,width/16,Qt::KeepAspectRatio));
         imgChange=3;
 
         mw->chickenSound->stop();
@@ -136,18 +134,18 @@ void SideChicken::advance(int step)
         if(t<=3.14)
         {
             if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/16,width/16,Qt::KeepAspectRatio));
             else if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/leftsideChicken2.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/leftsideChicken2.png").scaled(width/16,width/16,Qt::KeepAspectRatio));
 
 
         }
         else
         {
             if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/rightsideChicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/rightsideChicken.png").scaled(width/16,width/16,Qt::KeepAspectRatio));
             else if(imgChange ==1)
-                setPixmap(QPixmap(":images/chicken/rightsideChicken2.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+                setPixmap(QPixmap(":images/chicken/rightsideChicken2.png").scaled(width/16,width/16,Qt::KeepAspectRatio));
 
 
         }
@@ -155,7 +153,7 @@ void SideChicken::advance(int step)
             return;
 
         imgChange = (imgChange + 1)%2;
-        scale = 2 / ( 3 - cos(2 * t)) * (width/2);
+        scale = 2 / ( 3 - cos(2 * t)) * (width/2.5);
 
         setPos(width/2 - width/20  + scale * cos(t),height/3 + scale * sin(2 * t)/2);
         t = t + 3.14/40;
@@ -163,7 +161,7 @@ void SideChicken::advance(int step)
         else
         {
             t = 0;
-            scale = 2 / ( 3 - cos(2 * t)) * (width/2);
+            scale = 2 / ( 3 - cos(2 * t)) * (width/2.5);
 
             setPos(width/2 - width/20 + scale * cos(t), height/3 + scale * sin(2 * t)/2);
              t = t + 3.14/40;

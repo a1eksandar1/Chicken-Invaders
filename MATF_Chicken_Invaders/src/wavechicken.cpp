@@ -25,9 +25,9 @@ WaveChicken::WaveChicken(MainWindow *parent, int m, int n) :
     this->width = width;
     this->height = height;
 
-    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/13,height/9,Qt::KeepAspectRatio));
 
-    setPos(width/10*m + 20, -height/9*(n+1));
+    setPos(width/13*m + 20, -height/9*(n+1));
 
 
 
@@ -109,9 +109,9 @@ void WaveChicken::advance(int step)
 
     if(!mw->getFreezeScene()){
         if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/13,height/9,Qt::KeepAspectRatio));
         if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(width/13,height/9,Qt::KeepAspectRatio));
         if(imgChange == 3)
             return;
 
