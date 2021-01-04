@@ -695,9 +695,6 @@ void MainGameWindow::increaseScore(int step){
      }
       mw->getScore()->increaseScore(step);
       mw->getScore()->setPlainText(QString("Score: ") + QString::number(mw->getScore()->getScore()));
-//      qDebug() << mw->getScore()->getScore();
-      qDebug() << mw->active_player->getLives();
-      qDebug() << mw->getScore()->getScore();
 }
 
 void MainGameWindow::updatePlayer(int current_high_score){
@@ -708,7 +705,6 @@ void MainGameWindow::updatePlayer(int current_high_score){
     std::string content = "anon";
     QString str = QString::fromUtf8(content.c_str());
     if(active_player == str){
-        qDebug() << mw->getDesiredLevel() << mw->getReachedLevel() << mw->active_player->getLevel();
         return;
     }
     int score = mw->getScore()->getScore();

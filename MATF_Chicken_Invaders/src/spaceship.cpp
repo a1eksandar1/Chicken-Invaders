@@ -75,18 +75,6 @@ void Spaceship::throw_projectile()
         scene()->addItem(projectile);
 }
 
-/*void Spaceship::move_left()
-{
-    if(pos().x() > 20)
-        setPos(pos().x()-5, pos().y());
-}
-
-void Spaceship::move_right()
-{
-    if(pos().x() < 2*getStartingXPos()-20)
-        setPos(pos().x()+5, pos().y());
-}*/
-
 bool Spaceship::getThrowingAllowed()
 {
     return throwingAllowed;
@@ -108,7 +96,6 @@ qreal Spaceship::yStart()
 int Spaceship::decreaseLivesNumAndGetCurrNumLives(){
 
     mw->active_player->loseLife();
-    qDebug() <<" ovaj ispis jeemumater" <<numberOfLives << mw->active_player->getLives();
     return --numberOfLives;
 }
 
