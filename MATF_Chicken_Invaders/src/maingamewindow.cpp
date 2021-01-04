@@ -248,8 +248,8 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
 
-//    updatePlayer(this->current_high_score);
-    qDebug() << "endofGame";
+    if(mw->active_player->getLives()==0)
+        updatePlayer(this->current_high_score);
 
     deleteLater();
 }
@@ -673,6 +673,8 @@ void MainGameWindow::increaseScore(int step){
       mw->getScore()->increaseScore(step);
       mw->getScore()->setPlainText(QString("Score: ") + QString::number(mw->getScore()->getScore()));
 //      qDebug() << mw->getScore()->getScore();
+      qDebug() << mw->active_player->getLives();
+      qDebug() << mw->getScore()->getScore();
 }
 
 void MainGameWindow::updatePlayer(int current_high_score){
@@ -695,6 +697,6 @@ void MainGameWindow::updatePlayer(int current_high_score){
         qry->exec();
         mydb.commit();
     }
-
+    spaceship->setNumOfLives(mw->active_player->getLives());
 
 }

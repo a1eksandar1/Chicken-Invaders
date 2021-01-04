@@ -20,6 +20,7 @@ Spaceship::Spaceship(MainWindow *parent) :
     moving_timer->setInterval(10);
     connect(moving_timer, SIGNAL(timeout()), this, SLOT(move()));
     projectilesLevel = mw->getProjectilesLevel();
+    setNumOfLives(mw->active_player->getLives());
 }
 
 QPointF Spaceship::getPosition()
@@ -105,6 +106,9 @@ qreal Spaceship::yStart()
 }
 
 int Spaceship::decreaseLivesNumAndGetCurrNumLives(){
+
+    mw->active_player->loseLife();
+    qDebug() <<" ovaj ispis jeemumater" <<numberOfLives << mw->active_player->getLives();
     return --numberOfLives;
 }
 
@@ -306,4 +310,8 @@ void Spaceship::stop_moving_timer()
 void Spaceship::revertProjectilesLevel()
 {
     projectilesLevel = 1;
+}
+
+void Spaceship::setNumOfLives(int num){
+    this->numberOfLives = num;
 }

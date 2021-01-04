@@ -34,6 +34,7 @@ public:
     void checkIfSpaceshipDestroyed();
     bool isCurrentlyDestroyed = false;
     void setInvisible();
+    void setNumOfLives(int num);
 
 public:
     MainWindow *mw;
