@@ -11,9 +11,13 @@
 #include "headers/roastChicken.h"
 
 BigChicken::BigChicken(MainWindow *parent, int shotCounter) :
-    mw(parent), shotCounter(shotCounter)
+    mw(parent)
 {
-    setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(500,500,Qt::KeepAspectRatio));
+    if(mw->isHard())
+        this->shotCounter = 2*shotCounter;
+    else if(!mw->isHard())
+        this->shotCounter = shotCounter;
+
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -23,7 +27,9 @@ BigChicken::BigChicken(MainWindow *parent, int shotCounter) :
     this->width = width;
     this->height = height;
 
-    setPos((width-30)/2, -500);
+    setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(height/2,height/2,Qt::KeepAspectRatio));
+
+    setPos((width-30)/2, -height/2);
 }
 
 BigChicken::~BigChicken()
@@ -50,7 +56,7 @@ void BigChicken::die()
 
     if(shotCounter > 0)
     {
-        setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(600,600,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(height/2,height/2,Qt::KeepAspectRatio));
         mw->chickenSound->stop();
         mw->chickenSound->play();
         mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
@@ -146,13 +152,13 @@ void BigChicken::advance(int step)
 
     if(!mw->getFreezeScene()){
         if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(500,500,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(height/2,height/2,Qt::KeepAspectRatio));
         if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(500,500,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/bigChicken2.png").scaled(height/2,height/2,Qt::KeepAspectRatio));
         if(imgChange == 3)
             return;
         imgChange = (imgChange + 1)%2;
-        int random_number1 = rand() % 200;
+        int random_number1 = rand() % 20;
         int random_number2 = rand() % 700;
         if (random_number1 == 5)
         {
@@ -170,13 +176,15 @@ void BigChicken::advance(int step)
 
         }
 
-        if(pos().x() > width - 1000)
+        if(pos().x() > width - width/8 - height/2)
             xOrientation = -10;
 
-        if(pos().x() < 500)
+        else if(pos().x() <= width/8)
             xOrientation = 10;
-
-        setPos(pos().x()+xOrientation,pos().y()+yOrientation);
+        if(pos().y() > height/2)
+            setPos((width-30)/2, 0);
+        else
+            setPos(pos().x()+xOrientation,pos().y()+yOrientation);
 
     }
 

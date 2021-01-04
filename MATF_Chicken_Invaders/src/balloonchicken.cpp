@@ -14,6 +14,11 @@ BalloonChicken::BalloonChicken(MainWindow *parent, int m, int n, int num1, int n
 
     this->m = m;
     this->n = n;
+    if(mw->isHard())
+        this->shotCounter = 5;
+    else if(!mw->isHard())
+        this->shotCounter = 3;
+
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -23,8 +28,8 @@ BalloonChicken::BalloonChicken(MainWindow *parent, int m, int n, int num1, int n
     this->width = width;
 
     this->height = height;
-    setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(width/11,height/7,Qt::KeepAspectRatio));
-    setPos(width/11*m + 30, -height/6*(num2-n));
+    setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(width/13,height/8,Qt::KeepAspectRatio));
+    setPos(width/13*m + 30, -height/7*(num2-n));
 
 }
 BalloonChicken::~BalloonChicken()
@@ -56,12 +61,15 @@ void BalloonChicken::setShot(bool value)
 
 void BalloonChicken::die()
 {
-    balloonCounter--;
+    shotCounter--;
+    if(balloonCounter > 0)
+        balloonCounter--;
+
     if(balloonCounter == 2)
-        setPixmap(QPixmap(":images/chicken/balloonChicken2.png").scaled(width/11,height/7,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/balloonChicken2.png").scaled(width/13, height/8,Qt::KeepAspectRatio));
     if(balloonCounter == 1)
-        setPixmap(QPixmap(":images/chicken/balloonChicken1.png").scaled(width/11,height/7,Qt::KeepAspectRatio));
-    else if(balloonCounter == 0 and !shot)
+        setPixmap(QPixmap(":images/chicken/balloonChicken1.png").scaled(width/13,height/8,Qt::KeepAspectRatio));
+    else if(balloonCounter == 0 and !shot and shotCounter == 0)
     {
         shot = true;
         emit balloonChickenDied();
@@ -126,10 +134,10 @@ void BalloonChicken::advance(int step)
         }
 
 
-        if(pos().x() + width/11*(num1-1-m) > width - width/11)
+        if(pos().x() + width/13*(num1-1-m) > width - width/13)
             orientation = -10;
 
-        if(pos().x() - width/11*(m) < 0)
+        if(pos().x() - width/13*(m) < 0)
             orientation = 10;
 
         if(pos().y() < height/6*n)

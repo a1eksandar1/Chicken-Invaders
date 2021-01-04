@@ -1,17 +1,22 @@
 #include "headers/chicken.h"
+
+#include <QApplication>
+#include <QScreen>
+#include <QDebug>
 #include <QTimer>
 #include <QList>
-#include "headers/egg.h"
-#include "headers/gift.h"
-#include <QDebug>
-#include <QScreen>
-#include <QApplication>
-#include "headers/drumstick.h"
+
 Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
     num1(num1), num2(num2), mw(parent)
 {
     this->m = m;
     this->n = n;
+
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
+
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -21,8 +26,8 @@ Chicken::Chicken(MainWindow *parent, int m, int n, int num1, int num2) :
     this->width = width;
     this->height = height;
 
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(height/7,height/7,Qt::KeepAspectRatio));
-    setPos(width/11*m + 20, -height/7*(num2-n) - 10);
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/13,height/7,Qt::KeepAspectRatio));
+    setPos(width/13*m + 30, -height/7*(num2-n) - 20);
 
 }
 
@@ -32,30 +37,10 @@ Chicken::~Chicken()
 }
 
 
-
-int Chicken::getOrientation() const
-{
-    return orientation;
-}
-
-void Chicken::setOrientation(int value)
-{
-    orientation = value;
-}
-
-bool Chicken::getShot() const
-{
-    return shot;
-}
-
-void Chicken::setShot(bool value)
-{
-    shot = value;
-}
-
 void Chicken::die()
 {
-    if(!shot)
+    shotCounter--;
+    if(!shot and shotCounter == 0)
     {
         shot = true;
         emit chickenDied();
@@ -80,16 +65,6 @@ void Chicken::clean()
 {
     scene()->removeItem(this);
     delete this;
-}
-
-int Chicken::getImgChange() const
-{
-    return imgChange;
-}
-
-void Chicken::setImgChange(int value)
-{
-    imgChange = value;
 }
 
 void Chicken::advance(int step)
@@ -127,10 +102,10 @@ void Chicken::advance(int step)
 
         }
 
-        if(pos().x() + width/11*(num1-1-m) > width - width/11)
+        if(pos().x() + width/13*(num1-1-m) > width - width/13)
             orientation = -10;
 
-        if(pos().x() - width/11*(m) < 0)
+        if(pos().x() - width/13*(m) < 0)
             orientation = 10;
 
         if(pos().y() < height/7*n + 10)

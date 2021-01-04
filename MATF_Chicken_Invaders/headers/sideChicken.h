@@ -35,6 +35,7 @@ private:
     int n, num;
     int imgChange;
     int orientation=10;
+    int shotCounter;
     int width, height;
     bool shot = false;
     double scale=1, t=0;

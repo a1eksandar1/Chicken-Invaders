@@ -85,8 +85,6 @@ HEADERS += \
     headers/maingamewindow.h \
     headers/player.h \
     headers/hofwindow.h \
-    headers/spaceship.h \
-    headers/quitgamewindow.h \
     headers/quitgamewindow.h \
     headers/winwindow.h \
     headers/wavechicken.h \
@@ -101,7 +99,6 @@ FORMS += \
     forms/maingamewindow.ui \
     forms/hofwindow.ui \
     forms/quitgamewindow.ui \
-    forms/quitgamewindow.ui \
     forms/winwindow.ui
 
 # Default rules for deployment.
@@ -112,7 +109,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     images.qrc \
     sounds.qrc \
-    sounds.qrc
 
 DISTFILES += \
     database.db

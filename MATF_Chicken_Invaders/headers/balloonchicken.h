@@ -38,6 +38,7 @@ private:
     int width, height;
     bool shot = false;
     int balloonCounter=3;
+    int shotCounter;
     MainWindow *mw;
 
 public slots:

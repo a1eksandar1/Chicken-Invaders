@@ -70,6 +70,7 @@ void MainGameWindow::slot_level1()
         ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8,3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
+
     }
     else if(waveCounter == 2){
         MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,8, 8);

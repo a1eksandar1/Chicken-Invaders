@@ -177,6 +177,7 @@ void MainWindow::pauseAllSounds()
     gameOverSound->pause();
     gamePrepareSound->pause();
     victorySound->pause();
+    drumstickSound->pause();
 }
 
 Score *MainWindow::getScore()
@@ -200,6 +201,7 @@ void MainWindow::setMusic()
     gameOverSound = new QMediaPlayer;
     gamePrepareSound = new QMediaPlayer;
     victorySound = new QMediaPlayer;
+    drumstickSound = new QMediaPlayer;
 
     backGroundMusic->setMedia(QUrl("qrc:/sounds/sounds/MainTheme.mp3"));
     chickenSound->setMedia(QUrl("qrc:/sounds/sounds/ShotChicken.mp3"));
@@ -210,6 +212,7 @@ void MainWindow::setMusic()
     gameOverSound->setMedia(QUrl("qrc:/sounds/sounds/GameOver.mp3"));
     gamePrepareSound->setMedia(QUrl("qrc:/sounds/sounds/prepare.mp3"));
     victorySound->setMedia(QUrl("qrc:/sounds/sounds/Victory.mp3"));
+    drumstickSound->setMedia(QUrl("qrc:/sounds/sounds/Drumstick.mp3"));
 
     backGroundMusic->setVolume(volume);
     chickenSound->setVolume(volume);
@@ -220,6 +223,7 @@ void MainWindow::setMusic()
     projectileSound->setVolume(volume);
     gamePrepareSound->setVolume(volume);
     victorySound->setVolume(volume);
+    drumstickSound->setVolume(volume);
 
     backGroundMusic->play();
 }

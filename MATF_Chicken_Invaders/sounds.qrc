@@ -10,5 +10,6 @@
         <file>sounds/SpaceshipExplosion.mp3</file>
         <file>sounds/prepare.mp3</file>
         <file>sounds/MainTheme.mp3</file>
+        <file>sounds/Drumstick.mp3</file>
     </qresource>
 </RCC>

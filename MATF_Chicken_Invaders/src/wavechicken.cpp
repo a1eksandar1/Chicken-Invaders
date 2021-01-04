@@ -12,8 +12,11 @@
 WaveChicken::WaveChicken(MainWindow *parent, int m, int n) :
     m(m), n(n), mw(parent)
 {
+    if(mw->isHard())
+        this->shotCounter = 2;
+    else if(!mw->isHard())
+        this->shotCounter = 1;
 
-    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(100,100,Qt::KeepAspectRatio));
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -21,9 +24,10 @@ WaveChicken::WaveChicken(MainWindow *parent, int m, int n) :
 
     this->width = width;
     this->height = height;
-    this->color = rand()%3;
 
-    setPos(120*m + 20, -100*(n+1));
+    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/13,height/9,Qt::KeepAspectRatio));
+
+    setPos(width/13*m + 20, -height/9*(n+1));
 
 
 
@@ -57,11 +61,13 @@ void WaveChicken::setShot(bool value)
 
 void WaveChicken::die()
 {
-    if(!shot)
+    if(canBeshot)
+        shotCounter--;
+    if(!shot and shotCounter == 0 and canBeshot)
     {
         shot = true;
         emit waveChickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
         imgChange=3;
 
         mw->chickenSound->stop();
@@ -77,6 +83,16 @@ void WaveChicken::die()
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(200);
     }
+}
+
+bool WaveChicken::getCanBeshot() const
+{
+    return canBeshot;
+}
+
+void WaveChicken::setCanBeshot(bool value)
+{
+    canBeshot = value;
 }
 
 void WaveChicken::clean()
@@ -104,9 +120,9 @@ void WaveChicken::advance(int step)
 
     if(!mw->getFreezeScene()){
         if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(120,120,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/13,height/9,Qt::KeepAspectRatio));
         if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(120,120,Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(width/13,height/9,Qt::KeepAspectRatio));
         if(imgChange == 3)
             return;
 
@@ -132,17 +148,23 @@ void WaveChicken::advance(int step)
 
         }
 
+
+        if(pos().y() > height/3-height/13)
+        {
+            canBeshot = true;
+        }
+
         setPos(pos().x(),pos().y()+orientation);
 
-        if(pos().y() > height/2)
+        if(pos().y() >height/3)
         {
             orientation = -orientation;
-            isEgg = false;
+            wave = false;
         }
-        if(!isEgg and pos().y() < 10)
+        if(!wave and pos().y() < 10)
             orientation = -orientation;
 
-        if(pos().y() > height)
+        if(pos().y() > height or pos().x() > width)
             die();
     }
 }
