@@ -239,7 +239,7 @@ void Spaceship::checkIfSpaceshipDestroyed()
         setPos(getStartingXPos(), getStartingYPos());
         mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
         mw->explosionSound->play();
-
+        emit spaceshipHited();
         setInvisible();
     }
 }

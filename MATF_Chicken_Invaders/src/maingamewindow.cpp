@@ -5,6 +5,7 @@
 #include "headers/usernamewindow.h"
 #include <QFocusEvent>
 #include <QSqlQuery>
+#include <QGraphicsItem>
 
 #include "headers/bigegg.h"
 #include "headers/bigeggbullets.h"
@@ -55,8 +56,30 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
 //    connect(spaceship, &Spaceship::changeScore, this, &MainGameWindow::increaseScore);
     connect(mw, &MainWindow::changeScore, this, &MainGameWindow::increaseScore);
+    connect(spaceship, &Spaceship::spaceshipHited, this, &MainGameWindow::updateLives);
 
     start();
+
+    lives = new QGraphicsPixmapItem;
+    if(mw->active_player->getLives() == 3){
+        QPixmap lv(":/images/spaceships/lives3.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
+    else if(mw->active_player->getLives() == 2){
+        QPixmap lv(":/images/spaceships/lives2.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+
+    }
+    else if(mw->active_player->getLives() == 1){
+        QPixmap lv(":/images/spaceships/lives1.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
 }
 
 void MainGameWindow::removeMessage()
@@ -699,4 +722,22 @@ void MainGameWindow::updatePlayer(int current_high_score){
     }
     spaceship->setNumOfLives(mw->active_player->getLives());
 
+}
+
+void MainGameWindow::updateLives()
+{
+    if(mw->active_player->getLives() == 2){
+        scene->removeItem(lives);
+        QPixmap lv(":/images/spaceships/lives2.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
+    else if(mw->active_player->getLives() == 1){
+        scene->removeItem(lives);
+        QPixmap lv(":/images/spaceships/lives1.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
 }
