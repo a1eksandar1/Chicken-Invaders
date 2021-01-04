@@ -19,12 +19,6 @@ SideChicken::SideChicken(MainWindow *parent, int n) :
         this->shotCounter = 1;
 
 
-    setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
-    t = 4*n*3.14/40;
-    scale = 2 / ( 3 - cos(2 * t)) * 650;
-
-    setPos(width/2 - width/20 + scale * cos(t), height/3 + scale * sin(2 * t)/2);
-
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
     int height = screenGeometry.height();
@@ -32,6 +26,13 @@ SideChicken::SideChicken(MainWindow *parent, int n) :
 
     this->width = width;
     this->height = height;
+
+    setPixmap(QPixmap(":images/chicken/leftsideChicken.png").scaled(width/12,width/12,Qt::KeepAspectRatio));
+    t = 4*n*3.14/40;
+    scale = 2 / ( 3 - cos(2 * t)) * (width/2);
+
+    setPos(width/2 - width/20 + scale * cos(t), height/3 + scale * sin(2 * t)/2);
+
 
 
 }
@@ -154,7 +155,7 @@ void SideChicken::advance(int step)
             return;
 
         imgChange = (imgChange + 1)%2;
-        scale = 2 / ( 3 - cos(2 * t)) * 650;
+        scale = 2 / ( 3 - cos(2 * t)) * (width/2);
 
         setPos(width/2 - width/20  + scale * cos(t),height/3 + scale * sin(2 * t)/2);
         t = t + 3.14/40;
@@ -162,7 +163,7 @@ void SideChicken::advance(int step)
         else
         {
             t = 0;
-            scale = 2 / ( 3 - cos(2 * t)) * 650;
+            scale = 2 / ( 3 - cos(2 * t)) * (width/2);
 
             setPos(width/2 - width/20 + scale * cos(t), height/3 + scale * sin(2 * t)/2);
              t = t + 3.14/40;
