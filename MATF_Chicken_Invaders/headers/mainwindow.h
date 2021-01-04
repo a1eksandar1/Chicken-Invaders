@@ -13,7 +13,6 @@
 #include <QDebug>
 #include <QMediaPlayer>
 #include <headers/score.h>
-#include <headers/lives.h>
 #include <headers/player.h>
 
 QT_BEGIN_NAMESPACE
@@ -61,7 +60,6 @@ public:
     void setFreezeScene(bool value);
     Score* getScore();
 //    void increaseScore();
-    Lives* getLives();
 
 private:
     void setMusic();
@@ -91,7 +89,6 @@ private:
     bool planetClicked;
     bool freezeScene;
     Score* score;
-    Lives* lives;
     int projectilesLevel;
 
 

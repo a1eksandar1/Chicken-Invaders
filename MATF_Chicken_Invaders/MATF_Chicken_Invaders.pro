@@ -19,7 +19,6 @@ SOURCES += \
     src/balloonchicken.cpp \
     src/bigchicken.cpp \
     src/bossgame.cpp \
-    src/lives.cpp \
     src/score.cpp \
     src/drumstick.cpp \
     src/maingamewindow.cpp \
@@ -58,7 +57,6 @@ HEADERS += \
     headers/bossgame.h \
     headers/eggchicken.h \
     headers/eggchickengame.h \
-    headers/lives.h \
     headers/planetchicken.h \
     headers/planetchickengame.h \
     headers/score.h \

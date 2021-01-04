@@ -242,7 +242,10 @@ void Spaceship::checkIfSpaceshipDestroyed()
 void Spaceship::setInvisible()
 {
     isCurrentlyDestroyed = true;
-    setPixmap(QPixmap(":images/spaceships/1_cd.png"));
+    if(!mw->isHard())
+        setPixmap(QPixmap(":images/spaceships/1_cd.png"));
+    else
+        setPixmap(QPixmap(":images/spaceships/4_cd.png"));
     destroyedTimer->start(3000);
 }
 
@@ -287,7 +290,11 @@ void Spaceship::move()
 
 void Spaceship::enableSpaceshipAfterDestroying()
 {
-    setPixmap(QPixmap(":images/spaceships/1.png"));
+    if(!mw->isHard())
+        setPixmap(QPixmap(":images/spaceships/1.png"));
+    else
+        setPixmap(QPixmap(":images/spaceships/4.png"));
+
     destroyedTimer->stop();
     isCurrentlyDestroyed = false;
 }
