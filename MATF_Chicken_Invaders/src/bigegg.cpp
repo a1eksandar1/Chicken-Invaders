@@ -28,6 +28,8 @@ bigEgg::bigEgg(MainWindow *parent) : mw(parent)
 
     this->width = width;
     this->height = height;
+
+    setPos((width-30)/2, -500);
 }
 
 void bigEgg::throw_bullets()
@@ -63,11 +65,11 @@ void bigEgg::move()
 {
     if(!mw->getFreezeScene()){
         if(direction > 0){ // ide udesno
-            if(pos().x() > width - 930)
+            if(pos().x() > width - width/8 - 500)
                 direction = -direction;
         }
         else{ // ide ulevo
-            if(pos().x() < 500)
+            if(pos().x() <= width/8)
                 direction = -direction;
         }
 

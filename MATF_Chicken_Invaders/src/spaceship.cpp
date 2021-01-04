@@ -12,10 +12,19 @@
 Spaceship::Spaceship(MainWindow *parent) :
     mw(parent)
 {
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    this->width = width;
+    this->height = height;
+
     if(!mw->isHard())
-        setPixmap(QPixmap(":images/spaceships/1.png"));
+        setPixmap(QPixmap(":images/spaceships/1.png").scaled(width/20, height/15));
     else
-        setPixmap(QPixmap(":images/spaceships/4.png"));
+        setPixmap(QPixmap(":images/spaceships/4.png").scaled(width/20, height/15));
+
     throwingProjectilesTimer = new QTimer();
     destroyedTimer = new QTimer();
     connect(destroyedTimer, SIGNAL(timeout()), this, SLOT(enableSpaceshipAfterDestroying()));
@@ -241,9 +250,10 @@ void Spaceship::setInvisible()
 {
     isCurrentlyDestroyed = true;
     if(!mw->isHard())
-        setPixmap(QPixmap(":images/spaceships/1_cd.png"));
+        setPixmap(QPixmap(":images/spaceships/1_cd.png").scaled(width/20, height/15));
     else
-        setPixmap(QPixmap(":images/spaceships/4_cd.png"));
+        setPixmap(QPixmap(":images/spaceships/4_cd.png").scaled(width/20, height/15));
+
     destroyedTimer->start(3000);
 }
 
@@ -289,9 +299,9 @@ void Spaceship::move()
 void Spaceship::enableSpaceshipAfterDestroying()
 {
     if(!mw->isHard())
-        setPixmap(QPixmap(":images/spaceships/1.png"));
+        setPixmap(QPixmap(":images/spaceships/1.png").scaled(width/20, height/15));
     else
-        setPixmap(QPixmap(":images/spaceships/4.png"));
+        setPixmap(QPixmap(":images/spaceships/4.png").scaled(width/20, height/15));
 
     destroyedTimer->stop();
     isCurrentlyDestroyed = false;

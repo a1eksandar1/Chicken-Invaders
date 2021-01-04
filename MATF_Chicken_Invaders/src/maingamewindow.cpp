@@ -58,6 +58,14 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     connect(mw, &MainWindow::changeScore, this, &MainGameWindow::increaseScore);
     connect(spaceship, &Spaceship::spaceshipHited, this, &MainGameWindow::updateLives);
 
+    // lisov menjao ovaj deo koda
+    // mw->getScore()->setPos(pos().x()+10, pos().y());
+    // mw->getLives()->setPos(width - 130, -20);
+    // scene->addItem(mw->getScore());
+    // scene->addItem(mw->getLives());
+    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
+    // do ovde
+
     start();
 
     lives = new QGraphicsPixmapItem;
@@ -111,17 +119,20 @@ void MainGameWindow::slot_level1()
 void MainGameWindow::slot_level2()
 {
     if(waveCounter == 1){
-        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 5,1);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,1);
         wcg->start();
         connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 2){
-        EggChickenGame *ecg = new EggChickenGame(mw, scene, 20);
+        EggChickenGame *ecg = new EggChickenGame(mw, scene, 30);
         ecg->start();
         connect(ecg, &EggChickenGame::closeEggChickenGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        bigEggGame(50);
+        if(!mw->isHard())
+            bigEggGame(50);
+        else
+            bigEggGame(100);
     }
 }
 
@@ -171,7 +182,7 @@ void MainGameWindow::slot_level5()
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow:: setUserMessage);
     }
     else if(waveCounter == 2){
-        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,2);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,3);
         wcg->start();
         connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
@@ -196,7 +207,10 @@ void MainGameWindow::slot_level6()
 
     }
     else if(waveCounter == 3){
-        bigEggGame(100);
+        if(!mw->isHard())
+            bigEggGame(100);
+        else
+            bigEggGame(200);
     }
 }
 
@@ -419,16 +433,6 @@ void MainGameWindow::start()
     scene->addItem(spaceship);
 
     this->current_high_score = mw->active_player->getScore();
-
-//    mw->getScore()->setPos(pos().x()+20, pos().y());
-    // lisov menjao ovaj deo koda
-    //mw->getScore()->setPos(pos().x()+10, pos().y());
-    //scene->addItem(mw->getScore());
-    //mw->getLives()->setPos(width - 130, -20);
-    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
-    //scene->addItem(mw->getLives());
-    // do ovde
-    // do ovde negde puca program na drugi ulazak
 
     if(mw->getDesiredLevel() == 1){
         level1();

@@ -62,7 +62,6 @@ public:
     bool getFreezeScene() const;
     void setFreezeScene(bool value);
     Score* getScore();
-//    void increaseScore();
 
 private:
     void setMusic();
@@ -94,7 +93,6 @@ private:
     bool freezeScene;
     Score* score;
     int projectilesLevel;
-
 
 };
 #endif // MAINWINDOW_H

@@ -111,6 +111,7 @@
         <file>backgrounds/wave25.png</file>
         <file>backgrounds/wave26.png</file>
         <file>backgrounds/wave27.png</file>
+        <file>spaceships/4_cd.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
