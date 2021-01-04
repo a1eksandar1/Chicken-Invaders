@@ -5,6 +5,7 @@
 #include "headers/usernamewindow.h"
 #include <QFocusEvent>
 #include <QSqlQuery>
+#include <QGraphicsItem>
 
 #include "headers/bigegg.h"
 #include "headers/bigeggbullets.h"
@@ -53,9 +54,32 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
-    connect(spaceship, &Spaceship::changeScore, this, &MainGameWindow::increaseScore);
+//    connect(spaceship, &Spaceship::changeScore, this, &MainGameWindow::increaseScore);
+    connect(mw, &MainWindow::changeScore, this, &MainGameWindow::increaseScore);
+    connect(spaceship, &Spaceship::spaceshipHited, this, &MainGameWindow::updateLives);
 
     start();
+
+    lives = new QGraphicsPixmapItem;
+    if(mw->active_player->getLives() == 3){
+        QPixmap lv(":/images/spaceships/lives3.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
+    else if(mw->active_player->getLives() == 2){
+        QPixmap lv(":/images/spaceships/lives2.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+
+    }
+    else if(mw->active_player->getLives() == 1){
+        QPixmap lv(":/images/spaceships/lives1.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
 }
 
 void MainGameWindow::removeMessage()
@@ -87,7 +111,7 @@ void MainGameWindow::slot_level1()
 void MainGameWindow::slot_level2()
 {
     if(waveCounter == 1){
-        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 12,1);
+        WaveChickenGame *wcg = new WaveChickenGame(mw, scene, 5,1);
         wcg->start();
         connect(wcg, &WaveChickenGame::closeWaveChickenGame, this, &MainGameWindow::setUserMessage);
     }
@@ -248,8 +272,8 @@ void MainGameWindow::endOfGame()
 {
     mw->backGroundMusic->play();
 
-//    updatePlayer(this->current_high_score);
-    qDebug() << "endofGame";
+    if(mw->active_player->getLives()==0)
+        updatePlayer(this->current_high_score);
 
     deleteLater();
 }
@@ -395,15 +419,8 @@ void MainGameWindow::start()
     scene->addItem(spaceship);
 
     this->current_high_score = mw->active_player->getScore();
-    qDebug() << "current player: " << mw->active_player->getName() << this->current_high_score;
-//    mw->active_player->setScore(0);
-//    qDebug() << "new score: " << mw->active_player->getScore();
-//    Score* score = mw->getScore();
-//    scene->addItem(score);
-
 
 //    mw->getScore()->setPos(pos().x()+20, pos().y());
-
     // lisov menjao ovaj deo koda
     //mw->getScore()->setPos(pos().x()+10, pos().y());
     //scene->addItem(mw->getScore());
@@ -664,7 +681,6 @@ void MainGameWindow::increaseScore(int step){
      }
       mw->getScore()->increaseScore(step);
       mw->getScore()->setPlainText(QString("Score: ") + QString::number(mw->getScore()->getScore()));
-      qDebug() << mw->getScore()->getScore();
 }
 
 void MainGameWindow::updatePlayer(int current_high_score){
@@ -672,6 +688,11 @@ void MainGameWindow::updatePlayer(int current_high_score){
     QSqlDatabase mydb = QSqlDatabase::database();
     QSqlQuery *qry = new QSqlQuery(mydb);
     QString active_player = mw->active_player->getName();
+    std::string content = "anon";
+    QString str = QString::fromUtf8(content.c_str());
+    if(active_player == str){
+        return;
+    }
     int score = mw->getScore()->getScore();
     if (score>current_high_score){
         qry->prepare("update players set score = :score, level = :level where name = :active_player");
@@ -681,6 +702,24 @@ void MainGameWindow::updatePlayer(int current_high_score){
         qry->exec();
         mydb.commit();
     }
+    spaceship->setNumOfLives(mw->active_player->getLives());
 
+}
 
+void MainGameWindow::updateLives()
+{
+    if(mw->active_player->getLives() == 2){
+        scene->removeItem(lives);
+        QPixmap lv(":/images/spaceships/lives2.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
+    else if(mw->active_player->getLives() == 1){
+        scene->removeItem(lives);
+        QPixmap lv(":/images/spaceships/lives1.png");
+        lives->setPixmap(lv);
+        lives->setPos(width-150, 0);
+        scene->addItem(lives);
+    }
 }

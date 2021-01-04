@@ -6,6 +6,7 @@ Player::Player(QString name, int score, int level, bool difficulty)
     this->score = score;
     this->difficulty = difficulty;
     this->level = level;
+    this->lives = 3;
 }
 
 QString Player::getName(){
@@ -23,4 +24,12 @@ int Player::getDifficulty(){
 
 void Player::setScore(int newScore){
     this->score = newScore;
+}
+
+void Player::loseLife(){
+    this->lives = this->lives - 1;
+}
+
+int Player::getLives(){
+    return this->lives;
 }

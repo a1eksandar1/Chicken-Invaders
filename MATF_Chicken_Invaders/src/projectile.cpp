@@ -86,6 +86,7 @@ void Projectile::colision()
         else if(typeid (*colItem) == typeid (Meteor))
         {
             auto meteor = static_cast<Meteor*>(colItem);
+            spaceship->mw->changeScore(5);
             meteor->die();
             spaceship->setThrowingAllowed(true);
             clean();
@@ -154,6 +155,7 @@ void Projectile::colision()
                 bEgg->setPixmap(QPixmap(":images/chicken/bigEgg_cl3.png").scaled(500,500,Qt::KeepAspectRatio));
 
             if(bEgg->decrementAndGetCurrHealth() == 0){
+                spaceship->mw->changeScore(500);
                 emit bEgg->endOfBigEggGame();
                 bEgg->clean();
             }

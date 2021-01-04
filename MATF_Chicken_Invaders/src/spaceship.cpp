@@ -23,6 +23,7 @@ Spaceship::Spaceship(MainWindow *parent) :
     moving_timer->setInterval(10);
     connect(moving_timer, SIGNAL(timeout()), this, SLOT(move()));
     projectilesLevel = mw->getProjectilesLevel();
+    setNumOfLives(mw->active_player->getLives());
 }
 
 QPointF Spaceship::getPosition()
@@ -77,18 +78,6 @@ void Spaceship::throw_projectile()
         scene()->addItem(projectile);
 }
 
-/*void Spaceship::move_left()
-{
-    if(pos().x() > 20)
-        setPos(pos().x()-5, pos().y());
-}
-
-void Spaceship::move_right()
-{
-    if(pos().x() < 2*getStartingXPos()-20)
-        setPos(pos().x()+5, pos().y());
-}*/
-
 bool Spaceship::getThrowingAllowed()
 {
     return throwingAllowed;
@@ -108,6 +97,8 @@ qreal Spaceship::yStart()
 }
 
 int Spaceship::decreaseLivesNumAndGetCurrNumLives(){
+
+    mw->active_player->loseLife();
     return --numberOfLives;
 }
 
@@ -138,6 +129,8 @@ void Spaceship::collision()
             auto meteor = static_cast<Meteor*>(colItem);
             meteor->die();
 
+            emit mw->changeScore(-25);
+
             this->checkIfSpaceshipDestroyed();
 
             return;
@@ -149,6 +142,8 @@ void Spaceship::collision()
 
             this->checkIfSpaceshipDestroyed();
 
+            emit mw->changeScore(-50);
+
             return;
         }
         else if(typeid (*colItem) == typeid (Drumstick))
@@ -158,11 +153,7 @@ void Spaceship::collision()
             mw->drumstickSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
             drumstick->clean();
 
-
-// increase score
-//            for(int i=0; i<10;i++)
-//                mw->getScore()->increaseScore();
-            emit changeScore(10);
+            emit mw->changeScore(10);
 
             return;
         }
@@ -172,10 +163,8 @@ void Spaceship::collision()
             mw->drumstickSound->play();
             mw->drumstickSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
             roastC->clean();
-      //TODO: points
-//            for(int i=0; i<50;i++)
-//                mw->getScore()->increaseScore();
-            emit changeScore(50);
+
+            emit mw->changeScore(50);
 
             return;
         }
@@ -184,7 +173,10 @@ void Spaceship::collision()
             auto ec = static_cast<EggChicken*>(colItem);
             ec->die();
 
+            emit mw->changeScore(-50);
+
             this->checkIfSpaceshipDestroyed();
+
 
             return;
         }
@@ -192,6 +184,8 @@ void Spaceship::collision()
         {
             auto bc = static_cast<BigChicken*>(colItem);
             bc->setPos((bc->getWidth()-30)/2, 0);
+
+            emit mw->changeScore(-100);
             this->checkIfSpaceshipDestroyed();
 
             return;
@@ -214,6 +208,7 @@ void Spaceship::collision()
                 this->setProjectilesLevel(level+1);
 
             mw->giftSound->play();
+            emit mw->changeScore(15);
 
             gift->clean();
         }
@@ -237,7 +232,7 @@ void Spaceship::checkIfSpaceshipDestroyed()
         setPos(getStartingXPos(), getStartingYPos());
         mw->explosionSound->setMedia(QUrl("qrc:/sounds/sounds/SpaceshipExplosion.mp3"));
         mw->explosionSound->play();
-
+        emit spaceshipHited();
         setInvisible();
     }
 }
@@ -315,4 +310,8 @@ void Spaceship::stop_moving_timer()
 void Spaceship::revertProjectilesLevel()
 {
     projectilesLevel = 1;
+}
+
+void Spaceship::setNumOfLives(int num){
+    this->numberOfLives = num;
 }

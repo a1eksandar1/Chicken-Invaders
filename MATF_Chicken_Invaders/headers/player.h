@@ -12,11 +12,14 @@ public:
     int getLevel();
     int getDifficulty();
     void setScore(int newScore);
+    int getLives();
+    void loseLife();
 private:
     QString name;
     int score;
     int level;
     int difficulty;
+    int lives;
 };
 
 #endif // PLAYER_H

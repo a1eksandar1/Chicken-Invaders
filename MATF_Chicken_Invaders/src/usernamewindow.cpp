@@ -6,10 +6,43 @@
 void UsernameWindow::onOk()
 {
     QString name = ui->lineEdit->text();
+//<<<<<<< HEAD
+//    if(name.compare("") != 0){
+//        mw->getScore()->resetScore();
+
+//        qDebug() << "novo ime: " << name;
+
+//        QSqlDatabase mydb = QSqlDatabase::database();
+//        QSqlQuery *qry = new QSqlQuery(mydb);
+//        qry->prepare("select * from players where name = (:name)");
+//        qry->bindValue(":name", name);
+//        qry->exec();
+//        qry->next();
+//            if (!qry->isValid()){
+//                int score = 0;
+//                int level = 1;
+//                int difficulty = 0;
+
+//                if(mw->isHard()){
+//                    difficulty = 1;
+//                }
+
+//                qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
+//                qry->bindValue(":name", name);
+//                qry->bindValue(":score", score);
+//                qry->bindValue(":level", level);
+//                qry->bindValue(":difficulty", difficulty);
+//                qry->exec();
+//                mydb.commit();
+
+
+//                mw->setReachedLevel(level);
+//                mw->active_player = new Player(name, score, level, difficulty);
+//                mw->setHard(difficulty == 1 ? true:false);
+//=======
     if(name.compare("") != 0){
         mw->getScore()->resetScore();
 
-        qDebug() << "novo ime: " << name;
 
         QSqlDatabase mydb = QSqlDatabase::database();
         QSqlQuery *qry = new QSqlQuery(mydb);
@@ -17,27 +50,28 @@ void UsernameWindow::onOk()
         qry->bindValue(":name", name);
         qry->exec();
         qry->next();
-            if (!qry->isValid()){
-                int score = 0;
-                int level = 1;
-                int difficulty = 0;
+        if (!qry->isValid()){
+            int score = 0;
+            int level = 1;
+            int difficulty = 0;
 
-                if(mw->isHard()){
-                    difficulty = 1;
-                }
+            if(mw->isHard()){
+                difficulty = 1;
+            }
 
-                qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
-                qry->bindValue(":name", name);
-                qry->bindValue(":score", score);
-                qry->bindValue(":level", level);
-                qry->bindValue(":difficulty", difficulty);
-                qry->exec();
-                mydb.commit();
+            qry->prepare("insert into Players (name, score, level, difficulty) values (:name, :score, :level, :difficulty)");
+            qry->bindValue(":name", name);
+            qry->bindValue(":score", score);
+            qry->bindValue(":level", level);
+            qry->bindValue(":difficulty", difficulty);
+            qry->exec();
+            mydb.commit();
 
 
-                mw->setReachedLevel(level);
-                mw->active_player = new Player(name, score, level, difficulty);
-                mw->setHard(difficulty == 1 ? true:false);
+            mw->setReachedLevel(level);
+            mw->active_player = new Player(name, score, level, difficulty);
+            mw->setHard(difficulty == 1 ? true:false);
+//>>>>>>> scores
 
             }
             else {
@@ -65,6 +99,9 @@ void UsernameWindow::onOk()
 
 void UsernameWindow::onSkip()
 {
+    mw->active_player = new Player("anon", 0, 1, mw->isHard()? 1 : 0);
+    mw->setReachedLevel(1);
+    mw->setDesiredLevel(1);
     m_ready = true;
     delete this;
 }

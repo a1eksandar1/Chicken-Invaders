@@ -65,6 +65,7 @@ public slots:
     void victory();
     void increaseScore(int step);
     void updatePlayer(int current_high_score);
+    void updateLives();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -108,6 +109,7 @@ private:
     int waveCounter;
     GameWindow *qgw;
     bool openedQuitWindow;
+    QGraphicsPixmapItem *lives;
 };
 
 #endif // MAINGAMEWINDOW_H
