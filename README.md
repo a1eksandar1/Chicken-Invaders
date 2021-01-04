@@ -34,7 +34,7 @@ opet odluci da igra on to moze uraditi i nivoi koje je on otkljucao se cuvaju, m
 
 # Komande
 
-<kbd>space</kbd> Ispaljivanje loptice.<br>
+<kbd>space</kbd> Ispaljivanje projektila.<br>
 <kbd>A</kbd> / <kbd>a</kbd> Kretanje ulevo.<br>
 <kbd>D</kbd> / <kbd>d</kbd> Kretanje udesno.<br>
 
