@@ -61,8 +61,9 @@ void WaveChicken::setShot(bool value)
 
 void WaveChicken::die()
 {
-    shotCounter--;
-    if(!shot and shotCounter == 0)
+    if(canBeshot)
+        shotCounter--;
+    if(!shot and shotCounter == 0 and canBeshot)
     {
         shot = true;
         emit waveChickenDied();
@@ -82,6 +83,16 @@ void WaveChicken::die()
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
         cleanTimer->start(200);
     }
+}
+
+bool WaveChicken::getCanBeshot() const
+{
+    return canBeshot;
+}
+
+void WaveChicken::setCanBeshot(bool value)
+{
+    canBeshot = value;
 }
 
 void WaveChicken::clean()
@@ -137,9 +148,15 @@ void WaveChicken::advance(int step)
 
         }
 
+
+        if(pos().y() > height/3-height/13)
+        {
+            canBeshot = true;
+        }
+
         setPos(pos().x(),pos().y()+orientation);
 
-        if(pos().y() > height/3)
+        if(pos().y() >height/3)
         {
             orientation = -orientation;
             wave = false;
@@ -147,7 +164,7 @@ void WaveChicken::advance(int step)
         if(!wave and pos().y() < 10)
             orientation = -orientation;
 
-        if(pos().y() > height)
+        if(pos().y() > height or pos().x() > width)
             die();
     }
 }

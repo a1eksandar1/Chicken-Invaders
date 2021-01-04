@@ -181,8 +181,10 @@ void BigChicken::advance(int step)
 
         else if(pos().x() <= width/8)
             xOrientation = 10;
-
-        setPos(pos().x()+xOrientation,pos().y()+yOrientation);
+        if(pos().y() > height/2)
+            setPos((width-30)/2, 0);
+        else
+            setPos(pos().x()+xOrientation,pos().y()+yOrientation);
 
     }
 

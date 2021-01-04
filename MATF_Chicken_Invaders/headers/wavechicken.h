@@ -32,11 +32,15 @@ public:
     void move1();
     void move();
 
+    bool getCanBeshot() const;
+    void setCanBeshot(bool value);
+
 private:
     int m, n;
     int imgChange = 0;
     bool wave = true;
     int shotCounter;
+    bool canBeshot = false;
     int orientation=20;
     int width, height;
     int color;

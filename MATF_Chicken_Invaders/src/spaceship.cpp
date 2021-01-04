@@ -188,8 +188,7 @@ void Spaceship::collision()
         else if(typeid (*colItem) == typeid (BigChicken))
         {
             auto bc = static_cast<BigChicken*>(colItem);
-            bc->setPos((bc->getWidth()-2)/2-250, 0);
-
+            bc->setPos((bc->getWidth()-30)/2, 0);
             this->checkIfSpaceshipDestroyed();
 
             return;
