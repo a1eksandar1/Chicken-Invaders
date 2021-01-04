@@ -260,8 +260,12 @@ void MainWindow::setFreezeScene(bool value)
 
 void MainWindow::connectToDatabase(){
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("/home/cole/Desktop/Projects/15-matf-chicken-invaders/MATF_Chicken_Invaders/database.db");
+    mydb.setDatabaseName("players_database.db");
+
     // 1. ili u .setDatabaseName(:memory)
     // 2. ili na disku uz     QSqlQuery query("CREATE TABLE "Players" ( `Name` TEXT NOT NULL, `Score` INTEGER DEFAULT 0, `Level` INTEGER DEFAULT 1, `Difficulty` INTEGER DEFAULT 0, PRIMARY KEY(`Name`))");
     mydb.open();
+    if(!mydb.tables().contains(QString("Players"))){
+        QSqlQuery query("CREATE TABLE Players ( `Name` TEXT NOT NULL, `Score` INTEGER DEFAULT 0, `Level` INTEGER DEFAULT 1, `Difficulty` INTEGER DEFAULT 0, PRIMARY KEY(`Name`))");
+    }
 }
