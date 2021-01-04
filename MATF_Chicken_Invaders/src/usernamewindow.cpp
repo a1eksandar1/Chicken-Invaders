@@ -9,7 +9,6 @@ void UsernameWindow::onOk()
     QString name = ui->lineEdit->text();
     mw->getScore()->resetScore();
 
-    qDebug() << "novo ime: " << name;
 
     QSqlDatabase mydb = QSqlDatabase::database();
     QSqlQuery *qry = new QSqlQuery(mydb);
@@ -64,6 +63,9 @@ void UsernameWindow::onOk()
 
 void UsernameWindow::onSkip()
 {
+    mw->active_player = new Player("anon", 0, 1, mw->isHard()? 1 : 0);
+    mw->setReachedLevel(1);
+    mw->setDesiredLevel(1);
     m_ready = true;
     delete this;
 }

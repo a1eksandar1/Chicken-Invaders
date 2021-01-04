@@ -135,6 +135,8 @@ void Spaceship::collision()
             auto meteor = static_cast<Meteor*>(colItem);
             meteor->die();
 
+            emit mw->changeScore(-25);
+
             this->checkIfSpaceshipDestroyed();
 
             return;
@@ -146,6 +148,8 @@ void Spaceship::collision()
 
             this->checkIfSpaceshipDestroyed();
 
+            emit mw->changeScore(-50);
+
             return;
         }
         else if(typeid (*colItem) == typeid (Drumstick))
@@ -153,11 +157,7 @@ void Spaceship::collision()
             auto drumstick = static_cast<Drumstick*>(colItem);
             drumstick->clean();
 
-
-// increase score
-//            for(int i=0; i<10;i++)
-//                mw->getScore()->increaseScore();
-            emit changeScore(10);
+            emit mw->changeScore(10);
 
             return;
         }
@@ -165,10 +165,8 @@ void Spaceship::collision()
         {
             auto roastC = static_cast<RoastChicken*>(colItem);
             roastC->clean();
-      //TODO: points
-//            for(int i=0; i<50;i++)
-//                mw->getScore()->increaseScore();
-            emit changeScore(50);
+
+            emit mw->changeScore(50);
 
             return;
         }
@@ -177,7 +175,10 @@ void Spaceship::collision()
             auto ec = static_cast<EggChicken*>(colItem);
             ec->die();
 
+            emit mw->changeScore(-50);
+
             this->checkIfSpaceshipDestroyed();
+
 
             return;
         }
@@ -185,6 +186,8 @@ void Spaceship::collision()
         {
             auto bc = static_cast<BigChicken*>(colItem);
             bc->setPos((bc->getWidth()-2)/2-250, 0);
+
+            emit mw->changeScore(-100);
 
             this->checkIfSpaceshipDestroyed();
 
@@ -208,6 +211,7 @@ void Spaceship::collision()
                 this->setProjectilesLevel(level+1);
 
             mw->giftSound->play();
+            emit mw->changeScore(15);
 
             gift->clean();
         }

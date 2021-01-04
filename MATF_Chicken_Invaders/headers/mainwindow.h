@@ -27,6 +27,9 @@ class MainWindow : public QMainWindow
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
+signals:
+    void changeScore(int step);
+
 public slots:
     void onQuit();
     void onPlay();
