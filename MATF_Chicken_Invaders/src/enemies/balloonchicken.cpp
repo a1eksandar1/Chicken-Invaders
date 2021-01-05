@@ -11,8 +11,8 @@ BalloonChicken::BalloonChicken(MainWindow *parent, QTimer* cleanTimer, int m, in
     this->width = mw->getWidth();
     this->height = mw->getHeight();
 
-    setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(width/13, height/8, Qt::KeepAspectRatio));
-    setPos(width/13*m + 30, -height/7*(num2-n));
+    setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
+    setPos(width/13*m + 30, -height/8*(num2-n));
 
 }
 BalloonChicken::~BalloonChicken()
@@ -27,14 +27,14 @@ void BalloonChicken::die()
         balloonCounter--;
 
     if (balloonCounter == 2)
-        setPixmap(QPixmap(":images/chicken/balloonChicken2.png").scaled(width/13, height/8, Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/balloonChicken2.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
     if(balloonCounter == 1)
-        setPixmap(QPixmap(":images/chicken/balloonChicken1.png").scaled(width/13, height/8, Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/balloonChicken1.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
     else if (balloonCounter == 0 and !shot and shotCounter == 0)
     {
         shot = true;
         emit balloonChickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/13, height/8, Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
         imgChange = 3;
 
         mw->chickenSound->stop();
@@ -90,7 +90,7 @@ void BalloonChicken::advance(int step)
         if (pos().x() - width/13*(m) < 0)
             orientation = 10;
 
-        if (pos().y() < height/6*n)
+        if (pos().y() < height/7*n)
             setPos(pos().x()+orientation, pos().y()+10);
         else
             setPos(pos().x()+orientation, pos().y());

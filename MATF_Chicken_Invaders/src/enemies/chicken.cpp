@@ -11,8 +11,8 @@ Chicken::Chicken(MainWindow *parent, QTimer* cleanTimer, int m, int n, int num1,
     this->width = mw->getWidth();
     this->height = mw->getHeight();
 
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/13, height/7, Qt::KeepAspectRatio));
-    setPos(width/13*m + 30, -height/7*(num2-n) - 20);
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
+    setPos(width/13*m + 30, -height/8*(num2-n));
 }
 
 Chicken::~Chicken()
@@ -26,7 +26,7 @@ void Chicken::die()
     {
         shot = true;
         emit chickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120, 120, Qt::KeepAspectRatio));
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
         imgChange = 3;
 
         mw->chickenSound->stop();
@@ -58,9 +58,9 @@ void Chicken::advance(int step)
     if (!mw->getFreezeScene()){
 
         if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(120, 120, Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
         if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(120, 120, Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
         if(imgChange == 3)
             return;
 
@@ -90,7 +90,7 @@ void Chicken::advance(int step)
         if(pos().x() - width/13*(m) < 0)
             orientation = 10;
 
-        if(pos().y() < height/7*n + 10)
+        if(pos().y() < height/8*n)
             setPos(pos().x()+orientation, pos().y()+10);
         else
             setPos(pos().x()+orientation, pos().y());
