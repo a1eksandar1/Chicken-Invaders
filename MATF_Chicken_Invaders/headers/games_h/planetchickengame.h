@@ -15,11 +15,8 @@ class PlanetChickenGame: public QObject, public QGraphicsPixmapItem
 public:
     PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int pl);
     ~PlanetChickenGame();
+
     void start();
-
-    int getChickenCounter() const;
-    void setChickenCounter(int value);
-
     void clear();
 
 signals:

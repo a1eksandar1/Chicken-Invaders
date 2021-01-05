@@ -1,9 +1,4 @@
 #include "headers/enemies_h/planetchicken.h"
-#include <QTimer>
-#include <QList>
-#include <QDebug>
-#include <QScreen>
-#include <QApplication>
 
 PlanetChicken::PlanetChicken(MainWindow *parent, QTimer* cleanTimer, int m, int n) :
     m(m), n(n), cleanTimer(cleanTimer), mw(parent)
@@ -20,11 +15,10 @@ PlanetChicken::PlanetChicken(MainWindow *parent, QTimer* cleanTimer, int m, int 
 
     this->width = width;
     this->height = height;
-    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
+
+    setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12, height/9, Qt::KeepAspectRatio));
 
     setPos((width)/2+130, -height/9*(n+1) + 50);
-
-
 }
 
 PlanetChicken::~PlanetChicken()
@@ -33,42 +27,22 @@ PlanetChicken::~PlanetChicken()
 }
 
 
-int PlanetChicken::getOrientation() const
-{
-    return orientation;
-}
-
-void PlanetChicken::setOrientation(int value)
-{
-    orientation = value;
-}
-
-bool PlanetChicken::getShot() const
-{
-    return shot;
-}
-
-void PlanetChicken::setShot(bool value)
-{
-    shot = value;
-}
-
 void PlanetChicken::die()
 {
     shotCounter--;
-    if(!shot and shotCounter == 0)
+    if (!shot and shotCounter == 0)
     {
         shot = true;
         emit planetChickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(120,120,Qt::KeepAspectRatio));
-        imgChange=3;
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/12, height/9, Qt::KeepAspectRatio));
+        imgChange = 3;
 
         mw->chickenSound->stop();
         mw->chickenSound->play();
         mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
 
         Drumstick *drumstick = new Drumstick(mw);
-        drumstick->setPos(pos().x(),pos().y()+100);
+        drumstick->setPos(pos().x(), pos().y()+100);
         scene()->addItem(drumstick);
 
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
@@ -82,16 +56,6 @@ void PlanetChicken::clean()
     delete this;
 }
 
-int PlanetChicken::getImgChange() const
-{
-    return imgChange;
-}
-
-void PlanetChicken::setImgChange(int value)
-{
-    imgChange = value;
-}
-
 void PlanetChicken::advance(int step)
 {
     if (!step)
@@ -99,17 +63,16 @@ void PlanetChicken::advance(int step)
         return;
     }
 
-
-    if(!mw->getFreezeScene()){
-        if(imgChange == 0)
-            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
-        if(imgChange == 1)
-            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(width/12,height/9,Qt::KeepAspectRatio));
-        if(imgChange == 3)
+    if (!mw->getFreezeScene())
+    {
+        if (imgChange == 0)
+            setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12, height/9, Qt::KeepAspectRatio));
+        if (imgChange == 1)
+            setPixmap(QPixmap(":images/chicken/matf_chicken2.png").scaled(width/12, height/9, Qt::KeepAspectRatio));
+        if (imgChange == 3)
             return;
 
         imgChange = (imgChange + 1)%2;
-
 
         int random_number1 = rand() % 6;
         int random_number2 = rand() % 1000;
@@ -119,22 +82,20 @@ void PlanetChicken::advance(int step)
             Egg *egg = new Egg(mw);
             egg->setPos(pos().x()+20,pos().y()+100);
             scene()->addItem(egg);
-
         }
-        if(random_number1 == 5)
+
+        if (random_number1 == 5 and rotate)
         {
             Egg *egg = new Egg(mw);
             egg->setPos(pos().x()+20,pos().y()+100);
             scene()->addItem(egg);
-
         }
 
         if (random_number2 == 5)
         {
             Gift * gift = new Gift(mw);
-            gift->setPos(pos().x(),pos().y()+100);
+            gift->setPos(pos().x(), pos().y()+100);
             scene()->addItem(gift);
-
         }
 
         if(pos().y()> height/2-250)
@@ -142,7 +103,7 @@ void PlanetChicken::advance(int step)
 
         if(!rotate)
         {
-            setPos(pos().x(),pos().y()+orientation);
+            setPos(pos().x(), pos().y()+orientation);
         }
         else if(rotate)
         {

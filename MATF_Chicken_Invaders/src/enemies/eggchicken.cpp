@@ -1,9 +1,4 @@
 #include "headers/enemies_h/eggchicken.h"
-#include <QTimer>
-#include <QList>
-#include <QDebug>
-#include <QScreen>
-#include <QApplication>
 
 EggChicken::EggChicken(MainWindow *parent, QTimer *cleanTimer, int m, int n) :
     m(m), n(n), cleanTimer(cleanTimer), mw(parent)
@@ -21,13 +16,11 @@ EggChicken::EggChicken(MainWindow *parent, QTimer *cleanTimer, int m, int n) :
     this->width = width;
     this->height = height;
 
-    setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(width/14,height/10,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":images/chicken/egg_1.png").scaled(width/14, height/10, Qt::KeepAspectRatio));
 
     this->color = rand()%3;
 
     setPos(width/10*m + 20, -height/9*(n+1));
-
-
 }
 
 EggChicken::~EggChicken()
@@ -35,41 +28,32 @@ EggChicken::~EggChicken()
 
 }
 
-
-bool EggChicken::getShot() const
-{
-    return shot;
-}
-
-void EggChicken::setShot(bool value)
-{
-    shot = value;
-}
-
 void EggChicken::die()
 {
     shotCounter--;
-    if(isEgg and (pos().y() >height or pos().x() > width) and !shot)
+    if (isEgg and (pos().y() > height or pos().x() > width) and !shot)
     {
         shot = true;
         emit eggChickenDied();
         clean();
     }
-    else if(isEgg)
+
+    else if (isEgg)
         isEgg = false;
+
     else if(!isEgg and !shot and shotCounter == 0)
     {
         shot = true;
         emit eggChickenDied();
-        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/14,height/10,Qt::KeepAspectRatio));
-        imgChange=3;
+        setPixmap(QPixmap(":images/chicken/shot_chicken.png").scaled(width/14, height/10, Qt::KeepAspectRatio));
+        imgChange = 3;
 
         mw->chickenSound->stop();
         mw->chickenSound->play();
         mw->chickenSound->setVolume(mw->getVolume() == 0 ? 0 : 100);
 
         Drumstick *drumstick = new Drumstick(mw);
-        drumstick->setPos(pos().x(),pos().y()+100);
+        drumstick->setPos(pos().x(), pos().y()+100);
         scene()->addItem(drumstick);
 
         connect(cleanTimer, SIGNAL(timeout()), this, SLOT(clean()));
@@ -83,16 +67,6 @@ void EggChicken::clean()
     delete this;
 }
 
-int EggChicken::getImgChange() const
-{
-    return imgChange;
-}
-
-void EggChicken::setImgChange(int value)
-{
-    imgChange = value;
-}
-
 void EggChicken::advance(int step)
 {
     if (!step)
@@ -100,38 +74,39 @@ void EggChicken::advance(int step)
         return;
     }
 
-    if(!mw->getFreezeScene()){
-        if(!isEgg)
+    if (!mw->getFreezeScene())
+    {
+        if (!isEgg)
         {
-            if(color == 0)
+            if (color == 0)
             {
-                if(imgChange == 0)
-                    setPixmap(QPixmap(":images/chicken/greenchicken.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
-                if(imgChange == 1)
-                    setPixmap(QPixmap(":images/chicken/greenchicken2.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
-                if(imgChange == 3)
+                if (imgChange == 0)
+                    setPixmap(QPixmap(":images/chicken/greenchicken.png").scaled(width/12, height/10, Qt::KeepAspectRatio));
+                if (imgChange == 1)
+                    setPixmap(QPixmap(":images/chicken/greenchicken2.png").scaled(width/12, height/10, Qt::KeepAspectRatio));
+                if (imgChange == 3)
                     return;
 
                 imgChange = (imgChange + 1)%2;
             }
-            else if(color == 1)
+            else if (color == 1)
             {
-                if(imgChange == 0)
-                    setPixmap(QPixmap(":images/chicken/bluechicken.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
-                if(imgChange == 1)
-                    setPixmap(QPixmap(":images/chicken/bluechicken2.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
-                if(imgChange == 3)
+                if (imgChange == 0)
+                    setPixmap(QPixmap(":images/chicken/bluechicken.png").scaled(width/12, height/10, Qt::KeepAspectRatio));
+                if (imgChange == 1)
+                    setPixmap(QPixmap(":images/chicken/bluechicken2.png").scaled(width/12, height/10, Qt::KeepAspectRatio));
+                if (imgChange == 3)
                     return;
 
                 imgChange = (imgChange + 1)%2;
             }
             else if(color == 2)
             {
-                if(imgChange == 0)
-                    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
-                if(imgChange == 1)
-                    setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(width/12,height/10,Qt::KeepAspectRatio));
-                if(imgChange == 3)
+                if (imgChange == 0)
+                    setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/12, height/10, Qt::KeepAspectRatio));
+                if (imgChange == 1)
+                    setPixmap(QPixmap(":images/chicken/pinkchicken2.png").scaled(width/12, height/10, Qt::KeepAspectRatio));
+                if (imgChange == 3)
                     return;
 
                 imgChange = (imgChange + 1)%2;
@@ -140,12 +115,12 @@ void EggChicken::advance(int step)
 
         int random_number1 = rand() % 300;
         int random_number2 = rand() % 1000;
+
         if (random_number1 == 5 and !isEgg)
         {
             Egg *egg = new Egg(mw);
             egg->setPos(pos().x(),pos().y()+100);
             scene()->addItem(egg);
-
         }
 
         if (random_number2 == 5 and !isEgg)
@@ -153,17 +128,16 @@ void EggChicken::advance(int step)
             Gift * gift = new Gift(mw);
             gift->setPos(pos().x(),pos().y()+100);
             scene()->addItem(gift);
-
         }
 
 
         if(isEgg)
         {
-                setPos(pos().x(),pos().y()+yOrientation);
+                setPos(pos().x(), pos().y()+yOrientation);
         }
         else
         {
-            setPos(pos().x()+xOrientation,pos().y()+yOrientation);
+            setPos(pos().x()+xOrientation, pos().y()+yOrientation);
             xOrientation = -xOrientation;
         }
 

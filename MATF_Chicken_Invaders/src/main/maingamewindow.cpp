@@ -479,7 +479,7 @@ void MainGameWindow::setUserMessage()
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 0 && mw->getDesiredLevel() == 2){
-        QPixmap pm(":/images/backgrounds/wav4.png");
+        QPixmap pm(":/images/backgrounds/wave4.png");
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 1 && mw->getDesiredLevel() == 2){

@@ -4,35 +4,28 @@
 MeteorShowerGame::MeteorShowerGame(MainWindow *parent, QGraphicsScene *scene,int m, int n):
     mw(parent),scene(scene), m(m), n(n), meteorCounter(m*n)
 {
+    this->moveMeteorTimer = new QTimer(this);
+    this->cleanMeteorTimer = new QTimer(this);
 
-        this->moveMeteorTimer = new QTimer(this);
-        this->cleanMeteorTimer = new QTimer(this);
-        matrix.resize(m);
+    matrix.resize(m);
 
-        for (int i=0; i < m; i++)
+    for (int i=0; i < m; i++)
+    {
+        matrix[i].resize(n);
+    }
+
+    for (int i=0; i < m ; i++)
+    {
+        for (int j = 0; j < n; j++)
         {
-            matrix[i].resize(n);
+            matrix[i][j] = new Meteor(mw,moveMeteorTimer, cleanMeteorTimer, i, j, 1);
         }
-
-        for (int i=0; i < m ; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                matrix[i][j] = new Meteor(mw,moveMeteorTimer, cleanMeteorTimer, i,j,1);
-            }
-        }
-
-
+    }
 }
 
 MeteorShowerGame::~MeteorShowerGame()
 {
 
-}
-
-QVector<QVector<Meteor *> > MeteorShowerGame::getMatrix() const
-{
-    return matrix;
 }
 
 void MeteorShowerGame::start()
@@ -45,7 +38,6 @@ void MeteorShowerGame::start()
             connect(matrix[i][j], &Meteor::meteorShot, this, &MeteorShowerGame::onMeteorShot);
         }
     }
-
 }
 
 void MeteorShowerGame::onMeteorShot()
@@ -56,24 +48,14 @@ void MeteorShowerGame::onMeteorShot()
         clear();
         emit closeMeteorShowerGame();
     }
-
 }
-
-int MeteorShowerGame::getMeteorCounter() const
-{
-    return meteorCounter;
-}
-
-void MeteorShowerGame::setMeteorCounter(int value)
-{
-    meteorCounter = value;
-}
-
 
 void MeteorShowerGame::clear()
 {
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
             matrix[i][j] = nullptr;
         }
         matrix[i].clear();

@@ -2,14 +2,18 @@
 #define BALLOONCHICKEN_H
 
 #include <QObject>
+#include <QTimer>
+#include <QList>
+#include <QDebug>
+#include <QScreen>
+#include <QApplication>
 #include <QGraphicsPixmapItem>
+
 #include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/egg.h"
-
 #include "headers/treets_h/drumstick.h"
 #include "headers/treets_h/gift.h"
 #include "headers/treets_h/roastChicken.h"
-
 
 class BalloonChicken: public QObject, public QGraphicsPixmapItem
 {
@@ -22,32 +26,22 @@ public:
 signals:
     void balloonChickenDied();
 
+public slots:
+    void clean();
+
 public:
-    int getImgChange() const;
-    void setImgChange(int value);
-
-    int getOrientation() const;
-    void setOrientation(int value);
-
-    bool getShot() const;
-    void setShot(bool value);
     void die();
 
-    void move1();
-    void move();
 private:
     int m, n, num1, num2;
     int imgChange;
-    int orientation=10;
+    int orientation = 10;
     int width, height;
     bool shot = false;
-    int balloonCounter=3;
+    int balloonCounter = 3;
     QTimer* cleanTimer;
     int shotCounter;
     MainWindow *mw;
-
-public slots:
-    void clean();
 
 protected:
     void advance(int step) override;

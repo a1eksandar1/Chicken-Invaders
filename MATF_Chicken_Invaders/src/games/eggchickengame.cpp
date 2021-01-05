@@ -1,8 +1,4 @@
 #include "headers/games_h/eggchickengame.h"
-#include <QGraphicsScene>
-#include <algorithm>
-#include <vector>
-
 
 int find_rand()
 {
@@ -10,40 +6,40 @@ int find_rand()
 }
 
 EggChickenGame::EggChickenGame(MainWindow *parent, QGraphicsScene *scene,int num):
-    mw(parent),scene(scene)
+    mw(parent), scene(scene), num(num)
 {
-        this->cleanChickenTimer = new QTimer(this);
-        this->num = num;
+    this->cleanChickenTimer = new QTimer(this);
 
-        matrix.resize(num);
-        srand(time(0));
-        std::vector<int> r1;
-        r1.resize(num);
-        std::vector<int> r2;
-        r2.resize(num);
+    matrix.resize(num);
 
-        std::vector<std::vector<bool>> taken;
-        taken.resize(10);
-        for (int i = 0; i < 10; i++)
-            taken[i].resize(10, false);
+    srand(time(0));
+    std::vector<int> r1;
+    r1.resize(num);
+    std::vector<int> r2;
+    r2.resize(num);
 
-        std::generate(r1.begin(), r1.end(), find_rand);
-        std::generate(r2.begin(), r2.end(), find_rand);
+    std::vector<std::vector<bool>> taken;
+    taken.resize(10);
+    for (int i = 0; i < 10; i++)
+        taken[i].resize(10, false);
 
-        int counter = 0;
+    std::generate(r1.begin(), r1.end(), find_rand);
+    std::generate(r2.begin(), r2.end(), find_rand);
 
-        for(int i = 0; i < num; i++)
+    int counter = 0;
+
+    for(int i = 0; i < num; i++)
+    {
+        if(!taken[r1[i]][r2[i]])
         {
-            if(!taken[r1[i]][r2[i]])
-            {
-                matrix[counter] = new EggChicken(mw,cleanChickenTimer, r1[i], r2[i]);
-                taken[r1[i]][r2[i]] = true;
-                counter++;
-            }
+            matrix[counter] = new EggChicken(mw,cleanChickenTimer, r1[i], r2[i]);
+            taken[r1[i]][r2[i]] = true;
+            counter++;
+        }
 
-         }
-        this->chickenCounter = counter;
-        this->count = counter;
+     }
+    this->chickenCounter = counter;
+    this->count = counter;
 
 }
 
@@ -72,16 +68,6 @@ void EggChickenGame::onChickenDeath()
         clear();
         emit closeEggChickenGame();
     }
-}
-
-int EggChickenGame::getChickenCounter() const
-{
-    return chickenCounter;
-}
-
-void EggChickenGame::setChickenCounter(int value)
-{
-    chickenCounter = value;
 }
 
 void EggChickenGame::clear()

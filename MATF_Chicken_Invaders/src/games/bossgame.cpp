@@ -18,8 +18,6 @@ void BossGame::start()
 {
     scene->addItem(bChicken);
     connect(bChicken, &BigChicken::bigChickenDied, this, &BossGame::onChickenDeath);
-
-
 }
 
 void BossGame::onChickenDeath()
@@ -30,6 +28,5 @@ void BossGame::onChickenDeath()
 
 void BossGame::clear()
 {
-
     bChicken = nullptr;
 }

@@ -3,10 +3,8 @@
 #include <algorithm>
 #include <vector>
 
-
-
-PlanetChickenGame::PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene,int num, int pl):
-     mw(parent),scene(scene), num(num), pl(pl), chickenCounter(num)
+PlanetChickenGame::PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int pl):
+     mw(parent), scene(scene), num(num), pl(pl), chickenCounter(num)
 {
     this->cleanChickenTimer = new QTimer(this);
 
@@ -18,17 +16,17 @@ PlanetChickenGame::PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene,i
     this->width = width;
     this->height = height;
 
-    if(pl ==1)
+    if (pl ==1)
     {
         planet = new QGraphicsPixmapItem();
-        planet->setPixmap(QPixmap(":images/chicken/earth.png").scaled(150,150,Qt::KeepAspectRatio));
-        planet->setPos((width-180)/2,(height-500)/2);
+        planet->setPixmap(QPixmap(":images/chicken/earth.png").scaled(150, 150, Qt::KeepAspectRatio));
+        planet->setPos((width-180)/2, (height-500)/2);
         scene->addItem(planet);
     }
-    else if(pl == 2)
+    else if (pl == 2)
     {
         planet = new QGraphicsPixmapItem();
-        planet->setPixmap(QPixmap(":images/chicken/uranus.png").scaled(150,150,Qt::KeepAspectRatio));
+        planet->setPixmap(QPixmap(":images/chicken/uranus.png").scaled(150, 150,Qt::KeepAspectRatio));
         planet->setPos((width-180)/2,(height-500)/2);
         scene->addItem(planet);
     }
@@ -37,9 +35,7 @@ PlanetChickenGame::PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene,i
     for (int i = 0; i < num; i++)
     {
         matrix[i] = new PlanetChicken(mw,cleanChickenTimer, i, i);
-
     }
-
 }
 
 
@@ -69,16 +65,6 @@ void PlanetChickenGame::onChickenDeath()
         clear();
         emit closePlanetChickenGame();
     }
-}
-
-int PlanetChickenGame::getChickenCounter() const
-{
-    return chickenCounter;
-}
-
-void PlanetChickenGame::setChickenCounter(int value)
-{
-    chickenCounter = value;
 }
 
 void PlanetChickenGame::clear()

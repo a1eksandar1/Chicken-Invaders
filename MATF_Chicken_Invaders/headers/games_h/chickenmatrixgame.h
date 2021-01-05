@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QDialog>
+
 #include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/chicken.h"
 
@@ -17,12 +18,8 @@ public:
     ~ChickenMatrixGame();
 
     QVector<QVector<Chicken *> > getMatrix() const;
-    void setMatrix(const QVector<QVector<Chicken *> > &value);
+
     void start();
-
-    int getChickenCounter() const;
-    void setChickenCounter(int value);
-
     void clear();
 
 signals:

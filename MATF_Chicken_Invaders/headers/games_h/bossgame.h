@@ -7,7 +7,6 @@
 #include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/bigchicken.h"
 
-
 class BossGame: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

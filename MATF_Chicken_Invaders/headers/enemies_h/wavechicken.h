@@ -1,8 +1,14 @@
 #ifndef WAVECHICKEN_H
 #define WAVECHICKEN_H
 
+#include <QTimer>
+#include <QList>
+#include <QDebug>
+#include <QScreen>
+#include <QApplication>
 #include <QObject>
 #include <QGraphicsPixmapItem>
+
 #include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/egg.h"
 #include "headers/treets_h/drumstick.h"
@@ -21,22 +27,11 @@ public:
 signals:
     void waveChickenDied();
 
+public slots:
+    void clean();
+
 public:
-    int getImgChange() const;
-    void setImgChange(int value);
-
-    int getOrientation() const;
-    void setOrientation(int value);
-
-    bool getShot() const;
-    void setShot(bool value);
     void die();
-
-    void move1();
-    void move();
-
-    bool getCanBeshot() const;
-    void setCanBeshot(bool value);
 
 private:
     int m, n;
@@ -44,18 +39,14 @@ private:
     bool wave = true;
     int shotCounter;
     bool canBeshot = false;
-
-    int orientation=20;
+    int orientation = 20;
     int width, height;
     int color;
-    double scale=1, t=0;
+    double scale = 1, t = 0;
     bool shot = false;
     int random1;
     QTimer* cleanTimer;
     MainWindow *mw;
-
-public slots:
-    void clean();
 
 protected:
     void advance(int step) override;

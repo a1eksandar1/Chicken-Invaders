@@ -17,10 +17,7 @@ public:
     ~sideMeteorShowerGame();
 
     QVector<QVector<Meteor *> > getMatrix() const;
-    void setMatrix(const QVector<QVector<Meteor *> > &value);
     void start();
-    int getMeteorCounter() const;
-    void setMeteorCounter(int value);
     void clear();
 
 signals:

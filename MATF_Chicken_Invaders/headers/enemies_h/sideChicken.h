@@ -1,14 +1,19 @@
 #ifndef SIDECHICKEN_H
 #define SIDECHICKEN_H
 
+#include <QTimer>
+#include <QList>
+#include <QDebug>
+#include <QScreen>
+#include <QApplication>
 #include <QObject>
 #include <QGraphicsPixmapItem>
+
 #include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/egg.h"
 #include "headers/treets_h/drumstick.h"
 #include "headers/treets_h/gift.h"
 #include "headers/treets_h/roastChicken.h"
-
 
 class SideChicken: public QObject, public QGraphicsPixmapItem
 {
@@ -22,26 +27,16 @@ signals:
     void chickenDied();
 
 public:
-    int getImgChange() const;
-    void setImgChange(int value);
-
-    int getOrientation() const;
-    void setOrientation(int value);
-
-    bool getShot() const;
-    void setShot(bool value);
     void die();
 
-    void move1();
-    void move();
 private:
     int n, num;
     int imgChange;
-    int orientation=10;
+    int orientation = 10;
     int shotCounter;
     int width, height;
     bool shot = false;
-    double scale=1, t=0;
+    double scale = 1, t = 0;
     QTimer *cleanTimer;
     MainWindow *mw;
 

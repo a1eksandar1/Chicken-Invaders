@@ -1,8 +1,7 @@
 #include "headers/games_h/balloongame.h"
-#include <QGraphicsScene>
 
-BalloonGame::BalloonGame(MainWindow *parent, QGraphicsScene *scene,int m, int n):
-    mw(parent),scene(scene), m(m), n(n), chickenCounter(m*n)
+BalloonGame::BalloonGame(MainWindow *parent, QGraphicsScene *scene, int m, int n):
+    mw(parent), scene(scene), m(m), n(n), chickenCounter(m*n)
 {
         cleanChickenTimer = new QTimer(this);
         matrix.resize(m);
@@ -16,20 +15,14 @@ BalloonGame::BalloonGame(MainWindow *parent, QGraphicsScene *scene,int m, int n)
         {
             for (int j = 0; j < n; j++)
             {
-                matrix[i][j] = new BalloonChicken(mw,cleanChickenTimer,i,j, m,n);
+                matrix[i][j] = new BalloonChicken(mw,cleanChickenTimer, i, j, m, n);
             }
         }
-
 }
 
 BalloonGame::~BalloonGame()
 {
 
-}
-
-QVector<QVector<BalloonChicken *> > BalloonGame::getMatrix() const
-{
-    return matrix;
 }
 
 void BalloonGame::start()
@@ -42,7 +35,6 @@ void BalloonGame::start()
             connect(matrix[i][j], &BalloonChicken::balloonChickenDied, this, &BalloonGame::onChickenDeath);
         }
     }
-
 }
 
 void BalloonGame::onChickenDeath()
@@ -54,20 +46,12 @@ void BalloonGame::onChickenDeath()
     }
 }
 
-int BalloonGame::getChickenCounter() const
-{
-    return chickenCounter;
-}
-
-void BalloonGame::setChickenCounter(int value)
-{
-    chickenCounter = value;
-}
-
 void BalloonGame::clear()
 {
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
             matrix[i][j] = nullptr;
         }
         matrix[i].clear();

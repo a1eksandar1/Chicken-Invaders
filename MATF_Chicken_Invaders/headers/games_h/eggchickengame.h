@@ -1,9 +1,12 @@
 #ifndef EGGCHICKENGAME_H
 #define EGGCHICKENGAME_H
 
+#include <algorithm>
+#include <vector>
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QDialog>
+
 #include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/eggchicken.h"
 
@@ -15,11 +18,8 @@ class EggChickenGame: public QObject, public QGraphicsPixmapItem
 public:
     EggChickenGame(MainWindow *parent, QGraphicsScene *scene, int num);
     ~EggChickenGame();
+
     void start();
-
-    int getChickenCounter() const;
-    void setChickenCounter(int value);
-
     void clear();
 
 signals:

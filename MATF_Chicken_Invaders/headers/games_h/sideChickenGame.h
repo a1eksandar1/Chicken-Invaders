@@ -16,13 +16,7 @@ public:
     SideChickenGame(MainWindow *parent, QGraphicsScene *scene, int n);
     ~SideChickenGame();
 
-    QVector<SideChicken *> getMatrix() const;
-    void setMatrix(const QVector<SideChicken * > &value);
     void start();
-
-    int getChickenCounter() const;
-    void setChickenCounter(int value);
-
     void clear();
 
 signals:

@@ -15,11 +15,8 @@ class WaveChickenGame: public QObject, public QGraphicsPixmapItem
 public:
     WaveChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int waves);
     ~WaveChickenGame();
+
     void start();
-
-    int getChickenCounter() const;
-    void setChickenCounter(int value);
-
     void clear();
 
 signals:
