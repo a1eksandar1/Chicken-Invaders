@@ -12,10 +12,16 @@ Nadamo se da ste spremni za uzbudljivu avanturu!
 # Okruzenje
 [![qtCreator](https://img.shields.io/badge/IDE-Qt_Creator-green)](https://www.qt.io/product/development-tools)
 
-# Pokretanje igrice
+# Preuzimanje i pokretanje igrice
 
-1. U okruzenju **Qt Creator** otvoriti `15-matf-chicken-invaders/MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro`.
-2. Zatim pritisnuti dugme **Run** u donjem levom uglu ekrana i igra moze da pocne.
+1. U terminalu se pozicionirati u zeljeni direktorijum, a zatim ukucati komandu:
+```shell
+$ git clone https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2020-2021/15-matf-chicken-invaders.git
+```
+2. Otvoriti okruzenje **Qt Creator** i u njemu otvoriti `15-matf-chicken-invaders/MATF_Chicken_Invaders/MATF_Chicken_Invaders.pro`.
+3. Zatim pritisnuti dugme **Run** u donjem levom uglu ekrana i igra moze da pocne.
+
+*Napomena: Ukoliko nemate Qt Creator mozete ga preuzeti [ovde](https://www.qt.io/product/development-tools).
 
 # Uputstvo za koriscenje
 
@@ -41,8 +47,17 @@ Zivote mozete izgubiti tako sto vas pogodi jaje, kokoska, meteor ili projektil k
 
 # Demo
 
-*Napomena zvuk i slika su potpuno tecni tokom same igre dok u demo snimku postoji blagih lagova.<br>
+*Napomena: zvuk i slika su potpuno tecni tokom same igre dok u demo snimku postoji blagih lagova.<br>
 [Video](https://www.youtube.com/watch?v=7ljcyhZdPLU)
+
+# Baza podataka
+
+Imamo bazu podataka u kojoj se cuvaju podaci o svakom igracu koji se uloguje i to u formatu:
+- **name**: varchar(50)
+- **score**: integer
+- **level**: integer
+- **difficulty**: integer <br>
+- primary key **name**
 
 ## Developers
 
