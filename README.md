@@ -41,13 +41,13 @@ Zivote mozete izgubiti tako sto vas pogodi jaje, kokoska, meteor ili projektil k
 
 # Komande
 
-<kbd>space</kbd> Ispaljivanje projektila.<br>
-<kbd>A</kbd> / <kbd>a</kbd> Kretanje ulevo.<br>
-<kbd>D</kbd> / <kbd>d</kbd> Kretanje udesno.<br>
+<kbd>space</kbd>    Ispaljivanje projektila.<br>
+<kbd>A</kbd> / <kbd>a</kbd>    Kretanje ulevo.<br>
+<kbd>D</kbd> / <kbd>d</kbd>    Kretanje udesno.<br>
 
 # Demo
 
-*Napomena: zvuk i slika su potpuno tecni tokom same igre dok u demo snimku postoji blagih lagova.<br>
+*Napomena: Zvuk i slika su potpuno tecni tokom same igre dok u demo snimku ima blagih lagova. Razlog je verovatno los alat za snimanje ekrana.<br>
 [Video](https://www.youtube.com/watch?v=7ljcyhZdPLU)
 
 # Baza podataka
