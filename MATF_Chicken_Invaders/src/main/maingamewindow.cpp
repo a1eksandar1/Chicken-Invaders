@@ -96,18 +96,18 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 ){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);//8,3
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 9,3);
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
 
     }
     else if(waveCounter == 2){
-        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,1,1); //8,8
+        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,8,8);
         msg->start();
         connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        BalloonGame *bg = new BalloonGame(mw, scene, 1,1);//8,3
+        BalloonGame *bg = new BalloonGame(mw, scene, 8,3);
         bg->start();
         connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }

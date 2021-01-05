@@ -27,7 +27,6 @@
 
 #include "headers/spaceship_h/spaceship.h"
 #include "headers/main_h/mainwindow.h"
-#include "headers/main_h/gamewindow.h"
 
 class View;
 class AnimatedGraphicsItem : public QObject, public QGraphicsPixmapItem{
@@ -110,7 +109,6 @@ private:
     QTimer *timer;
     QGraphicsPixmapItem *message;
     int waveCounter;
-    GameWindow *qgw;
     bool openedQuitWindow;
     QGraphicsPixmapItem *lives;
     Score *score;

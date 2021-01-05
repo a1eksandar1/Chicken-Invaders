@@ -5,6 +5,7 @@
 
 void UsernameWindow::onOk()
 {
+    mw->getScore()->resetScore();
     QString name = ui->lineEdit->text();
 
     if(name.compare("") != 0){
@@ -64,6 +65,7 @@ void UsernameWindow::onOk()
 
 void UsernameWindow::onSkip()
 {
+    mw->getScore()->resetScore();
     mw->active_player = new Player("anon", 0, 1, mw->isHard()? 1 : 0);
     mw->setReachedLevel(1);
     mw->setDesiredLevel(1);

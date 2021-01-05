@@ -31,7 +31,6 @@ SOURCES += \
     src/games/sidemeteorshowergame.cpp \
     src/games/wavechickengame.cpp \
     src/main/chooselevelwindow.cpp \
-    src/main/gamewindow.cpp \
     src/main/hofwindow.cpp \
     src/main/main.cpp \
     src/main/maingamewindow.cpp \
@@ -73,7 +72,6 @@ HEADERS += \
     headers/games_h/sidemeteorshowergame.h \
     headers/games_h/wavechickengame.h \
     headers/main_h/chooselevelwindow.h \
-    headers/main_h/gamewindow.h \
     headers/main_h/hofwindow.h \
     headers/main_h/maingamewindow.h \
     headers/main_h/mainwindow.h \
@@ -95,7 +93,6 @@ FORMS += \
     forms/chooselevelwindow.ui \
     forms/mainwindow.ui \
     forms/usernamewindow.ui \
-    forms/gamewindow.ui \
     forms/optionswindow.ui \
     forms/maingamewindow.ui \
     forms/hofwindow.ui \

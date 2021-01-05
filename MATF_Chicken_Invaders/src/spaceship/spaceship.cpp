@@ -316,6 +316,7 @@ void Spaceship::stop_moving_timer()
 void Spaceship::revertProjectilesLevel()
 {
     projectilesLevel = 1;
+    mw->setProjectilesLevel(1);
 }
 
 void Spaceship::setNumOfLives(int num){

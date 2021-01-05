@@ -5,9 +5,7 @@
 Score::Score(QGraphicsItem* parent) : QGraphicsTextItem(parent)
 
 {
-    int value = this->score;
-
-    setPlainText(QString("Score: ") + QString::number(value));
+    setPlainText(QString("Score: ") + QString::number(this->score));
     setDefaultTextColor(Qt::white);
     setFont(QFont("times", 30, QFont::ExtraBold));
 
@@ -25,4 +23,6 @@ int Score::getScore()
 
 void Score::resetScore(){
     this->score = 0;
+
+    setPlainText(QString("Score: ") + QString::number(this->score));
 }
