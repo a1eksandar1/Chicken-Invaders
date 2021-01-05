@@ -67,6 +67,7 @@ public slots:
     void increaseScore(int step);
     void updatePlayer(int current_high_score);
     void updateLives();
+    void showChangedScore();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -95,13 +96,14 @@ public:
 public:
     MainWindow *mw;
     QPropertyAnimation *animation;
+    QGraphicsScene *scene;
 
 private:
     Ui::MainGameWindow *ui;
     int width;
     int height;
     AnimatedGraphicsItem *background;
-    QGraphicsScene *scene;
+
     QScrollBar *scroll;
     int fly_speed;
     Spaceship *spaceship;
@@ -111,6 +113,8 @@ private:
     GameWindow *qgw;
     bool openedQuitWindow;
     QGraphicsPixmapItem *lives;
+    Score *score;
+    bool updateable;
 };
 
 #endif // MAINGAMEWINDOW_H

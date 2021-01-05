@@ -14,15 +14,17 @@
 
 MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw(parent),
-    ui(new Ui::MainGameWindow),
     scene(new QGraphicsScene(this)),
+    ui(new Ui::MainGameWindow),
     scroll(new QScrollBar),
     fly_speed(20000),
     spaceship(new Spaceship(mw)),
     timer(new QTimer(this)),
     message(new QGraphicsPixmapItem),
     waveCounter(0),
-    openedQuitWindow(false)
+    openedQuitWindow(false),
+    score(mw->getScore()),
+    updateable(true)
 {
     ui->setupUi(this);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
@@ -54,17 +56,12 @@ MainGameWindow::MainGameWindow(MainWindow *parent) :
     mw->backGroundMusic->stop();
 
     connect(spaceship, &Spaceship::spaceshipDestroyed, this, &MainGameWindow::endOfGame);
-//    connect(spaceship, &Spaceship::changeScore, this, &MainGameWindow::increaseScore);
     connect(mw, &MainWindow::changeScore, this, &MainGameWindow::increaseScore);
+    connect(mw, &MainWindow::changeScore, this, &MainGameWindow::showChangedScore);
     connect(spaceship, &Spaceship::spaceshipHited, this, &MainGameWindow::updateLives);
 
-    // lisov menjao ovaj deo koda
-    // mw->getScore()->setPos(pos().x()+10, pos().y());
-    // mw->getLives()->setPos(width - 130, -20);
-    // scene->addItem(mw->getScore());
-    // scene->addItem(mw->getLives());
-    // mw->getLives()->set2LivesPic(); ovako menjamo izgled kada se izgubi zivot
-    // do ovde
+    mw->getScore()->setPos(pos().x()+10, pos().y());
+    scene->addItem(score);
 
     start();
 
@@ -99,18 +96,18 @@ void MainGameWindow::removeMessage()
 void MainGameWindow::slot_level1()
 {
     if(waveCounter == 1 ){
-        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 8,3);
+        ChickenMatrixGame *cmg = new ChickenMatrixGame(mw, scene, 1,1);//8,3
         cmg->start();
         connect(cmg, &ChickenMatrixGame::closeChickenMatrixGame, this, &MainGameWindow::setUserMessage);
 
     }
     else if(waveCounter == 2){
-        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,8, 8);
+        MeteorShowerGame *msg = new MeteorShowerGame(mw,scene,1,1); //8,8
         msg->start();
         connect(msg, &MeteorShowerGame::closeMeteorShowerGame, this, &MainGameWindow::setUserMessage);
     }
     else if(waveCounter == 3){
-        BalloonGame *bg = new BalloonGame(mw, scene, 8, 3);
+        BalloonGame *bg = new BalloonGame(mw, scene, 1,1);//8,3
         bg->start();
         connect(bg, &BalloonGame::closeBalloonGame, this, &MainGameWindow::setUserMessage);
     }
@@ -583,6 +580,8 @@ void MainGameWindow::setUserMessage()
         message->setPixmap(pm.scaled(width,height));
     }
     else if(waveCounter == 3){
+        scene->removeItem(score);
+        updateable = false;
         QPixmap pm(":/images/backgrounds/congratulations.png");
         message->setPixmap(pm.scaled(width,height));
 
@@ -725,5 +724,14 @@ void MainGameWindow::updateLives()
         lives->setPixmap(lv);
         lives->setPos(width-150, 0);
         scene->addItem(lives);
+    }
+}
+
+void MainGameWindow::showChangedScore()
+{
+    if(updateable){
+        scene->removeItem(score);
+        score = mw->getScore();
+        scene->addItem(score);
     }
 }

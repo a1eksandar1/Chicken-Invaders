@@ -9,6 +9,7 @@ void QuitGameWindow::onOk()
     mgw->mw->setDesiredLevel(1);
     mgw->mw->setFreezeScene(false);
     mgw->mw->setProjectilesLevel(1);
+    mgw->scene->removeItem(mgw->mw->getScore());
     delete this;
 }
 
