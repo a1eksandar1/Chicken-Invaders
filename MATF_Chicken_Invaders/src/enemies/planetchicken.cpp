@@ -8,13 +8,8 @@ PlanetChicken::PlanetChicken(MainWindow *parent, QTimer* cleanTimer, int m, int 
     else if(!mw->isHard())
         this->shotCounter = 1;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/12, height/9, Qt::KeepAspectRatio));
 

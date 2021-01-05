@@ -11,19 +11,13 @@
 Drumstick::Drumstick(MainWindow *parent) :
     mw(parent)
 {
-    setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(70,70,Qt::KeepAspectRatio));
-
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(50);
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
+    setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(width/22,width/22,Qt::KeepAspectRatio));
 
 }
 
@@ -33,7 +27,7 @@ void Drumstick::move()
 
         QTransform transform;
         transform = transform.rotate(angle);
-        setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(70,70,Qt::KeepAspectRatio).transformed(transform));
+        setPixmap(QPixmap(":images/chicken/drumstick.png").scaled(width/22,width/22,Qt::KeepAspectRatio).transformed(transform));
         if(!stop)
         {
            angle += 20;

@@ -8,13 +8,8 @@ SideChicken::SideChicken(MainWindow *parent, QTimer* cleanTimer, int n) :
     else if(!mw->isHard())
         this->shotCounter = 1;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     this->t = 4*n*3.14/40;
     this->scale = 2 / ( 3 - cos(2 * t)) * (width/2.5);

@@ -72,6 +72,11 @@ MainWindow::MainWindow(QWidget *parent) :
     setMusic();
     setConnects();
     connectToDatabase();
+
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    this->height = screenGeometry.height();
+    this->width = screenGeometry.width();
 }
 
 MainWindow::~MainWindow()
@@ -183,6 +188,26 @@ void MainWindow::pauseAllSounds()
 Score *MainWindow::getScore()
 {
     return score;
+}
+
+int MainWindow::getHeight() const
+{
+    return height;
+}
+
+void MainWindow::setHeight(int value)
+{
+    height = value;
+}
+
+int MainWindow::getWidth() const
+{
+    return width;
+}
+
+void MainWindow::setWidth(int value)
+{
+    width = value;
 }
 
 void MainWindow::setMusic()

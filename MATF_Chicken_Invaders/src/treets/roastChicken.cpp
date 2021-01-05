@@ -11,29 +11,26 @@
 RoastChicken::RoastChicken(MainWindow *parent) :
     mw(parent)
 {
-    setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(90,90,Qt::KeepAspectRatio));
-
     QTimer *moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(50);
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
-    this->width = width;
-    this->height = height;
+    setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(height/10, height/10, Qt::KeepAspectRatio));
+
 
 }
 
 void RoastChicken::move()
 {
-    if(!mw->getFreezeScene()){
+    if (!mw->getFreezeScene())
+    {
         QTransform transform;
         transform = transform.rotate(angle);
-        setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(90,90,Qt::KeepAspectRatio).transformed(transform));
-        if(!stop)
+        setPixmap(QPixmap(":images/chicken/roastChicken.png").scaled(height/10, height/10, Qt::KeepAspectRatio).transformed(transform));
+        if (!stop)
         {
            angle += 20;
         }
@@ -43,7 +40,7 @@ void RoastChicken::move()
             random = 1;
         else random = -1;
 
-        if(pos().y() > height - 120)
+        if (pos().y() > height - 120)
         {
             setStop(true);
             QTimer *cleanTimer = new QTimer(this);

@@ -8,13 +8,8 @@ BigChicken::BigChicken(MainWindow *parent, QTimer *cleanTimer, int shotCounter) 
     else if(!mw->isHard())
         this->shotCounter = shotCounter;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     setPixmap(QPixmap(":images/chicken/bigChicken.png").scaled(height/2, height/2, Qt::KeepAspectRatio));
 

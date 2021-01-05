@@ -5,6 +5,7 @@
 #include <QMediaPlayer>
 #include <QSqlDatabase>
 #include <QDesktopWidget>
+#include <QApplication>
 #include <QPalette>
 #include <QPainter>
 #include <QKeyEvent>
@@ -64,6 +65,7 @@ public:
     bool getFreezeScene() const;
     void setFreezeScene(bool value);
     Score* getScore();
+    int width, height;
 
 private:
     void setMusic();
@@ -84,6 +86,12 @@ public:
     QMediaPlayer* victorySound;
     int getProjectilesLevel() const;
     void setProjectilesLevel(int value);
+
+    int getWidth() const;
+    void setWidth(int value);
+
+    int getHeight() const;
+    void setHeight(int value);
 
 private:
     Ui::MainWindow *ui;

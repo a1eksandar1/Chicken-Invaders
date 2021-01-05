@@ -8,13 +8,8 @@ Chicken::Chicken(MainWindow *parent, QTimer* cleanTimer, int m, int n, int num1,
     else if (!mw->isHard())
         this->shotCounter = 1;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     setPixmap(QPixmap(":images/chicken/matf_chicken1.png").scaled(width/13, height/7, Qt::KeepAspectRatio));
     setPos(width/13*m + 30, -height/7*(num2-n) - 20);

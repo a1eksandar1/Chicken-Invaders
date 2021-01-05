@@ -16,13 +16,8 @@ Meteor::Meteor(MainWindow *parent,QTimer *moveTimer, QTimer *cleanTimer, int m, 
     else if(!mw->isHard())
         this->shotCounter = 1;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     int random1= rand() % 3;
     int random2 = rand() % 5;

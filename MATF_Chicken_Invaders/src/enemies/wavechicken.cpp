@@ -8,13 +8,8 @@ WaveChicken::WaveChicken(MainWindow *parent, QTimer* cleanTimer, int m, int n) :
     else if(!mw->isHard())
         this->shotCounter = 1;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     setPixmap(QPixmap(":images/chicken/pinkchicken.png").scaled(width/13, height/9, Qt::KeepAspectRatio));
 

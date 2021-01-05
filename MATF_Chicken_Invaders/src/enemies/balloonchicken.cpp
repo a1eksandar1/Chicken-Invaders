@@ -8,13 +8,8 @@ BalloonChicken::BalloonChicken(MainWindow *parent, QTimer* cleanTimer, int m, in
     else if(!mw->isHard())
         this->shotCounter = 3;
 
-    QScreen *screen = QGuiApplication::primaryScreen();
-    QRect  screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
-
-    this->width = width;
-    this->height = height;
+    this->width = mw->getWidth();
+    this->height = mw->getHeight();
 
     setPixmap(QPixmap(":images/chicken/balloonChicken3.png").scaled(width/13, height/8, Qt::KeepAspectRatio));
     setPos(width/13*m + 30, -height/7*(num2-n));
