@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QScreen>
 #include <QApplication>
-#include "headers/main_h/gamewindow.h"
 #include <QtMath>
 
 SideSpaceship::SideSpaceship(MainWindow *parent) :
