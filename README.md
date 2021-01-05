@@ -48,7 +48,7 @@ Zivote mozete izgubiti tako sto vas pogodi jaje, kokoska, meteor ili projektil k
 # Demo
 
 *Napomena: Zvuk i slika su potpuno tecni tokom same igre dok u demo snimku ima blagih lagova. Razlog je verovatno los alat za snimanje ekrana.<br>
-[Video](https://www.youtube.com/watch?v=7ljcyhZdPLU)
+[Video](https://youtu.be/zzROa-nYsZY)
 
 # Baza podataka
 
