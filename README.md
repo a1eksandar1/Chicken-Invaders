@@ -41,6 +41,7 @@ Zivote mozete izgubiti tako sto vas pogodi jaje, kokoska, meteor ili projektil k
 
 # Demo
 
+*Napomena zvuk u demo videu je mnogo slabijeg kvaliteta nego zvuk u samoj igri, u igri nema ovakvih bagova zvuka.<br>
 [Video](https://www.youtube.com/watch?v=InHLTwfHxZs&feature=youtu.be)
 
 ## Developers
