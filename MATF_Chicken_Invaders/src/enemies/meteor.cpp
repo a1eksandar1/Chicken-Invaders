@@ -56,7 +56,6 @@ void Meteor::die()
    {
        shot = true;
        emit meteorShot();
-       clean();
    }
 
    if(!shot and shotCounter == 0)
