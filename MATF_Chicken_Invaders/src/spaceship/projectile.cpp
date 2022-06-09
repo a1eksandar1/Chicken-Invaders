@@ -42,8 +42,10 @@ void Projectile::move()
             break;
         default: // 0
             setPos(x(), y()-10);
-            if(pos().y() < 0)
+            if(pos().y() < 0){
                 this->clean();
+                return;
+            }
             /*
             if(400 < spaceship->getPosition().y()){
                 if(pos().y()  > 600 - (spaceship->yStart() - spaceship->getPosition().y()))
@@ -58,10 +60,14 @@ void Projectile::move()
                     spaceship->setThrowingAllowed(true);
             }
             */
-            if(pos().y() < -300)
+            if(pos().y() < -300){
                 this->clean();
-            if(spaceship->getPosition().y() - pos().y() < 300)
+                return;
+            }
+            if(spaceship->getPosition().y() - pos().y() < 300){
                 spaceship->setThrowingAllowed(false);
+                return;
+            }
             else
                 spaceship->setThrowingAllowed(true);
 
@@ -86,7 +92,7 @@ void Projectile::colision()
         else if(typeid (*colItem) == typeid (Meteor))
         {
             auto meteor = static_cast<Meteor*>(colItem);
-            spaceship->mw->changeScore(5);
+            emit spaceship->mw->changeScore(5);
             meteor->die();
             spaceship->setThrowingAllowed(true);
             clean();
@@ -155,7 +161,7 @@ void Projectile::colision()
                 bEgg->setPixmap(QPixmap(":images/chicken/bigEgg_cl3.png").scaled(500,500,Qt::KeepAspectRatio));
 
             if(bEgg->decrementAndGetCurrHealth() == 0){
-                spaceship->mw->changeScore(500);
+                emit spaceship->mw->changeScore(500);
                 emit bEgg->endOfBigEggGame();
                 bEgg->clean();
             }

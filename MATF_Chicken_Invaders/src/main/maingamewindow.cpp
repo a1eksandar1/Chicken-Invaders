@@ -694,6 +694,7 @@ void MainGameWindow::updatePlayer(int current_high_score){
     std::string content = "anon";
     QString str = QString::fromUtf8(content.c_str());
     if(active_player == str){
+        delete(qry);
         return;
     }
     int score = mw->getScore()->getScore();
@@ -705,6 +706,7 @@ void MainGameWindow::updatePlayer(int current_high_score){
         qry->exec();
         mydb.commit();
     }
+    delete(qry);
     spaceship->setNumOfLives(mw->active_player->getLives());
 
 }

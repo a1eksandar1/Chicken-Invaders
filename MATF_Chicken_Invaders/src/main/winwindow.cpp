@@ -3,8 +3,8 @@
 
 void winWindow::onQuit()
 {
-    delete this;
     mw->onQuit();
+    delete this;
 }
 
 void winWindow::onBack()
