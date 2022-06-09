@@ -1,35 +1,35 @@
 #ifndef BOSSGAME_H
 #define CHICKENMATRIXGAME_H
 
-#include <QWidget>
-#include <QGraphicsScene>
 #include <QDialog>
-#include "headers/main_h/mainwindow.h"
+#include <QGraphicsScene>
+#include <QWidget>
+
 #include "headers/enemies_h/bigchicken.h"
+#include "headers/main_h/mainwindow.h"
 
-class BossGame: public QObject, public QGraphicsPixmapItem
+class BossGame : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
+      Q_OBJECT
 
-public:
-    BossGame(MainWindow *parent, QGraphicsScene *scene, int numOfShots);
-    ~BossGame();
-    void start();
+     public:
+      BossGame(MainWindow *parent, QGraphicsScene *scene, int numOfShots);
+      ~BossGame();
+      void start();
 
-    void clear();
+      void clear();
 
-signals:
-    void closeBossGame();
+     signals:
+      void closeBossGame();
 
-public slots:
-    void onChickenDeath();
+     public slots:
+      void onChickenDeath();
 
-private:
-    BigChicken * bChicken;
-    QTimer *cleanChickenTimer;
-    MainWindow *mw;
-    QGraphicsScene *scene;
-    int numOfShots;
-
+     private:
+      BigChicken *bChicken;
+      QTimer *cleanChickenTimer;
+      MainWindow *mw;
+      QGraphicsScene *scene;
+      int numOfShots;
 };
-#endif // CHICKENMATRIXGAME_H
+#endif  // CHICKENMATRIXGAME_H

@@ -5,14 +5,14 @@
 
 class Score : public QGraphicsTextItem
 {
-public:
-    Score(QGraphicsItem* parent = 0);
-    void increaseScore(int step);
-    int getScore();
-    void resetScore();
+     public:
+      Score(QGraphicsItem* parent = 0);
+      void increaseScore(int step);
+      int getScore();
+      void resetScore();
 
-private:
-    int score = 0;
+     private:
+      int score = 0;
 };
 
-#endif // SCORE_H
+#endif  // SCORE_H

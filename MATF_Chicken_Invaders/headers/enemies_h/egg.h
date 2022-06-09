@@ -1,27 +1,28 @@
 #ifndef EGG_H
 #define EGG_H
 
-#include <QObject>
 #include <QGraphicsPixmapItem>
+#include <QObject>
+
 #include "headers/main_h/mainwindow.h"
 
-class Egg: public QObject, public QGraphicsPixmapItem
+class Egg : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
+      Q_OBJECT
 
-public:
-    Egg(MainWindow *parent);
+     public:
+      Egg(MainWindow *parent);
 
-    void colision();
+      void colision();
 
-public slots:
-    void move();
-    void clean();
+     public slots:
+      void move();
+      void clean();
 
-private:
-    int width, height;
-    bool broken = false;
-    MainWindow *mw;
+     private:
+      int width, height;
+      bool broken = false;
+      MainWindow *mw;
 };
 
-#endif // EGG_H
+#endif  // EGG_H

@@ -2,32 +2,34 @@
 #define OPTIONSWINDOW_H
 
 #include <QDialog>
-#include "headers/main_h/mainwindow.h"
 #include <QSlider>
 
-namespace Ui {
-class OptionsWindow;
+#include "headers/main_h/mainwindow.h"
+
+namespace Ui
+{
+      class OptionsWindow;
 }
 
 class OptionsWindow : public QDialog
 {
-    Q_OBJECT
+      Q_OBJECT
 
-public slots:
-    void volumeChanged();
+     public slots:
+      void volumeChanged();
 
-protected:
-    void resizeEvent(QResizeEvent *) override;
+     protected:
+      void resizeEvent(QResizeEvent *) override;
 
-public:
-    explicit OptionsWindow(MainWindow *parent = nullptr);
-    ~OptionsWindow();
+     public:
+      explicit OptionsWindow(MainWindow *parent = nullptr);
+      ~OptionsWindow();
 
-    void onBack();
+      void onBack();
 
-private:
-    Ui::OptionsWindow *ui;
-    MainWindow* mw;
+     private:
+      Ui::OptionsWindow *ui;
+      MainWindow *mw;
 };
 
-#endif // OPTIONSWINDOW_H
+#endif  // OPTIONSWINDOW_H

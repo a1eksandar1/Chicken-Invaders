@@ -1,40 +1,39 @@
 #ifndef PLANETCHICKENGAME_H
 #define PLANETCHICKENGAME_H
 
-#include <QWidget>
-#include <QGraphicsScene>
 #include <QDialog>
-#include "headers/main_h/mainwindow.h"
+#include <QGraphicsScene>
+#include <QWidget>
+
 #include "headers/enemies_h/planetchicken.h"
+#include "headers/main_h/mainwindow.h"
 
-
-class PlanetChickenGame: public QObject, public QGraphicsPixmapItem
+class PlanetChickenGame : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
+      Q_OBJECT
 
-public:
-    PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int pl);
-    ~PlanetChickenGame();
+     public:
+      PlanetChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int pl);
+      ~PlanetChickenGame();
 
-    void start();
-    void clear();
+      void start();
+      void clear();
 
-signals:
-    void closePlanetChickenGame();
+     signals:
+      void closePlanetChickenGame();
 
-public slots:
-    void onChickenDeath();
+     public slots:
+      void onChickenDeath();
 
-private:
-    QVector<PlanetChicken*> matrix;
-    QVector<PlanetChicken*> rmatrix;
-    QGraphicsPixmapItem* planet;
-    int width, height;
-    MainWindow *mw;
-    QGraphicsScene *scene;
-    QTimer* cleanChickenTimer;
-    int num, count, pl;
-    int chickenCounter;
-
+     private:
+      QVector<PlanetChicken *> matrix;
+      QVector<PlanetChicken *> rmatrix;
+      QGraphicsPixmapItem *planet;
+      int width, height;
+      MainWindow *mw;
+      QGraphicsScene *scene;
+      QTimer *cleanChickenTimer;
+      int num, count, pl;
+      int chickenCounter;
 };
-#endif // PLANETCHICKENGAME_H
+#endif  // PLANETCHICKENGAME_H

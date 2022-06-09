@@ -1,37 +1,36 @@
 #ifndef BALLOONGAME_H
 #define BALLOONGAME_H
 
-#include <QWidget>
-#include <QGraphicsScene>
 #include <QDialog>
+#include <QGraphicsScene>
+#include <QWidget>
 
-#include "headers/main_h/mainwindow.h"
 #include "headers/enemies_h/balloonchicken.h"
+#include "headers/main_h/mainwindow.h"
 
-class BalloonGame: public QObject, public QGraphicsPixmapItem
+class BalloonGame : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
+      Q_OBJECT
 
-public:
-    BalloonGame(MainWindow *parent, QGraphicsScene *scene, int m, int n);
-    ~BalloonGame();
+     public:
+      BalloonGame(MainWindow *parent, QGraphicsScene *scene, int m, int n);
+      ~BalloonGame();
 
-    void start();
-    void clear();
+      void start();
+      void clear();
 
-signals:
-    void closeBalloonGame();
+     signals:
+      void closeBalloonGame();
 
-public slots:
-    void onChickenDeath();
+     public slots:
+      void onChickenDeath();
 
-private:
-    QVector<QVector<BalloonChicken*>> matrix;
-    MainWindow *mw;
-    QGraphicsScene *scene;
-    QTimer* cleanChickenTimer;
-    int m, n;
-    int chickenCounter;
-
+     private:
+      QVector<QVector<BalloonChicken *>> matrix;
+      MainWindow *mw;
+      QGraphicsScene *scene;
+      QTimer *cleanChickenTimer;
+      int m, n;
+      int chickenCounter;
 };
-#endif // BALLOONGAME_H
+#endif  // BALLOONGAME_H
