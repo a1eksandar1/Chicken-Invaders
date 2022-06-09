@@ -1,38 +1,37 @@
 #ifndef WAVECHICKENGAME_H
 #define WAVECHICKENGAME_H
 
-#include <QWidget>
-#include <QGraphicsScene>
 #include <QDialog>
-#include "headers/main_h/mainwindow.h"
+#include <QGraphicsScene>
+#include <QWidget>
+
 #include "headers/enemies_h/wavechicken.h"
+#include "headers/main_h/mainwindow.h"
 
-
-class WaveChickenGame: public QObject, public QGraphicsPixmapItem
+class WaveChickenGame : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
+      Q_OBJECT
 
-public:
-    WaveChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int waves);
-    ~WaveChickenGame();
+     public:
+      WaveChickenGame(MainWindow *parent, QGraphicsScene *scene, int num, int waves);
+      ~WaveChickenGame();
 
-    void start();
-    void clear();
+      void start();
+      void clear();
 
-signals:
-    void closeWaveChickenGame();
+     signals:
+      void closeWaveChickenGame();
 
-public slots:
-    void onChickenDeath();
+     public slots:
+      void onChickenDeath();
 
-private:
-    QVector<WaveChicken*> matrix;
-    QTimer* cleanChickenTimer;
-    MainWindow *mw;
-    QGraphicsScene *scene;
-    int num, count;
-    int waves;
-    int chickenCounter;
-
+     private:
+      QVector<WaveChicken *> matrix;
+      QTimer *cleanChickenTimer;
+      MainWindow *mw;
+      QGraphicsScene *scene;
+      int num, count;
+      int waves;
+      int chickenCounter;
 };
-#endif // WAVECHICKENGAME_H
+#endif  // WAVECHICKENGAME_H

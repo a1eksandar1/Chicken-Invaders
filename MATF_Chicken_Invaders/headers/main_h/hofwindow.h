@@ -1,37 +1,38 @@
 #ifndef HOFWINDOW_H
 #define HOFWINDOW_H
 
-#include "headers/main_h/mainwindow.h"
-
 #include <QDialog>
-#include <QtSql>
-#include <QtDebug>
 #include <QFileInfo>
+#include <QtDebug>
+#include <QtSql>
+
+#include "headers/main_h/mainwindow.h"
 #include "headers/main_h/player.h"
 
-namespace Ui {
-class HofWindow;
+namespace Ui
+{
+      class HofWindow;
 }
 
 class HofWindow : public QDialog
 {
-    Q_OBJECT
+      Q_OBJECT
 
-protected:
-    void resizeEvent(QResizeEvent *) override;
+     protected:
+      void resizeEvent(QResizeEvent *) override;
 
-public:
-    explicit HofWindow(MainWindow *parent = nullptr);
-    ~HofWindow();
+     public:
+      explicit HofWindow(MainWindow *parent = nullptr);
+      ~HofWindow();
 
-    void onBack();
-    void LoadData();
-    void insertPlayer(Player player);
+      void onBack();
+      void LoadData();
+      void insertPlayer(Player player);
 
-private:
-    Ui::HofWindow *ui;
-    MainWindow* mw;
-//    QSqlDatabase mydb;
+     private:
+      Ui::HofWindow *ui;
+      MainWindow *mw;
+      //    QSqlDatabase mydb;
 };
 
-#endif // HOFWINDOW_H
+#endif  // HOFWINDOW_H
